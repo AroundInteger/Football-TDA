@@ -1,0 +1,18 @@
+======================================================================
+H1 LOOPS EVENT CORRELATION ANALYSIS
+======================================================================
+
+OVERALL STATISTICS:
+----------------------------------------------------------------------
+
+INDIVIDUAL Scale:
+  Frames with loops: 148
+  Mean persistence: 1.832
+  Max persistence: 7.971
+
+TACTICAL Scale:
+  Frames with loops: 42
+  Mean persistence: 3.409
+  Max persistence: 9.392
+
+======================================================================

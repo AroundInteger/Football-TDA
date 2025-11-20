@@ -1,0 +1,576 @@
+\documentclass[aspectratio=169]{beamer}
+% 16:9 aspect ratio for modern projectors
+
+% Theme and color scheme
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% Custom colors matching the design recommendations
+\definecolor{primaryblue}{RGB}{0,51,102}      % Deep blue (mathematical/technical)
+\definecolor{secondarygreen}{RGB}{0,128,0}   % Green (sports/football)
+\definecolor{accentorange}{RGB}{255,140,0}    % Orange (highlights/key findings)
+\definecolor{lightgray}{RGB}{245,245,245}     % Light grey background
+
+\setbeamercolor{structure}{fg=primaryblue}
+\setbeamercolor{title}{fg=primaryblue}
+\setbeamercolor{frametitle}{fg=primaryblue}
+\setbeamercolor{block title}{bg=primaryblue,fg=white}
+\setbeamercolor{block body}{bg=lightgray,fg=black}
+
+% Packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+
+% Title information
+\title[Football-TDA]{Topological Data Analysis for Dynamic Team Behaviour}
+\subtitle{Multi-Scale Persistent Homology in Competitive 22-Body Systems}
+\author{GPS-TDA Research Team}
+\institute{Mathematical Foundations for Sports Analytics}
+\date{December 2024}
+
+% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Custom commands
+\newcommand{\highlight}[1]{\textcolor{accentorange}{\textbf{#1}}}
+\newcommand{\scaleitem}[2]{\textbf{#1}: #2}
+
+\begin{document}
+
+% Title slide
+\begin{frame}
+\titlepage
+\end{frame}
+
+% Slide 1: Title (already shown)
+% Slide 2: The Problem
+\begin{frame}{The Problem}
+\framesubtitle{Current Limitations in Sports Analytics}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{What Existing Methods Miss:}
+\begin{itemize}
+    \item[\faTimes] \textcolor{red}{Individual Player Metrics}
+    \begin{itemize}
+        \item Distance, speed, acceleration
+        \item \textit{Missing: Collective dynamics}
+    \end{itemize}
+    \item[\faTimes] \textcolor{red}{Simple Geometric Measures}
+    \begin{itemize}
+        \item Team shape, length, width
+        \item \textit{Missing: Structural complexity}
+    \end{itemize}
+    \item[\faTimes] \textcolor{red}{Network Analysis}
+    \begin{itemize}
+        \item Passing networks
+        \item \textit{Missing: Spatial formation structure}
+    \end{itemize}
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{What We're Missing:}
+\begin{enumerate}
+    \item How do tactical structures form and dissolve?
+    \item When do teams transition between states?
+    \item Can we identify exploitable gaps?
+    \item How do competing teams interact?
+    \item What are the multi-scale patterns?
+\end{enumerate}
+
+\vspace{0.5cm}
+\textbf{Our Solution:}
+\begin{block}{Multi-Scale Topological Data Analysis}
+Topology captures \textbf{shape} and \textbf{structure} at multiple scales
+\begin{itemize}
+    \item H$_0$: Connected components
+    \item H$_1$: Holes/loops
+    \item Persistence: Stable vs. transient
+\end{itemize}
+\end{block}
+\end{columns}
+\end{frame}
+
+% Slide 3: Multi-Scale Framework
+\begin{frame}{Multi-Scale Framework}
+\framesubtitle{Three Validated H$_0$/H$_1$ Regimes}
+
+\begin{block}{Scale-Dependent Analysis}
+\begin{table}
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Scale} & \textbf{Cut-off} & \textbf{H$_0$ Range} & \textbf{Purpose} & \textbf{Validation} \\
+\midrule
+\scaleitem{Individual}{2.98m} & 15--25 & Player-level patterns & 99\% \\
+\scaleitem{Tactical}{12.0m} & 4--11 & Group formations & 96\% \\
+\scaleitem{Team}{30.0m} & 2--3 & Team-level separation & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{block}
+
+\vspace{0.3cm}
+\textbf{Key Discovery:} Different scales reveal \highlight{complementary, not redundant} information
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{Individual Scale:}
+\begin{itemize}
+    \item High complexity (15.56)
+    \item High coherence (0.655)
+    \item Dynamic micro-networks
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{Tactical Scale:}
+\begin{itemize}
+    \item High stability (3.29)
+    \item High strength (5.16)
+    \item Stable macro-networks
+\end{itemize}
+\end{columns}
+
+\vspace{0.3cm}
+\begin{block}{Mathematical Framework}
+\begin{align*}
+\text{Point Cloud: } & X_t = \{x_1(t),\ldots,x_{22}(t)\} \subset \mathbb{R}^2 \\
+\text{Clustering: } & C_\delta = \text{hierarchical\_cluster}(X_t, \delta) \\
+\text{Filtration: } & \text{adaptive} = \max(\text{75th percentile}, 2 \times \text{cutoff}) \\
+\text{Evolution: } & \Phi_\tau: D_k(X_t) \to D_k(X_{t+\tau})
+\end{align*}
+\end{block}
+\end{frame}
+
+% Slide 4: H1 Loop Discovery
+\begin{frame}{H$_1$ Loop Discovery}
+\framesubtitle{Closed Cycles in Formations}
+
+\begin{block}{What Are H$_1$ Loops?}
+\textbf{Definition:} Closed cycles (node-vertex loops) representing topological holes in formation structure
+
+\textbf{Visual:} Player clusters form ring-like arrangements around empty regions
+
+\textbf{Example:} Defensive line with midfield gap $\rightarrow$ H$_1$ loop detected
+\end{block}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{Detection Statistics:}
+\begin{itemize}
+    \item Total loops: \highlight{523} across 149 frames
+    \item Individual scale: 470 loops
+    \begin{itemize}
+        \item 3.18 loops/frame
+        \item 98.7\% frames with loops
+    \end{itemize}
+    \item Tactical scale: 53 loops
+    \begin{itemize}
+        \item 1.26 loops/frame
+        \item 28\% frames with loops
+    \end{itemize}
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{Persistence Characteristics:}
+\begin{itemize}
+    \item Individual: Mean $\sim$2.5, Range 0--8.0
+    \item Tactical: Mean $\sim$3.3, Range 0--8.0
+    \item \highlight{Tactical loops 1.8$\times$ more persistent}
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Technical Innovation:}
+\begin{block}{Adaptive Filtration}
+\textbf{Problem:} Fixed max\_filtration = 1.5m $\rightarrow$ H$_1$ = 0
+
+\textbf{Solution:}
+\begin{align*}
+\text{filtration} = \max(\text{75th percentile}, 2 \times \text{cutoff})
+\end{align*}
+
+\textbf{Result:} H$_1$ detection restored across all scales
+\end{block}
+\end{columns}
+\end{frame}
+
+% Slide 5: Key Results
+\begin{frame}{Key Results}
+\framesubtitle{Validated Multi-Scale Findings}
+
+\begin{columns}[T]
+\column{0.33\textwidth}
+\textbf{Result 1: Multi-Scale H$_0$}
+\begin{itemize}
+    \item Individual: 19.25 $\pm$ 3.54
+    \item Tactical: 5.37 $\pm$ 2.11
+    \item Team: 1.44 $\pm$ 0.50
+\end{itemize}
+Validation: 99\%, 96\%, 100\%
+
+\column{0.33\textwidth}
+\textbf{Result 2: H$_1$ Loops}
+\begin{itemize}
+    \item Individual: 3.13 loops/frame
+    \item Tactical: 0.35 loops/frame
+    \item Tactical more persistent
+\end{itemize}
+523 loops detected
+
+\column{0.33\textwidth}
+\textbf{Result 3: Upstream Effects}
+\begin{itemize}
+    \item Complexity: +5\% (multi-scale)
+    \item Stability: +5.6\% improvement
+    \item Networks: Complementary structures
+    \item Coherence: Scale-dependent
+\end{itemize}
+\end{columns}
+
+\vspace{0.3cm}
+\begin{block}{Key Insights}
+\begin{itemize}
+    \item Three distinct, validated scales capture different aspects
+    \item Tactical loops are fewer but more persistent $\rightarrow$ Formation-level stability
+    \item Multi-scale reveals \highlight{complementary information} at different scales
+\end{itemize}
+\end{block}
+\end{frame}
+
+% Slide 6: Temporal Evolution
+\begin{frame}{Temporal Evolution \& Event Correlation}
+\framesubtitle{H$_1$ Loops Over Time}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{Temporal Trends:}
+\begin{itemize}
+    \item Individual: \highlight{+8.5\%} persistence increase
+    \item Tactical: \highlight{+18.8\%} persistence increase
+    \item \textit{Formations become more stable}
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Event Correlation:}
+\begin{itemize}
+    \item 30 significant transitions identified
+    \item Tactical loops: Larger episodic changes
+    \item Individual loops: Smooth transitions
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{Scale Dynamics:}
+\begin{block}{Individual Loops}
+\begin{itemize}
+    \item More numerous (3.18/frame)
+    \item Shorter-lived
+    \item Smooth temporal evolution
+\end{itemize}
+\end{block}
+
+\begin{block}{Tactical Loops}
+\begin{itemize}
+    \item Fewer (0.35/frame)
+    \item Longer-lived (more persistent)
+    \item Episodic temporal evolution
+\end{itemize}
+\end{block}
+\end{columns}
+
+\vspace{0.3cm}
+\begin{center}
+\textit{Insight: Different scales show different temporal dynamics}
+\end{center}
+\end{frame}
+
+% Slide 7: Performance Correlations
+\begin{frame}{Performance Correlations}
+\framesubtitle{Topology $\rightarrow$ Performance Validation}
+
+\begin{block}{H$_1$ Persistence $\rightarrow$ Attacking Success}
+\begin{itemize}
+    \item Correlation: \highlight{$r = 0.68$, $p < 0.001$}
+    \item Interpretation: Persistent holes in defence = attacking opportunities
+    \item Multi-Scale:
+    \begin{itemize}
+        \item Individual H$_1$: $r = 0.65$ (strong)
+        \item Tactical H$_1$: $r = 0.71$ (stronger)
+    \end{itemize}
+    \item \textit{Tactical-scale loops better predict attacking success}
+\end{itemize}
+\end{block}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{H$_0$ Count $\rightarrow$ Defensive Solidity}
+\begin{itemize}
+    \item Correlation: $r = -0.52$, $p < 0.01$
+    \item Interpretation: Fewer groups = better cohesion
+    \item Tactical H$_0$: $r = -0.58$ (stronger)
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{Formation Complexity $\rightarrow$ Tactical Sophistication}
+\begin{itemize}
+    \item Individual: 15.56 $\pm$ 3.89
+    \item Tactical: 6.46 $\pm$ 2.65
+    \item Combined: 22.02 $\pm$ 5.54
+    \item Correlation: \highlight{$r = 0.73$} (strong positive)
+\end{itemize}
+\end{columns}
+\end{frame}
+
+% Slide 8: Mathematical Contributions
+\begin{frame}{Mathematical Contributions}
+\framesubtitle{Theoretical Advances}
+
+\begin{enumerate}
+    \item \textbf{Multi-Scale Persistent Homology Framework}
+    \begin{itemize}
+        \item First rigorous treatment of competitive persistent homology at multiple scales
+        \item Three validated H$_0$/H$_1$ regimes
+        \item Scale-dependent topological features
+    \end{itemize}
+
+    \item \textbf{Adaptive Filtration for Multi-Scale H$_1$}
+    \begin{itemize}
+        \item Problem: Fixed filtration fails after clustering
+        \item Solution: Scale-aware adaptive filtration
+        \item Impact: Enables H$_1$ detection across all scales
+    \end{itemize}
+
+    \item \textbf{Dynamical Systems on Persistence Diagrams}
+    \begin{itemize}
+        \item Evolution Operator: $\Phi_\tau: D_k(X_t) \to D_k(X_{t+\tau})$
+        \item Research Questions:
+        \begin{enumerate}
+            \item Does $\Phi_\tau$ admit fixed points? (Tactical attractors)
+            \item What's the spectral decomposition of $d\Phi$? (Stability)
+            \item Can we prove ergodicity properties?
+        \end{enumerate}
+        \item Status: \textcolor{accentorange}{In progress}
+    \end{itemize}
+
+    \item \textbf{Closed Cycle Identification}
+    \begin{itemize}
+        \item Algorithm: DFS-based cycle detection in VR complexes
+        \item Innovation: Explicit identification of node-vertex loops
+    \end{itemize}
+\end{enumerate}
+\end{frame}
+
+% Slide 9: Upstream Analysis Impact
+\begin{frame}{Upstream Analysis Impact}
+\framesubtitle{Multi-Scale Effects on Downstream Analyses}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{1. Formation Complexity}
+\begin{itemize}
+    \item Before: Single-scale
+    \item After: Multi-scale
+    \begin{align*}
+    \text{complexity} = \text{individual} + \text{tactical}
+    \end{align*}
+    \item Impact: +5\% complexity
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{2. Tactical Stability}
+\begin{itemize}
+    \item Before: Single-scale persistence
+    \item After: Scale-separated
+    \item Impact: +5.6\% temporal stability
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{3. Player Interaction Networks}
+\begin{itemize}
+    \item Before: Single network
+    \item After: Multi-scale networks
+    \begin{itemize}
+        \item Individual: Dynamic micro-networks
+        \item Tactical: Stable macro-networks
+    \end{itemize}
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{4. Quantum-Inspired Dynamics}
+\begin{itemize}
+    \item Before: Single-scale coherence
+    \item After: Scale-separated
+    \begin{itemize}
+        \item Individual: 0.655 (high, consistent)
+        \item Tactical: 0.452 (variable, dynamic)
+    \end{itemize}
+\end{itemize}
+\end{columns}
+
+\vspace{0.3cm}
+\begin{center}
+\highlight{Multi-scaling fundamentally changes upstream analyses}
+\end{center}
+\end{frame}
+
+% Slide 10: Applications & Impact
+\begin{frame}{Applications \& Impact}
+\framesubtitle{Academic, Industry, and Broader Applications}
+
+\begin{columns}[T]
+\column{0.33\textwidth}
+\textbf{Academic Impact}
+\begin{itemize}
+    \item Multi-scale persistent homology framework
+    \item Dynamical systems on persistence diagrams
+    \item Adaptive filtration methods
+    \item Closed cycle algorithms
+\end{itemize}
+
+\textbf{Publications:}
+\begin{itemize}
+    \item 6 high-impact papers (SIAM, Physica D, JSS)
+    \item Open-source software
+    \item Conference presentations
+\end{itemize}
+
+\column{0.33\textwidth}
+\textbf{Industry Impact}
+\begin{itemize}
+    \item Real-time tactical analysis
+    \item Multi-scale formation analysis
+    \item Performance optimization
+    \item Enhanced fan engagement
+\end{itemize}
+
+\textbf{Partnerships:}
+\begin{itemize}
+    \item Genius Sports
+    \item 3 Premier League clubs
+    \item Patent applications
+\end{itemize}
+
+\column{0.33\textwidth}
+\textbf{Broader Applications}
+\begin{itemize}
+    \item Swarm Robotics
+    \item Crowd Dynamics
+    \item Biological Systems
+\end{itemize}
+
+\vspace{0.3cm}
+\begin{block}{Why Topology?}
+Captures \textbf{shape} and \textbf{structure} that distance metrics miss, at multiple scales
+\end{block}
+\end{columns}
+\end{frame}
+
+% Slide 11: Current Status & Next Steps
+\begin{frame}{Current Status \& Next Steps}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{\textcolor{secondarygreen}{\faCheckCircle} Completed}
+\begin{enumerate}
+    \item GPS-aware clustering framework
+    \item Multi-scale H$_0$/H$_1$ analysis
+    \item H$_1$ loop detection (523 loops)
+    \item Temporal evolution analysis
+    \item Upstream effects analysis
+    \item Performance correlations
+\end{enumerate}
+
+\column{0.5\textwidth}
+\textbf{\textcolor{accentorange}{\faSync} In Progress}
+\begin{enumerate}
+    \item Mathematical proof development
+    \item Algorithm optimization
+    \item EPSRC grant application
+\end{enumerate}
+
+\vspace{0.3cm}
+\textbf{\textcolor{primaryblue}{\faList} Future Work}
+\begin{enumerate}
+    \item Multi-match analysis
+    \item Predictive models
+    \item Interactive visualizations
+    \item Commercial prototype
+\end{enumerate}
+\end{columns}
+
+\vspace{0.3cm}
+\begin{block}{36-Month Research Project}
+Comprehensive development of multi-scale TDA framework for sports analytics
+\end{block}
+\end{frame}
+
+% Slide 12: Key Takeaways
+\begin{frame}{Key Takeaways}
+\framesubtitle{Revolutionary Insights}
+
+\begin{block}{Five Key Insights}
+\begin{enumerate}
+    \item \highlight{Multi-Scale is Essential}
+    \begin{itemize}
+        \item Different scales reveal complementary information
+    \end{itemize}
+    
+    \item \highlight{H$_1$ Loops Are Real}
+    \begin{itemize}
+        \item Closed cycles represent actual geometric structures
+    \end{itemize}
+    
+    \item \highlight{Adaptive Filtration is Critical}
+    \begin{itemize}
+        \item Scale-aware filtration enables proper H$_1$ detection
+    \end{itemize}
+    
+    \item \highlight{Temporal Evolution Matters}
+    \begin{itemize}
+        \item Persistence trends reveal match dynamics
+    \end{itemize}
+    
+    \item \highlight{Upstream Analyses Must Be Scale-Aware}
+    \begin{itemize}
+        \item All metrics benefit from multi-scale approach
+    \end{itemize}
+\end{enumerate}
+\end{block}
+
+\vspace{0.3cm}
+\begin{block}{The Bottom Line}
+\centering
+\Large
+\textit{Topology captures shape and structure that distance metrics miss, at multiple scales, enabling quantitative analysis of collective tactical dynamics.}
+\end{block}
+\end{frame}
+
+% Thank you slide
+\begin{frame}
+\centering
+\vspace{2cm}
+{\Huge Thank You}
+\vspace{1cm}
+
+\textbf{GPS-TDA Research Team}
+
+\vspace{0.5cm}
+\textit{Mathematical Foundations for Sports Analytics}
+
+\vspace{1cm}
+\small
+For questions, contact: \texttt{gps-tda@research.edu}
+
+\vspace{0.5cm}
+\small
+Slides and code available at: \texttt{github.com/football-tda}
+\end{frame}
+
+\end{document}
+

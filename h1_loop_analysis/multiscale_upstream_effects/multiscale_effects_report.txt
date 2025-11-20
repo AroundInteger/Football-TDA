@@ -1,0 +1,29 @@
+======================================================================
+MULTI-SCALE H0/H1 EFFECTS ON UPSTREAM ANALYSES
+======================================================================
+
+SUMMARY OF FINDINGS:
+----------------------------------------------------------------------
+
+1. FORMATION COMPLEXITY:
+   Original (single-scale): 20.937 ± 4.129
+   Multi-scale (combined): 22.017 ± 5.538
+   Correlation: 0.799
+
+2. TACTICAL STABILITY:
+   Original: 1.819 ± 1.051
+   Multi-scale: 1.476 ± 1.008
+
+3. INTERACTION NETWORKS:
+   Individual Scale:
+      Network strength: 4.314
+      Network complexity: 2.500
+   Tactical Scale:
+      Network strength: 5.162
+      Network complexity: 1.500
+
+4. QUANTUM COHERENCE:
+   Individual: 0.655
+   Tactical: 0.452
+
+======================================================================

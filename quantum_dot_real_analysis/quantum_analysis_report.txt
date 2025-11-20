@@ -1,0 +1,22 @@
+Quantum Dot Analysis on Real Multi-Segment Data
+================================================
+
+Analysis Date: 2025-10-17 08:46:32
+Segments Analyzed: 4
+
+QUANTUM DOT COMPARISON:
+          segment  energy_levels  band_gap_mean  binding_energy_mean  tunneling_rate_mean  performance_intensity  quantum_yield  coherence_time  confinement_energy
+ First_Half_Start              5       0.001117             0.062982             0.001412               0.021399       0.656566        0.002267           12.230715
+   First_Half_End              5       0.001808             0.066236             0.001548               0.018967       0.355140        0.003467           12.850360
+Second_Half_Start              5       0.001741             0.062591             0.001151               0.021909       0.714286        0.003067           12.344076
+  Second_Half_End              5       0.001628             0.068974             0.001577               0.019608       0.595745        0.002534           12.115236
+
+KEY QUANTUM INSIGHTS:
+
+• Most Quantum-Like Segment: Second_Half_Start (Intensity: 0.022)
+• Least Quantum-Like Segment: First_Half_End (Intensity: 0.019)
+• Average Band Gap: 0.002
+• Average Binding Energy: 0.065
+• Average Quantum Yield: 0.580
+
+Analysis Complete!

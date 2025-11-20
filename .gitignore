@@ -1,0 +1,84 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+
+# MATLAB
+*.asv
+*.fig
+*.m~
+*.mat
+*.mex
+*.mexa64
+*.mexmaci64
+*.mexw64
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Results and output directories
+*_results/
+*_output/
+results/
+output/
+*.csv
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.svg
+
+# Data files
+*.xlsx
+*.xls
+*.json
+*.jsonl
+*.h5
+*.hdf5
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.Trash/
+Thumbs.db
+
+# Temporary files
+temp_*/
+tmp/
+*.tmp
+*.log
+
+# Large data directories
+open-data/
+opendata/
+FieldTest/
+
+# Compiled files
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+.env.local
+
+# Documentation builds
+docs/_build/
+site/
+

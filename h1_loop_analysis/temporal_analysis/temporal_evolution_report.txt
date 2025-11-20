@@ -1,0 +1,33 @@
+======================================================================
+H1 LOOPS TEMPORAL EVOLUTION ANALYSIS
+======================================================================
+
+INDIVIDUAL SCALE:
+----------------------------------------------------------------------
+  Total loops: 470
+  Frames with loops: 148
+  Avg loops per frame: 3.18
+  Persistence range: 0.000 - 7.971
+  Mean persistence: 1.781 ± 1.455
+  Median persistence: 1.480
+
+  Temporal Trends:
+    First half: Mean persistence = 1.708
+    Second half: Mean persistence = 1.853
+    Change: +8.5%
+
+TACTICAL SCALE:
+----------------------------------------------------------------------
+  Total loops: 53
+  Frames with loops: 42
+  Avg loops per frame: 1.26
+  Persistence range: 0.194 - 9.392
+  Mean persistence: 3.285 ± 2.241
+  Median persistence: 2.723
+
+  Temporal Trends:
+    First half: Mean persistence = 2.998
+    Second half: Mean persistence = 3.562
+    Change: +18.8%
+
+======================================================================

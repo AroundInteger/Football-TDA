@@ -1,0 +1,55 @@
+Step 2: State Space Reconstruction Analysis Report
+==================================================
+
+Analysis Date: 12-Oct-2025 21:22:01
+
+State Space Parameters:
+  Embedding Dimension: 3
+  Time Delay: 2 time steps
+  State Variables: InterTeamDistance, TeamAreaRatio, HomeMeanNOD, AwayMeanNOD
+
+State Space Dimensions:
+  Original State Vectors: 1000 x 4
+  Embedded Vectors: 951 x 12
+  Total Embedding Dimension: 12
+
+Attractor Analysis:
+  Number of Attractors: 3
+  Attractor 1 (Normal Play):
+    Frequency: 25.8%
+    Duration: 11.7 time steps
+    Stability: 2.862
+    Transitions: 21
+    Description: Standard tactical configuration
+
+  Attractor 2 (Normal Play):
+    Frequency: 26.6%
+    Duration: 9.0 time steps
+    Stability: 3.053
+    Transitions: 28
+    Description: Standard tactical configuration
+
+  Attractor 3 (Tight Marking):
+    Frequency: 47.6%
+    Duration: 64.7 time steps
+    Stability: 3.048
+    Transitions: 6
+    Description: Both teams maintain tight marking schemes
+
+Transition Analysis:
+  Transition Matrix:
+    From 1:  0.91  0.09  0.00
+    From 2:  0.08  0.89  0.03
+    From 3:  0.00  0.01  0.99
+
+Key Insights:
+  - State space reconstruction successfully identified 3 attractor states
+  - Time-delay embedding captured temporal dynamics
+  - Attractor states represent distinct tactical configurations
+  - Transition matrix reveals tactical evolution patterns
+
+Methodological Notes:
+  - Based on Takens theorem for time-delay embedding
+  - K-means clustering for attractor identification
+  - Provides foundation for zero-sum analysis (Step 3)
+  - Ready for topological analysis (Step 4)
