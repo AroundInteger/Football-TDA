@@ -1,0 +1,49 @@
+# Cursor Rules for EPSRC Small Grants Application
+
+## Language and Spelling
+
+**CRITICAL: Use UK English spelling throughout all documents.**
+
+When editing, creating, or suggesting text for this grant application, always use UK English spelling conventions. Examples:
+
+- **-ise/-isation** endings (not -ize/-ization): analyse, organise, optimise, specialise, recognise, organisation, optimisation, specialisation
+- **-our** endings (not -or): colour, behaviour, favour, honour, labour
+- **-re** endings (not -er): centre, theatre, metre, fibre
+- **-ogue** endings (not -og): dialogue, catalogue, analogue
+- **-ence** endings (not -ense): defence, licence (noun), offence
+- **-ll-** in certain words: travelling, cancelled, labelled
+- **-ae/-oe** spellings: encyclopaedia, manoeuvre, oestrogen
+
+Common UK vs US differences:
+- UK: realise, recognise, optimise, analyse, organise, specialise
+- US: realize, recognize, optimize, analyze, organize, specialize
+
+Always default to UK English spelling when in doubt. This applies to all markdown files, documentation, and any text generated for this application.
+
+## Project Context
+
+This is an EPSRC Mathematical Sciences Small Grants application for:
+- **Project**: Multi-Scale Persistent Homology for Spatial Multi-Agent Systems
+- **Duration**: 12 months
+- **Scope**: Full Championship season analysis (~540 games)
+- **Timeline**: PI analyzes 15-20 games (Months 1-3), RA analyzes remaining games (Months 4-9), PI coordinates final analysis (Months 10-12)
+
+## Document Structure
+
+Key documents follow numbered naming convention:
+- 00_Application_Header.md
+- 01_Application_Summary.md
+- 02_Vision_and_Approach.md (or V&A R3.md)
+- 03_Applicant_and_Team_Capability.md
+- 04_References.md
+- 05_Project_Partners.md
+- 06_Resources_and_Costs_R3.md
+- 07_Ethics_and_Responsible_Innovation.md
+- 08_Data_Management_Plan.md
+
+## Style Guidelines
+
+- Use formal academic tone appropriate for UKRI grant applications
+- Be precise and specific with technical terminology
+- Maintain consistency with existing document terminology
+- Follow UKRI/EPSRC formatting requirements
