@@ -1,0 +1,312 @@
+\section{Ethics and responsible innovation}
+
+\subsection{Identification and evaluation of ethical and RRI considerations}
+
+This research involves analysis of anonymised positional tracking data from professional football matches. We have identified the following ethical and responsible research and innovation (RRI) considerations:
+
+\paragraph{Primary ethical considerations.}
+\begin{enumerate}[label=\arabic*.]
+  \item \textbf{Data privacy and protection:} ensuring player and team data privacy whilst enabling research
+  \item \textbf{Data re-use and open science:} balancing open science principles with data protection requirements
+  \item \textbf{Commercial applications:} ensuring research benefits extend beyond commercial interests
+  \item \textbf{Methodological transparency:} maintaining reproducibility whilst protecting proprietary data sources
+  \item \textbf{Dual use concerns:} ensuring methods are not misused for surveillance or negative applications
+\end{enumerate}
+
+\paragraph{RRI considerations.}
+\begin{enumerate}[label=\arabic*.]
+  \item \textbf{Accessibility:} making mathematical methods and tools accessible to the broader research community
+  \item \textbf{Environmental impact:} minimising computational resource consumption
+  \item \textbf{Societal benefit:} ensuring applications prioritise public safety and societal good
+  \item \textbf{Stakeholder engagement:} maintaining transparent relationships with industry partners
+\end{enumerate}
+
+\subsection{Management of ethical and RRI considerations}
+
+\subsubsection{Data privacy and protection management}
+
+\paragraph{Anonymisation strategy.}
+All data used in this research is pre-anonymised by data providers (StatsBomb, Genius Sports). Player identifiers are replaced with generic position labels (e.g.\ ``Player 1'', ``Player 2'') with no linkage to personal identities. Team identifiers are retained for tactical analysis but can be further anonymised if required for publication.
+
+\paragraph{Data security.}
+All data will be stored on Swansea University's secure, GDPR-compliant infrastructure (100~TB secure storage). Access is restricted to project team members only, with encrypted storage and secure transfer protocols. Data processing occurs on the institutional HPC cluster with appropriate access controls.
+
+\paragraph{Data retention and disposal.}
+Data will be retained for the project duration plus the standard institutional retention period (typically 7 years for research data). After this period, data will be securely deleted in accordance with institutional data protection policies. No personal data will be retained beyond the necessary project duration.
+
+\subsubsection{Data re-use strategy}
+
+\paragraph{Open science approach.}
+Whilst raw tracking data cannot be publicly released due to commercial agreements, we will:
+\begin{itemize}
+  \item release fully anonymised, aggregated analytical outputs (persistence diagrams, pattern signatures) that enable reproducibility without requiring raw data;
+  \item provide comprehensive methodology documentation enabling replication with alternative data sources;
+  \item release open-source software (Python code) implementing all analytical methods;
+  \item publish detailed methodological descriptions in open access publications.
+\end{itemize}
+
+\paragraph{Data sharing agreements.}
+All data access is governed by formal agreements with:
+\begin{itemize}
+  \item Swansea City AFC (via the SCAFC--StatsBomb partnership);
+  \item StatsBomb (broadcast tracking data);
+  \item Genius Sports/Oval (GPS data, if secured).
+\end{itemize}
+These agreements specify permitted uses, data handling requirements, and restrictions on redistribution. Research outputs will comply with all agreement terms whilst maximising scientific value.
+
+\paragraph{Enabling future re-use.}
+Analytical methods and software will be designed for use with any compatible tracking data, enabling other researchers to apply methods to their own datasets. Documentation will include data format specifications and preprocessing requirements.
+
+\subsection{Legal and ethical considerations for data collection, release, and storage}
+
+\subsubsection{Consent and legal basis}
+
+\paragraph{Legal basis for processing.}
+Data processing is conducted under legitimate research interest (GDPR Article~6(1)(f)) and the scientific research exemption (GDPR Article~9(2)(j)). Data is collected by third-party providers (StatsBomb, Genius Sports) who have appropriate legal bases for data collection from broadcast and performance monitoring.
+
+\paragraph{Consent.}
+As anonymised positional data with no personal identifiers, explicit consent is not required. However, we maintain transparency through:
+\begin{itemize}
+  \item clear communication with data providers about research purposes;
+  \item publication of research objectives and methods;
+  \item industry partner engagement ensuring alignment with data use expectations.
+\end{itemize}
+
+\paragraph{Third-party data.}
+All data is obtained through established commercial partnerships. We do not collect data directly from individuals, ensuring compliance with data protection regulations through contractual agreements with data providers.
+
+\subsubsection{Confidentiality}
+
+\paragraph{Confidentiality measures.}
+\begin{itemize}
+  \item all data stored on secure, access-controlled institutional systems;
+  \item project team members bound by institutional data protection policies and confidentiality agreements;
+  \item no sharing of raw data beyond the project team;
+  \item aggregated outputs only shared in publications, with no identifiable information.
+\end{itemize}
+
+\paragraph{Team and match confidentiality.}
+Whilst team identities may be retained for tactical analysis, we will:
+\begin{itemize}
+  \item seek permission from partners before publishing team-specific findings;
+  \item use generic identifiers (e.g.\ ``Team A'', ``Team B'') in publications where appropriate;
+  \item ensure no commercially sensitive tactical information is disclosed without consent.
+\end{itemize}
+
+\subsubsection{Anonymisation}
+
+\paragraph{Anonymisation approach.}
+\begin{itemize}
+  \item \textbf{Player-level anonymisation:} generic position identifiers only (no names, jersey numbers, or personal characteristics);
+  \item \textbf{Team-level anonymisation:} team names can be anonymised for publication if required;
+  \item \textbf{Match-level anonymisation:} match dates and specific fixtures can be anonymised whilst retaining temporal and contextual information necessary for analysis.
+\end{itemize}
+
+\paragraph{Anonymisation verification.}
+All data outputs for publication will be reviewed to ensure re-identification is not possible. Aggregated statistics and pattern signatures contain no identifiable information.
+
+\subsubsection{Security}
+
+\paragraph{Technical security measures.}
+\begin{itemize}
+  \item encrypted data storage (AES-256 encryption at rest);
+  \item secure data transfer (TLS/SSL protocols);
+  \item access control: role-based access restricted to the project team;
+  \item regular security audits of institutional infrastructure;
+  \item secure backup procedures with encrypted backups.
+\end{itemize}
+
+\paragraph{Organisational security.}
+\begin{itemize}
+  \item all team members receive data protection training;
+  \item compliance with Swansea University Information Security Policy;
+  \item regular review of data access logs;
+  \item incident response procedures for any data breaches.
+\end{itemize}
+
+\subsubsection{Other ethical considerations}
+
+\paragraph{Fairness and non-discrimination.}
+Research focuses on collective tactical patterns rather than individual player performance, avoiding potential discrimination or bias. Analysis methods are applied uniformly across all teams and matches.
+
+\paragraph{Transparency.}
+Research methods, limitations, and assumptions will be clearly documented in publications. Any potential biases in data collection or analysis will be explicitly acknowledged.
+
+\paragraph{Accountability.}
+The Principal Investigator takes responsibility for ethical conduct. Ethical considerations will be reviewed regularly throughout the project. Institutional ethics approval will be obtained before project commencement.
+
+\subsection{Formal information standards compliance}
+
+\paragraph{GDPR (General Data Protection Regulation).}
+Full compliance with GDPR requirements:
+\begin{itemize}
+  \item lawful basis for processing (research exemption);
+  \item data minimisation (only necessary data collected);
+  \item purpose limitation (data used only for specified research purposes);
+  \item storage limitation (data retained only for necessary duration);
+  \item security of processing (appropriate technical and organisational measures).
+\end{itemize}
+
+\paragraph{Data Protection Act 2018.}
+Compliance with UK data protection legislation, including:
+\begin{itemize}
+  \item processing in accordance with data protection principles;
+  \item rights of data subjects (where applicable);
+  \item data breach notification procedures.
+\end{itemize}
+
+\paragraph{UKRI data policy.}
+Compliance with UKRI data management requirements:
+\begin{itemize}
+  \item Data Management Plan (see Section~8);
+  \item open access to research outputs;
+  \item data sharing where possible and appropriate;
+  \item long-term preservation of research data.
+\end{itemize}
+
+\paragraph{Institutional policies.}
+Compliance with Swansea University:
+\begin{itemize}
+  \item Information Security Policy;
+  \item Data Protection Policy;
+  \item Research Ethics Policy;
+  \item Research Data Management Policy.
+\end{itemize}
+
+\paragraph{FAIR data principles.}
+Where possible, research outputs will follow Findable, Accessible, Interoperable, and Reusable (FAIR) principles:
+\begin{itemize}
+  \item \textbf{Findable:} metadata and documentation for all outputs;
+  \item \textbf{Accessible:} open-source software and methodology available;
+  \item \textbf{Interoperable:} standard formats and clear specifications;
+  \item \textbf{Reusable:} comprehensive documentation enabling replication.
+\end{itemize}
+
+\subsection{Responsible innovation framework}
+
+\subsubsection{Open science and accessibility}
+
+\paragraph{Open-source software.}
+All analytical code will be released under an open-source licence (MIT or similar) on GitHub, enabling:
+\begin{itemize}
+  \item full methodological transparency;
+  \item community contribution and improvement;
+  \item application to other domains and datasets;
+  \item educational use.
+\end{itemize}
+
+\paragraph{Open access publications.}
+All publications will be open access (funded through institutional UKRI block grants), ensuring:
+\begin{itemize}
+  \item maximum dissemination of research findings;
+  \item accessibility to researchers globally;
+  \item cross-disciplinary engagement;
+  \item public benefit from publicly funded research.
+\end{itemize}
+
+\paragraph{Methodology documentation.}
+Comprehensive documentation including:
+\begin{itemize}
+  \item detailed algorithmic descriptions;
+  \item parameter specifications and justifications;
+  \item validation procedures and results;
+  \item limitations and assumptions.
+\end{itemize}
+
+\subsubsection{Societal benefit and public engagement}
+
+\paragraph{Prioritising public good.}
+Research applications prioritise:
+\begin{itemize}
+  \item public safety (crowd management, emergency response);
+  \item environmental benefits (traffic management, resource optimisation);
+  \item scientific advancement (open methods, reproducible research);
+  \item educational value (public engagement, teaching resources).
+\end{itemize}
+
+\paragraph{Commercial balance.}
+Whilst industry partnerships provide data access, research outputs remain:
+\begin{itemize}
+  \item scientifically rigorous and independent;
+  \item accessible to the broader research community;
+  \item focused on fundamental understanding rather than proprietary applications;
+  \item transparent about limitations and assumptions.
+\end{itemize}
+
+\subsubsection{Environmental sustainability}
+
+\paragraph{Computational efficiency.}
+\begin{itemize}
+  \item optimised algorithms minimising computational requirements;
+  \item efficient use of institutional HPC resources (shared infrastructure);
+  \item code optimisation reducing energy consumption;
+  \item no dedicated hardware requiring additional energy resources.
+\end{itemize}
+
+\paragraph{Resource minimisation.}
+\begin{itemize}
+  \item leveraging existing institutional infrastructure;
+  \item efficient data storage and processing;
+  \item minimising redundant computations;
+  \item open-source approach enabling community optimisation.
+\end{itemize}
+
+\subsubsection{Dual use and misuse prevention}
+
+\paragraph{Positive applications focus.}
+Research explicitly focuses on:
+\begin{itemize}
+  \item understanding collective behaviour for positive applications;
+  \item public safety and emergency planning;
+  \item scientific understanding of complex systems;
+  \item educational and research applications.
+\end{itemize}
+
+\paragraph{No surveillance development.}
+Research does not involve:
+\begin{itemize}
+  \item development of tracking or surveillance technologies;
+  \item individual identification or profiling;
+  \item behavioural monitoring of individuals;
+  \item privacy-invasive applications.
+\end{itemize}
+
+\paragraph{Ethical framework.}
+Any future commercial applications will be evaluated against:
+\begin{itemize}
+  \item public benefit criteria;
+  \item privacy and data protection requirements;
+  \item transparency and accountability standards;
+  \item responsible innovation principles.
+\end{itemize}
+
+\subsection{Ethics approval and oversight}
+
+\paragraph{Institutional ethics review.}
+Ethics approval will be obtained through Swansea University's Research Ethics Committee prior to project commencement. Fast-track approval is expected (4-week turnaround) given:
+\begin{itemize}
+  \item use of anonymised, pre-existing data;
+  \item no direct interaction with human participants;
+  \item established data protection protocols;
+  \item low-risk research design.
+\end{itemize}
+
+\paragraph{Ongoing ethical review.}
+Regular review of ethical considerations throughout the project:
+\begin{itemize}
+  \item quarterly review of data handling procedures;
+  \item assessment of any new ethical issues arising;
+  \item compliance monitoring with data protection requirements;
+  \item stakeholder engagement on ethical considerations.
+\end{itemize}
+
+\paragraph{Accountability.}
+The Principal Investigator maintains overall responsibility for ethical conduct, with support from:
+\begin{itemize}
+  \item institutional Research Ethics Committee;
+  \item Data Protection Officer;
+  \item Research Office compliance support;
+  \item Co-Investigators providing oversight.
+\end{itemize}
+
+This approach ensures ethical and RRI considerations are identified, evaluated, and managed throughout the project lifecycle.

@@ -1,0 +1,92 @@
+% 3-page Vision and Approach (EPSRC Small Grant submission)
+% Markdown twin: ../../VA_V8p7_EPSRC_R6.md (V8.7 body, 1704 words)
+% Canonical numbers: ../../CANONICAL_NUMBERS.md
+% Citations use \citep/\citet keys; unsrtnat numbers by order of first appearance.
+% Bibliography: ../../shared/references.bib (all 22 keys present as of V8.7).
+%
+% Citation-order note (natbib numbers,sort&compress). The order of NEW keys
+% within each first-appearance \citep{...} determines assignment. To match
+% V8.7's manual numbering [1..22]:
+%   §1: Carlsson2009(1), Zomorodian2005(2); Edelsbrunner2010(3);
+%       BotnanLesnick2022(4), Lesnick2015(5); Chazal2014(6).
+%   §2: CohenSteiner2007(7); Bubenik2015(8), Adams2017(9);
+%       SchindlerBarahona2023(10); Topaz2015(11), Bhaskar2019(12),
+%       Ballerini2008(13); Gu2022(14); Folgado2014(15);
+%       FernandezBornn2018(16); Brown2026(17).
+%   §7: RamsaySilverman2005(18); Page1954(19).
+%   §8: Bauer2021(20); Tauzin2021(21).
+%   §10: Brown2026b(22).
+%
+% Four references present in the earlier 6-page version are intentionally
+% not cited here (their sentences were cut in the 3-page compression):
+% Gudmundsson2017, Memmert2017, DiSalvo2007, Bradley2009. Brown-in-prep
+% conflict paper remains excluded per Paul's guidance.
+%
+% Risk table and Gantt timeline of the earlier tex were dropped to mirror
+% V8.7's prose format (§9 residual risks as colon-labelled sentences; §7
+% O1–O4 milestones in prose). Restore either if a visual reviewer aid is
+% preferred.
+
+\section*{Vision}
+
+\paragraph{1. Quality and mathematical importance.}
+This research extends multi-scale topological analysis to competitive collective systems: agents that coordinate internally while competing against an adversary within a bounded domain. Such systems arise in autonomous-vehicle fleets, tumour--immune dynamics and team sports, yet remain under-modelled as a distinct class. Their defining feature is adversarial geometry: unlike cooperative swarms, competing subgroups deform each other's configurations across multiple scales.
+
+\textbf{Importance.} No existing method attributes connected-cluster and loop structure to the distinct interaction scales of hierarchical, high-frequency competitive systems. Standard persistent homology \citep{Carlsson2009,Zomorodian2005}, applied with a single threshold across all agents \citep{Edelsbrunner2010}, collapses these scales into one summary, obscuring individual-, group- and system-level organisation. Multi-parameter topology \citep{BotnanLesnick2022,Lesnick2015} offers a theoretical route to scale-specific structure, but remains computationally prohibitive for real-world, high-frequency competitive data. This project closes that gap in professional football: pilot analysis has identified stability-validated interaction scales (\S2), and a full Championship season will test whether they persist as population-level structure and establish a transferable framework once characteristic scales are re-derived elsewhere (\S5).
+
+\textbf{Quality.} The project combines mathematical rigour with empirical validation. Stability-validated cutoffs define groups by empirically tested interaction lengths rather than arbitrary thresholds, making the procedure falsifiable. Scale decomposition and adaptive distance thresholds are already validated at pilot scale (\S2). The new contribution is both theoretical and empirical: time-evolving summaries require well-posedness of a mean path in summary space under competitive, non-exchangeable sequential data, extending \citep{Chazal2014}, and a stability bound for the CUSUM statistic under Wasserstein perturbation. Both are established and tested at season scale (\S7, O3).
+
+\paragraph{2. Background --- building on previous work.}
+Persistent homology \citep{Carlsson2009,Zomorodian2005} and its stability theorem \citep{CohenSteiner2007} provide the mathematical basis: small tracking errors induce only small changes in topological summaries. Statistical tools compare persistence summaries for classification, distance-based analysis and change-point detection \citep{Chazal2014,Bubenik2015,Adams2017}, forming the basis for O2--O3. Standard applications either use a single global scale \citep{Edelsbrunner2010} or multi-scale clustering developed for cooperative, slowly evolving systems \citep{SchindlerBarahona2023}; this project instead decomposes competitive systems by validated interaction length before computing homology at each scale. Topology has captured collective organisation in biological aggregation, motion and nearest-neighbour-governed flocking \citep{Topaz2015,Bhaskar2019,Ballerini2008}, motivating this interaction-length framing. Existing topological change-point methods \citep{Gu2022} are single-scale; O3 extends them to competitive, bounded, multi-scale systems. Football provides the high-frequency, bounded testbed; geometric baselines include team length, width, centroid distance \citep{Folgado2014} and pitch-control space creation \citep{FernandezBornn2018}. Our methodology paper \citep{Brown2026} develops and validates the pipeline: decompose by interaction length, then compute scale-wise homology using adaptive thresholds. Across 10 professional matches, SkillCorner, 10~Hz, 104{,}722 event--topology pairs \citep{Brown2026}, three connected-cluster regimes reproduce: individual 2.98~m, tactical 12.0~m and team 30.0~m, with cross-epoch stability 0.96, 0.84 and 1.00. Two loop-scale regimes emerge: individual-scale loops are near-universal ($97.0\% \pm 1.5\%$) but short-lived (mean persistence 1.98~m); tactical-scale loops are rarer ($19.3\% \pm 7.2\%$) but longer-lived (3.80~m). The scales carry largely independent information ($\rho = 0.264$) and respond coherently to match events ($p < 0.001$).
+
+\paragraph{3. Advancing current understanding and generating new knowledge.}
+The project builds summary-space results for time-evolving competitive systems (O3) through three advances. \textbf{(i)~Distributional laws:} establishing whether stability scores, loop-presence rates and scale complementarity are population-level regularities rather than pilot artefacts, enabling a mean path over such summaries (specifically, convergent moments across matches, permitting Wasserstein-mean estimation). \textbf{(ii)~Comparison geometry:} establishing that distances between topological summaries \citep{Bubenik2015,Adams2017} distinguish formation systems, yielding a topological definition of formation identity and the metric structure for change-point statistics. \textbf{(iii)~Functional dynamics:} treating each match as a time series of summaries to characterise structural transitions and prove and test the O3 results at season scale. Together they extend statistical topology \citep{Chazal2014,Bubenik2015,Adams2017} to competitive multi-scale systems (O1--O3, \S7).
+
+\paragraph{4. Timeliness, need and opportunity.}
+\textbf{Timeliness.} Three developments have converged: mature multi-scale topology and statistical comparison tools \citep{BotnanLesnick2022,Chazal2014,Bubenik2015,Adams2017}; scalable season-scale computation (\S8); and competitive tracking data at population scale.
+
+\textbf{Need.} No validated workflow exists for this problem class (\S1); sport, and prospectively health, logistics and autonomous coordination, need interpretable structural measures capturing organisation, gaps, loops and transitions beyond conventional geometry.
+
+\textbf{Opportunity.} Professional football provides a population-scale testbed for a validated workflow transferable to other bounded competitive systems once scales are re-derived.
+
+\paragraph{5. Impact.}
+\textbf{Research impact.} The primary mathematical contribution is publishable theory for statistical topology on competitive sequential data (\S1, \S7, O3). Two results are targeted: well-posedness of a mean path in summary space, extending \citep{Chazal2014}, and a Wasserstein-stability bound for CUSUM. The first pushes statistical topology beyond the exchangeable regime to competitive sequential data; the second advances change-point stability theory to landscape-valued time series. Both are instantiated in an open-source library for competitive point-cloud dynamics. This builds UK capability in applied topology, aligned with EPSRC's mathematical sciences and AI/data priorities.
+
+\textbf{Economic and industry impact.} Co-developed with Swansea City~AFC and StatsBomb, the project translates summaries into practitioner outputs for pressing, formation gaps and defensive-line organisation, unavailable from conventional geometry.
+
+\textbf{Stepping-stone to translation.} It prepares a follow-on Standard Grant (\S7, O4), building the evidence base for translation beyond football; post-grant pathways include tumour--immune competition with Co-I Powathil and other bounded adversarial systems once scales are re-derived.
+
+\paragraph{6. Benefits and beneficiaries.}
+Mathematicians, sports-analytics researchers and Swansea City~AFC analysts benefit immediately from the open-source library and benchmarked features (\S5); other bounded competitive multi-agent domains benefit longer-term via the follow-on Standard Grant pathway (\S7, O4).
+
+\section*{Approach}
+
+\paragraph{7. Research design and objectives.}
+\textbf{Project structure and team.} This 12-month project comprises the PI, 0.2~FTE, leading framework development, analysis and publication; two Co-Investigators, 0.25~FTE combined, providing statistical and domain expertise; a Research Associate, Months~2--10, implementing the pipeline and full-season analysis; and Swansea City~AFC--StatsBomb partnerships for tracking data and formation labels.
+
+\textbf{Sample-size rationale.} A full Championship season ($\approx$540 matches) provides precision and power: $\approx$32 matches per stratum give a 95\% CI half-width of 0.025 for tactical-scale loop presence (pilot s.d.\ 0.072); $\approx$180 matches per tactical class detect Cohen's $d \ge 0.30$ at 80\% power, $\alpha = 0.05$, Benjamini--Hochberg FDR. A borderline pilot within-match effect (permutation $p = 0.051$; pilot half-level random-effects fit) motivates season-scale replication.
+
+\textbf{O1 --- Population-level topological statistics} (PI and RA, Months~1--7). O1 measures how features vary across the season and relate to tactical descriptors. Month~1 establishes the Supercomputing Wales pipeline; a 20-match Month~1--2 batch re-validates cutoffs against \citep{Brown2026}; stability $< 0.80$ triggers re-derivation. RA processing Months~2--7; PI-led analysis Months~5--7. \emph{Milestones: cutoff gate, Month~2; barcode database, Month~7.}
+
+\textbf{O2 --- Topological fingerprinting} (PI, Months~6--9). O2 tests whether formation systems have signatures beyond geometric metrics. StatsBomb and SkillCorner labels are checked using Cohen's $\kappa$. Tactical systems are compared using topological-summary distances \citep{Chazal2014,Bubenik2015} and diagram-image features (\S8), benchmarked against length, width and convex-hull area. Success criteria: signatures for $\ge 3$ tactical configurations; FDR-corrected differences, $p < 0.05$; and added information beyond geometric baselines. \emph{Milestones: OSF pre-registration, Month~2; fingerprint results, Month~9.}
+
+\textbf{O3 --- Temporal dynamics and structural transitions} (PI and RA, Months~4--10). O3 extends single-scale topological change-point detection \citep{Gu2022} to competitive, bounded, multi-scale systems (\S3, iii). The PI applies FPCA \citep{RamsaySilverman2005}, CUSUM \citep{Page1954} and bootstrap calibration \citep{Chazal2014}. Mathematical targets are well-posedness of a mean path in summary space, extending \citep{Chazal2014}, and a Wasserstein-stability bound for CUSUM. Proof routes are Wasserstein continuity of landscape maps under bootstrap resampling \citep{Chazal2014} and moment-condition bounds on CUSUM increments \citep{Page1954}. Success criterion: change-points agree with held-out tactical annotations at $\ge 70\%$, permutation $p < 0.05$; fallback is direct Wasserstein diagram comparison. \emph{Milestones: landscape module, Month~8; O2/O3 outputs, Month~9.}
+
+\textbf{O4 --- Standard Grant evidence synthesis} (PI, Months~9--12). From Month~9, the PI compiles full-season results into a reproducible evidence pack for the follow-on Standard Grant (\S5). O1--O3 remain standalone publishable contributions. \emph{Milestone: evidence pack, Month~12.}
+
+\paragraph{8. Methodology.}
+A containerised Python pipeline (Ripser \citep{Bauer2021}, GUDHI, giotto-tda \citep{Tauzin2021}) processes each frame as a point cloud: clustering at empirically derived interaction lengths, homology with adaptive thresholds, and storage of barcodes and vectorised summaries. Frame-level homology takes under 2~seconds and is embarrassingly parallel, enabling 1~Hz production processing on Supercomputing Wales (\S12). The Month~1--2 gate (\S7) tests cutoff transfer to Championship data and whether 1~Hz sampling preserves high-resolution features. O1 summarises cluster and loop statistics; O2 compares landscape distances, diagram-image features and geometric baselines; O3 applies FPCA, CUSUM and bootstrap calibration to topological time series. Reproducibility is ensured through containerisation, OSF pre-registration, DOI-archived code, diagnostics and documented scripts.
+
+\paragraph{9. Feasibility and risk management.}
+\textbf{Feasibility.} The project is feasible in 12 months: pilot-validated method (\S2), modest computation (\S8), and an early validation gate. Season-scale processing requires $\approx$1{,}600 CPU-hours of the 5{,}000 core-hour Supercomputing Wales allocation (\S12); the team combines applied topology, statistical modelling and football-domain expertise (\S11), with RA implementation capacity.
+
+\textbf{Risk management.} Data access is resolved: the 2024/25 Championship season is held through the Swansea City~AFC--StatsBomb agreement. Three residual risks are all medium likelihood/impact. \emph{Scale transferability:} the Month-2 gate re-derives cutoffs if stability falls below 0.80. \emph{Formation-label noise:} mitigated through dual-source verification, Cohen's $\kappa$, unsupervised clustering and pre-registered exclusions. \emph{Landscape theory:} if sequential landscape development exceeds the timescale, O3 uses direct Wasserstein diagram comparison.
+
+\paragraph{10. Translation to outcomes and impact.}
+The pipeline will be released as a documented, containerised open-source package via Swansea University's Zenodo community with DOI, including scripts, diagnostics, workflows and feature tables. Publications comprise the methodology paper \citep{Brown2026} (target: \emph{Journal of Applied and Computational Topology} or comparable), arXiv Month~1, submitted Months~1--2; the companion football-analytics paper \citep{Brown2026b} (\emph{Journal of Sports Sciences}); and a full-season results paper for Month~11. Practitioner outputs with Swansea City~AFC translate summaries into pressing/formation decision-support tools (\S5). The Month-12 evidence pack feeds the follow-on Standard Grant (\S7, O4).
+
+\paragraph{11. Research environment.}
+The Zienkiewicz Institute supports method development, high-performance analysis and reusable software across computational mathematics, applied topology and sport science. The PI leads the applied-topology framework; Prof Gibin Powathil brings mathematical-oncology and competitive-biology expertise (future health pathway, \S5); Prof Liam Kilduff brings sport and exercise science for tactical interpretation; and Swansea City~AFC provides a live co-development setting.
+
+\paragraph{12. Facilities, infrastructure and host support.}
+Full-season processing (\S9) uses the PI's Supercomputing Wales allocation for validation, production, O3 and contingency runs. The containerised pipeline (\S8) supports reproducible local and high-performance execution. Swansea University provides host support through the Zienkiewicz Institute, Research Office and partnership infrastructure, including data governance and ethics review.

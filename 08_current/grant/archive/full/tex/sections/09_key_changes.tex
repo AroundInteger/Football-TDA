@@ -1,0 +1,70 @@
+\section{Key changes from previous draft (reference)}
+
+This section documents revision history for internal consistency; it may be omitted or shortened for formal submission if the funding service does not require a change log.
+
+\subsection{Major revisions}
+
+\begin{enumerate}[label=\arabic*.]
+  \item \textbf{Data access honesty:} clear statement of current broadcast data access; aspirational GPS data framed appropriately; contingency plan if GPS access is not secured; removed over-confident claims about GPS data.
+
+  \item \textbf{Performance correlation removed:} the $r = 0.68$ claim was removed entirely following audit, found to be unsubstantiated by real analysis data. Replaced with validated findings: scale complementarity, temporal evolution, and cross-domain conflict topology evidence. Performance correlation is stated as a research objective where applicable, not as a preliminary finding. Quantum/physics terminology removed entirely.
+
+  \item \textbf{Championship justification strengthened:} clear statement of project partner rationale; data access pathway explained; commercial relevance articulated; weak ``tactical diversity'' claim removed.
+
+  \item \textbf{Publication status realistic:} ``in preparation'' clearly stated with percentages complete; timeline for submission given; no exaggeration of publication status; target journals specified.
+
+  \item \textbf{Budget and team revised:} budget maximised to $\sim$\pounds100k fEC ($\sim$\pounds80k EPSRC contribution); RA extended to 9 months (from 6 months) to maximise project capacity; timeline adjusted for 9-month RA contribution; PI time commitment maintained at 20\% FTE; work packages aligned with available person-months.
+
+  \item \textbf{Validation focus enhanced:} multi-match validation front and centre; statistical robustness emphasised; appropriate caution about generalisability; clear success criteria for each objective.
+
+  \item \textbf{Risk management improved:} GPS data access risk explicitly addressed; contingency plans for all major risks; timeline triggers specified; realistic assessment of probabilities.
+\end{enumerate}
+
+\subsection{Technical corrections}
+
+\begin{itemize}
+  \item Removed all ``quantum'' terminology (replaced with ``topological'')
+  \item Strengthened mathematical framing throughout
+  \item Added core TDA theory references
+  \item Clarified scale-specific validation rates
+  \item Specified statistical methods (FDR correction, permutation tests)
+\end{itemize}
+
+\subsection{Structural improvements}
+
+\begin{itemize}
+  \item Clearer objectives with specific aims and success criteria
+  \item Detailed methodology section with algorithms specified
+  \item Comprehensive budget justification
+  \item Realistic timeline matching 9-month RA contribution
+  \item Complete data management plan
+\end{itemize}
+
+\subsection{Revision 4, post-paper validation update (March 2026)}
+
+\begin{enumerate}[label=\arabic*.]
+  \item \textbf{Preliminary results substantially strengthened:} single-match validation $\rightarrow$ 10-match validation (10 SkillCorner broadcast tracking matches); 382 single-match $H_1$ loops $\rightarrow$ 4{,}515 $H_1$ loops across 1{,}500 analysis frames; new real event correlation (104{,}722 event--topology pairs across 10 matches); new Wilcoxon rank-sum and permutation tests for temporal dynamics; new sensitivity analysis, complementarity analysis (Spearman, Fisher's), linkage comparison.
+
+  \item \textbf{Temporal claim corrected:} removed ``+19\% tactical persistence increase'', the paper shows direction is match-specific, not universal. Temporal variability acknowledged as expected given tactical diversity. Statistical tests support the corrected interpretation.
+
+  \item \textbf{Objectives reframed (previous Objectives 1 and 4 largely complete):}
+    \begin{itemize}
+      \item Old Obj~1 (multi-match validation) $\rightarrow$ done in preliminary work
+      \item Old Obj~4 (event--topology relationships) $\rightarrow$ initial results in preliminary work
+      \item New Obj~1: full-season scaling ($\sim$540 matches)
+      \item New Obj~2: tactical fingerprinting (baseline topological signatures per formation)
+      \item New Obj~3: persistence landscape dynamics (stability regimes, transitions)
+      \item New Obj~4: Standard Grant preparation (strategic output)
+    \end{itemize}
+
+  \item \textbf{Paper status updated:} Paper~1: ArXiv preprint \citep{Brown2026}, submitted before grant application; Paper~2: in preparation (cross-domain conflict application); Paper~3: planned during grant (full-season results).
+
+  \item \textbf{Honest mathematical framing:} positioned as applied computational topology, not fundamental mathematical innovation; framework described as practical methods for multi-scale persistent homology; cross-domain claims appropriately caveated.
+
+  \item \textbf{Budget adjusted:} RA extended from 6 months to 9 months (Months 2--10); total fEC approximately \pounds100{,}000 (subject to institutional costing); timeline adjusted for 9-month RA contribution.
+
+  \item \textbf{Software stack updated:} MATLAB removed (codebase archived, fully migrated to Python); modular Python framework with shared data loaders and TDA utilities.
+\end{enumerate}
+
+\paragraph{Document version.}
+Revision~4.0 (post-validation update), March~2026. Status: ready for final review and submission. Outstanding actions: submit Paper~1 to ArXiv; confirm institutional fEC costing for 9-month RA; secure Genius Sports letter of support (or adjust data access section accordingly); confirm Borussia Dortmund collaboration interest and potential letter of support.

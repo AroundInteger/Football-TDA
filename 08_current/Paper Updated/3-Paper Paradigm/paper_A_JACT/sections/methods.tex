@@ -1,0 +1,164 @@
+% =======================================================================
+\section{Methods}
+
+\subsection{Data}
+
+The primary single-match analysis uses SkillCorner open broadcast
+tracking data, match ID 1996435 (Sydney FC versus Adelaide United,
+A-League 2024/25), at 10 frames per second. We retain only frames with
+complete 22-player coverage, yielding 43{,}531 frames, approximately 72
+minutes of play at this sampling rate; positions are $(x,y)$ coordinates
+in metres on a standard pitch model. Nine additional A-League matches,
+each comprising approximately 40{,}000--48{,}000 frames, were obtained
+from the same repository to validate the framework's generalisability
+across teams, tactical systems, and competition contexts.
+
+Persistent homology is computed on uniformly subsampled frames rather
+than on the full 10~Hz stream. For the primary match and for each of the
+nine additional matches, we retain 150 frames by taking every 290th
+complete 22-player frame, yielding a consistent cross-match sample of
+1{,}500 frames.
+
+\subsection{Proximity-Aware Clustering}
+
+At each time step $t$, the 22 player positions form a point cloud
+$P(t)=\{p_1(t),\dots,p_{22}(t)\}\subset\mathbb{R}^2$. Computing
+persistent homology directly on $P(t)$ produces a single diagram
+encoding inter-agent distance relationships at all scales
+simultaneously; to separate organisational levels before computing
+topology, we preprocess with hierarchical clustering.
+
+For a cutoff distance $\delta>0$, single-linkage hierarchical clustering
+partitions $P(t)$ into clusters $C_1,\dots,C_k$ such that every pair of
+points within a cluster is connected by a chain of pairwise distances
+not exceeding $\delta$. The reduced point cloud is the set of cluster
+centroids,
+\[
+\tilde{P}(t)=\left\{\bar{c}_j : \bar{c}_j=\frac{1}{|C_j|}\sum_{p\in C_j} p,\; j=1,\dots,k\right\},
+\]
+and persistent homology is computed on $\tilde{P}(t)$ rather than on
+$P(t)$ itself.
+
+We use single-linkage throughout. Its definition, clusters as chains of points connected by short pairwise distances, is the most direct
+reading of spatial proximity, and it produces a conservative estimate of
+$H_1$ features: reported loops represent robust topological structure
+rather than artefacts of over-partitioning. Section~\ref{sec:limitations}
+examines the consequences of this choice relative to complete-linkage and
+Ward's method.
+
+The framework extends to labelled sub-populations by running the same
+pipeline independently on each label's point cloud rather than on the
+merged 22-player cloud; we use this here only to confirm the method is
+agnostic to such relabelling. The substantive application, decomposing by team identity and examining bilateral tactical coupling, is deferred to forthcoming work.
+
+\subsection{Domain-Informed Cutoff Distance Selection}
+\label{sec:cutoffselection}
+
+The cutoff distance $\delta$ functions as a scale selector rather than a
+free parameter, since it determines which level of organisation the
+resulting point cloud represents. We swept $\delta$ over $[0.5, 30.0]$~m
+at 100 test points, evaluated against 58 temporal windows sampled to
+give balanced coverage across four epoch lengths (1, 2, 5, and 10
+minutes). Three candidate cutoff values were identified using three
+independent clustering-quality criteria: the Calinski--Harabasz index,
+the silhouette score, and a domain-specific information-content measure.
+
+To quantify how reproducible the resulting partition is across the
+temporal windows, we define the \emph{cross-epoch stability} of a cutoff
+as follows. Pool every sweep evaluation whose cutoff lies within
+$0.5$~m of the selected value, take the median cluster count over that
+pool, and record the fraction of those evaluations whose cluster count
+lies within $\pm 2$ of the median. A score of $1$ means the partition is
+reproduced to within two clusters in every window at every epoch length;
+a low score means the cluster count is an artefact of the window chosen.
+The tactical scale scores $0.836$ at $12.0$~m and the team scale scores
+$1.000$ at $30.0$~m.
+
+% OPEN (FOUNDATION.md R12): the individual-scale stability score of 0.956
+% recorded in regime_summary.csv was computed at the sweep's
+% Calinski-Harabasz optimum of 1.39 m, NOT at the adopted 2.98 m. It must
+% be recomputed at 2.98 m before it is quoted here. The sentence below
+% also needs revisiting: 2.98 m is carried over from the earlier
+% normalised-coverage derivation (VALIDATED_CUTOFFS in
+% primary_match_skillcorner_analysis.py), not selected by this sweep.
+
+The individual-scale cutoff, 2.98~m, and the team-scale cutoff, 30.0~m,
+are the values selected by these automated metrics directly. The
+tactical-scale cutoff is selected differently, because the automated
+metrics disagree within the tactical range: the silhouette-optimal value
+is 16.31~m and the information-content-optimal value is 6.87~m. We
+select 12.0~m, corresponding to half the width of a standard football
+pitch zone, as a domain-informed value within this range rather than as
+the output of either metric. Section~\ref{sec:sensitivity} reports the
+resulting sensitivity of $H_1$ detection to this choice.
+
+\subsection{Adaptive Filtration for $H_1$ Detection}
+\label{sec:adaptivefiltration}
+
+Clustering at cutoff $\delta$ produces a reduced point cloud
+$\tilde{P}(t)$ whose inter-centroid distances are typically much larger
+than $\delta$ itself, so a fixed maximum filtration scale
+$\varepsilon_{\max}$ that is appropriate at one cutoff is insufficient
+for $H_1$ detection at another. We define an adaptive filtration,
+\begin{equation}
+\varepsilon_{\max} = \max\Big(P_{75}\{d(\bar c_i,\bar c_j) : i<j\},\; \max(5.0,\,2\delta)\Big),
+\label{eq:adaptive}
+\end{equation}
+where $P_{75}$ denotes the 75th percentile of pairwise inter-centroid
+distances. The first term adapts the filtration to the geometry of the
+reduced point cloud at each $\delta$; the second term imposes a floor
+proportional to the clustering scale, preventing degenerate filtration
+at small $\delta$ and ensuring the filtration reaches at least the
+inter-cluster distance regime.
+
+The $P_{75}$ percentile is chosen as a conventional upper-quartile
+summary of inter-centroid distances.
+Section~\ref{sec:sensitivity} reports an ablation across $P_{50}$
+through $P_{95}$, showing that every tested percentile returns
+identical $H_1$ totals and frame-presence rates; the choice of
+$P_{75}$ is therefore a reporting convention, not an optimisation.
+
+Persistence diagrams are computed with Ripser via Ripser.py
+\citep{bauer2021ripser}. We cross-checked all primary-match diagrams
+against GUDHI \citep{gudhi2014} and giotto-tda \citep{tauzin2021},
+confirming identical birth--death pairs to within numerical tolerance
+($10^{-6}$~m); GUDHI is also used for the bottleneck-distance and
+landscape computations reported in Section~\ref{sec:complementarity}.
+
+\subsection{Closed Cycle Identification}
+
+Each $H_1$ feature corresponds to a 1-cycle in the Vietoris--Rips
+complex. To recover its geometric realisation, we build the adjacency
+graph of edges whose distances fall within the feature's persistence
+interval $[\text{birth},\text{death}]$, then enumerate closed cycles of
+length at least 3 by breadth-first search from each vertex. If that
+graph yields no cycle, we fall back to edges with length in
+$[\tfrac{1}{2}\text{birth},\,\text{death}]$. Breadth-first search is used in preference to depth-first
+search because it prioritises shorter cycles, which correspond to
+minimal enclosing arrangements and are more directly interpretable as
+formation structures. Among the enumerated cycles, the one whose edge
+distances lie closest to the midpoint of the persistence interval is
+selected as the geometric representative.
+
+\subsection{Statistical Tests}
+
+Scale complementarity (Section~\ref{sec:complementarity}) is assessed by
+Spearman rank correlation and Fisher's exact test on the frame-level
+co-occurrence of $H_1$ features at the individual and tactical scales,
+with 95\% confidence intervals obtained by bootstrap resampling over
+matches (1{,}000 resamples). Bottleneck and landscape distances between
+the two scales' persistence diagrams are computed using GUDHI, as
+described in Section~\ref{sec:adaptivefiltration}.
+
+\subsection{Software and Reproducibility}
+
+All analyses were performed in Python~3.11. Persistence diagrams are
+computed with Ripser.py~0.6.12 \citep{bauer2021ripser,tralie2018};
+bottleneck distances and landscape representations use
+GUDHI~3.11.0 \citep{gudhi2014}; giotto-tda~0.6.0 \citep{tauzin2021}
+provided independent cross-checks. Supporting scientific Python packages
+match the pinned \texttt{requirements.txt} accompanying the manuscript:
+NumPy~2.0.2, SciPy~1.13.1, pandas~2.3.2, scikit-learn~1.6.1. Analysis
+code, pipeline configuration, and pinned dependencies are included with
+the manuscript materials and will be released in a public repository at
+arXiv posting (see Data Availability Statement).

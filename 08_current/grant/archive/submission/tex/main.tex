@@ -1,0 +1,51 @@
+% EPSRC Mathematical Sciences Small Grants — Vision and Approach (3-page limit)
+% Compile: pdfLaTeX → BibTeX → pdfLaTeX × 2
+% Format: 11pt, 2 cm margins, single spaced (JeS paste target)
+% References: Vancouver (natbib + unsrtnat)
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[british]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage[numbers,sort&compress]{natbib}
+
+\geometry{margin=2cm}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  urlcolor=blue!70!black,
+  citecolor=blue!60!black,
+  pdfauthor={},
+  pdftitle={EPSRC Small Grant: Vision and Approach (3-page submission)}
+}
+
+\setlist{itemsep=0.2em, topsep=0.3em, parsep=0pt}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\begin{center}
+  {\Large\bfseries Vision and Approach\par}
+  \vspace{0.5em}
+  {\normalsize EPSRC Mathematical Sciences Small Grants Application\par}
+  \vspace{0.25em}
+  {\normalsize\itshape Multi-Scale Persistent Homology for Spatial Multi-Agent Systems\par}
+\end{center}
+
+\vspace{0.75em}
+
+\input{sections/02_vision_and_approach}
+
+\bibliographystyle{unsrtnat}
+\bibliography{../../../shared/references}
+
+\end{document}

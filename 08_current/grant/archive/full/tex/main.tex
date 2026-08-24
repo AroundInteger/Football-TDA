@@ -1,0 +1,64 @@
+% EPSRC Mathematical Sciences Small Grants Application
+% Compile on Overleaf: pdfLaTeX (or XeLaTeX/LuaLaTeX with fontspec adjustments)
+% References: Vancouver (numbered, order of appearance; natbib + unsrtnat)
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[british]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[numbers,sort&compress]{natbib}
+
+\geometry{margin=2.5cm}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  urlcolor=blue!70!black,
+  citecolor=blue!60!black,
+  pdfauthor={},
+  pdftitle={EPSRC Small Grant: Multi-Scale Persistent Homology for Spatial Multi-Agent Systems}
+}
+
+\setlist{itemsep=0.25em, topsep=0.35em}
+
+\begin{document}
+
+\begin{center}
+  {\Large\bfseries EPSRC Mathematical Sciences Small Grants Application\par}
+  \vspace{0.75em}
+  {\large\bfseries Multi-Scale Persistent Homology for Spatial Multi-Agent Systems: A Football Analytics Testbed\par}
+  \vspace{1em}
+  \begin{tabular}{@{}ll@{}}
+    \textbf{Application type:} & Small Grant (Stepping Stone to Larger Grant) \\
+    \textbf{Duration:} & 12 months \\
+    \textbf{Requested funding:} & \pounds76{,}186 (80\% of \pounds95{,}233 FEC) \\
+    \textbf{Thematic area:} & H.\ Mathematical Sciences \\
+    \textbf{Status:} & Revised Draft v4.0, Post-Validation, Full-Season Focus \\
+  \end{tabular}
+\end{center}
+
+\vspace{1.5em}
+\hrule
+\vspace{1.25em}
+
+\input{sections/01_application_summary}
+\input{sections/02_vision_and_approach}
+\input{sections/03_applicant_and_team_capability}
+\bibliographystyle{unsrtnat}
+\bibliography{../../../shared/references}
+
+\input{sections/05_project_partners}
+\input{sections/06_resources_and_costs}
+\input{sections/07_ethics_and_responsible_innovation}
+\input{sections/08_data_management_plan}
+\input{sections/09_key_changes}
+
+\end{document}
