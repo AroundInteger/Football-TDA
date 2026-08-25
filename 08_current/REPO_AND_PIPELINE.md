@@ -15,11 +15,11 @@ Football monorepo, and (ii) closing out the old **iCloud** copies under
 |------|------|--------|
 | **Football (canonical)** | `~/TDA/Football` | `https://github.com/AroundInteger/Football-TDA.git` |
 | **Conflict / UKRI work** | `~/TDA/Conflict` | `https://github.com/AroundInteger/Conflict-TDA.git` |
-| **p-adic sports (MATLAB)** | `~/TDA/padic-sports-framework` | `https://github.com/AroundInteger/padic-sports-framework.git` |
 | **Deprecated (iCloud)** | `~/Documents/GitHub/Football-TDA` | same remote; delete after GitHub sync |
 
-`~/TDA/` is a **plain folder**, not a git repo. It holds independent projects side
-by side, outside iCloud Desktop & Documents sync.
+`~/TDA/` is a **plain folder**, not a git repo. It holds TDA-related projects side
+by side, outside iCloud Desktop & Documents sync. Non-TDA AroundInteger repos
+(e.g. p-adic sports) live **outside** `~/TDA/` — see §4.5.
 
 **Cursor / IDE:** open `~/TDA/Football`, not the Documents copy.
 
@@ -242,10 +242,13 @@ point at Conflict-TDA, not Football-TDA.
 
 Dedicated repository: **[AroundInteger/padic-sports-framework](https://github.com/AroundInteger/padic-sports-framework)**
 
-Canonical working copy:
+This is a **standalone AroundInteger repo** — not nested in Football-TDA and not
+part of the `~/TDA/` local cluster (unlike Conflict-TDA, which remains TDA work).
+
+Canonical working copy (outside `~/TDA/`):
 
 ```
-~/TDA/padic-sports-framework/
+~/GitHub/padic-sports-framework/
 ```
 
 MATLAB framework for hierarchical sports analytics using p-adic distance metrics
@@ -266,7 +269,8 @@ Football-TDA remain historical; new p-adic work belongs in this repo.
 Clone once:
 
 ```bash
-cd ~/TDA
+mkdir -p ~/GitHub
+cd ~/GitHub
 git clone https://github.com/AroundInteger/padic-sports-framework.git
 ```
 
