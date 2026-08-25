@@ -14,7 +14,8 @@ Football monorepo, and (ii) closing out the old **iCloud** copies under
 | Role | Path | Remote |
 |------|------|--------|
 | **Football (canonical)** | `~/TDA/Football` | `https://github.com/AroundInteger/Football-TDA.git` |
-| **Conflict / UKRI work** | `~/TDA/Conflict` | separate repo (check `git remote -v`) |
+| **Conflict / UKRI work** | `~/TDA/Conflict` | `https://github.com/AroundInteger/Conflict-TDA.git` |
+| **p-adic sports (MATLAB)** | `~/TDA/padic-sports-framework` | `https://github.com/AroundInteger/padic-sports-framework.git` |
 | **Deprecated (iCloud)** | `~/Documents/GitHub/Football-TDA` | same remote; delete after GitHub sync |
 
 `~/TDA/` is a **plain folder**, not a git repo. It holds independent projects side
@@ -236,6 +237,38 @@ gitignored; download per `Data/README.md`. Manuscript data-availability links
 point at Conflict-TDA, not Football-TDA.
 
 **TackleTEK** (`TackleTEK/TackleTEK`) is a separate rugby project — not this repo.
+
+### 4.5 p-adic sports framework (done 25 Aug 2026)
+
+Dedicated repository: **[AroundInteger/padic-sports-framework](https://github.com/AroundInteger/padic-sports-framework)**
+
+Canonical working copy:
+
+```
+~/TDA/padic-sports-framework/
+```
+
+MATLAB framework for hierarchical sports analytics using p-adic distance metrics
+and ultrametric clustering. Entry points:
+
+```matlab
+run_framework          % synthetic seven-step baseline (silhouette > 0.9)
+run_with_real_data     % bundled football + rugby example CSVs
+```
+
+Requires **MATLAB R2019b+** and the **Statistics and Machine Learning Toolbox**.
+Example data ships in `data/examples/`; drop league CSVs into `data/raw/` per
+`data/README.md`.
+
+The exploratory Python p-adic scripts under `05_physics_analogies/` in
+Football-TDA remain historical; new p-adic work belongs in this repo.
+
+Clone once:
+
+```bash
+cd ~/TDA
+git clone https://github.com/AroundInteger/padic-sports-framework.git
+```
 
 ---
 
