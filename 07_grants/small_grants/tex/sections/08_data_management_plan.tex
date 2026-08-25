@@ -1,0 +1,69 @@
+\section{Data management plan}
+
+\subsection{Data types and volumes}
+
+\paragraph{Input data.}
+\begin{itemize}
+  \item Broadcast tracking data: $\sim$540 matches (full Championship season), $\sim$150 sampled frames per match
+  \item File format: CSV/JSON/JSONL with positional coordinates
+  \item Total volume: $\sim$50--100~GB raw data
+  \item Processed data: $\sim$20--40~GB
+\end{itemize}
+
+\paragraph{Generated data.}
+\begin{itemize}
+  \item Persistence diagrams: $\sim$80{,}000 files (JSON format, $\sim$540 matches $\times$ $\sim$150 frames)
+  \item Topological features: $\sim$1{,}600 time series (CSV format, per-match and per-scale)
+  \item Persistence landscapes: $\sim$1{,}600 functional representations (CSV/NumPy format)
+  \item Statistical analyses: $\sim$600 result files (CSV/JSON)
+  \item Visualisations: $\sim$2{,}000 figures (PNG/PDF)
+  \item Total volume: $\sim$20--30~GB
+\end{itemize}
+
+\subsection{Data storage and backup}
+
+\paragraph{During project.}
+\begin{itemize}
+  \item Primary storage: institutional research data storage (backed up daily)
+  \item Working copies: encrypted local drives
+  \item Version control: Git repository for code and analysis scripts
+  \item Backup frequency: daily automated backups, weekly manual verification
+\end{itemize}
+
+\paragraph{Long-term preservation.}
+\begin{itemize}
+  \item Institutional data repository (10+ year retention)
+  \item Zenodo for open data sharing (DOI assignment)
+  \item GitHub for software and code (indefinite public access)
+\end{itemize}
+
+\subsection{Data sharing and access}
+
+\paragraph{Open data.}
+\begin{itemize}
+  \item Aggregated topological features (fully anonymised): public release
+  \item Software and analysis code: open-source release (MIT licence)
+  \item Methodology documentation: public via institutional repository
+\end{itemize}
+
+\paragraph{Restricted data.}
+\begin{itemize}
+  \item Raw positional tracking data: subject to partnership agreements
+  \item Match-specific results: subject to club permissions
+  \item Access on reasonable request for research purposes
+\end{itemize}
+
+\paragraph{Timeline for sharing.}
+\begin{itemize}
+  \item Software release: Month~12 (project completion)
+  \item Aggregated data: Month~12 (with publications)
+  \item Detailed methodology: with paper publication(s)
+\end{itemize}
+
+\paragraph{FAIR principles compliance.}
+\begin{itemize}
+  \item \textbf{Findable:} DOIs, metadata, institutional repository
+  \item \textbf{Accessible:} open-source software, public documentation
+  \item \textbf{Interoperable:} standard formats (CSV, JSON, PDF)
+  \item \textbf{Reusable:} detailed documentation, clear licensing, reproducible workflows
+\end{itemize}

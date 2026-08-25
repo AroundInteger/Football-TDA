@@ -60,7 +60,7 @@ with Δ = ‖μ₂ − μ₁‖ the jump in the mean landscape and ε = sup_t W_
 **Answer:** "The existence claim is, and they don't make it — they state it as a precondition and put the weight on the limit law under mixing. The non-trivial content is the long-run covariance appearing in the limit, which is what invalidates the naive inference currently standard in this literature."
 
 **Challenge to expect:** *"Why not multiparameter persistence?"*
-**Answer:** "Computationally impractical at these data rates, and they say so. The empirically derived interaction lengths are the pragmatic substitute, and O1 gates on whether they transfer."
+**Answer:** "Computationally impractical at these data rates, and they say so. The algebraic setting is Schenck (2022, Chapter 8) and the Botnan–Lesnick survey; the empirically derived interaction lengths are the pragmatic substitute, and O1 gates on whether they transfer."
 
 ---
 

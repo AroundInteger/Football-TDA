@@ -1,0 +1,39 @@
+---
+description: Sentence clarity and section-header keyword coverage for grant and paper prose
+globs: "08_current/grant/**/*.md,08_current/paper/**/*.md,**/Draft*.md,**/*.tex"
+alwaysApply: false
+---
+
+# Grant & paper writing clarity
+
+Applies to Vision/Approach, paper drafts, and their LaTeX twins. Use British English.
+
+## Address every section-header keyword
+
+Every concept named in a section heading must be addressed **and evidenced** in that section. Cover the *concept*; verbatim repetition of the exact heading word is not required (e.g. "Excellence" can be demonstrated through validated, reproducible results rather than by using the word).
+
+- "**Excellent Quality and Importance**" → evidence **Excellence**, **Quality**, and **Importance** (label them, e.g. **Importance.** / **Quality.**, where it aids the reviewer; excellence may be shown via the strength of the evidence rather than asserted).
+- "**Timeliness, Need and Opportunity**" → cover **Timeliness** (why now), **Need** (why necessary / what demand), and **Opportunity** (the open window) — all three, not two.
+- Before finishing a section, check each heading noun has a sentence that answers it. A promised keyword with no evidenced content is a reviewer mark-down.
+- Keep one section's keyword out of another (e.g. impact/benefit belongs in the Impact section, not in Timeliness).
+
+## One sentence, one message
+
+Write sentences a reviewer grasps in a single pass.
+
+1. One idea per sentence; split independent claims.
+2. Target <= 25-30 words; rewrite anything over ~35.
+3. Max one subordinate clause; do not stack "because..., which..., where..., aligning...".
+4. Max one aside (em-dash pair or parenthesis) per sentence; none if a subordinate clause is present.
+5. Subject + main verb early; avoid long run-ups before the main clause.
+6. Do not parallel-load lists where each item carries example + rationale + citation — use separate sentences or bullets.
+7. No punctuation collisions: shorten, quote, or move a term containing a colon/comma (e.g. an EPSRC priority title) rather than embedding it mid-clause.
+8. Prefer full stops to semicolons; reserve a semicolon for a tight, symmetrical pair.
+9. One citation cluster per clause; do not interleave several `[n]` through one argument.
+10. Read-aloud test: if you must re-read to find the main claim, split the sentence.
+
+### Example
+
+BAD: In health, adversarial cellular dynamics such as tumour-immune competition are a direct fit, aligning with EPSRC's *transforming health and healthcare* priority and with Co-I Powathil's mathematical-oncology expertise; in the economic and security domain, adversarial multi-agent settings such as competitive logistics and autonomous-fleet coordination align with the *artificial intelligence, digitisation and data: driving value and security* priority.
+
+GOOD: In health, tumour-immune competition is a direct fit: it aligns with EPSRC's *transforming health and healthcare* priority and draws on Co-I Powathil's mathematical-oncology expertise. In the economic and security domain, competitive logistics and autonomous-fleet coordination align with the *AI, digitisation and data* priority.

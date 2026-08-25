@@ -88,6 +88,90 @@ Papers A and B do not depend on Paper C; A is submitted first and must not cite 
 
 ---
 
+## 1b. Research questions (locked 2026-08-25)
+
+Each paper has **one primary question** and a short list of subsidiary questions. The
+subsidiary questions map one-to-one onto Results subsections, so a subsection with no
+question behind it is a subsection to cut, and a question with no subsection behind it
+is a claim the paper cannot support. Answers are stated here in one line each, without
+numbers; numbers live in the manuscripts and in `numbers.json`, per ruling R13.
+
+### Paper A (JACT) — a methodological question
+
+> **Primary.** Can persistent homology be made *scale-attributable* for a hierarchically
+> organised competitive point cloud, and does the resulting decomposition yield stable,
+> non-redundant topological structure?
+
+The emphasis is on *scale-attributable*. A single filtration is already multi-scale; what
+it cannot do is say which organisational level a feature belongs to. That, not "we applied
+TDA to football", is the contribution.
+
+| | Subsidiary question | Section | Answer |
+|---|---|---|---|
+| A1 | Does decomposing by validated interaction length produce $H_0$ regimes that hold across independent matches? | 3.1 | Yes, three regimes. |
+| A2 | Does $H_1$ detection survive the decomposition at every scale, and where does it fail? | 3.2 | Two of three scales; the team scale fails a priori, by Remark `rem:teamnull`. |
+| A3 | Is every detected $H_1$ generator realisable as an interpretable geometric cycle? | 3.3 | Yes, for every generator in the primary match. |
+| A4 | Do the two $H_1$ scales carry distinct information, or is one a re-expression of the other? | 3.4 | Distinct, on both rank-based and TDA-native comparisons. |
+| A5 | How sensitive are these answers to the framework's two free parameters? | 3.5 | Stable over a wide cutoff band and over every tested percentile. |
+| A6 | Do the detected features track real structure rather than measurement noise? | 3.6 | Yes; construct validity only, deliberately minimal. |
+
+**Paper A does not ask** what the features mean for football, whether they predict
+anything, or how much information the centroid projection discards. The first two are
+Paper B. The third is Paper C and the Standard Grant, except for the empirical control
+noted in §12 below.
+
+### Paper B (JSS) — an applied question
+
+> **Primary.** What do persistent-homology measures of team shape add for football
+> analysis, beyond what geometric descriptors already in use provide?
+
+Paper A establishes that the measure is sound. Paper B asks whether it is *useful*. The
+four subsidiary questions are already stated as Study Aims in `sections/introduction.tex`
+and are reproduced here so the two documents cannot drift apart.
+
+| | Subsidiary question | Section | Answer |
+|---|---|---|---|
+| B1 | Does topological persistence track real match events interpretably and in a consistent direction? | 3.1 | Yes; disruptive events precede a fall, sustained build-up a rise. |
+| B2 | Does tactical-scale persistence carry information beyond standard geometric descriptors of team shape? | 3.2 | Yes; it is weakly correlated with them and explains variation they do not. |
+| B3 | Are home and away teams' tactical structures coupled or independent within a match? | 3.3 | Largely independent. |
+| B4 | Does tactical-scale persistence improve prediction of phase of play on unseen matches? | 3.4 | Not detectably, at this sample size. |
+
+**B4 is a genuine boundary-condition result, not a failure.** It is stated as an answer to
+a question the paper asked deliberately, which is why B4 must remain a listed aim rather
+than being demoted to a limitation.
+
+**Paper B does not ask** anything about the method's validity, which it inherits from
+Paper A by citation.
+
+### Paper C (methods note) — a foundational question
+
+> **Primary.** When the statistical object is a persistence *diagram* rather than a
+> landscape, which parts of mean-path and change-point inference can be proved outright,
+> and which survive only as computational evidence once the sequence is adversarially
+> dependent?
+
+The question is deliberately framed around the proved/not-proved boundary, because that
+boundary is the contribution. The three-tier split is the answer format, not a caveat.
+
+| | Subsidiary question | Tier | Answer |
+|---|---|---|---|
+| C1 | Is there an exact Fréchet mean for equal-cardinality birth-zero $H_0$ diagrams, and under what hypothesis? | 2 | Yes, the coordinatewise mean of sorted deaths, under a no-diagonal-matching hypothesis (Lemma T1-lite). |
+| C2 | How far apart are the $W_1$ and $W_2$ Fréchet means, and does the gap vanish with noise? | 2 | Coordinate gap is first order in the noise; the relative objective gap does not vanish. |
+| C3 | Can CUSUM delay on a diagram-valued statistic be predicted in closed form, and when does the prediction fail? | 2 | Yes under uncorrelated increments (Proposition T2-lite); it is too optimistic for large jumps and for consecutive-frame statistics. |
+| C4 | Do these results survive genuine tug-of-war dependence? | 3 | Open. Monte Carlo evidence only; the theorems belong to the Standard Grant. |
+
+**Paper C does not ask** whether the landscape theorems T1 and T2 hold. Those are the
+Small Grant's object. Never quote a Paper C delay figure as evidence for T2.
+
+### One-line separation test
+
+If a reader cannot place a given result under exactly one of A's, B's or C's primary
+questions, it is in the wrong paper. Applied to the current drafts: event correlation
+sits under A6 *and* B1, which is the one deliberate overlap, resolved by A treating it as
+a one-paragraph construct-validity check and B owning the full interpretation.
+
+---
+
 ## 2. House style
 
 ### JACT (Paper A)
@@ -480,7 +564,7 @@ to resolve when incorporating grant feedback:
 | Team cutoff | 30.0 m | 30.0 m ✓ |
 | Multi-match individual H1 presence | 97.0% ± 1.5% | 97.0% ± 1.5% ✓ |
 | Multi-match tactical H1 presence | 19.3% ± 7.2% | 19.3% ± 7.2% ✓ |
-| Spearman ρ (scale complementarity) | **0.264** | **0.264** ✓ (was recorded as 0.254 here; corrected 2026-08-24 against `numbers.json`, which gives 0.26403 over 1,500 frames, *p* = 2.4 × 10⁻²⁵) |
+| Spearman ρ (scale complementarity, on **total H₁ persistence**) | **0.264** | **0.264** ✓ (was recorded as 0.254 here; corrected 2026-08-24 against `numbers.json`, which gives 0.26403 over 1,500 frames, *p* = 2.4 × 10⁻²⁵. Statistic named 2026-08-25 per ruling R13; the loop-counts version is 0.211) |
 | Event–topology pairs | 104,722 | 104,722 ✓ |
 | Sensitivity range | 6–14 m | 6–14 m ✓ |
 | Total H1 loops (10 matches) | 4,200 + 315 = 4,515 | 4,515 ✓ |
@@ -488,14 +572,11 @@ to resolve when incorporating grant feedback:
 
 ### Discrepancies to fix in grant before submission
 
-1. **"Stability scores 0.84–1.00"** (grant): the phrase is a fair rounding of the
-   `stability` column in `paper_A_JACT/pipeline/outputs/regime_summary.csv`
-   (0.956 / 0.836 / 1.000), so the range itself is correct. The real defect is that
-   the score is **defined nowhere in Paper A's text** — `methods.tex` describes the
-   sweep design but never says what is being scored. The grant's 0.80 gate therefore
-   has provenance in our pipeline but not in the published record.
-   → **Action (open)**: add the definition to Paper A's cutoff-selection subsection.
-   Tracked as ruling R5 in `FOUNDATION.md`.
+1. **"Stability scores 0.84–1.00"** (grant): at the **adopted** cutoffs the
+   scores are 0.875 / 0.836 / 1.000. The methods subsection now defines
+   cross-epoch stability and quotes all three (R12 closed 25 Aug 2026).
+   The old 0.956 figure is the CH optimum at 1.39 m only; do not quote it
+   as individual stability at 2.98 m.
 
 2. ~~**Primary-match individual H1 presence: 95.3% vs 96.0%** — update the grant to
    96.0%.~~ **WRONG; DO NOT ACTION.** `uniform_150/uniform_summary.json` and Paper A
@@ -526,3 +607,72 @@ The grant's publication-adjacent pipeline is:
 **Paper B is intentionally absent from the EPSRC grant**, which is correctly positioned
 as mathematical sciences with football as a testbed. Paper B is the sports-science
 publication track and does not need to appear in the grant narrative.
+
+---
+
+## 12. What the scale decomposition preserves (open thread, allocated 2026-08-25)
+
+The decomposition replaces each cluster by its centroid. That raises two questions which
+were initially run together and must be kept apart, because they belong to different
+papers and only one of them is Paper A's problem.
+
+**Question 1 (theory, not Paper A).** How much topological information does the centroid
+projection discard, and can the error be bounded? The unconditional answer is available
+from Vietoris--Rips stability: the bottleneck distance between the diagram of the raw
+cloud and the diagram of the centroid cloud is at most twice the largest cluster radius.
+That bound is loose enough at the tactical cutoff to be uninformative, so the content
+would lie in a scale-restricted version, plus a gap condition to handle the fact that
+single-linkage clustering is discontinuous where a merge occurs. **This is Paper C or
+Standard Grant material.** Paper A gets at most one sentence in Limitations. Do not open
+it in a paper whose claims do not depend on it.
+
+**Question 2 (empirical, and Paper A's problem).** Is $H_1$ detection driven by the
+*number* of centroids rather than their *arrangement*? This is a different worry and a
+more urgent one, because Remark `rem:teamnull` already proves $H_1$ vanishes below four
+centroids, and the tactical scale operates close to that floor. A referee who reads the
+Remark and then the tactical cluster counts will ask the question unprompted. The
+ingredients of the objection are already printed; the rebuttal is not.
+
+*What the existing outputs already show.* Conditioning on cluster count in
+`multi_match/per_frame_results.csv`, tactical $H_1$ presence is zero for every frame at or
+below four centroids, which is a large minority of the sample, and rises monotonically
+thereafter. Individual-scale presence is close to saturated over its usual centroid range.
+Both facts are computable from files already on disk and neither is currently in the
+paper.
+
+*The control that closes it.* Hold the centroid count fixed and resample centroid
+positions from a spatially matched null, then compare observed against null presence at
+each count. If observed sits clearly above null, arrangement carries the signal and one
+sentence settles the objection. If the null reproduces the observed curve, the $H_1$
+results are substantially cardinality effects and the paper must say so.
+
+**Action: done 2026-08-25.** Implemented as `pipeline/steps/07_cardinality_null.py`. The
+null draws $k$ points uniformly from the convex hull of the observed centroids, so it
+matches each frame on cardinality *and* spatial envelope and randomises only arrangement;
+the adaptive filtration is recomputed on each null cloud. 200 replicates per frame over
+all 1,500 frames. The step reproduces the published presence rates exactly (97.0% and
+19.3%), which is the check that it is analysing the same sample.
+
+**Result.** The objection closes at the tactical scale and only partly at the individual
+scale.
+
+| Scale | Observed | Null | Excess | 95% CI (match bootstrap) |
+|---|---|---|---|---|
+| Individual | 97.0% | 91.2% | +5.8 pp | [+4.8, +6.9] |
+| Tactical | 19.3% | 8.3% | +11.0 pp | [+8.0, +14.1] |
+
+Tactical presence is **more than twice** the null, with a positive excess at every
+centroid count from five upwards, so arrangement carries the signal. The individual scale
+is **near-saturated**: the null alone already produces a loop in 91% of frames, because
+twenty points in a bounded region almost always close a cycle. The excess there is real
+but small, and the paper now says so rather than leaving "near-universal" to imply more
+than it can support. That honesty costs nothing, because the individual scale was never
+the paper's discriminating claim.
+
+Added to Paper A as one paragraph and Table `tab:null` in §3.2, plus a Methods paragraph
+in `sec:stats`. Scoped as *defending an existing claim*, and it did not grow into
+Question 1.
+
+**Question 1 handoff.** For the independent decomposition-error investigation (theory,
+toy extension, Standard Grant / post-C), see
+`08_current/grant/evidence/toy_models/DECOMPOSITION_ERROR_PROGRAMME.md`.

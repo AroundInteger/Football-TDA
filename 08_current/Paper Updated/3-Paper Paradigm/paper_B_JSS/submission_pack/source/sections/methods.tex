@@ -1,0 +1,114 @@
+% =======================================================================
+\section{Methods}
+
+\subsection{Data}
+
+Data for this study come from ten professional football matches
+(A-League, 2024/25 season), tracked via SkillCorner's broadcast-derived
+system at 10~Hz \cite{SkillCorner2024}. Full data processing and the
+topological method itself are described in a companion paper
+\cite{paperA}; here, data are used only as the basis for the four
+analyses below, conducted on 1{,}500 frames sampled uniformly across
+the ten matches (150 per match) unless otherwise stated.
+
+\subsection{Topological Analysis Pipeline}
+
+Persistent homology quantifies the shape of spatial data by tracking
+how topological features appear and disappear as a distance threshold
+is gradually relaxed \cite{paperA}. Applied to a set of player
+positions, the method builds a growing sequence of proximity networks.
+At a small threshold, only closely positioned players are connected. As
+the threshold increases, more connections form, and loops in the network
+close temporarily before being filled. A feature's persistence, the
+difference between the threshold at which it appears and the threshold
+at which it disappears, measures how stable that feature is across
+spatial scales. A loop with high persistence indicates a genuine
+ring-like gap in player positioning that is stable over a range of
+distances; a loop with low persistence is transient.
+
+The analysis pipeline used here proceeds in three steps. Players are
+first grouped by proximity at a validated threshold distance, reducing
+the 22-player cloud to a smaller set of cluster centroids representing
+organisational units at a specific spatial scale. A Vietoris--Rips
+filtration is then computed on these centroids, producing a persistence
+diagram that records the birth and death of two types of feature:
+connected components ($H_0$, counting distinct spatial groups) and
+loops ($H_1$, detecting ring-like gaps). $H_1$ total persistence, the
+sum of loop lifespans in the diagram, provides a continuous scalar
+measure of ring-like structure at that scale and moment.
+
+The pipeline is run at two spatial scales, validated in the companion
+paper \cite{paperA}: an individual scale, detecting ring-like
+arrangements of players within approximately three metres of one
+another, and a tactical scale, detecting larger ring-like gaps such as
+a pressing encirclement, a peripheral possession orbit, or a gap
+between defensive and midfield lines. The companion paper establishes
+that both scales are stable across all ten matches and robust to
+parameter choices. This paper treats them as pre-validated measures and
+asks what they reveal about football.
+
+\subsection{Event Annotation and Correlation Methodology}
+
+Each match event annotated by SkillCorner, including player possessions, on-ball engagements, off-ball runs, passing options, and phases of play such as build-up, transition, and set play, was matched to the topological
+time series in a window immediately surrounding it. Persistence was
+averaged over the five frames before and the five frames after each
+event, 0.5 seconds at the 10~Hz sampling rate used here, and the
+difference between the two averages gave the persistence change
+associated with that event. This narrow window captures the immediate
+response to an event while limiting contamination from unrelated play. Significance of each
+event type's persistence change was assessed against zero using the
+Mann--Whitney $U$ test, with correction for testing multiple event
+types.
+
+To check that this pattern did not depend on the particular choice of
+window width, the same comparison was repeated at three half-widths:
+$\pm0.5$~s (the default), $\pm1$~s, and $\pm5$~s, for the five event
+types with the clearest effect at the default width.
+
+\subsection{Geometric Baseline Descriptors}
+
+Four geometric descriptors already used in football analytics were
+computed for every frame across all ten matches, alongside
+tactical-scale $H_1$ total persistence: team length, the range of
+player $x$-coordinates; team width, the range of player
+$y$-coordinates; convex-hull area, the area of the smallest convex
+polygon enclosing all 22 players; and Voronoi dispersion entropy, a
+measure of how evenly players are spread across the pitch
+\cite{shape_descriptors}. Spearman rank correlation quantified the
+pairwise relationship between each descriptor and tactical-scale
+persistence. Partial $R^2$, the variance in each geometric descriptor explained by persistence after accounting for the other three descriptors, quantified whether persistence added information beyond
+what the geometric block already captured.
+
+\subsection{Bilateral (Home/Away) Decomposition}
+
+The 22-player analysis merges home and away players into a single point
+cloud, which discards which team each player belongs to. To recover
+team identity, the same tactical-scale pipeline, $\delta=12.0$~m with the adaptive filtration described in the companion paper \cite{paperA}, was run separately on each team's 11 players, using
+the home/away labels provided with the tracking data. This gives a
+separate persistence sequence for each team across the match, allowing
+two questions to be asked: how often each team's own shape forms a
+tactical-scale loop, and whether the two teams' sequences move together
+or independently. The second question was assessed using Spearman
+correlation between the two teams' persistence values at the same point
+in time and at short delays of up to one second in either direction,
+and by the proportion of frames in which both teams, one team, or
+neither team showed a loop.
+
+\subsection{Predictive Utility / Cross-Validated Classification}
+
+To test whether tactical-scale persistence improves prediction rather
+than simply correlating with existing measures, a classifier was
+trained to detect build-up phases, defined as frames flagged as such in SkillCorner's possession-phase annotation, present in 13.7\% of frames, from frame-level features. Two feature sets were compared: the four
+geometric descriptors alone, and the same four descriptors plus
+tactical-scale $H_1$ total persistence. A logistic regression classifier
+was trained and evaluated using ten-fold cross-validation grouped by
+match, ensuring every match held out for testing was entirely absent
+from training; this ensures performance reflects how well the model
+generalises to a new match rather than to new frames within matches
+already seen. Model performance was summarised by the area under the
+ROC curve, with the difference between the two feature sets assessed
+using match-level bootstrap confidence intervals and a permutation
+test. The same comparison was repeated using loop count and maximum
+persistence in place of total persistence, and using a second target,
+chaotic-phase frames (7.0\% prevalence), to check the result was not
+specific to one feature definition or one target.

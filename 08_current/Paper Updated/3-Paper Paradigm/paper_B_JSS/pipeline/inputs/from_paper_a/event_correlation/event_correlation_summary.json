@@ -1,0 +1,202 @@
+{
+  "n_matches": 10,
+  "n_events_total": 104722,
+  "statistical_tests": {
+    "individual": {
+      "player_possession": {
+        "n_events": 9547,
+        "mean_delta": -0.0402466861992166,
+        "std_delta": 2.9174792819315867,
+        "mannwhitney_stat": 45711036.0,
+        "p_value": 0.6975784205377269,
+        "significant_005": false
+      },
+      "passing_option": {
+        "n_events": 24343,
+        "mean_delta": -0.16172867003068173,
+        "std_delta": 2.9280824144259223,
+        "mannwhitney_stat": 286833569.0,
+        "p_value": 7.014225162297074e-11,
+        "significant_005": true
+      },
+      "on_ball_engagement": {
+        "n_events": 8905,
+        "mean_delta": -0.256111374966955,
+        "std_delta": 2.8940076754268604,
+        "mannwhitney_stat": 37240710.0,
+        "p_value": 6.095285938361261e-14,
+        "significant_005": true
+      },
+      "off_ball_run": {
+        "n_events": 4995,
+        "mean_delta": -0.014321811292264546,
+        "std_delta": 3.0578419644101715,
+        "mannwhitney_stat": 12737250.0,
+        "p_value": 0.05176366644858237,
+        "significant_005": false
+      },
+      "chaotic": {
+        "n_events": 1087,
+        "mean_delta": -0.21031246110728388,
+        "std_delta": 2.861818227838903,
+        "mannwhitney_stat": 563066.0,
+        "p_value": 0.04288447514575475,
+        "significant_005": true
+      },
+      "finish": {
+        "n_events": 735,
+        "mean_delta": -0.23904589069132903,
+        "std_delta": 2.870191960618274,
+        "mannwhitney_stat": 262395.0,
+        "p_value": 0.31069034868810363,
+        "significant_005": false
+      },
+      "set_play": {
+        "n_events": 174,
+        "mean_delta": -0.0992022873341352,
+        "std_delta": 1.9828021945202212,
+        "mannwhitney_stat": 16356.0,
+        "p_value": 0.16542581625355623,
+        "significant_005": false
+      },
+      "transition": {
+        "n_events": 78,
+        "mean_delta": 0.06660863069387588,
+        "std_delta": 2.5955594031584286,
+        "mannwhitney_stat": 2886.0,
+        "p_value": 0.5557216585079576,
+        "significant_005": false
+      },
+      "direct": {
+        "n_events": 372,
+        "mean_delta": -0.29306997253048805,
+        "std_delta": 3.3620461604570626,
+        "mannwhitney_stat": 67332.0,
+        "p_value": 0.4976411806588775,
+        "significant_005": false
+      },
+      "create": {
+        "n_events": 1450,
+        "mean_delta": -0.09175360446140687,
+        "std_delta": 3.1221078604827843,
+        "mannwhitney_stat": 1057050.0,
+        "p_value": 0.7833149840671865,
+        "significant_005": false
+      },
+      "build_up": {
+        "n_events": 618,
+        "mean_delta": 0.7310555289864153,
+        "std_delta": 3.2448899062451497,
+        "mannwhitney_stat": 223098.0,
+        "p_value": 4.370711295345845e-08,
+        "significant_005": true
+      },
+      "quick_break": {
+        "n_events": 57,
+        "mean_delta": -0.766313557875784,
+        "std_delta": 2.9155023740259693,
+        "mannwhitney_stat": 1197.0,
+        "p_value": 0.009683717537649293,
+        "significant_005": true
+      }
+    },
+    "tactical": {
+      "player_possession": {
+        "n_events": 9547,
+        "mean_delta": -0.027343853848310395,
+        "std_delta": 1.6117552202087002,
+        "mannwhitney_stat": 45248006.5,
+        "p_value": 0.2810772884561171,
+        "significant_005": false
+      },
+      "passing_option": {
+        "n_events": 24343,
+        "mean_delta": -0.046023660167811155,
+        "std_delta": 1.6409253481360435,
+        "mannwhitney_stat": 290947536.0,
+        "p_value": 1.594504813333027e-05,
+        "significant_005": true
+      },
+      "on_ball_engagement": {
+        "n_events": 8905,
+        "mean_delta": -0.05750185339454853,
+        "std_delta": 1.5683222464644373,
+        "mannwhitney_stat": 38994995.0,
+        "p_value": 0.014311247743698064,
+        "significant_005": true
+      },
+      "off_ball_run": {
+        "n_events": 4995,
+        "mean_delta": 0.011575989250664241,
+        "std_delta": 1.673453749538801,
+        "mannwhitney_stat": 12699787.5,
+        "p_value": 0.050098390223294244,
+        "significant_005": false
+      },
+      "chaotic": {
+        "n_events": 1087,
+        "mean_delta": -0.1955015745750785,
+        "std_delta": 1.356275405797663,
+        "mannwhitney_stat": 538608.5,
+        "p_value": 3.265604380550448e-07,
+        "significant_005": true
+      },
+      "finish": {
+        "n_events": 735,
+        "mean_delta": -0.11033284401407047,
+        "std_delta": 1.432822323811378,
+        "mannwhitney_stat": 269377.5,
+        "p_value": 0.904794086534776,
+        "significant_005": false
+      },
+      "set_play": {
+        "n_events": 174,
+        "mean_delta": -0.06950885071151558,
+        "std_delta": 0.631727870137342,
+        "mannwhitney_stat": 14616.0,
+        "p_value": 0.1256510338777673,
+        "significant_005": false
+      },
+      "transition": {
+        "n_events": 78,
+        "mean_delta": -0.2245112101236979,
+        "std_delta": 1.3415707239760586,
+        "mannwhitney_stat": 2652.0,
+        "p_value": 0.06143906643748704,
+        "significant_005": false
+      },
+      "direct": {
+        "n_events": 372,
+        "mean_delta": -0.1747333167701639,
+        "std_delta": 1.9669393126817052,
+        "mannwhitney_stat": 66030.0,
+        "p_value": 0.17637147755042792,
+        "significant_005": false
+      },
+      "create": {
+        "n_events": 1450,
+        "mean_delta": -0.06502289633915342,
+        "std_delta": 1.739415777686066,
+        "mannwhitney_stat": 1053425.0,
+        "p_value": 0.9068410960241373,
+        "significant_005": false
+      },
+      "build_up": {
+        "n_events": 618,
+        "mean_delta": 0.3416190601089626,
+        "std_delta": 2.185900257535231,
+        "mannwhitney_stat": 226497.0,
+        "p_value": 3.380070678775258e-11,
+        "significant_005": true
+      },
+      "quick_break": {
+        "n_events": 57,
+        "mean_delta": -0.6656504045452989,
+        "std_delta": 2.1841054957265866,
+        "mannwhitney_stat": 1339.5,
+        "p_value": 0.046258311339620044,
+        "significant_005": true
+      }
+    }
+  }
+}

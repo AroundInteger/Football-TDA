@@ -1,0 +1,35 @@
+# Paper A (JACT) pipeline configuration
+primary_match_id: 1996435
+fps: 10.0
+
+sampling:
+  uniform_150:
+    n_frames: 150
+    description: "Uniformly spaced complete frames for Paper A tables"
+  cutoff_sweep:
+    n_cutoffs: 100
+    delta_min: 0.5
+    delta_max: 30.0
+    epoch_lengths_min: [1, 2, 5, 10]
+  temporal_2min:
+    window_size_min: 2.0
+    description: "Grant-only temporal windows; not used for headline H1 tables"
+
+validated_cutoffs:
+  individual: 2.98
+  tactical: 12.0
+  team: 30.0
+
+multi_match:
+  skillcorner_only: true
+  frames_per_match: 150
+  sample_every: 100
+
+bootstrap:
+  n_boot: 1000
+  seed: 42
+
+figures:
+  # Max-persistence frames in uniform_150/uniform_frame_results.csv
+  individual_frame_idx: 141
+  tactical_frame_idx: 97  # recovered via edges ≤ death (VR 1-skeleton)

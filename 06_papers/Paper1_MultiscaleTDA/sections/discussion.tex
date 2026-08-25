@@ -1,0 +1,28 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Methodological Contributions}
+
+Our approach is complementary to ongoing theoretical work on multiparameter persistence \citep{BotnanLesnick2022}, which addresses scale conflation algebraically but faces computational barriers for large point clouds. We take a practical, domain-informed route: hierarchical clustering at validated cutoff distances decomposes the point cloud by organisational level before computing standard single-parameter persistent homology at each level.
+
+The cutoff distance, which we term \emph{domain-informed} rather than ``goal-dependent'' (to avoid ambiguity with the sport-specific meaning of ``goal''), defines the organisational level under analysis. The three validated regimes (individual, tactical, team) emerge from systematic parameter sweep and reflect genuine hierarchical structure in the competitive system. The tactical cutoff (12.0~m) is explicitly a domain-informed choice, justified by (i) its position within the automated metric range (6.87--16.31~m), (ii) its correspondence to standard football zone dimensions, and (iii) sensitivity analysis showing robust \(H_1\) detection across the plausible range (Section~\ref{sec:sensitivity}).
+
+The adaptive filtration formula addresses a practical coupling between the clustering and filtration steps. The P75 threshold is empirically justified by ablation showing it is the minimum percentile achieving full detection sensitivity (Section~\ref{sec:sensitivity}). This is a general solution applicable to any multi-scale TDA pipeline that uses clustering as a preprocessing step.
+
+\subsection{Multi-Scale Topological Structure}
+
+The complementarity of the individual and tactical scales is supported by quantitative evidence: Spearman \(\rho=0.254\) (weak positive correlation, far from unity) and moderate positive co-occurrence (OR \(=3.52\), \(p=0.093\)) that falls short of conventional significance at this sample size. Spearman \(\rho\) provides the primary quantitative evidence for scale complementarity. The weak positive correlation likely reflects the confound that dense player configurations create opportunities for topological features at multiple scales simultaneously. Despite this, the scales capture predominantly distinct structural information, as demonstrated by divergent multi-match frame \(H_1\) presence rates ($97.0\%$ vs $19.3\%$) and persistence profiles.
+
+\subsection{Temporal Dynamics and Event Correlation}
+
+The temporal evolution result is more nuanced than initially reported: the primary match shows a significant tactical-scale persistence decrease (\(-\)22.8\%, \(p<0.001\)), but the direction is not consistent across matches. The sign reversal from the preliminary analysis (which suggested an increase) is attributable to overlapping versus non-overlapping windowing: overlapping windows give unequal frame weighting and can produce directionally different half-level means when high-persistence frames cluster near window boundaries; the non-overlapping window-level analysis is methodologically preferable and provides the definitive result. Half-level persistence dynamics appear driven by match-specific factors such as tactical adjustments, scoreline effects, and substitutions, rather than universal trends.
+
+The real event correlation, based on 104,722 event-topology pairs across 10 matches, provides the first evidence that persistent homology features are genuinely responsive to match dynamics. The coherent pattern is that disruption decreases persistence whilst organisation increases it; this validates the topological interpretation and suggests applications in real-time tactical monitoring.
+
+\subsection{Limitations}
+
+\textbf{Single-linkage conservatism.} The chaining effect at the tactical scale (Section~\ref{sec:linkage}) means our tactical \(H_1\) counts are conservative. Future work should investigate complete or average linkage, with appropriate domain validation to ensure the increased cluster count reflects genuine tactical groupings rather than partition artefacts.
+
+\textbf{Two-scale \(H_1\), not three.} Our multi-scale framework identifies three \(H_0\) regimes but only two \(H_1\) regimes. Team-scale \(H_1\) absence is a structural consequence of the 1--3 centroids produced at \(\delta=28.11\)~m, not a methodological limitation. Effective team-scale \(H_1\) analysis would require alternative representations (e.g.\ spatial density fields or Delaunay triangulations) rather than centroid-based point clouds.
+
+\textbf{Broadcast tracking resolution.} Surveys of tracking in team sports highlight trade-offs among sampling rate, spatial precision, and deployment cost \citep{Cummins2013, Aughey2011}. The SkillCorner validation data (10~Hz, broadcast-derived) has lower spatial resolution than the primary SecondSpectrum data (25~Hz, optical). Multi-match validation applies to structural presence/absence (\(H_0\) ranges, \(H_1\) presence rates) but not to persistence magnitude comparability. The \(\sim\)5-fold difference between single-match (3.285~m) and multi-match (0.692~m) tactical persistence likely reflects sampling (150 uniformly sampled frames vs 149 full-resolution windows) and data source resolution (25~Hz vs 10~Hz). Event correlation results use SkillCorner persistence deltas; these are interpretable within-scale (direction and significance) but not directly comparable to primary-match persistence magnitudes. Future work should assess persistence magnitude comparability across data sources.

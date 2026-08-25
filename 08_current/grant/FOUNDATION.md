@@ -97,7 +97,7 @@ The single most error-prone table in the project. Read the last row before using
 
 | Scale | Adopted $\delta$ | Status | Why this value | Action |
 |---|---|---|---|---|
-| Individual | **2.98 m** | M | Selected directly by the automated clustering-quality metrics on the $[0.5, 30.0]$ m sweep | Use 2.98 m |
+| Individual | **2.98 m** | M | Carried over from an earlier normalised-coverage calibration; retained because the sweep validates the individual $H_0$ band ($15$–$22$ clusters) at this value. Cross-epoch stability **0.875** at 2.98 m. The Calinski–Harabasz optimum is **1.39 m** (stability 0.956); not adopted | Use 2.98 m; quote stability 0.875, not 0.956 |
 | Tactical | **12.0 m** | M / C | The automated metrics *disagree* here: silhouette optimum 16.31 m, information-content optimum 6.87 m. 12.0 m is a domain-informed choice within that range, being half the width of a standard pitch zone | Present as a judgement call with both metric optima named. Presenting it as a metric output is the single easiest way to lose a methods referee |
 | Team | **30.0 m** | M | Selected directly by the automated metrics | Use 30.0 m |
 | Sweep design | 100 points over $[0.5, 30.0]$ m, against 58 temporal windows balanced across epoch lengths of 1, 2, 5 and 10 minutes | M | Defines what "cross-epoch" means in the stability score | Any re-derivation must reuse this design or state its departure |
@@ -111,7 +111,7 @@ Every gate here is a point at which the project can be told it is wrong. That is
 
 | Gate | Threshold | When | Why this threshold | Action on failure |
 |---|---|---|---|---|
-| Cutoff stability | $\geq 0.80$ | Month 2 | The pilot cross-epoch stability scores are 0.956 / 0.836 / 1.000, so 0.80 sits below the weakest observed scale with margin. It is a floor the pilot demonstrably clears, not an arbitrary number | Re-derive interaction lengths on Championship data before O2 begins |
+| Cutoff stability | $\geq 0.80$ | Month 2 | At the **adopted** cutoffs, cross-epoch stability is 0.875 / 0.836 / 1.000 (individual / tactical / team). The 0.80 floor sits below the weakest adopted scale with margin | Re-derive interaction lengths on Championship data before O2 begins |
 | Dependence diagnostic | Autocovariance decay consistent with summable mixing | Month 9 | T1 and T2 assume $\alpha$-mixing with summable coefficients. This checks the assumption rather than asserting it | Consistency is not proof. The label is "diagnostic"; do not upgrade it to "verified" |
 | Eigengap | Recorded, not thresholded | Month 9 | The projected (FPCA-score) form of T2 needs Davis–Kahan; the landscape-series form does not | State T2 on the landscape series. Report the eigengap alongside for the projected form |
 | Discriminability | $\geq 3$ organisational states separated, $p < 0.05$ BH-corrected | Month 9 | Benchmarked against team length, width and convex-hull area | Below this, the comparison geometry does not support fingerprinting |
@@ -147,20 +147,21 @@ The novelty argument is not "nobody has done TDA on football". It is that each i
 |---|---|---|---|---|---|
 | Carlsson (2009); Zomorodian & Carlsson (2005) | 1, 2 | Persistent homology and its computation | — | Nothing about which agents enter the filtration | Cite as foundation only |
 | Edelsbrunner & Harer (2010) | 3 | Computational topology text | — | Scale attribution across organisational levels | Cite for the single-filtration limitation, phrased as "a single filtration over the full agent set" |
-| Cohen-Steiner et al. (2007); (2010) | 10, 13 | Bottleneck stability; $L^p$-stable persistence under bounded total persistence | Bounded total persistence for the $L^p$ case | The propagation of that stability into a sequential statistic | Supplies T2's input-perturbation link and the total-persistence hypothesis |
-| Bubenik (2015) | 7 | Persistence landscapes; values in $L^2$ | — | Dependent sampling | The reason we work in a Hilbert space at all |
-| Chazal et al. (2014) | 6 | Stochastic convergence of landscapes and silhouettes | **Independent sampling** | Weakly dependent trajectories | **The single most important row.** T1 exists to remove this assumption |
-| Turner et al. (2014) | 26 | Fréchet means for diagram distributions | — | Uniqueness | Non-uniqueness for diagram-valued means is *why* the grant is landscape-valued. Cite whenever the choice is questioned |
-| Adams et al. (2017) | 18 | Persistence images | — | Sequential inference | Alternative vectorisation; not the grant's statistic |
+| Cohen-Steiner et al. (2007); (2010) | 11, 14 | Bottleneck stability; $L^p$-stable persistence under bounded total persistence | Bounded total persistence for the $L^p$ case | The propagation of that stability into a sequential statistic | Supplies T2's input-perturbation link and the total-persistence hypothesis |
+| Bubenik (2015) | 8 | Persistence landscapes; values in $L^2$ | — | Dependent sampling | The reason we work in a Hilbert space at all |
+| Chazal et al. (2014) | 7 | Stochastic convergence of landscapes and silhouettes | **Independent sampling** | Weakly dependent trajectories | **The single most important row.** T1 exists to remove this assumption |
+| Turner et al. (2014) | 27 | Fréchet means for diagram distributions | — | Uniqueness | Non-uniqueness for diagram-valued means is *why* the grant is landscape-valued. Cite whenever the choice is questioned |
+| Adams et al. (2017) | 19 | Persistence images | — | Sequential inference | Alternative vectorisation; not the grant's statistic |
 | Botnan & Lesnick (2022); Lesnick (2015) | 4, 5 | Multiparameter persistence | — | Tractability at these data rates | Say "impractical at the data rates required here", not "intractable". An author of these papers would contest the stronger word |
-| Bosq (2000); Hörmann & Kokoszka (2010) | 8, 9 | Linear processes and weak dependence in function spaces | Stationarity, mixing | Topological inputs | Supplies the long-run covariance machinery T1 imports |
-| Berkes et al. (2009); Page (1954) | 12, 11 | Functional CUSUM; sequential change detection | Known or estimable covariance | Topologically derived inputs measured with error | T2 chains stability into this |
-| Gu et al. (2022) | 17 | Change-point detection in multi-agent systems from higher-order features | **Single scale** | Multi-scale competitive systems | The nearest prior art for O2. Name the single-scale restriction explicitly |
-| Schindler & Barahona (2023) | 19 | Multiscale clusterings analysed with persistent homology | Cooperative or slowly evolving systems | Adversarial coupling; sequential inference | **The sharpest incremental-novelty risk.** Differentiate on the *statistical* contribution (dependence, sequential guarantees), not on cluster-then-PH, which has precedent here |
-| Topaz et al. (2015); Bhaskar et al. (2019); Ballerini et al. (2008) | 14, 15, 16 | Topology of biological aggregation, collective motion, flocking | Single cooperative collective | Two mutually responsive populations | Motivates interaction-length framing; does not pre-empt it |
-| Folgado et al. (2014); Fernández & Bornn (2018) | 20, 21 | Geometric team descriptors; pitch control | — | Loop structure, scale separation | The benchmark O1 must beat. Without these the claim "unavailable from conventional geometry" has no support |
-| Ramsay & Silverman (2005) | 27 | Functional data analysis, FPCA | Fixed basis for score-space Lipschitz claims | — | Expand "FPCA" on first use; panels include non-FDA mathematicians |
-| Bauer (2021); Maria et al. (2014); Tauzin et al. (2021) | 23, 24, 25 | Ripser, GUDHI, giotto-tda | — | — | Software citation |
+| Schenck (2022) | 6 | Algebraic foundations of applied TDA; Chapter 8 on multiparameter persistent homology | — | Tractability at these data rates | Textbook companion to [4,5]. Cite the book generally; name Chapter 8 when the claim is the algebraic setting of multiparameter persistence |
+| Bosq (2000); Hörmann & Kokoszka (2010) | 9, 10 | Linear processes and weak dependence in function spaces | Stationarity, mixing | Topological inputs | Supplies the long-run covariance machinery T1 imports |
+| Berkes et al. (2009); Page (1954) | 13, 12 | Functional CUSUM; sequential change detection | Known or estimable covariance | Topologically derived inputs measured with error | T2 chains stability into this |
+| Gu et al. (2022) | 18 | Change-point detection in multi-agent systems from higher-order features | **Single scale** | Multi-scale competitive systems | The nearest prior art for O2. Name the single-scale restriction explicitly |
+| Schindler & Barahona (2023) | 20 | Multiscale clusterings analysed with persistent homology | Cooperative or slowly evolving systems | Adversarial coupling; sequential inference | **The sharpest incremental-novelty risk.** Differentiate on the *statistical* contribution (dependence, sequential guarantees), not on cluster-then-PH, which has precedent here |
+| Topaz et al. (2015); Bhaskar et al. (2019); Ballerini et al. (2008) | 15, 16, 17 | Topology of biological aggregation, collective motion, flocking | Single cooperative collective | Two mutually responsive populations | Motivates interaction-length framing; does not pre-empt it |
+| Folgado et al. (2014); Fernández & Bornn (2018) | 21, 22 | Geometric team descriptors; pitch control | — | Loop structure, scale separation | The benchmark O1 must beat. Without these the claim "unavailable from conventional geometry" has no support |
+| Ramsay & Silverman (2005) | 28 | Functional data analysis, FPCA | Fixed basis for score-space Lipschitz claims | — | Expand "FPCA" on first use; panels include non-FDA mathematicians |
+| Bauer (2021); Maria et al. (2014); Tauzin et al. (2021) | 24, 25, 26 | Ripser, GUDHI, giotto-tda | — | — | Software citation |
 | Carlsson & Mémoli (2010) | — | MST $\leftrightarrow$ Vietoris–Rips $H_0$; dendrogram correspondence | Finite metric space | That every bounded competitive system *is* a hierarchy | Used exactly in the toy model. Does **not** license the claim that four domains share a barcode |
 | MacPherson & Schweinhart (2012) | — | $H_1$ from embedding geometry | — | — | The theoretical home for encirclement loops, distinct from hierarchy-generated $H_1$ |
 | Vipond et al. (2021) | — | Multiparameter persistence for tumour–immune spatial patterns | Static imaging | Serial paired clouds | Oncology is *crowded* for static TDA. The open gap is longitudinal, which is Standard Grant |
@@ -201,9 +202,9 @@ Ten A-League matches, SkillCorner open broadcast tracking. Primary match 1996435
 
 **Team-scale $H_1$ is zero a priori, not empirically.** Clustering at 30.0 m leaves at most two centroids, and $H_1$ of one or two points is trivially empty. This is a structural remark, and it is a small genuine piece of mathematics worth leaning on as evidence of rigour. Do not report it as a finding about football.
 
-**Scale complementarity.** Spearman $\rho = 0.264$ over 1,500 frames, $p = 2.4 \times 10^{-25}$. Match-resampled bootstrap (1,000 draws, seed 42) gives median 0.262, CI $[0.200, 0.314]$. Fisher exact odds ratio 10.91, $p = 9.4 \times 10^{-4}$, contingency $[[289, 1166], [1, 44]]$. Bottleneck distance between scales has median 1.511 m with a 95th-percentile tail of 7.994 m; landscape $L^2$ distance has median 5.671.
+**Scale complementarity.** Spearman $\rho = 0.264$ on **total $H_1$ persistence** over 1,500 frames, $p = 2.4 \times 10^{-25}$; the same test on loop counts gives $0.211$ (ruling R13, and never quote either without naming which). Match-resampled bootstrap (1,000 draws, seed 42) gives median 0.262, CI $[0.200, 0.314]$, for the total-persistence statistic. Fisher exact odds ratio 10.91, $p = 9.4 \times 10^{-4}$, contingency $[[289, 1166], [1, 44]]$, computed on binary $H_1$ presence. Bottleneck distance between scales has median 1.511 m with a 95th-percentile tail of 7.994 m; landscape $L^2$ distance has median 5.671.
 
-**Cross-epoch stability.** Individual 0.956, tactical 0.836, team 1.000; validation rate 1.000 at all three scales.
+**Cross-epoch stability (at adopted cutoffs).** Individual **0.875** at 2.98 m, tactical 0.836 at 12.0 m, team 1.000 at 30.0 m; validation rate 1.000 at all three scales. The Calinski–Harabasz optimum for individual is 1.39 m (stability 0.956); not adopted. See ruling R12.
 
 **Event–topology pairs.** 104,722 across ten matches.
 
@@ -326,7 +327,7 @@ The acceptance test for this document. If §§1–7 are right, an RA can execute
 
 1. Repeat weeks 1.2–1.5 for the nine additional matches. Pass condition: grand means $19.05$ / $4.92$ / $1.38$; presence $97.0\%$ and $19.3\%$; 4,515 loops total.
 2. Recompute scale complementarity. Pass condition: $\rho = 0.264$, and match-resampled bootstrap (1,000 draws, seed 42) median $0.262$ with CI $[0.200, 0.314]$.
-3. Recompute cross-epoch stability using the sweep design in §2.2 and the definition now in Paper A's methods: pool sweep evaluations within 0.5 m of the cutoff, take the median cluster count, score the fraction within $\pm 2$ of it. Pass condition: $0.836$ at the tactical scale and $1.000$ at the team scale. **The individual scale is a live research question, not a reproduction target** — the recorded 0.956 was scored at 1.39 m rather than the adopted 2.98 m, so compute it at 2.98 m and report what you get. That number is the input to ruling R12, which is open.
+3. Recompute cross-epoch stability using the sweep design in §2.2 and the definition now in Paper A's methods: pool sweep evaluations within 0.5 m of the cutoff, take the median cluster count, score the fraction within $\pm 2$ of it. Pass condition: **0.875** at the individual scale (2.98 m), **0.836** at the tactical scale, and **1.000** at the team scale.
 
 ### Week 3 — Championship ingestion
 
@@ -356,7 +357,7 @@ Not touch landscapes; the landscape module is Month 8. Not attempt bilateral or 
 
 Each ruling resolves a contradiction that existed across the repository on 24 August 2026, and each is settled against pipeline evidence rather than by preferring a document.
 
-**Status.** R1, R2, R4, R7 and R8 were actioned on 24 August 2026 and are marked closed in place; the record is kept because the reasoning is what prevents the error recurring. R3, R9 and R10 are standing prohibitions with no work attached. **R6, R11 and R12 remain open and need a decision or a recompute.** R12 is the most consequential of the three because it concerns a claim in a submitted manuscript.
+**Status.** R1, R2, R4, R7, R8, R12, R13 and R14 were actioned on 24–25 August 2026; all are marked closed in place, because the reasoning is what prevents the error recurring. R3, R9 and R10 are standing prohibitions with no work attached. **R6 and R11 remain open and need a decision or a recompute.**
 
 **R1 — Spearman $\rho$ is 0.264.** Evidence: `PAPERS/paper_A_JACT/pipeline/outputs/numbers.json` gives $0.26403$ over 1,500 frames, $p = 2.4 \times 10^{-25}$; `PAPERS/paper_A_JACT/pipeline/outputs/complementarity/bootstrap_multi_match_ci.json` gives median $0.2617$, CI $[0.1999, 0.3137]$. `CANONICAL_NUMBERS.md` is correct. The value 0.254 in `working_foundations.md` §11 predates the 6 July recompute. *Action: delete 0.254 from `working_foundations.md`.* **Closed 24 Aug 2026.**
 
@@ -370,7 +371,7 @@ Each ruling resolves a contradiction that existed across the repository on 24 Au
 
 **R6 — Team-scale $H_0$ has three recorded values under unstated conventions.** `numbers.json` gives 0.88 for the primary match; Paper A's results text gives $1.44 \pm 0.50$; the multi-match grand mean is 1.38. These differ in how the single all-players cluster is counted. *Action: fix one convention, state it in §1.2 terms, and recompute. Until resolved, quote 1.38 for the ten-match grand mean and do not quote 0.88 anywhere.*
 
-**R7 — Reference numbering is out of sync.** REV3 renumbered to 28 entries in first-appearance order; `04_References.md` still holds 23; `CANONICAL_NUMBERS.md` still records the methodology paper as [19] and the football paper as [22]. *Action: sync both to REV3, using §3 of this file as the mapping source.* **Closed 24 Aug 2026** — `live/04_References.md` now carries all 28 entries, verified entry-by-entry against REV3; `CANONICAL_NUMBERS.md` now records [22] and [28].
+**R7 — Reference numbering is out of sync.** REV3 renumbered to 28 entries in first-appearance order; `04_References.md` still holds 23; `CANONICAL_NUMBERS.md` still records the methodology paper as [19] and the football paper as [22]. *Action: sync both to REV3, using §3 of this file as the mapping source.* **Closed 24 Aug 2026** — then 28 entries at [22] and [28]. The same-day Schenck insertion (§10) makes this 29 entries: methodology paper [23], football-analytics paper [29].
 
 **R8 — T1 is a convergence claim, and three dependents still carry the retired framing.** REV3 states T1 as convergence with uniqueness demoted to a precondition. Still outstanding: `AdversarialTDA_Specification.md` line 13 asserts uniqueness, and `fig4_frechet_T1.png` and `fig8_montecarlo_T2.png` are named for the retired statement. *Action: rewrite the line and rename the figures to their diagram-valued content.* **Closed 24 Aug 2026** — the specification is restated at lines 13, 100 and 298; the figures are now `fig4_frechet_diagram_mean.png` and `fig8_montecarlo_cusum_delay.png`, with `adversarial_tda.m` updated.
 
@@ -388,6 +389,22 @@ Second, and consequently, the individual-scale stability score of **0.956 was co
 
 *Action, in order.* (i) Recompute individual-scale stability at 2.98 m. (ii) Decide whether Paper A's sentence is corrected to state that 2.98 m is carried over and independently validated, or whether the individual cutoff is re-derived on this sweep. This is a decision for the PI, not a silent edit, because the manuscript is submitted. (iii) Until (i) is done, quote 0.84–1.00 as the stability range only for the tactical and team scales. A LaTeX comment marking this sits in `methods.tex` immediately above the affected sentence.
 
+*Action.* **Closed 25 Aug 2026 (Option A).** Individual stability at the adopted 2.98 m cutoff is **0.875** (recomputed from `cutoff_sweep_results.csv`). Paper A `methods.tex` now states that 2.98 m is carried over from an earlier normalised-coverage calibration, names 1.39 m as the CH optimum not adopted (stability 0.956), and quotes 0.875 / 0.836 / 1.000 at the three adopted cutoffs. `regime_summary.csv` and `numbers.json` distinguish adopted cutoffs from the CH optimum. *Standing rule: never quote 0.956 as individual stability without stating it is at 1.39 m, not 2.98 m.*
+
+**R13 — $\rho = 0.264$ is a correlation on total persistence, and Paper A described it as a correlation on counts.** `steps/04_complementarity.py` computes the Spearman statistic from `h1_total_persistence_ind` against `h1_total_persistence_tac`, giving $0.26403$. Paper A's `results.tex` read "individual-scale and tactical-scale $H_1$ **counts** correlate weakly (Spearman $\rho=0.264$)". The counts version of the same test is $0.211$, so the text named one statistic and quoted another. `methods.tex` compounded this by describing both the Spearman and the Fisher test as operating on "frame-level co-occurrence", which is true only of the Fisher test.
+
+The number was never wrong and the bootstrap CI $[0.200, 0.314]$ is valid, because `bootstrap_multi_match_ci.py` line 57 uses the same total-persistence column as the point estimate. Only the prose was wrong.
+
+*Action.* **Closed 25 Aug 2026.** `results.tex` now says "total $H_1$ persistence" and quotes $\rho=0.211$ on counts as a robustness check; `methods.tex` now defines both statistics separately; `04_complementarity.py` emits `spearman_statistic`, `spearman_rho_counts` and `fisher_statistic` so the definition travels with the number; `numbers.json` was rebuilt with every other headline value unchanged. *Standing rule: never quote $\rho=0.264$ without naming the statistic it is computed on.*
+
+**R14 — the bottleneck "95th-percentile tail" was the maximum, and the TDA-native numbers had no backing file in the pipeline.** Found while closing R13, in the same Results subsection. Two faults.
+
+First, provenance. `results.tex` §3.4 quoted a bottleneck median of 1.511 m and a landscape $L^2$ median of 5.671, but `steps/04_complementarity.py` only runs `tda_native_distances.py` when `RUN_TDA_NATIVE=1`, which had never been set. `numbers.json` carried `tda_native: {}`, and `sync_to_paper.py` listed 1.511 as a **forbidden** pattern precisely because it was unbacked. The real outputs existed at `results/paper_v5_revisions/`, outside the pipeline tree, from an April run.
+
+Second, and more serious, the number. The paper described **7.994 m** as "a 95th-percentile tail". `tda_native_distances_summary.json` records 7.9938 as `max`. The true 95th percentile is **3.416 m**. The sentence compares that tail to the tactical scale's own mean persistence of 3.797 m and calls it "comparable", which is true of 3.416 and not of 7.994, so the intent was clearly the percentile and the maximum was picked up by mistake.
+
+*Action.* **Closed 25 Aug 2026, but the number change needs PI confirmation before the arXiv push**, because it alters a value in a manuscript recorded as submitted. The CSV and an enriched summary carrying `p95` alongside `median`, `iqr` and `max` now live in `pipeline/outputs/complementarity/`; `numbers.json` carries `tda_native` populated; `results.tex` reads 3.416 m; the `sync_to_paper.py` check was inverted from forbidding 1.511 to forbidding 7.994. *Standing rule: gudhi is not in the working environment, so any recompute of these four values must be done where GUDHI 3.11.0 is installed, per `methods.tex`.*
+
 ---
 
 ## 10. Sync obligations
@@ -397,5 +414,7 @@ Second, and consequently, the individual-scale stability score of **0.956 was co
 **A change to a number** goes into §2 or §4 of this file first, then `CANONICAL_NUMBERS.md`, then the V&A markdown and its LaTeX twin, then the paper pipelines' sync scripts.
 
 **Adding a reference** triggers three actions: renumber to first-appearance order, sync `04_References.md`, and update the ledger column in §3.
+
+**24 Aug 2026 — Schenck (2022) inserted as [6].** Former [6]–[28] are now [7]–[29]. The methodology paper is [23]; the football-analytics paper is [29]. Chapter 8 of Schenck is the algebraic-foundations cite for multiparameter persistence, alongside Botnan & Lesnick [4] and Lesnick [5].
 
 **Before accepting any V&A revision:** body word count measured, not inherited; mean sentence length at or below 18 words with none over 35; no bold label claiming more than its own body text; every number traceable to this file; every stratification divided out and checked; every "beyond X" has X named somewhere in the document.

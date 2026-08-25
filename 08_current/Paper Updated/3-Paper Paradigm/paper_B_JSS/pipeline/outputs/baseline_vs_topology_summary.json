@@ -1,0 +1,26 @@
+{
+  "n_frames": 1500,
+  "n_matches": 10,
+  "spearman_length_m": {
+    "rho": -0.004642427917981231,
+    "p": 0.8574261422008376
+  },
+  "spearman_width_m": {
+    "rho": 0.35593065817850367,
+    "p": 4.9794708834633246e-46
+  },
+  "spearman_hull_area_m2": {
+    "rho": 0.43053690240540426,
+    "p": 9.803068758068721e-69
+  },
+  "spearman_voronoi_entropy": {
+    "rho": 0.12597746265847726,
+    "p": 9.854100928640578e-07
+  },
+  "partial_r2_baseline_residual_explained_by_topology": {
+    "length_m": 0.02537120779750501,
+    "width_m": 0.03620278570523429,
+    "hull_area_m2": 0.0907550318591157,
+    "voronoi_entropy": 0.004150952424583931
+  }
+}

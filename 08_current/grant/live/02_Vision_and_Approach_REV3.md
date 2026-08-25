@@ -79,6 +79,9 @@
      fig4_frechet_diagram_mean.png / fig8_montecarlo_cusum_delay.png.
      Ruling R8 in FOUNDATION.md.
 
+     24 Aug 2026: Schenck (2022) inserted as [6]; former [6]–[28] become [7]–[29].
+     Methodology paper is now [23]; football-analytics paper is [29]. All 29 cited.
+
      REFERENCES RENUMBERED to unsrtnat order of first appearance (project
      rule .cursor/rules/vancouver-referencing.mdc). All 28 cited, no orphans.
      OLD -> NEW map for syncing 04_References.md and CANONICAL_NUMBERS.md:
@@ -90,7 +93,7 @@
      still records the methodology paper as [19] and the football paper as [22].
 
      Figure 1: Gantt only (grant_figure_gantt.png). Relabel required -
-     "methods paper [22]" not "[17] (M2)"; add Month-2 cutoff gate and
+     "methods paper [23]" not "[17] (M2)"; add Month-2 cutoff gate and
      Month-9 O1 gate as separate diamonds; add OSF pre-registration M2. -->
 
 ## Vision
@@ -101,31 +104,31 @@ This project builds the statistical-topology framework that competitive collecti
 
 **Importance.** Two obstacles limit existing approaches.
 
-*Scale.* Organisation exists at several spatial scales at once: small interaction groups, larger formations and enclosed coverage regions. Persistent homology is multi-scale in its filtration parameter. But a single filtration over the full agent set does not separate these levels, so features from different levels interleave in one diagram [1–3]. Multiparameter persistence [4,5] is a principled alternative, but is computationally impractical at the data rates required here.
+*Scale.* Organisation exists at several spatial scales at once: small interaction groups, larger formations and enclosed coverage regions. Persistent homology is multi-scale in its filtration parameter. But a single filtration over the full agent set does not separate these levels, so features from different levels interleave in one diagram [1–3]. Multiparameter persistence [4–6] is a principled alternative, but is computationally impractical at the data rates required here.
 
-*Dependence.* Each agent continuously adapts to its opponents. This violates the exchangeability assumptions underpinning current statistical topology [6,7]. Inference that treats successive observations as independent understates the uncertainty.
+*Dependence.* Each agent continuously adapts to its opponents. This violates the exchangeability assumptions underpinning current statistical topology [7,8]. Inference that treats successive observations as independent understates the uncertainty.
 
 **Mathematical contribution.** The project targets two theorems (§5).
 
-**(T1) Averaging under competitive dependence is well posed.** The empirical mean path of landscape summaries converges under temporal mixing rather than exchangeability. Its limiting covariance is the long-run covariance, not the marginal one [6,8,9]. Competitive dependence does not move the mean; it changes every variance built on it.
+**(T1) Averaging under competitive dependence is well posed.** The empirical mean path of landscape summaries converges under temporal mixing rather than exchangeability. Its limiting covariance is the long-run covariance, not the marginal one [7,9,10]. Competitive dependence does not move the mean; it changes every variance built on it.
 
-**(T2) Transitions are localised with a proven error bound.** The bound is governed by the size of the change, T1's long-run variance and the worst-case perturbation of the input diagrams [10–13]. Below an explicit threshold set by that perturbation, a transition cannot be located at all.
+**(T2) Transitions are localised with a proven error bound.** The bound is governed by the size of the change, T1's long-run variance and the worst-case perturbation of the input diagrams [11–14]. Below an explicit threshold set by that perturbation, a transition cannot be located at all.
 
 Both are explicit, checkable claims with named failure conditions. O1 establishes the population-scale geometry they rest on, and O2 delivers the proofs (§4). If the landscape argument proves intractable, the R3 fallback applies (§6).
 
 ### 2. Background, Timeliness, Need and Opportunity
 
-Topological methods can already detect and quantify spatial organisation in multi-agent systems. Established results assume that the organisation is cooperative or slowly evolving: biological aggregation, collective motion and flocking [14–16], and topological change-point detection [17]. These rely on persistent homology [1,2] and its statistical summaries [6,7,18]. The summaries are stable under small measurement error [7,10], and therefore comparable and averageable. Multi-scale methods exist for slowly evolving systems [19], but not for hierarchical competitive dynamics. There, conventional approaches remain single-scale geometric descriptors [20,21]. Our pilot [22] recovers three stable connected-component regimes and two complementary loop regimes across ten matches, with the scales carrying largely independent information.
+Topological methods can already detect and quantify spatial organisation in multi-agent systems. Established results assume that the organisation is cooperative or slowly evolving: biological aggregation, collective motion and flocking [15–17], and topological change-point detection [18]. These rely on persistent homology [1,2] and its statistical summaries [7,8,19]. The summaries are stable under small measurement error [8,11], and therefore comparable and averageable. Multi-scale methods exist for slowly evolving systems [20], but not for hierarchical competitive dynamics. There, conventional approaches remain single-scale geometric descriptors [21,22]. Our pilot [23] recovers three stable connected-component regimes and two complementary loop regimes across ten matches, with the scales carrying largely independent information.
 
-**Timeliness.** Three developments have converged. Multi-scale topology and statistical comparison tools have matured [4,6,7,18]. Scalable computation now supports rigorous analysis at population scale. Fully labelled competitive tracking data have reached that same scale. No statistical-topology treatment of competitive collective systems combines all three.
+**Timeliness.** Three developments have converged. Multi-scale topology and statistical comparison tools have matured [4,6–8,19]. Scalable computation now supports rigorous analysis at population scale. Fully labelled competitive tracking data have reached that same scale. No statistical-topology treatment of competitive collective systems combines all three.
 
 **Need and opportunity.** The gap is specific: no validated statistical-topology workflow exists for systems generated by continuous competitive interaction. Professional football is a well-observed platform on which to close it. All agents are continuously tracked within strict boundaries, and domain experts can verify the results. The framework generalises to any bounded competitive system once interaction lengths are re-derived.
 
 ### 3. Impact, National Importance and Beneficiaries
 
-**Mathematical impact.** The primary contribution is new statistical-topology theory for dependent competitive systems. It extends current foundations [6,7] to sequential adversarial dynamics. Both results are implemented in an open-source library. The primary beneficiaries are researchers in topology, statistics and complex systems, who gain those foundations and the software to apply them.
+**Mathematical impact.** The primary contribution is new statistical-topology theory for dependent competitive systems. It extends current foundations [7,8] to sequential adversarial dynamics. Both results are implemented in an open-source library. The primary beneficiaries are researchers in topology, statistics and complex systems, who gain those foundations and the software to apply them.
 
-**National importance.** UK groups lead internationally in statistical topology and stochastic geometry. Current methods [6,7] remain confined to static or exchangeable settings. This project develops UK capability at that frontier: statistical TDA and sequential inference for function-space-valued data.
+**National importance.** UK groups lead internationally in statistical topology and stochastic geometry. Current methods [7,8] remain confined to static or exchangeable settings. This project develops UK capability at that frontier: statistical TDA and sequential inference for function-space-valued data.
 
 **Economic and industry impact.** Co-developed with Swansea City AFC (SCAFC), the project delivers practitioner outputs unavailable from the geometric measures benchmarked in O1. Secondary beneficiaries are sports analytics researchers and practitioners.
 
@@ -137,13 +140,13 @@ Topological methods can already detect and quantify spatial organisation in mult
 
 **Project structure.** The PI (0.2 FTE) leads framework development, analysis and publication. Two Co-Investigators (0.1 FTE combined) supply statistical and domain expertise. A Research Associate (Months 2–10) implements the pipeline and runs the full-season analysis. The post is structured postdoctoral training in statistical topology, sequential inference and competitive-systems methodology. SCAFC provides tracking data and tactical labels under its StatsBomb agreement.
 
-**Sample-size rationale.** A full Championship season supplies the replication the ten-match pilot cannot: 552 fixtures, reducing to about 540 after pre-registered exclusions (R2). The unit of analysis is the fixture, represented by one focal team with the opponent as a covariate. The two teams in a fixture are not independent and are not counted separately. Stratifying by venue and opponent strength gives six cells of about 90 matches. The smallest cell therefore exceeds the 32 needed for a 95% CI half-width of 0.025 on the tactical-scale loop-presence rate (pilot across-match s.d. 0.072 [22]). Phase of play enters as a within-match stratum, contributing repeated measures rather than partitioning matches. For formation comparison, 180 matches per class detect Cohen's d ≥ 0.30 at 80% power (α = 0.05, BH-FDR); at 540 matches that covers the three most common formations, the pre-registered comparison set. The replication target is a borderline within-match pilot effect (stratified permutation p = 0.051).
+**Sample-size rationale.** A full Championship season supplies the replication the ten-match pilot cannot: 552 fixtures, reducing to about 540 after pre-registered exclusions (R2). The unit of analysis is the fixture, represented by one focal team with the opponent as a covariate. The two teams in a fixture are not independent and are not counted separately. Stratifying by venue and opponent strength gives six cells of about 90 matches. The smallest cell therefore exceeds the 32 needed for a 95% CI half-width of 0.025 on the tactical-scale loop-presence rate (pilot across-match s.d. 0.072 [23]). Phase of play enters as a within-match stratum, contributing repeated measures rather than partitioning matches. For formation comparison, 180 matches per class detect Cohen's d ≥ 0.30 at 80% power (α = 0.05, BH-FDR); at 540 matches that covers the three most common formations, the pre-registered comparison set. The replication target is a borderline within-match pilot effect (stratified permutation p = 0.051).
 
 **O1: Population-scale geometry (PI Months 1–9; RA Months 2–9).** O1 determines whether scale-specific summaries are stable enough to average at population scale, and whether distances between them distinguish organisational states. Organisational states are the general object; in football they are labelled by tactical formation. A 20-match validation batch in Months 1–2 tests whether the pilot interaction lengths transfer to Championship data, and whether 1 Hz sampling preserves the features validated at 10 Hz. O1 succeeds if all three criteria hold.
 
-- **Cutoff stability ≥ 0.80** (gate, Month 2) — the cross-epoch stability score of [22], recomputed on the validation batch. Below this, interaction lengths are re-derived.
+- **Cutoff stability ≥ 0.80** (gate, Month 2) — the cross-epoch stability score of [23], recomputed on the validation batch. Below this, interaction lengths are re-derived.
 - **Dependence diagnostic** (gate, Month 9) — empirical autocovariance decay consistent with the summable-mixing condition T1 and T2 assume, with the eigengap required by the projected form of T2 recorded alongside.
-- **Discriminability** (gate, Month 9) — separation of at least three organisational states (p < 0.05, BH-corrected), benchmarked against team length, width and convex-hull area [20,21].
+- **Discriminability** (gate, Month 9) — separation of at least three organisational states (p < 0.05, BH-corrected), benchmarked against team length, width and convex-hull area [21,22].
 
 The Month-2 gate licenses the start of O2. The Month-9 criteria are the hypotheses under which T1 and T2 are proved.
 
@@ -155,11 +158,11 @@ The Month-2 gate licenses the start of O2. The Month-9 criteria are the hypothes
 
 ### 5. Methodology
 
-**Pipeline.** A containerised Python pipeline processes each match frame as a point cloud. Agents are partitioned using empirically derived interaction lengths, validated against the pilot regimes (§2). Failure triggers the Month-2 cutoff gate. Persistent homology is computed at each accepted scale using Ripser [23], GUDHI [24] and giotto-tda [25], producing barcodes and persistence landscapes. Frame-level homology takes under two seconds and is embarrassingly parallel, so production runs at 1 Hz. For O1, landscape distributions are compared across organisational states and covariate cells by the landscape L² distance, with discriminability tested by permutation under BH-FDR correction.
+**Pipeline.** A containerised Python pipeline processes each match frame as a point cloud. Agents are partitioned using empirically derived interaction lengths, validated against the pilot regimes (§2). Failure triggers the Month-2 cutoff gate. Persistent homology is computed at each accepted scale using Ripser [24], GUDHI [25] and giotto-tda [26], producing barcodes and persistence landscapes. Frame-level homology takes under two seconds and is embarrassingly parallel, so production runs at 1 Hz. For O1, landscape distributions are compared across organisational states and covariate cells by the landscape L² distance, with discriminability tested by permutation under BH-FDR correction.
 
-**T1.** On a bounded domain with a fixed agent count, diagrams have bounded cardinality and bounded persistence. Landscapes are therefore uniformly bounded in the separable Hilbert space L² [7]. The mean path is the Bochner expectation and, by strict convexity, the unique Fréchet mean. Uniqueness fails for diagram-valued means [26], which is why we work with landscapes. This is routine, and we state it as a precondition rather than a result. The substance is the limit law. For a strictly stationary, α-mixing landscape series with summable coefficients, the empirical mean path is √n-consistent with a Gaussian limit. The covariance in that limit is the long-run covariance, not the marginal one [8,9]. That licenses functional principal component analysis (FPCA) [27] on landscape trajectories, and makes the block bootstrap the correct calibration rather than a heuristic one.
+**T1.** On a bounded domain with a fixed agent count, diagrams have bounded cardinality and bounded persistence. Landscapes are therefore uniformly bounded in the separable Hilbert space L² [8]. The mean path is the Bochner expectation and, by strict convexity, the unique Fréchet mean. Uniqueness fails for diagram-valued means [27], which is why we work with landscapes. This is routine, and we state it as a precondition rather than a result. The substance is the limit law. For a strictly stationary, α-mixing landscape series with summable coefficients, the empirical mean path is √n-consistent with a Gaussian limit. The covariance in that limit is the long-run covariance, not the marginal one [9,10]. That licenses functional principal component analysis (FPCA) [28] on landscape trajectories, and makes the block bootstrap the correct calibration rather than a heuristic one.
 
-**T2.** The landscape map is 1-Lipschitz from diagrams under the bottleneck distance into the sup-norm [7]. On a bounded domain the landscape difference has support of finite measure, which converts this to an L² bound with constant C explicit in agent count and domain diameter. Boundedness supplies the total-persistence hypothesis [13]. For a functional CUSUM [11,12] on the landscape series, T2 bounds the localisation error by
+**T2.** The landscape map is 1-Lipschitz from diagrams under the bottleneck distance into the sup-norm [8]. On a bounded domain the landscape difference has support of finite measure, which converts this to an L² bound with constant C explicit in agent count and domain diameter. Boundedness supplies the total-persistence hypothesis [14]. For a functional CUSUM [12,13] on the landscape series, T2 bounds the localisation error by
 
 |τ̂ − τ| = O_P( σ² / (Δ − 2Cε)² ),  for Δ > 2Cε.
 
@@ -175,7 +178,7 @@ The project is feasible in twelve months. The method is pilot-validated (§2), s
 
 ### 7. Outcomes, Team and Resources
 
-**Publications and software.** The methodology paper [22] is already submitted; its acceptance is tracked, not costed. The dated deliverables in Figure 1 are a season-results paper, a football-analytics paper [28], a Zenodo library DOI and SCAFC practitioner outputs. The analysis plan is pre-registered on OSF at Month 2. Together these form the Month-12 evidence pack for the follow-on Standard Grant (§3).
+**Publications and software.** The methodology paper [23] is already submitted; its acceptance is tracked, not costed. The dated deliverables in Figure 1 are a season-results paper, a football-analytics paper [29], a Zenodo library DOI and SCAFC practitioner outputs. The analysis plan is pre-registered on OSF at Month 2. Together these form the Month-12 evidence pack for the follow-on Standard Grant (§3).
 
 **Team.** The project is based at Swansea University's Zienkiewicz Institute for Modelling, Data and AI. It combines expertise not previously brought together in a single grant: statistical topology (PI), mathematical oncology (Co-I Powathil) and sport and exercise science (Co-I Kilduff), with SCAFC as the industry co-development setting. This is a new collaboration bridging mathematical, biological and sporting communities, and a natural fit for the scheme's remit. Prof Kilduff turns organisational-state distinctions into tactically meaningful categories. Prof Powathil advises on the T1 well-posedness argument. The oncology pathway belongs to the Standard Grant, not to this award.
 
@@ -183,33 +186,34 @@ The project is feasible in twelve months. The method is pilot-validated (§2), s
 
 ## References
 
-*Numbered in order of first appearance (unsrtnat convention). All 28 entries are cited.*
+*Numbered in order of first appearance (unsrtnat convention). All 29 entries are cited.*
 
 1. Carlsson, G. (2009). Topology and data. *Bulletin of the American Mathematical Society*, 46(2), 255–308.
 2. Zomorodian, A. & Carlsson, G. (2005). Computing persistent homology. *Discrete & Computational Geometry*, 33(2), 249–274.
 3. Edelsbrunner, H. & Harer, J. (2010). *Computational Topology: An Introduction*. American Mathematical Society.
 4. Botnan, M. B. & Lesnick, M. (2022). An introduction to multiparameter persistence. In *Representations of Algebras and Related Structures* (pp. 77–150). EMS Press.
 5. Lesnick, M. (2015). The theory of the interleaving distance on multidimensional persistence modules. *Foundations of Computational Mathematics*, 15(3), 613–650.
-6. Chazal, F., Fasy, B. T., Lecci, F., Rinaldo, A. & Wasserman, L. (2014). Stochastic convergence of persistence landscapes and silhouettes. *Proceedings of the 30th Annual Symposium on Computational Geometry*, 474–483.
-7. Bubenik, P. (2015). Statistical topological data analysis using persistence landscapes. *Journal of Machine Learning Research*, 16(1), 77–102.
-8. Bosq, D. (2000). *Linear Processes in Function Spaces: Theory and Applications*. Lecture Notes in Statistics 149. Springer.
-9. Hörmann, S. & Kokoszka, P. (2010). Weakly dependent functional data. *Annals of Statistics*, 38(3), 1845–1884.
-10. Cohen-Steiner, D., Edelsbrunner, H. & Harer, J. (2007). Stability of persistence diagrams. *Discrete & Computational Geometry*, 37(1), 103–120.
-11. Page, E. S. (1954). Continuous inspection schemes. *Biometrika*, 41(1/2), 100–115.
-12. Berkes, I., Gabrys, R., Horváth, L. & Kokoszka, P. (2009). Detecting changes in the mean of functional observations. *Journal of the Royal Statistical Society: Series B*, 71(5), 927–946.
-13. Cohen-Steiner, D., Edelsbrunner, H., Harer, J. & Mileyko, Y. (2010). Lipschitz functions have L^p-stable persistence. *Foundations of Computational Mathematics*, 10(2), 127–148.
-14. Topaz, C. M., Ziegelmeier, L. & Halverson, T. (2015). Topological data analysis of biological aggregation models. *PLoS ONE*, 10(5), e0126383.
-15. Bhaskar, D. et al. (2019). Analysing collective motion with machine learning and topology. *Chaos*, 29(12), 123125.
-16. Ballerini, M. et al. (2008). Interaction ruling animal collective behaviour depends on topological rather than metric distance. *PNAS*, 105(4), 1232–1237.
-17. Gu, K. et al. (2022). Change point detection in multi-agent systems based on higher-order features. *Chaos*, 32(11), 113117.
-18. Adams, H. et al. (2017). Persistence images: a stable vector representation of persistent homology. *Journal of Machine Learning Research*, 18(8), 1–35.
-19. Schindler, D. J. & Barahona, M. (2023). Analysing multiscale clusterings with persistent homology. arXiv:2305.04281.
-20. Folgado, H. et al. (2014). Length, width and centroid distance as measures of teams' tactical performance in youth football. *European Journal of Sport Science*, 14(S1), S487–S492.
-21. Fernández, J. & Bornn, L. (2018). Wide open spaces: a statistical technique for measuring space creation in professional soccer. *Sloan Sports Analytics Conference*.
-22. Brown, R. et al. (2026). Multi-scale persistent homology for competitive spatial systems: measurement-aware methods and validation in professional football. Manuscript submitted to the *Journal of Applied and Computational Topology*.
-23. Bauer, U. (2021). Ripser: efficient computation of Vietoris–Rips persistence barcodes. *Journal of Applied and Computational Topology*, 5(3), 391–423.
-24. Maria, C., Boissonnat, J.-D., Glisse, M. & Yvinec, M. (2014). The Gudhi library: simplicial complexes and persistent homology. In *Mathematical Software – ICMS 2014* (pp. 167–174). Springer.
-25. Tauzin, G. et al. (2021). giotto-tda: a topological data analysis toolkit for machine learning and data exploration. *Journal of Machine Learning Research*, 22(39), 1–6.
-26. Turner, K., Mileyko, Y., Mukherjee, S. & Harer, J. (2014). Fréchet means for distributions of persistence diagrams. *Discrete & Computational Geometry*, 52(1), 44–70.
-27. Ramsay, J. O. & Silverman, B. W. (2005). *Functional Data Analysis* (2nd ed.). Springer.
-28. Brown, R. et al. (2026). Multi-scale topological signatures of tactical organisation in professional football. In preparation; to be submitted to the *Journal of Sports Sciences*.
+6. Schenck, H. (2022). *Algebraic Foundations for Applied Topology and Data Analysis*. Mathematics of Data, vol. 1. Springer, Cham. doi:10.1007/978-3-031-06664-1. Chapter 8 treats the algebraic foundations of multiparameter persistent homology.
+7. Chazal, F., Fasy, B. T., Lecci, F., Rinaldo, A. & Wasserman, L. (2014). Stochastic convergence of persistence landscapes and silhouettes. *Proceedings of the 30th Annual Symposium on Computational Geometry*, 474–483.
+8. Bubenik, P. (2015). Statistical topological data analysis using persistence landscapes. *Journal of Machine Learning Research*, 16(1), 77–102.
+9. Bosq, D. (2000). *Linear Processes in Function Spaces: Theory and Applications*. Lecture Notes in Statistics 149. Springer.
+10. Hörmann, S. & Kokoszka, P. (2010). Weakly dependent functional data. *Annals of Statistics*, 38(3), 1845–1884.
+11. Cohen-Steiner, D., Edelsbrunner, H. & Harer, J. (2007). Stability of persistence diagrams. *Discrete & Computational Geometry*, 37(1), 103–120.
+12. Page, E. S. (1954). Continuous inspection schemes. *Biometrika*, 41(1/2), 100–115.
+13. Berkes, I., Gabrys, R., Horváth, L. & Kokoszka, P. (2009). Detecting changes in the mean of functional observations. *Journal of the Royal Statistical Society: Series B*, 71(5), 927–946.
+14. Cohen-Steiner, D., Edelsbrunner, H., Harer, J. & Mileyko, Y. (2010). Lipschitz functions have L^p-stable persistence. *Foundations of Computational Mathematics*, 10(2), 127–148.
+15. Topaz, C. M., Ziegelmeier, L. & Halverson, T. (2015). Topological data analysis of biological aggregation models. *PLoS ONE*, 10(5), e0126383.
+16. Bhaskar, D. et al. (2019). Analysing collective motion with machine learning and topology. *Chaos*, 29(12), 123125.
+17. Ballerini, M. et al. (2008). Interaction ruling animal collective behaviour depends on topological rather than metric distance. *PNAS*, 105(4), 1232–1237.
+18. Gu, K. et al. (2022). Change point detection in multi-agent systems based on higher-order features. *Chaos*, 32(11), 113117.
+19. Adams, H. et al. (2017). Persistence images: a stable vector representation of persistent homology. *Journal of Machine Learning Research*, 18(8), 1–35.
+20. Schindler, D. J. & Barahona, M. (2023). Analysing multiscale clusterings with persistent homology. arXiv:2305.04281.
+21. Folgado, H. et al. (2014). Length, width and centroid distance as measures of teams' tactical performance in youth football. *European Journal of Sport Science*, 14(S1), S487–S492.
+22. Fernández, J. & Bornn, L. (2018). Wide open spaces: a statistical technique for measuring space creation in professional soccer. *Sloan Sports Analytics Conference*.
+23. Brown, R. et al. (2026). Multi-scale persistent homology for competitive spatial systems: measurement-aware methods and validation in professional football. Manuscript submitted to the *Journal of Applied and Computational Topology*.
+24. Bauer, U. (2021). Ripser: efficient computation of Vietoris–Rips persistence barcodes. *Journal of Applied and Computational Topology*, 5(3), 391–423.
+25. Maria, C., Boissonnat, J.-D., Glisse, M. & Yvinec, M. (2014). The Gudhi library: simplicial complexes and persistent homology. In *Mathematical Software – ICMS 2014* (pp. 167–174). Springer.
+26. Tauzin, G. et al. (2021). giotto-tda: a topological data analysis toolkit for machine learning and data exploration. *Journal of Machine Learning Research*, 22(39), 1–6.
+27. Turner, K., Mileyko, Y., Mukherjee, S. & Harer, J. (2014). Fréchet means for distributions of persistence diagrams. *Discrete & Computational Geometry*, 52(1), 44–70.
+28. Ramsay, J. O. & Silverman, B. W. (2005). *Functional Data Analysis* (2nd ed.). Springer.
+29. Brown, R. et al. (2026). Multi-scale topological signatures of tactical organisation in professional football. In preparation; to be submitted to the *Journal of Sports Sciences*.

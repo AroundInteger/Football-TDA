@@ -1,0 +1,29 @@
+{
+  "paper": "Paper B (JSS)",
+  "generated_at": "2026-07-06T11:15:51.635948+00:00",
+  "git_commit": "86ae6daf40b409248d664222d2e1ee404fb4e723",
+  "output_dir": "/Users/iMacPro/Documents/GitHub/Football-TDA/08_current/Paper Updated/3-Paper Paradigm/paper_B_JSS/pipeline/outputs",
+  "files": {
+    "baseline_vs_topology.csv": "3dcbbaaa181adb01e80b4fa43bc9de38f311a934d69e0fa3b605561f0200feea",
+    "baseline_vs_topology_summary.json": "dd63143441d80cc1232c6c918e331026a1721f5683281aa86a9ff2cb3da30f8e",
+    "bilateral_topology.csv": "14684cd299e4e7b774cbf71ec89d8ace868d83b00b4ebb9b6d003d33cbe38f2b",
+    "bilateral_topology_summary.json": "4b69e9f8da70f90419250ebd8bd7bbdbfb290141de3b64504f4bceafa3972ca4",
+    "event_correlation/event_correlation_summary.json": "8581b09391cddeffabda8e9f4dd40dfc2a6d1626aa5eb70e687ec73903beb611",
+    "event_correlation/event_topology_correlation.csv": "836eb08ea2bf77a7873ad512eacfdbe77673eddd2a32802ecfa3ae97e43a0eed",
+    "event_correlation_summary.json": "8581b09391cddeffabda8e9f4dd40dfc2a6d1626aa5eb70e687ec73903beb611",
+    "event_window_sensitivity.csv": "b7966b234ffd52b66a8112349754d728d7207317e82288dcddc4f040436abec7",
+    "event_window_sensitivity.json": "5bf9c26291b792afdaba3a0df4d7ecd2222bc423ffa32e2b4a5ef7fd42c01bc0",
+    "numbers.json": "91b0e81b86a463b96ec664d7c2efa760017c6b153e97ae224e45ab6b7ffa7cd5",
+    "predictive_utility.csv": "54a3e6e826883260b3a3b7ef23b586e49d3504d2afb41e0a16ec4cd388febb0e",
+    "predictive_utility_summary.json": "619591db71f99767122107255a70dd7dfc9e611634ba9dd322e44782d5723e72"
+  },
+  "steps_completed": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "build_numbers"
+  ]
+}

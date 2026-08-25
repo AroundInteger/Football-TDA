@@ -1,0 +1,186 @@
+Paper 2: Comprehensive Analysis Report
+======================================================================
+Generated: 2026-02-25 07:55:48
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. DATA QUALITY AUDIT (state_vectors.csv)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Total rows              : 1000
+  Rows with feature NaN   : 64 (6.4%)
+  Total NaN cells         : 109
+  Handling strategy       : Rows with NaN features excluded;
+                            missing AttractorLabels forward-filled.
+  Rows used in analysis   : 985
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. EMPIRICAL ATTRACTOR CHARACTERISATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  State 1 (Normal Play A):
+    Frequency       : 0.2457  (24.6%)
+    n sojourns      : 20
+    Mean duration   : 12.10 steps  (1.21 s)
+    Median duration : 1.0 steps
+    Max duration    : 132 steps  (13.2 s)
+    Std duration    : 30.91 steps
+  State 2 (Normal Play B):
+    Frequency       : 0.2508  (25.1%)
+    n sojourns      : 27
+    Mean duration   : 9.15 steps  (0.91 s)
+    Median duration : 1.0 steps
+    Max duration    : 96 steps  (9.6 s)
+    Std duration    : 21.31 steps
+  State 3 (Tight Marking):
+    Frequency       : 0.5036  (50.4%)
+    n sojourns      : 7
+    Mean duration   : 70.86 steps  (7.09 s)
+    Median duration : 1.0 steps
+    Max duration    : 219 steps  (21.9 s)
+    Std duration    : 91.96 steps
+
+  Empirical transition matrix (row = from, col = to):
+    From S1: [0.9174  0.0826  0.0000]
+    From S2: [0.0810  0.8907  0.0283]
+    From S3: [0.0000  0.0121  0.9879]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. CONTINUOUS-TIME MARKOV CHAIN — ANALYTIC RESULTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Analytic stationary distribution π:
+    π(S1) = 0.2257  (22.6%)
+    π(S2) = 0.2306  (23.1%)
+    π(S3) = 0.5436  (54.4%)
+
+  Mean First Passage Times (seconds):
+  (M_ij = expected time to first reach state j from state i)
+         → S1  → S2  → S3
+  From S1:    0.00     1.16     8.04
+  From S2:    3.98     0.00     6.88
+  From S3:   12.18     8.20     0.00
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+4. CORRECTED GILLESPIE MODEL VALIDATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  BUG FIXED: Previous validation used count-based frequencies.
+  State 3 has few transitions but long sojourns — count-based
+  under-counted it, producing spurious negative correlations.
+  Correction: time-weighted frequencies (∫ time in state / T_total).
+
+  Frequency correlation (corrected) : 0.9999
+  Frequency RMSE (corrected)        : 0.0237
+  Transition correlation (corrected): 1.0000
+  Transition RMSE (corrected)       : 0.0032
+
+  Note: Lifetime correlation remains 1.000 (unchanged) — the
+  CTMC rate conversion correctly models state lifetimes.
+
+  Simulated vs Analytic π vs Empirical:
+    S1: emp=0.2457  sim=0.2267  π=0.2257
+    S2: emp=0.2508  sim=0.2364  π=0.2306
+    S3: emp=0.5036  sim=0.5369  π=0.5436
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+5. LIFETIME RATIO — BOOTSTRAP CONFIDENCE INTERVALS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Long-lived states  : [1, 3]
+  Short-lived states : [2]
+  n long sojourns    : 27
+  n short sojourns   : 27
+  Lifetime ratio     : 2.9879
+  95% Bootstrap CI   : [0.8072,  11.6271]
+  (2000 bootstrap iterations, stratified by state)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6. QUANTUM DOT ANALOGY METRICS (GPS-derived)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Quantum dot size (mean)          : 1.163937
+  Energy levels (1/mean_duration)  :
+    E(S1) = 0.826446
+    E(S2) = 1.093117
+    E(S3) = 0.141129
+  Mean band gap                    : 0.475994
+  Band gaps                        : ['0.685317', '0.266671']
+  Exciton binding energy (mean)    : 1.163937
+  Mean tunnelling rate (s⁻¹)       : 0.529108
+  Max tunnelling rate (s⁻¹)        : 0.862603
+  Quantum coherence                : 0.310853
+  Coherence time (s)               : 1.451070
+  Quantum yield                    : 0.141858
+  Entropy of π (bits)              : 1.4508 / 1.5850 (max)
+
+  Quantum dot scaling note:
+  The football state lifetime ratio (see Section 5) operates at a
+  timescale of ~0.1–7 s.  Real quantum dot blinking spans ~5 ns to
+  500 ns, a scaling factor of ~1.7 × 10⁸.  The analogy is
+  STRUCTURAL (same stochastic blinking mechanism and transition
+  topology) not physical; manuscript should state this explicitly.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+7. MISSING NUMERICAL COMPUTATIONS IDENTIFIED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  The following computations were absent from previous results and
+  are now supplied by this script:
+
+  [FIXED]   (a) Time-weighted Gillespie frequency validation
+  [NEW]     (b) Analytic CTMC stationary distribution π
+  [NEW]     (c) Mean First Passage Times matrix
+  [NEW]     (d) Bootstrap 95% CI for lifetime ratio
+  [NEW]     (e) Exponential survival function fits per state
+  [NEW]     (f) Shannon entropy of stationary distribution
+  [NEW]     (g) Energy level diagram (E ∝ 1/lifetime)
+  [NEW]     (h) GPS-derived band gaps and exciton binding energies
+  [NEW]     (i) Full 8-figure manuscript figure set
+
+  Still requiring external data / MATLAB execution:
+  [ ]  (j) Full 90-minute quantum dot analysis
+            → Run quantum_dot_full_match_analysis.py from
+               03_football_analysis/ after confirming
+               efficient_comprehensive_analysis.csv paths.
+  [ ]  (k) Power-law exponent fitting for duration distributions
+            → Requires ≥30 sojourns per state; State 3 has only 7.
+               Recommend collecting more match data or pooling across
+               multiple matches before fitting power-law tails.
+  [ ]  (l) Quantum coherence from H1 loop features
+            → Connect 04_h1_loops sliding-window H1 counts to the
+               attractor state time-series to compute topological
+               coherence per state.
+  [ ]  (m) Cross-match replication
+            → Current results are from a single match.  Nature Physics
+               will require multi-match evidence of universality.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+8. MANUSCRIPT NUMBERS TO UPDATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Section 3.1.1 — State Identification:
+    OLD: Frequencies [0.328, 0.351, 0.321]
+    NEW: Frequencies [0.258, 0.266, 0.476]
+
+  Section 3.2.2 — Blinking Dynamics:
+    OLD: Gillespie state durations [1.0, 1.0, 1.0]
+    NEW: Empirical durations [12.1, 9.1, 70.9] steps
+
+  Section 3.5.2 — Gillespie Simulation:
+    OLD: State frequencies [0.328, 0.351, 0.321]
+    NEW (time-weighted): [0.227, 0.236, 0.537]
+
+  Section 3.5.2 — Model Validation:
+    OLD: "Model validation shows good agreement" (with negative r)
+    NEW: Freq r = 1.000, Trans r = 1.000 (after correction)
+
+  Section 3.2.2 — Lifetime Ratio:
+    OLD: 4.93 (point estimate only)
+    NEW: 2.99 [95% CI: 0.81–11.63]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+9. FIGURES GENERATED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  fig1_state_trajectory.png
+  fig2_duration_distributions.png
+  fig3_transition_stationary.png
+  fig4_gillespie_validation.png
+  fig5_quantum_analogy.png
+  fig6_match_segments.png
+  fig7_h1_loops.png
+  fig8_model_summary.png
+
+======================================================================
+END OF REPORT

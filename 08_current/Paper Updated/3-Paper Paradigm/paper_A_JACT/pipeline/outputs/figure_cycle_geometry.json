@@ -1,0 +1,8 @@
+{
+  "individual_frame_idx": 141,
+  "tactical_frame_idx": 97,
+  "sampling_step": 290,
+  "n_frames_analysed": 150,
+  "individual_max_persistence_m": 12.991,
+  "tactical_max_persistence_m": 10.771
+}

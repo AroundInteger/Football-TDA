@@ -1,0 +1,82 @@
+% =====================================================================
+% Paper A — Multi-Scale Persistent Homology for Competitive Spatial
+% Systems. Target: Journal of Applied and Computational Topology (JACT).
+%
+% Uses a standard article-class scaffold rather than Springer's sn-jnl
+% template. Suitable for arXiv as-is; for JACT submission, migrate to
+% the Springer Nature sn-jnl class and map Declarations to its
+% back-matter fields.
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xurl}
+\usepackage[round,authoryear]{natbib} % JACT requires name-year citations
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{remark}{Remark}
+
+\title{Multi-Scale Persistent Homology for Competitive Spatial Systems}
+\author{Rowan Brown \\
+\small Swansea University}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ---------------------------------------------------------------------
+\begin{abstract}
+\noindent
+Standard single-parameter Vietoris--Rips persistent homology applied to a
+multi-agent point cloud conflates topological features from distinct
+organisational levels into a single diagram. We present a multi-scale
+framework addressing this through two methodological contributions:
+domain-informed hierarchical clustering, with cutoff distances validated
+by independent clustering-quality metrics, that decomposes the point
+cloud by organisational level; and an adaptive Vietoris--Rips filtration,
+scaled to the post-clustering point cloud's geometry, that keeps $H_1$
+(loop) detection consistent across scales. Validated on ten professional
+football matches (broadcast tracking at 10~Hz), the framework identifies three stable $H_0$
+(connected-component) regimes: individual (2.98~m), tactical (12.0~m),
+and team (30.0~m), and two $H_1$ regimes: individual-scale loops are
+frequent and transient ($97.0\%\pm1.5\%$ frame presence across matches),
+tactical-scale loops are rarer but more persistent
+($19.3\%\pm7.2\%$); team-scale $H_1$ is absent a priori as a structural
+consequence of the clustering. Both regime structures hold across matches and across wide ranges
+of the cutoff distance and the filtration's percentile parameter, and
+the two $H_1$ scales carry distinct rather than redundant information
+(Spearman $\rho=0.264$ across 1{,}500 sampled frames). Geometric
+cycle representatives are recovered for every $H_1$ generator examined.
+A minimal association between persistence and match events confirms the detected features track
+genuine structure rather than measurement noise. The framework is
+domain-agnostic and intended for any bounded competitive multi-agent
+system with spatial tracking data; football serves as a validated testbed.
+\end{abstract}
+
+\noindent\textbf{Keywords:} persistent homology, multi-scale topology,
+Vietoris--Rips filtration, multi-agent systems, spatial tracking data,
+sports analytics
+
+% =======================================================================
+% Section files live in sections/
+% =======================================================================
+\input{sections/introduction}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+\input{sections/declarations}
+
+% =======================================================================
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,87 @@
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Data}
+
+\textbf{Primary match.} Optical tracking data from a professional Championship football match was obtained via SecondSpectrum, which provides camera-based position tracking at 25 frames per second. The dataset comprises positions of 22 players (11 per team), totalling 150,213 frames across a full 90-minute match. Positions are recorded as \((x,y)\) coordinates in metres, centred at the field origin \((0,0)\), spanning approximately \([-52.5,52.5]\times[-34,34]\)~m.
+
+\textbf{Validation matches.} Ten additional A-League matches were obtained via the SkillCorner open data repository, providing broadcast-derived tracking data at 10 frames per second. Each match comprises approximately 40,000--48,000 frames with 22-player positions. This multi-match dataset enables validation of the framework's generalisability across different teams, tactical systems, and competition contexts.
+
+For persistent homology computation, each match is divided into temporal windows. Unless otherwise stated, 2-minute non-overlapping windows are used for the primary match, yielding 149 analysis windows. For multi-match validation, 150 uniformly sampled frames per match (every 100th frame) provide consistent cross-match comparison.
+
+\subsection{Proximity-Aware Clustering}
+
+Figure~\ref{fig:pipeline} summarises the full analysis pipeline. At each time step \(t\), the 22 player positions form a point cloud \(P(t)=\{p_1(t),\ldots,p_{22}(t)\}\subset\mathbb{R}^2\). Direct application of persistent homology to \(P(t)\) produces a single persistence diagram encoding all inter-agent distance relationships simultaneously. To separate organisational levels, we preprocess with hierarchical clustering.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig1_pipeline_schematic.\figext}
+  \caption{Multi-scale TDA analysis pipeline. \textbf{Contribution 1 (blue):} single-linkage clustering at cutoff \(\delta\) reduces the raw player cloud to cluster centroids \(\tilde P(t)\), separating organisational scales. \textbf{Contribution 2 (amber):} the Vietoris--Rips filtration uses an adaptive maximum scale \(\varepsilon_{\max}\) (Section~\ref{sec:adaptive}) so \(H_1\) detection is comparable across scales. The schematic persistence diagram (inset in the \(H_1\) panel) illustrates birth--death pairs above the diagonal. Downstream steps extract \(H_1\) features, identify representative cycles, and map them to geometric realisations on the pitch.}
+  \label{fig:pipeline}
+\end{figure}
+
+\textbf{Definition.} For a cutoff distance \(\delta>0\), single-linkage hierarchical clustering partitions \(P(t)\) into clusters \(C_1,\ldots,C_k\) such that every pair of points within a cluster is connected by a chain of pairwise distances not exceeding \(\delta\). The reduced point cloud is the set of cluster centroids:
+\[
+  \tilde P(t)=\bigl\{\bar c_j : \bar c_j=\tfrac{1}{|C_j|}\textstyle\sum_{p\in C_j} p,\; j=1,\ldots,k\bigr\}.
+\]
+Persistent homology is then computed on \(\tilde P(t)\) rather than \(P(t)\).
+
+\textbf{Linkage method choice.} We use single-linkage throughout this study, noting that it produces a conservative estimate of topological features. Empirical comparison across 600 frames and 4 matches (Section~\ref{sec:linkage}) shows that single-linkage exhibits a known chaining effect at the tactical scale, producing fewer and larger clusters (mean 5.0 clusters) versus complete-linkage (10.8) and Ward's method (11.0). Consequently, single-linkage detects fewer \(H_1\) features (153 tactical loops) than complete-linkage (923) or Ward (936) over the same frames. However, single-linkage's definition, clusters are sets of points connected by chains of short distances, is the most natural for detecting spatial proximity groups, and its conservative \(H_1\) estimates ensure that reported loops represent robust topological features rather than artefacts of cluster over-partitioning.
+
+\subsection{Domain-Informed Cutoff Distance Selection}
+\label{sec:cutoff}
+
+The cutoff distance \(\delta\) is not a nuisance parameter but a scale selector that determines the level of organisation under analysis. We conducted a systematic parameter sweep over \(\delta\in[0.5,30.0]\)~m at 100 test points, evaluated on 58 temporal windows (normalised 30\% coverage across four epoch lengths: 1, 2, 5, and 10 minutes).
+
+Three analysis regimes emerge, validated by multiple clustering quality metrics (Calinski--Harabasz index, silhouette score, and domain-specific information content):
+
+\begin{table}[H]
+  \centering
+  \begin{threeparttable}
+    \caption{Validated analysis regimes from the cutoff sweep.}
+    \label{tab:regimes}
+    \begin{tabular}{@{}lcccc@{}}
+      \toprule
+      Scale & Optimal \(\delta\) & Validation & Expected \(H_0\) & Stability \\
+      \midrule
+      Individual & \(2.98\pm0.37\)~m (Calinski--Harabasz optimum) & 99\% of frames & 15--22 & 0.88 \\
+      Tactical   & 12.0~m (domain-informed; see text)            & 96\% of frames & 3--12  & 0.97 \\
+      Team       & \(28.11\pm0.47\)~m (information-content optimum) & 100\% of frames & 1--3 & 0.98 \\
+      \bottomrule
+    \end{tabular}
+    \begin{tablenotes}
+      \small
+      \item ``Validation'' is the cross-epoch consistency rate: the fraction of analysis windows across four temporal epoch lengths in which \(H_0\) falls within the domain-informed expected range for that regime.
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+The individual (2.98~m) and team (28.11~m) cutoffs emerge from automated clustering quality metrics; the tactical cutoff (12.0~m) is selected as a domain-informed choice within the tactical range, where automated metrics diverge (silhouette-optimal: 16.31~m; information-content-optimal: 6.87~m). The value 12.0~m corresponds approximately to one-half the standard football zone width (the distance between the 18-yard box and the halfway line divided into quarters), and was validated on 50 single-frame analyses (96\% producing expected \(H_0\)). Sensitivity analysis (Section~\ref{sec:sensitivity}) confirms that \(H_1\) detection is operative across the entire 6--17~m range, with the chosen 12.0~m at the conservative end of this range.
+
+\subsection{Adaptive Filtration for \(H_1\) Detection}
+\label{sec:adaptive}
+
+After clustering at cutoff \(\delta\), the reduced point cloud \(\tilde P(t)\) has inter-centroid distances much larger than \(\delta\). A fixed maximum filtration \(\varepsilon_{\max}\) is insufficient for \(H_1\) detection across all scales.
+
+We define an adaptive filtration:
+\begin{equation}
+  \varepsilon_{\max}=\max\Bigl(
+    P_{75}\bigl(\{d(\bar c_i,\bar c_j): i<j\bigr\}),\;
+    \max(5.0,\,2\delta)
+  \Bigr), \label{eq:adaptive}
+\end{equation}
+where \(P_{75}\) denotes the 75th percentile of pairwise inter-centroid distances. The first term adapts to the actual geometry of the reduced point cloud; the second term ensures a minimum filtration proportional to the clustering scale (floor of 5.0~m).
+
+\textbf{Justification of P75.} Empirical ablation across percentiles P50, P60, P75, P90, and P95 on 150 frames (Section~\ref{sec:sensitivity}) shows that P50 detects slightly fewer loops (49 vs 53 for P75), while P75 through P95 produce identical detection counts. The 75th percentile thus represents the lowest percentile at which the formula achieves maximal sensitivity, providing a robust but not overly permissive threshold. The 5.0~m floor prevents degenerate filtration at very small scales, and the \(2\delta\) factor ensures the filtration encompasses at least the inter-cluster distance regime. The persistence diagram, plotting (birth, death) coordinates of \(H_1\) features above the diagonal, is produced at this stage; Figure~\ref{fig:pipeline} shows a schematic \(H_1\) diagram (inset) at this step.
+
+\subsection{Closed Cycle Identification}
+
+Each \(H_1\) feature in the persistence diagram corresponds to a topological loop, a 1-cycle in the Vietoris--Rips complex. To recover the geometric realisation, we construct the adjacency graph of edges with distances in the persistence interval \([\text{birth},\text{death}]\) and apply breadth-first search (BFS) to enumerate closed cycles of length \(\geq 3\). We use BFS rather than depth-first search to prioritise shorter cycles, which correspond to minimal enclosing arrangements and are more interpretable as formation structures. Cycles are enumerated via BFS from each vertex; the highest-scoring cycle (by edge-distance proximity to the persistence interval midpoint) is selected as the geometric representative.
+
+\subsection{Temporal Analysis and Statistical Tests}
+
+For each analysis window, we compute \(H_0\) and \(H_1\) feature counts and persistence values at the individual and tactical scales. Temporal evolution is assessed by comparing mean persistence between match halves using the Wilcoxon rank-sum test (Mann--Whitney U), supplemented by a permutation test (10,000 permutations). Scale interactions are characterised by Spearman rank correlation and Fisher's exact test on the co-occurrence of \(H_1\) features at the individual and tactical scales.
+
+\subsection{Event Correlation}
+
+Topological transitions around match events are quantified by computing \(H_1\) persistence in a window of \(\pm 5\) frames around each event (at 10~Hz for SkillCorner, \(\pm 0.5\)~s), calculating the persistence change (mean post-event minus mean pre-event). This window captures immediate topological responses to discrete events whilst minimising contamination from unrelated dynamics. Events are sourced from SkillCorner dynamic event annotations (player possessions, on-ball engagements, off-ball runs, passing options) and phases of play (build-up, direct, chaotic, transition, set play). Statistical significance is assessed by Mann--Whitney U tests on the persistence deltas against zero.

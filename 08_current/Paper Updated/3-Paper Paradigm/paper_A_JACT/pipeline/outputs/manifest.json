@@ -1,0 +1,41 @@
+{
+  "paper": "Paper A (JACT)",
+  "generated_at": "2026-08-25T09:58:30.134924+00:00",
+  "git_commit": "f838f159ebeb12b7e67a62787267faaf7bfed58c",
+  "output_dir": "/Users/rowanbrown/TDA/Football/08_current/Paper Updated/3-Paper Paradigm/paper_A_JACT/pipeline/outputs",
+  "files": {
+    "aggregate_stats.json": "40d9d8184b82dda9465f72b66eef1ec0432a1972f52672a69c7aef6e74b2b832",
+    "cardinality_null/conditional_presence.csv": "d2d8707ef516db523f9cbb2d6e4c4b3a42b36120f21b24803fc75c79d8c0c4b9",
+    "cardinality_null/per_frame_null.csv": "0777d848ee87193b2d9af9d4086d883d958e9a623ef86ea9fd8749a5391b99c5",
+    "cardinality_null/summary.json": "2bc15b74968d42d40a7a154257aa842a6242afdedf64aa15f5e66c876e8e3739",
+    "complementarity/bootstrap_multi_match_ci.json": "9f277f026c6cf93740920ccd4c884b74852513120831b15c60811b3f7364fa50",
+    "complementarity/complementarity_tests.json": "9b0f50fb531f28747723d0ad83310e24bd0ac057acdcb392ce9ec2f013d0cb9d",
+    "complementarity/tda_native_distances.csv": "2122e3383adc37e22ba61c28e014e26a3d456f013ab0b290d283300a263954ef",
+    "complementarity/tda_native_distances_summary.json": "a0d8375fa49eee15691db162d8a26845eb3bebdddc9cca8e85f0a9754d24bdc4",
+    "cutoff_sweep_agg.csv": "8bd29ab3b0aab07545580ed5d2589375a5ebb72115d1dcb13b965d1ef106c201",
+    "cutoff_sweep_results.csv": "e9a73efa29d2aded24e58218f6bb16429b82a08a7de6f7157ef23bb8b47bf47f",
+    "event_correlation/event_correlation_summary.json": "573e7a4d364532b26127a6082877d28f92b0ca24cee02439a3a1e062622236e9",
+    "event_correlation/event_topology_correlation.csv": "836eb08ea2bf77a7873ad512eacfdbe77673eddd2a32802ecfa3ae97e43a0eed",
+    "event_correlation_summary.json": "573e7a4d364532b26127a6082877d28f92b0ca24cee02439a3a1e062622236e9",
+    "figure_cycle_geometry.json": "1c1b5553d218a9886bd64e2ad47c6bdbd2b4339c7a10bf7fcc004b7fba041f89",
+    "multi_match/aggregate_stats.json": "40d9d8184b82dda9465f72b66eef1ec0432a1972f52672a69c7aef6e74b2b832",
+    "multi_match/per_frame_results.csv": "76ea954961abd3752285cae970b0a227ed5d70479b9f68291fbf9b20e312e349",
+    "numbers.json": "fc29afbd0ccb5db42e9333637a14afc3315fcf8325eca04d6cbebd6c40dda842",
+    "regime_summary.csv": "d2abcd7a213775ba0ba7e8e0808125189a2d40ca697f5e3e0d46746e79a5cbce",
+    "uniform_150/uniform_frame_results.csv": "9cec292e3b670526a71768d553965b155974e8836311bbc022ed0a53c13628ee",
+    "uniform_150/uniform_halftime_test.json": "3a59d1d419dd8da8d06b40c48cc187415b1c93f2eae6286ea57f593875a54566",
+    "uniform_150/uniform_sensitivity_cutoff.csv": "cac7c8633c4789254f643ac9a33bdc6398ed4d2ded808714e3287f632f15a250",
+    "uniform_150/uniform_sensitivity_percentile.csv": "380e3908805e7bc1c91bb2577cd6a057650638dda78b3c6a6ab1a2443cabfa43",
+    "uniform_150/uniform_summary.json": "10c85634156b5ed061125c9c8ddc1b7079204df7e9fc0c6bc2a4ea35c70e4e6d"
+  },
+  "steps_completed": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "build_numbers"
+  ]
+}

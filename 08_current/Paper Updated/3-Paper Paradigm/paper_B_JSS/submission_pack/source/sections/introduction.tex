@@ -1,0 +1,87 @@
+% =======================================================================
+\section{Introduction}
+
+\subsection{Background}
+\label{sec:intro}
+
+Coaches and analysts already describe team shape qualitatively: a press
+that compresses space, a defensive line that holds its gap, a midfield
+that loses its structure under pressure. Existing quantitative
+descriptions of team shape are predominantly geometric, summarising how
+players are dispersed across the pitch rather than the specific
+ring-like gaps and enclosures that coaches actually describe when
+discussing pressing traps or lines breaking apart.
+
+Three such ring-like tactical structures recur in analytical and
+coaching literature but lack quantitative definitions. In possession
+against a compact low block, an attacking team forced to circulate the
+ball around the perimeter of the defensive structure creates a
+peripheral possession ring, sometimes called a horseshoe, in which
+passes span from full-back to centre-back to the opposite full-back
+and up the wings, leaving the central space inaccessible \cite{decroos2019}.
+A pronounced peripheral ring indicates high possession volume without
+penetration: the team is orbiting the opposition's defensive block
+rather than entering it. In advanced positional play, a rest-defence
+arc forms when deeper players spread into a shallow curved
+configuration behind the front line in a 3-2-5 or 2-3-5 attacking
+shape, creating a containment ring that intercepts counter-attacking
+transitions and allows immediate possession recycling. In the
+defensive phase, a pressing encirclement occurs when three to four
+players close simultaneously around a ball-carrier following a
+designated trigger pass, forming a tight ring that cuts off all exit
+angles and forces a turnover in dangerous territory \cite{andrienko2017}.
+These formations are described qualitatively by analysts but none has
+a standard quantitative definition. Persistent homology provides one:
+a ring-like gap in the spatial data produces a loop feature in the
+persistence diagram, and the feature's persistence measures how stable
+and geometrically significant that ring is.
+
+A companion paper \cite{paperA} develops and validates a multi-scale
+topological method that measures exactly this kind of ring-like
+structure, using persistent homology to detect loops in player
+positioning at two distinct spatial scales, individual player interactions and tactical-unit formations, across ten professional
+matches. That validation is methodological: it establishes that the
+measure is stable, reproducible, and not an artefact of parameter
+choice. It does not establish what the measure means for football, or
+whether it adds anything practitioners do not already have. That is the
+question this paper addresses.
+
+\subsection{Study Aims}
+
+This study had four aims. First, to test whether topological persistence
+tracks real match events in a way that is interpretable and
+directionally consistent. Second, to test whether tactical-scale
+persistence provides information beyond the geometric descriptors
+already used in football analytics. Third, to test whether home and
+away teams' tactical structures are coupled or independent within a
+match. Fourth, to test whether tactical-scale persistence improves
+prediction of phase of play on matches the model has not seen.
+
+\subsection{Related Work}
+
+Positional tracking data, from GPS or broadcast video, now underpins
+much of applied performance analysis in field sports. Systematic reviews
+document its role in load monitoring across football codes
+\cite{tracking_review} and in tactical analysis using position data
+\cite{memmert2017}. Within this literature, team shape
+has typically been summarised geometrically: length, width, and
+centroid distance capture how compact or stretched a team is
+\cite{shape_descriptors}, and pitch-control models estimate which areas
+of the field each team effectively controls at a given moment
+\cite{gudmundsson2017}. Spatio-temporal pattern recognition methods
+identify recurring movement sequences directly from tracking data
+\cite{memmert2017}. A separate strand of work treats teams as
+coordinated multi-agent systems in the spirit of collective-behaviour
+research, and network-based approaches apply graph metrics to passing
+structure and player interaction \cite{grund2012,buldu2018}, including
+high-profile applications to identifying a team's defining tactical
+characteristics.
+
+None of these approaches directly quantifies the ring-like enclosures
+, pressing traps and gaps between defensive lines, that the present
+measure targets; they capture dispersion, control, or passing
+structure, but not two-dimensional loop formation. The contribution of
+this paper is not the topological method itself, which is developed and
+validated separately \cite{paperA}, but the first systematic test of
+what that method adds to this existing toolkit for football analysis
+specifically.

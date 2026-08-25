@@ -1,0 +1,212 @@
+{
+  "primary_match_id": 1996435,
+  "event_pairs": 104722,
+  "baseline": {
+    "n_frames": 1500,
+    "n_matches": 10,
+    "spearman_length_m": {
+      "rho": -0.004642427917981231,
+      "p": 0.8574261422008376
+    },
+    "spearman_width_m": {
+      "rho": 0.35593065817850367,
+      "p": 4.9794708834633246e-46
+    },
+    "spearman_hull_area_m2": {
+      "rho": 0.43053690240540426,
+      "p": 9.803068758068721e-69
+    },
+    "spearman_voronoi_entropy": {
+      "rho": 0.12597746265847726,
+      "p": 9.854100928640578e-07
+    },
+    "partial_r2_baseline_residual_explained_by_topology": {
+      "length_m": 0.02537120779750501,
+      "width_m": 0.03620278570523429,
+      "hull_area_m2": 0.0907550318591157,
+      "voronoi_entropy": 0.004150952424583931
+    }
+  },
+  "bilateral": {
+    "n_frames_total": 1500,
+    "n_matches": 10,
+    "cutoff_delta_m": 12.0,
+    "sample_every": 100,
+    "max_frames_per_match": 150,
+    "per_team": {
+      "home": {
+        "n_frames": 1500,
+        "h1_presence_rate": 0.36133333333333334,
+        "mean_h1_count_per_frame": 0.44266666666666665,
+        "mean_h1_total_persistence": 1.5352001457214355,
+        "mean_h1_mean_persistence_when_present": 3.597341425613787
+      },
+      "away": {
+        "n_frames": 1500,
+        "h1_presence_rate": 0.364,
+        "mean_h1_count_per_frame": 0.4633333333333333,
+        "mean_h1_total_persistence": 1.5522747217814128,
+        "mean_h1_mean_persistence_when_present": 3.5223908002863933
+      }
+    },
+    "cross_team_spearman_by_lag": {
+      "lag_-10": {
+        "n_matches": 10,
+        "rho_mean": 0.0325822902272969,
+        "rho_weighted_mean": 0.03258229022729691,
+        "rho_min": -0.2343652725934275,
+        "rho_max": 0.15547518951314387
+      },
+      "lag_-5": {
+        "n_matches": 10,
+        "rho_mean": -0.05743293755609872,
+        "rho_weighted_mean": -0.05743293755609871,
+        "rho_min": -0.18637988741291864,
+        "rho_max": 0.022852273154664895
+      },
+      "lag_-1": {
+        "n_matches": 10,
+        "rho_mean": -0.0485107950779376,
+        "rho_weighted_mean": -0.04851079507793761,
+        "rho_min": -0.20638001188433608,
+        "rho_max": 0.10867352235118574
+      },
+      "lag_0": {
+        "n_matches": 10,
+        "rho_mean": 0.036528108622332314,
+        "rho_weighted_mean": 0.036528108622332314,
+        "rho_min": -0.186384836517131,
+        "rho_max": 0.15028639166404875
+      },
+      "lag_1": {
+        "n_matches": 10,
+        "rho_mean": -0.013411280690718458,
+        "rho_weighted_mean": -0.01341128069071846,
+        "rho_min": -0.18172481010553845,
+        "rho_max": 0.13392356654619686
+      },
+      "lag_5": {
+        "n_matches": 10,
+        "rho_mean": -0.040460319357534254,
+        "rho_weighted_mean": -0.040460319357534254,
+        "rho_min": -0.1732026633241344,
+        "rho_max": 0.10504096836701475
+      },
+      "lag_10": {
+        "n_matches": 10,
+        "rho_mean": -0.023400444942014532,
+        "rho_weighted_mean": -0.02340044494201452,
+        "rho_min": -0.17523273611347762,
+        "rho_max": 0.12219611845038185
+      }
+    },
+    "cross_team_spearman_lag0_bootstrap_ci": [
+      0.038166939968088155,
+      -0.0182276756988306,
+      0.08659092692791227
+    ],
+    "bottleneck_AB": {
+      "median": 0.6158595085144043,
+      "iqr": 2.173405885696411,
+      "max": Infinity,
+      "n": 1500
+    },
+    "bottleneck_AB_finite_only": {
+      "median": 0.5820255279541016,
+      "iqr": 2.1312904357910156,
+      "max": 6.351856231689453,
+      "n": 1485
+    },
+    "landscape_l2_AB": {
+      "median": 1.110171515106387,
+      "iqr": 8.608029170159464,
+      "max": 49.61754030331354,
+      "n": 1485
+    },
+    "cooccurrence": {
+      "n_frames": 1500,
+      "both_teams_h1_present": 220,
+      "home_only": 322,
+      "away_only": 326,
+      "neither": 632,
+      "p_both": 0.14666666666666667,
+      "p_home_only": 0.21466666666666667,
+      "p_away_only": 0.21733333333333332,
+      "p_neither": 0.42133333333333334
+    }
+  },
+  "predictive_buildup": {
+    "target": "is_buildup",
+    "topology_features": [
+      "tactical_h1_total_persistence"
+    ],
+    "block_A_baselines_only": {
+      "metrics": {
+        "auc": 0.6925887560033902,
+        "log_loss": 0.3738063344985956,
+        "brier": 0.11227450421403891,
+        "n": 1500,
+        "prevalence": 0.13666666666666666
+      },
+      "feature_cols": [
+        "length_m",
+        "width_m",
+        "hull_area_m2",
+        "voronoi_entropy"
+      ]
+    },
+    "block_B_baselines_plus_topology": {
+      "metrics": {
+        "auc": 0.6872737545908277,
+        "log_loss": 0.3754889896679642,
+        "brier": 0.11275478509831154,
+        "n": 1500,
+        "prevalence": 0.13666666666666666
+      },
+      "feature_cols": [
+        "length_m",
+        "width_m",
+        "hull_area_m2",
+        "voronoi_entropy",
+        "tactical_h1_total_persistence"
+      ]
+    },
+    "delta_auc_pooled": -0.00531500141256247,
+    "delta_log_loss_pooled": 0.001682655169368552,
+    "delta_brier_pooled": 0.00048028088427262694,
+    "match_level_bootstrap_ci": {
+      "delta_auc_mean_ci": [
+        -0.004992966881000918,
+        -0.014748086253561077,
+        0.0010592037306051596
+      ],
+      "delta_log_loss_mean_ci": [
+        0.0016148090774525446,
+        -0.0003800545641239925,
+        0.004913722362246444
+      ],
+      "delta_brier_mean_ci": [
+        0.0004633986087814933,
+        -0.0001702820655166689,
+        0.0014214922126559223
+      ],
+      "n_boot_effective": 1000
+    },
+    "stratified_permutation_pvalue": 1.0,
+    "n_frames": 1500,
+    "prevalence": 0.13666666666666666
+  },
+  "headline": {
+    "event_topology_pairs": 104722,
+    "cross_team_spearman_lag0": 0.036528108622332314,
+    "spearman_width": 0.35593065817850367,
+    "spearman_hull": 0.43053690240540426,
+    "partial_r2_hull": 0.0907550318591157,
+    "home_h1_presence": 0.36133333333333334,
+    "away_h1_presence": 0.364,
+    "auc_baseline": 0.6925887560033902,
+    "auc_with_topology": 0.6872737545908277,
+    "delta_auc": -0.00531500141256247,
+    "chaotic_prevalence": 0.07
+  }
+}

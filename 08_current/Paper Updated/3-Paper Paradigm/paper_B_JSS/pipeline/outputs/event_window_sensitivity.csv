@@ -1,0 +1,16 @@
+event_type,window_half_frames,window_half_seconds,direction,significance,scale
+on_ball_engagement,5,0.5,negative,***,individual
+on_ball_engagement,10,1.0,negative,***,individual
+on_ball_engagement,50,5.0,negative,***,individual
+passing_option,5,0.5,negative,***,individual
+passing_option,10,1.0,negative,***,individual
+passing_option,50,5.0,negative,***,individual
+build_up,5,0.5,positive,***,individual
+build_up,10,1.0,positive,***,individual
+build_up,50,5.0,positive,***,individual
+quick_break,5,0.5,negative,*,individual
+quick_break,10,1.0,negative,*,individual
+quick_break,50,5.0,negative,ns,individual
+chaotic,5,0.5,negative,*,individual
+chaotic,10,1.0,negative,*,individual
+chaotic,50,5.0,negative,ns,individual

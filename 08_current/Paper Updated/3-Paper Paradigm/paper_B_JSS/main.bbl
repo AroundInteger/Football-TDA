@@ -1,0 +1,56 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\normalfont{#1}}
+\providecommand{\urlprefix}{}
+
+\bibitem{decroos2019}
+Decroos, T.; Bransen, L.; Van~Haaren, J.; Davis, J. Actions speak louder than
+  goals: valuing player actions in soccer, In \emph{Proceedings of the 25th
+  {ACM SIGKDD} International Conference on Knowledge Discovery and Data
+  Mining}, 2019; pp 1851--1861.
+
+\bibitem{andrienko2017}
+Andrienko, G.; Andrienko, N.; Budziak, G.; Dykes, J.; Fuchs, G.; von
+  Landesberger, T.; Weber, H. Visual analysis of pressure in football,
+  \emph{Data Mining and Knowledge Discovery}  \textbf{2017}, \emph{31}~(6),
+  1793--1839.
+
+\bibitem{paperA}
+Brown, R. Multi-Scale Persistent Homology for Competitive Spatial Systems,
+  2026. Companion paper, in preparation; to be posted on arXiv. Update with
+  arXiv identifier once available.
+
+\bibitem{tracking_review}
+Cummins, C.; Orr, R.; O'Connor, H.; West, C. Global positioning systems ({GPS})
+  and microtechnology sensors in team sports: a systematic review, \emph{Sports
+  Medicine}  \textbf{2013}, \emph{43}~(10), 1025--1042.
+
+\bibitem{memmert2017}
+Memmert, D.; Lemmink, K.A.P.M.; Sampaio, J. Current approaches to tactical
+  performance analyses in soccer using position data, \emph{Sports Medicine}
+  \textbf{2017}, \emph{47}~(1), 1--10.
+
+\bibitem{shape_descriptors}
+Folgado, H.; Lemmink, K.A.P.M.; Frencken, W.; Sampaio, J. Length, width and
+  centroid distance as measures of teams' tactical performance in youth
+  football, \emph{European Journal of Sport Science}  \textbf{2014},
+  \emph{14}~(S1), S487--S492.
+
+\bibitem{gudmundsson2017}
+Gudmundsson, J.; Horton, M. Spatio-temporal analysis of team sports, \emph{ACM
+  Computing Surveys}  \textbf{2017}, \emph{50}~(2), 22:1--22:34.
+
+\bibitem{grund2012}
+Grund, T.U. Network structure and team performance: The case of {English
+  Premier League} soccer teams, \emph{Social Networks}  \textbf{2012},
+  \emph{34}~(4), 682--690.
+
+\bibitem{buldu2018}
+Buld{\'u}, J.M.; Busquets, J.; Echegoyen, I.; Seirul{\`o}, F. Defining a
+  historic football team: using network science to analyse {Guardiola's FC
+  Barcelona}, \emph{Scientific Reports}  \textbf{2019}, \emph{9}, 13602.
+
+\bibitem{SkillCorner2024}
+{SkillCorner}. {SkillCorner} open broadcast tracking data,
+  \url{https://github.com/SkillCorner/opendata}, 2024. Accessed 2026.
+
+\end{thebibliography}

@@ -1,0 +1,69 @@
+% =====================================================================
+% Paper B — What Persistent Homology Reveals about Football. Target:
+% Journal of Sports Sciences (Taylor & Francis), interact class +
+% Reference Style P (numbered, italic, parenthetical citations).
+% =====================================================================
+\documentclass[]{interact}
+
+\usepackage{epstopdf}
+\usepackage{url}
+\usepackage[numbers,sort&compress,merge]{natbib}
+\bibpunct[, ]{(}{)}{,}{n}{,}{,}
+\renewcommand\bibfont{\fontsize{10}{12}\selectfont}
+\renewcommand\citenumfont[1]{\textit{#1}}
+\renewcommand\bibnumfmt[1]{(#1)}
+
+\begin{document}
+
+\articletype{ARTICLE}
+
+\title{What Persistent Homology Reveals about Football: Event Correlation, Geometric Baselines, and Predictive Utility}
+
+\author{
+\name{Rowan Brown\textsuperscript{a}\thanks{CONTACT Rowan Brown. Email: r.m.brown@swansea.ac.uk} and Gibin Powathil\textsuperscript{a} and Liam Kilduff\textsuperscript{a}}
+\affil{\textsuperscript{a}Swansea University, Swansea, UK}
+}
+
+\maketitle
+
+\begin{abstract}
+Topological data analysis can detect ring-like gaps in player positioning, including pressing traps and breaks between defensive lines, that standard geometric
+descriptors of team shape do not directly capture. Using a multi-scale
+persistent homology method validated in a companion paper, this study
+tested what these topological measures reveal about football across ten
+professional matches, beyond confirming the method itself is sound.
+Topological persistence tracked match events coherently: events that
+disrupt team shape, including on-ball engagements, quick breaks, and defensive challenges, were followed by a fall in persistence, while sustained
+build-up play was followed by a rise, a pattern that held across multiple
+event-window widths. Tactical-scale persistence correlated only weakly
+with four geometric descriptors already used in football analytics, team length, team width, convex-hull area, and Voronoi dispersion entropy, and explained variation in team shape that those descriptors did not,
+indicating it is not redundant with existing measures. Home and away
+teams' tactical structures evolved largely independently of one another
+within a match. That non-redundancy did not, however, translate into a
+detectable improvement in predicting phase of play on held-out matches at
+the present sample size. Persistence appears to provide an automatically
+computable, non-redundant measure of tactical state, with clear practical
+value for monitoring team shape at scale; whether it can improve
+predictive models will require testing on a substantially larger sample,
+which a companion full-season analysis is addressing.
+\end{abstract}
+
+\begin{keywords}
+topological data analysis; persistent homology; football analytics; team shape; tactical analysis; tracking data
+\end{keywords}
+
+% =======================================================================
+% Section files live in sections/
+% =======================================================================
+\input{sections/introduction}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+\input{sections/backmatter}
+
+% =======================================================================
+\bibliographystyle{tfp}
+\bibliography{references}
+
+\end{document}

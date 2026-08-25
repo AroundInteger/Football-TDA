@@ -7,8 +7,13 @@ are vendored under the paper folder (`../01_data`, `../02_tda_core`,
 ## Prerequisites
 
 - Python 3.10+ (`pip install -r ../requirements.txt`)
-- SkillCorner Open Data at `../01_data/opendata/data/` (see `../01_data/README.md`)
-- Run via `run_all.sh` (sets working directory to the paper root)
+- SkillCorner Open Data at the **monorepo** `01_data/opendata/data/` (see
+  `../01_data/README.md` and `08_current/REPO_AND_PIPELINE.md`)
+- Run via `run_all.sh` (resolves monorepo root when the paper-local tree lacks
+  `matches.json`)
+
+**Full re-run guide:** `08_current/REPO_AND_PIPELINE.md` §2 (environment, data,
+`RUN_TDA_NATIVE=1`, step 08 monorepo path, success checks).
 
 ## Sampling profiles (`config.yaml`)
 
@@ -18,25 +23,19 @@ are vendored under the paper folder (`../01_data`, `../02_tda_core`,
 | `cutoff_sweep_windows` | 58 windows × 4 epoch lengths | `tab:regimes`, stability scores |
 | `temporal_2min` | 2-min non-overlapping windows | Grant-only temporal analysis (not headline Paper A tables) |
 
-## Reading `regime_summary.csv` — two traps
+## Reading `regime_summary.csv`
 
-Both are recorded as rulings R4 and R12 in `08_current/grant/FOUNDATION.md`.
+Ruling R12 (closed 25 Aug 2026). The file records **adopted** cutoffs and
+**stability at the adopted cutoff**, not the raw Calinski–Harabasz optimum.
 
-**`optimal_cutoff` is not the adopted cutoff.** The column holds what
-`identify_regimes()` recomputes from the sweep. For the individual scale that is
-the Calinski–Harabasz optimum, **1.39 m**. The adopted individual cutoff used
-throughout the paper and the grant is **2.98 m**, hard-coded as
-`VALIDATED_CUTOFFS` in `primary_match_skillcorner_analysis.py` and carried over
-from the earlier normalised-coverage derivation. Clustering at 1.39 m will
-reproduce none of the published numbers. The tactical (12.0 m) and team (30.0 m)
-rows do match the adopted values.
+| Scale | Adopted $\delta$ | Stability at adopted | Notes |
+|-------|------------------|----------------------|-------|
+| Individual | 2.98 m | 0.875 | CH optimum is 1.39 m (stability 0.956); not adopted |
+| Tactical | 12.0 m | 0.836 | domain-informed within metric disagreement |
+| Team | 30.0 m | 1.000 | IC / team $H_0$ validation |
 
-**`stability` is scored at the recomputed cutoff, not the adopted one.** The
-score is the fraction of sweep evaluations within 0.5 m of that cutoff whose
-cluster count lies within ±2 of the pooled median — partition reproducibility,
-not cutoff agreement. So 0.836 (tactical) and 1.000 (team) are scored at the
-adopted values, but **0.956 (individual) is scored at 1.39 m, not at 2.98 m**,
-and must be recomputed before it is quoted against the grant's 0.80 gate.
+Cluster at the **adopted** values in `VALIDATED_CUTOFFS`. Never cluster at 1.39 m
+expecting to reproduce the paper.
 
 ## Run order
 
@@ -54,6 +53,8 @@ python3 steps/02_cutoff_sweep.py
 python3 steps/03_multi_match.py
 python3 steps/05_event_validity.py
 python3 steps/04_complementarity.py
+python3 steps/07_cardinality_null.py
+python3 steps/08_linkage_comparison.py
 python3 steps/06_figures.py
 python3 lib/build_numbers.py
 python3 sync_to_paper.py
@@ -67,4 +68,5 @@ python3 sync_to_paper.py
 - `outputs/uniform_150/uniform_summary.json`
 - `outputs/aggregate_stats.json`
 - `outputs/complementarity/complementarity_tests.json`
+- `outputs/linkage/linkage_headline.json` — Discussion linkage comparison (600 frames, 4 matches)
 - `../figures/fig2_cycle_geometry.pdf`

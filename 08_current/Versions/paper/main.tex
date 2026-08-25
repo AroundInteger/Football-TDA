@@ -1,0 +1,80 @@
+% ============================================================
+%  Paper 1, Multi-Scale Persistent Homology for Competitive Spatial Systems
+%  Source of truth: Draftv5.md (kept in sync with this LaTeX tree)
+%  Target journal: Journal of Applied and Computational Topology (JACT)
+%  Language: British English | Engine: pdfLaTeX
+%  References: Vancouver (numbered, order of appearance; natbib + unsrtnat)
+% ============================================================
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[british]{babel}
+\usepackage{microtype}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{amsthm}
+\newtheorem*{remark}{Remark}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue]{hyperref}
+
+\singlespacing
+
+% Figures: default to PNG (synced with Draftv5.md). For journal submission, set \figext to pdf once vector exports are ready.
+\newcommand{\figext}{png}
+
+\title{Multi-Scale Persistent Homology for Competitive Multi-Agent Systems:\\
+\textit{Validation in Professional Football}}
+
+\author{%
+  Dr Rowan Brown\\
+  Biomedical Engineering, Swansea University\\
+  \texttt{[Additional authors and affiliations as required]}
+}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+Standard single-parameter Vietoris--Rips persistent homology on multi-agent point clouds conflates topological features from distinct organisational levels into a single diagram. We present a multi-scale framework addressing this through two methodological contributions: domain-informed hierarchical clustering with validated cutoff distances, decomposing the point cloud by organisational level, and an adaptive Vietoris--Rips filtration scaled to the post-clustering geometry, so that $H_1$ (loop) features are detected consistently across scales. Validation on 10 professional football matches (SkillCorner broadcast tracking, 10~Hz; 43{,}531 frames for the primary match) identifies three $H_0$ regimes , individual (2.98~m), tactical (12.0~m), and team (30.0~m), with 96--100\% cross-epoch validation, and two $H_1$ regimes: individual-scale loops are frequent and transient ($97.0\% \pm 1.5\%$ frame presence), tactical-scale loops are rarer but geometrically persistent ($19.3\% \pm 7.2\%$); team-scale $H_1$ is absent \emph{a priori} from the clustering. Sensitivity analyses confirm $H_1$ detection across cutoff distances $\delta \in [6,14]$~m and adaptive percentiles P50--P95, and geometric cycle representatives are recovered for every $H_1$ generator. Across 10 matches (104{,}722 event--topology pairs) topological change correlates coherently with match dynamics: on-ball engagements and quick breaks are associated with persistence decreases ($p < 0.001$), build-up phases with increases. The two scales capture weakly correlated but complementary information (Spearman $\rho = 0.254$). The framework is domain-agnostic and applies to any bounded competitive multi-agent system with spatial tracking data.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Keywords:} persistent homology; topological data analysis; multi-scale analysis; competitive systems; sports analytics; broadcast tracking
+
+\input{sections/introduction}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\section*{Code and data availability}
+
+\paragraph{Data.} All tracking data are from the SkillCorner open broadcast tracking repository \citep{SkillCorner2024}. The ten match IDs analysed in this paper are: primary match \textbf{1996435} (Sydney FC vs Adelaide United, A-League 2024/25), plus 1886347, 1899585, 1925299, 1953632, 2006229, 2011166, 2013725, 2015213, and 2017461. Dynamic event annotations and phase-of-play labels are from the same repository.
+
+\paragraph{Code.} Implementation, analysis pipelines and figure generation scripts are available at \url{https://github.com/AroundInteger/Football-TDA}, tagged release \texttt{paper-v1.0} (the exact commit hash is recorded in the GitHub release notes and is cut at the time of manuscript submission). The multi-match validation pipeline corresponds to \texttt{03\_football\_analysis/multi\_match\_validation.py} with the \texttt{-{}-skillcorner-only} flag; event correlation is reproduced by \texttt{real\_event\_correlation.py}. The Paper v5 revision additions are reproduced by the scripts in \texttt{03\_football\_analysis/paper\_v5\_revisions/}: \texttt{bootstrap\_multi\_match\_ci.py} (\S\ref{sec:scale_complementarity}), \texttt{tda\_native\_distances.py} (Table~\ref{tab:tda_distances}), \texttt{half\_level\_random\_effects.py} (\S\ref{sec:temporal}), \texttt{event\_window\_sensitivity.py} (Table~\ref{tab:event_window}), \texttt{baseline\_vs\_topology.py} (\S\ref{sec:baseline}), \texttt{bilateral\_topology.py} (\S\ref{sec:bilateral}), and \texttt{predictive\_utility.py} (\S\ref{sec:predictive}).
+
+\paragraph{Software stack.} Python 3.11; Ripser.py 0.6.4 \citep{Tralie2018}; GUDHI 3.11.0 (bottleneck distance, landscapes); giotto-tda 0.6 \citep{Tauzin2021} for cross-checks; NumPy 1.26, SciPy 1.12, pandas 2.1, scikit-learn 1.4, statsmodels 0.14. The repository includes a \texttt{Dockerfile} and an Apptainer definition with pinned versions; a ready-built image is published alongside the \texttt{paper-v1.0} tag to enable bit-for-bit reproduction without reinstalling the toolchain.
+
+\paragraph{Synthetic exemplar.} A synthetic 22-agent swarm with seeded ring formations is included in the code release to enable teaching and reproduction without proprietary tracking data. Acceptance criterion: individual-scale $H_1$ presence rate within $\pm 3$~pp of the primary match ($95.3\%$), tactical-scale $H_1$ presence rate within $\pm 5$~pp of $12.7\%$, and at least one $H_1$ generator per frame recovered by closed-cycle identification for all frames with non-zero $H_1$. A pass/fail test implementing these checks ships in the code release.
+
+\section*{Acknowledgements}
+
+We thank SkillCorner for broadcast tracking open data. Computations were performed using Ripser \citep{Bauer2021} via Ripser.py \citep{Tralie2018}.
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\end{document}

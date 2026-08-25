@@ -1,0 +1,9 @@
+# Pinned for Paper B pipeline reproducibility (Python 3.10+)
+numpy==2.0.2
+pandas==2.3.2
+scipy==1.13.1
+matplotlib==3.9.4
+scikit-learn==1.6.1
+PyYAML==6.0.3
+ripser==0.6.12
+persim==0.3.8

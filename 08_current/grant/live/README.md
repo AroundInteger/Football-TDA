@@ -16,7 +16,7 @@ Self-contained **01–08** pack aligned to:
 | Summary (public, 550 words) | `01_Summary.md` (= Lay Summary) | `full/01_Application_Summary.md` |
 | Vision & Approach | `02_Vision_and_Approach.md` | `VA_140826.md`; `VA_230826_reconstructed.docx` (pre-cut); `full/02_Vision_and_Approach.md`; older `submission/VA_V*.md` |
 | R4RI capability | `03_Applicant_and_Team_Capability.md` | generic R4RI drafts under `07_grants/` |
-| References | `04_References.md` (Vancouver order of `VA_230826_reconstructed.docx`) | `full/04_References.md` |
+| References | `04_References.md` (Vancouver order of `02_Vision_and_Approach_REV3.md`, 29 entries) | `full/04_References.md` |
 | Timeline / FTE | `TIMELINE.md` | any Gantt in `full/02` |
 
 ## JeS map

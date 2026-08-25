@@ -1,0 +1,258 @@
+{
+  "n_frames_total": 1500,
+  "n_matches": 10,
+  "cutoff_delta_m": 12.0,
+  "primary_target": "is_buildup",
+  "baseline_features": [
+    "length_m",
+    "width_m",
+    "hull_area_m2",
+    "voronoi_entropy"
+  ],
+  "results": {
+    "is_buildup_with_total_persistence": {
+      "target": "is_buildup",
+      "topology_features": [
+        "tactical_h1_total_persistence"
+      ],
+      "block_A_baselines_only": {
+        "metrics": {
+          "auc": 0.6925887560033902,
+          "log_loss": 0.3738063344985956,
+          "brier": 0.11227450421403891,
+          "n": 1500,
+          "prevalence": 0.13666666666666666
+        },
+        "feature_cols": [
+          "length_m",
+          "width_m",
+          "hull_area_m2",
+          "voronoi_entropy"
+        ]
+      },
+      "block_B_baselines_plus_topology": {
+        "metrics": {
+          "auc": 0.6872737545908277,
+          "log_loss": 0.3754889896679642,
+          "brier": 0.11275478509831154,
+          "n": 1500,
+          "prevalence": 0.13666666666666666
+        },
+        "feature_cols": [
+          "length_m",
+          "width_m",
+          "hull_area_m2",
+          "voronoi_entropy",
+          "tactical_h1_total_persistence"
+        ]
+      },
+      "delta_auc_pooled": -0.00531500141256247,
+      "delta_log_loss_pooled": 0.001682655169368552,
+      "delta_brier_pooled": 0.00048028088427262694,
+      "match_level_bootstrap_ci": {
+        "delta_auc_mean_ci": [
+          -0.004992966881000918,
+          -0.014748086253561077,
+          0.0010592037306051596
+        ],
+        "delta_log_loss_mean_ci": [
+          0.0016148090774525446,
+          -0.0003800545641239925,
+          0.004913722362246444
+        ],
+        "delta_brier_mean_ci": [
+          0.0004633986087814933,
+          -0.0001702820655166689,
+          0.0014214922126559223
+        ],
+        "n_boot_effective": 1000
+      },
+      "stratified_permutation_pvalue": 1.0,
+      "n_frames": 1500,
+      "prevalence": 0.13666666666666666
+    },
+    "is_buildup_with_h1_count": {
+      "target": "is_buildup",
+      "topology_features": [
+        "tactical_h1_count"
+      ],
+      "block_A_baselines_only": {
+        "metrics": {
+          "auc": 0.6925887560033902,
+          "log_loss": 0.3738063344985956,
+          "brier": 0.11227450421403891,
+          "n": 1500,
+          "prevalence": 0.13666666666666666
+        },
+        "feature_cols": [
+          "length_m",
+          "width_m",
+          "hull_area_m2",
+          "voronoi_entropy"
+        ]
+      },
+      "block_B_baselines_plus_topology": {
+        "metrics": {
+          "auc": 0.6889123269611075,
+          "log_loss": 0.3752046111462788,
+          "brier": 0.11273873434762839,
+          "n": 1500,
+          "prevalence": 0.13666666666666666
+        },
+        "feature_cols": [
+          "length_m",
+          "width_m",
+          "hull_area_m2",
+          "voronoi_entropy",
+          "tactical_h1_count"
+        ]
+      },
+      "delta_auc_pooled": -0.003676429042282714,
+      "delta_log_loss_pooled": 0.001398276647683161,
+      "delta_brier_pooled": 0.00046423013358948273,
+      "match_level_bootstrap_ci": {
+        "delta_auc_mean_ci": [
+          -0.0036433435463628493,
+          -0.010510206914654527,
+          0.00036604665502019664
+        ],
+        "delta_log_loss_mean_ci": [
+          0.0014074310081232757,
+          5.085494707046252e-05,
+          0.0036266146215061675
+        ],
+        "delta_brier_mean_ci": [
+          0.0004692751753531778,
+          4.1263880468072475e-05,
+          0.0011366912636087139
+        ],
+        "n_boot_effective": 1000
+      },
+      "stratified_permutation_pvalue": 1.0,
+      "n_frames": 1500,
+      "prevalence": 0.13666666666666666
+    },
+    "is_buildup_with_max_persistence": {
+      "target": "is_buildup",
+      "topology_features": [
+        "tactical_h1_max_persistence"
+      ],
+      "block_A_baselines_only": {
+        "metrics": {
+          "auc": 0.6925887560033902,
+          "log_loss": 0.3738063344985956,
+          "brier": 0.11227450421403891,
+          "n": 1500,
+          "prevalence": 0.13666666666666666
+        },
+        "feature_cols": [
+          "length_m",
+          "width_m",
+          "hull_area_m2",
+          "voronoi_entropy"
+        ]
+      },
+      "block_B_baselines_plus_topology": {
+        "metrics": {
+          "auc": 0.6867011959694885,
+          "log_loss": 0.37578649186711527,
+          "brier": 0.11286486720426517,
+          "n": 1500,
+          "prevalence": 0.13666666666666666
+        },
+        "feature_cols": [
+          "length_m",
+          "width_m",
+          "hull_area_m2",
+          "voronoi_entropy",
+          "tactical_h1_max_persistence"
+        ]
+      },
+      "delta_auc_pooled": -0.005887560033901673,
+      "delta_log_loss_pooled": 0.0019801573685196416,
+      "delta_brier_pooled": 0.0005903629902262592,
+      "match_level_bootstrap_ci": {
+        "delta_auc_mean_ci": [
+          -0.005622458490740367,
+          -0.015836285232118018,
+          0.0005635771052488995
+        ],
+        "delta_log_loss_mean_ci": [
+          0.0019130137806535976,
+          -0.00022807475949855737,
+          0.005617368011805272
+        ],
+        "delta_brier_mean_ci": [
+          0.0005730097953395847,
+          -0.00012497214220194946,
+          0.00167862707189082
+        ],
+        "n_boot_effective": 1000
+      },
+      "stratified_permutation_pvalue": 1.0,
+      "n_frames": 1500,
+      "prevalence": 0.13666666666666666
+    },
+    "is_chaotic_with_total_persistence": {
+      "target": "is_chaotic",
+      "topology_features": [
+        "tactical_h1_total_persistence"
+      ],
+      "block_A_baselines_only": {
+        "metrics": {
+          "auc": 0.7186960232121523,
+          "log_loss": 0.23386850211828453,
+          "brier": 0.06293762352012776,
+          "n": 1500,
+          "prevalence": 0.07
+        },
+        "feature_cols": [
+          "length_m",
+          "width_m",
+          "hull_area_m2",
+          "voronoi_entropy"
+        ]
+      },
+      "block_B_baselines_plus_topology": {
+        "metrics": {
+          "auc": 0.7163065369516982,
+          "log_loss": 0.23437697271327732,
+          "brier": 0.06298957675251697,
+          "n": 1500,
+          "prevalence": 0.07
+        },
+        "feature_cols": [
+          "length_m",
+          "width_m",
+          "hull_area_m2",
+          "voronoi_entropy",
+          "tactical_h1_total_persistence"
+        ]
+      },
+      "delta_auc_pooled": -0.002389486260454099,
+      "delta_log_loss_pooled": 0.0005084705949927881,
+      "delta_brier_pooled": 5.1953232389212456e-05,
+      "match_level_bootstrap_ci": {
+        "delta_auc_mean_ci": [
+          -0.0022722133292521615,
+          -0.005043694294059908,
+          0.0005570510487704237
+        ],
+        "delta_log_loss_mean_ci": [
+          0.0005024735415667037,
+          6.612781860815294e-07,
+          0.0010925675260679793
+        ],
+        "delta_brier_mean_ci": [
+          5.0980335341847996e-05,
+          -2.7875856523902097e-05,
+          0.0001278704616332739
+        ],
+        "n_boot_effective": 1000
+      },
+      "stratified_permutation_pvalue": 1.0,
+      "n_frames": 1500,
+      "prevalence": 0.07
+    }
+  }
+}

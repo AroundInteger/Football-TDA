@@ -1,0 +1,4 @@
+scale,adopted_cutoff_m,ch_optimum_m,stability_at_adopted,stability_at_ch_optimum,validation_rate,expected_h0_lo,expected_h0_hi,selection_method
+individual,2.98,1.39,0.875,0.956,1.0,15,22,carried over; CH optimum not adopted
+tactical,12.0,,0.836,,1.0,2,12,domain-informed (12.0 m)
+team,30.0,,1.0,,1.0,1,3,IC / H0 team validation

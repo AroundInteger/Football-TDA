@@ -1,0 +1,43 @@
+\section{Introduction}
+\label{sec:introduction}
+
+\subsection{Background}
+
+Competitive spatial systems, collections of agents that interact, coordinate within groups, and compete between groups within a bounded domain, are ubiquitous. Examples include autonomous vehicle fleets sharing airspace, opposing crowd flows at transport hubs, predator--prey populations in ecosystems, and sports teams contesting possession of territory. A distinguishing feature of such systems is that they operate across multiple spatial scales simultaneously: individual agent decisions (metres), small-group tactical coordination (tens of metres), and whole-system organisation (hundreds of metres). Understanding the interplay between these scales is a fundamental challenge in applied mathematics. Systematic reviews document how wearable and broadcast tracking data now underpin load monitoring and tactical performance analysis in field sports \citep{Cummins2013, Memmert2017}, motivating geometric summaries of collective positioning.
+
+From a spatial perspective, agents can arrange themselves in ring-like formations that enclose empty space, for example, a pressing trap encircling a player in possession, or a gap between defensive and midfield lines that creates tactical options. Such arrangements have a topological character: they are \emph{loops} in the position data, and their stability over time (measured by persistence) distinguishes deliberate structural organisation from transient clustering. Conventional metrics such as convex hull area, nearest-neighbour distance, or team length and width derived from player positions \citep{Folgado2014} capture different aspects of spatial dispersion but do not directly quantify this multi-agent loop structure. Persistent homology provides a principled way to detect and measure these formations across scale.
+
+Topological Data Analysis (TDA), and persistent homology in particular, provides a natural framework for studying the shape of spatial data across scales \citep{Edelsbrunner2010,Carlsson2009}. By constructing a filtration of simplicial complexes indexed by a scale parameter and tracking the birth and death of topological features, persistent homology captures multi-scale structure in a mathematically rigorous way. Applications span protein structure \citep{Xia2014}, materials science \citep{Hiraoka2016}, and collective behaviour \citep{Topaz2015}.
+
+However, applying standard single-parameter persistent homology to such systems presents practical challenges that motivate the multi-scale approach developed here.
+
+\subsection{The Scale Conflation Problem}
+
+A single Vietoris--Rips filtration applied to a multi-agent point cloud computes topological features across all spatial scales simultaneously. The resulting persistence diagram encodes the full hierarchical clustering structure of the point cloud, from individual agent proximity through small-group formation to system-wide organisation, in a single mathematical object. For exploratory analysis of systems without known hierarchical structure, this is a strength. For multi-agent systems with \emph{known} hierarchical organisation operating across distinct spatial scales, however, it presents a practical challenge: topological features from different organisational levels are superimposed, making it difficult to attribute specific features to specific scales or to track scale-specific dynamics over time.
+
+This challenge is well-recognised in the TDA community. \citet{Topaz2015} address it by visualising Betti numbers across both simulation time and persistence scale, noting that different organisational structures appear at different filtration values. The multiparameter persistence literature \citep{BotnanLesnick2022,Lesnick2015} provides a theoretical framework for simultaneous multi-scale analysis, though computational challenges limit practical application to large point clouds. \citet{SchindlerBarahona2023} develop tools for analysing multiscale clusterings with persistent homology, directly addressing hierarchical decomposition. \citet{Gu2022} apply Vietoris--Rips construction to multi-agent system snapshots, noting the sensitivity of topological features to parameter choices.
+
+Our approach takes a complementary, domain-informed path: rather than analysing the full persistence diagram or developing new algebraic machinery, we decompose the point cloud by organisational level through hierarchical clustering at validated cutoff distances, then compute scale-specific persistent homology on each reduced point cloud. This requires a second methodological step, adaptive filtration, to ensure that the Vietoris--Rips threshold is appropriate for the post-clustering point cloud geometry at each scale, since a fixed threshold suitable at one organisational level produces null \(H_1\) results at another.
+
+\subsection{Contributions}
+
+This paper makes four contributions, two methodological and two empirical:
+
+\paragraph{Methodological.}
+\begin{enumerate}
+  \item \textbf{Scale decomposition via domain-informed clustering:} A hierarchical clustering preprocessing step with domain-informed cutoff distances that separates organisational levels, enabling scale-specific topological analysis of multi-agent point clouds.
+  \item \textbf{Adaptive filtration:} A data-driven maximum filtration formula that adjusts to the post-clustering point cloud geometry, ensuring consistent \(H_1\) detection across all analysis scales.
+\end{enumerate}
+
+\paragraph{Empirical.}
+\begin{enumerate}
+  \setcounter{enumi}{2}
+  \item \textbf{Multi-match scale validation:} Systematic investigation of the cutoff distance parameter space (0.5--30.0~m) on 43{,}531 frames, identifying three validated analysis regimes with stability scores of 0.84--1.00, confirmed across 10 independent matches.
+  \item \textbf{Multi-scale topological characterisation:} Detection of 4,515 \(H_1\) loops across 10 matches with closed cycle identification, real event correlation (104,722 event-topology pairs), and scale-dependent temporal dynamics.
+\end{enumerate}
+
+\subsection{Related Work}
+
+Persistent homology was introduced by \citet{Edelsbrunner2000} and placed on firm computational foundations by \citet{Zomorodian2005}. Stability of persistence diagrams under perturbation was established by \citet{CohenSteiner2007}. Efficient computation via the Vietoris--Rips filtration is provided by Ripser \citep{Bauer2021}. Persistence landscapes \citep{Bubenik2015} provide a functional representation suitable for statistical analysis.
+
+Applications of TDA to collective behaviour include \citet{Topaz2015}, who applied persistent homology to biological aggregation models and visualised scale-dependent structure across filtration values. \citet{Gu2022} applied Vietoris--Rips persistent homology to multi-agent system snapshots for change point detection, demonstrating the utility of topological features for temporal dynamics but operating at a single scale. In sports analytics, spatial analysis methods include pitch control models \citep{FernandezBornn2018} and spatio-temporal pattern recognition \citep{Gudmundsson2017}. Related perspectives model teams as coordinated multi-agent systems \citep{Duarte2012} and apply network metrics to passing and collective structure \citep{Clemente2015, Buldu2019}; these approaches complement ours but do not quantify two-dimensional enclosure through persistent homology. To our knowledge, no prior work combines domain-informed scale decomposition with persistent homology for competitive, high-frequency spatial systems, nor validates the resulting scale regimes across multiple independent matches.

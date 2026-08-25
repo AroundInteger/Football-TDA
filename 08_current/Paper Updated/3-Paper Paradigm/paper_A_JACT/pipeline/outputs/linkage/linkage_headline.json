@@ -1,0 +1,16 @@
+{
+  "n_matches": 4,
+  "n_frames_per_match": 150,
+  "n_frames_total": 600,
+  "methods": [
+    "single",
+    "complete",
+    "ward"
+  ],
+  "tactical_cutoff_m": 12.0,
+  "tactical_h1_total": {
+    "single": 153,
+    "complete": 923,
+    "ward": 936
+  }
+}

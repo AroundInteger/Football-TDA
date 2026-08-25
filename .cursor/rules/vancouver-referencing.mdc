@@ -1,0 +1,34 @@
+---
+description: Vancouver (numeric) referencing for Football-TDA papers and grants
+globs: "**/*.tex,**/Draft*.md,**/references.bib,**/04_References.md,08_current/grant/**/*.md"
+alwaysApply: true
+---
+
+# Vancouver referencing
+
+## Canonical build
+
+- **LaTeX** is the source of truth for citation numbering.
+- Use **`natbib`** with **`numbers,sort&compress`** and **`\\bibliographystyle{unsrtnat}`** so references appear in **order of first citation** (Vancouver-style numbering with compressed ranges: `[1–3]`).
+- Project locations: `08_current/paper/main.tex`, `08_current/grant/tex/main.tex`, `06_papers/Paper1_MultiscaleTDA/main.tex`.
+
+## Commands
+
+- Prefer **`\\citep{key}`** for bracketed citations `[n]`.
+- **`\\citet{key}`** remains valid; with numeric `natbib` it typically yields author text plus `[n]` where appropriate.
+- **`\\citealp{key}`** for number only when the sentence already names the work.
+
+Do **not** switch back to `apalike` or `authoryear` for these manuscripts unless a journal explicitly requires Harvard style.
+
+## Markdown drafts (`Draftv5.md`, grant `*.md`)
+
+- Either keep **author–year** for readability and sync numbers from the compiled PDF, **or** maintain **manual `[n]`** to match the LaTeX `.aux` order after each bibliography change.
+- Do not mix styles in the same deliverable without a note to the reader.
+
+## Bibliography files
+
+- Keep **`references.bib`** as BibTeX entries; ordering in the PDF is controlled by **`unsrtnat`**, not by `.bib` file order.
+
+## Journal-specific exceptions
+
+If a target journal supplies an official `.bst` or `biblatex` style, replace `unsrtnat` with that file and adjust the preamble accordingly; note the exception in the manuscript header comment.

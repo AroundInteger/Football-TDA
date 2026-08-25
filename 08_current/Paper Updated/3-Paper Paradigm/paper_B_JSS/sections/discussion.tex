@@ -1,0 +1,136 @@
+% =======================================================================
+\section{Discussion}
+
+\subsection{What Topological Persistence Adds for Practitioners}
+
+The event-correlation result does not represent new tactical knowledge:
+team shape breaks down under pressure and rebuilds during patient
+possession. Its value is operational. Persistence provides a continuous,
+automatically computed measure of tactical state that does not require
+manual coding of match footage, and that can therefore be applied
+consistently across a full match or a full season.
+
+The detected loops correspond directly to tactical formations analysts
+already describe qualitatively. A large tactical-scale loop, spanning
+five to seven cluster centroids and persisting over many frames,
+indicates that the attacking team is orbiting rather than penetrating
+the defensive structure: the interior of the ring is a dead zone
+controlled by the defence, consistent with the peripheral possession
+ring described in Section~\ref{sec:intro}. The same class of large,
+stable tactical loop also matches rest-defence arcs in positional play.
+When deeper players hold a deliberate ring in a 3-2-5 or 2-3-5 shape,
+the enclosed space is the counter-attack channel the rest defence is
+designed to deny; persistence then measures how long that protective
+geometry holds before a transition forces it to break. Rapid formation
+and dissolution of smaller loops at the individual scale, by contrast,
+corresponds to interlocking local cycles between a midfielder, winger,
+and overlapping full-back, the kind of quick combination that breaks
+down a peripheral ring by creating localised passing channels inside
+the defensive block. A sharp decrease in individual-scale persistence
+following a trigger event marks the closure of a pressing
+encirclement: the ring tightens around the ball-carrier, and its
+disappearance from the persistence diagram coincides with the moment
+all exit angles are cut off. The size and duration of the preceding
+loop quantifies how much space was enclosed before the press was
+triggered.
+
+The baseline comparison addresses a more specific concern: whether this
+measure is redundant with geometric descriptors already in use, such as
+team width or convex-hull area. The evidence indicates it is not.
+Tactical-scale persistence correlates only weakly with the four
+standard descriptors examined, and continues to explain variation in
+team shape that those four measures do not account for jointly. This is
+relevant to any decision about adding the measure to an existing
+analytics pipeline, since it would not duplicate information already
+captured. Whether the added information justifies the additional
+computational and conceptual overhead is addressed by the next two
+results.
+
+\subsection{Tactical Independence and What It Suggests for Analysis}
+
+The near-independence reported for home and away tactical persistence
+is a useful negative finding rather than a non-finding. It establishes
+a baseline: at frame-to-frame resolution, with no conditioning on match
+context, one team's tactical structure carries almost no information
+about the other's. Any future claim that tactical coupling exists
+during specific phases of play, such as a sustained press, a passage of patient possession, or the moments around a set play, must demonstrate
+an effect against this near-zero baseline, rather than against an
+unstated assumption of independence. The present analysis cannot
+distinguish between two explanations for the result: that no
+meaningful coupling exists at any timescale, or that coupling exists
+but only within specific tactical contexts that frame-by-frame
+correlation across an entire match cannot detect. Testing the second
+possibility would require conditioning the analysis on phase of play,
+which the present ten-match sample is not large enough to support with
+confidence.
+
+\subsection{Why No Predictive Gain Yet, and What Would Change That}
+
+The baseline comparison and the predictive-utility test are not in
+tension, even though one shows tactical persistence adds information
+and the other shows it does not improve prediction. The first is a
+statement about variance within the present sample: after accounting
+for the four geometric descriptors together, persistence still
+explains some of what remains. The second is a stricter test, asking
+whether that remaining explanatory power transfers to matches the model
+has never seen. With only ten matches available to estimate how much a
+single additional feature contributes, and with the geometric baseline
+already predicting build-up phases reasonably well, the margin
+available for any new feature to improve on is narrow. A genuine but
+modest effect could fail to appear in held-out performance simply
+because the sample is too small to estimate it reliably.
+
+This distinction matters for how the result should be read. It is not
+evidence that tactical-scale persistence lacks predictive value; it is
+evidence that ten matches are not enough to detect whatever predictive
+value it has, given how much of the predictive task the existing
+descriptors already account for. Resolving this will require testing
+the same comparison on a substantially larger sample, which is the
+explicit aim of the companion full-season analysis.
+
+\subsection{Limitations}
+
+The present findings are drawn from ten matches in a single
+competition, the A-League, and that scope limits how far the results
+should be generalised. Tactical systems, squad quality, and playing
+conditions vary between leagues, and a measure validated here may
+behave differently in competitions with markedly different tempos or
+spacing conventions. The companion full-season analysis, drawn from a
+single Championship season, will extend the evidence base considerably
+but will not by itself resolve cross-competition generalisability; that
+would require matches from multiple leagues, which is not yet part of
+either dataset.
+
+All tracking data analysed here are broadcast-derived, at 10~Hz. Clubs
+using higher-frequency optical tracking systems, typically around
+25~Hz, may find that persistence values computed on their own data do
+not match the magnitudes reported here, even if the qualitative
+patterns, including events tracking persistence changes and weak
+coupling with geometric descriptors, hold. Direct comparison across tracking
+technologies has not been tested and would be needed before treating
+the specific numerical thresholds reported here as transferable to a
+different data source.
+
+The predictive-utility test used a single model family, L2-regularised
+logistic regression, and a single way of combining tactical persistence
+with the geometric baseline. Other model architectures or feature
+combinations might extract value from tactical persistence that this
+particular specification does not, although the consistency of the null result across three different persistence summaries, total, count, and maximum, makes a large undetected effect from model
+choice alone less likely.
+
+\subsection{Future Directions in Other Sports}
+
+The method validated in the companion paper is not specific to
+football, and the questions asked here translate readily to other
+invasion sports with comparable spatial tracking data. Rugby union and
+rugby league involve similar individual-tactical-team scale structure,
+though pitch dimensions and player counts differ enough that the
+validated cutoff distances reported here would need re-deriving rather
+than reused directly. Basketball presents a different scale problem:
+the court is small enough, and player counts low enough, that the
+individual and tactical scales identified in football may partially
+collapse into one, which would need testing rather than assuming. In
+each case, the same two-step validation used here, establishing stable scale regimes before asking what they reveal about play, would
+need repeating on sport-specific data before any of the present
+findings could be assumed to transfer. We see this as a natural next
+step rather than a claim made by the present work.

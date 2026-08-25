@@ -8,16 +8,23 @@ Headline validation statistics for the live pack. **Subordinate to `FOUNDATION.m
 
 | Quantity | Value | Source |
 |---|---|---|
-| Cross-epoch stability (individual) | 0.96 | `PAPERS/paper_A_JACT/pipeline/outputs/regime_summary.csv` |
+| Cross-epoch stability (individual, **at adopted 2.98 m**) | 0.875 | `PAPERS/paper_A_JACT/pipeline/outputs/regime_summary.csv` |
+| Cross-epoch stability (individual, at CH optimum 1.39 m; **not adopted**) | 0.956 | same file; do not quote without the 1.39 m qualifier |
 | Cross-epoch stability (tactical) | 0.84 | `PAPERS/paper_A_JACT/pipeline/outputs/regime_summary.csv` |
 | Cross-epoch stability (team) | 1.00 | `PAPERS/paper_A_JACT/pipeline/outputs/regime_summary.csv` |
 | Multi-match individual $H_1$ presence | 97.0% ± 1.5% | Paper Table `tab:h1multi` / `PAPERS/paper_A_JACT/pipeline/outputs/numbers.json` |
 | Multi-match tactical $H_1$ presence | 19.3% ± 7.2% | Paper Table `tab:h1multi` / `PAPERS/paper_A_JACT/pipeline/outputs/numbers.json` |
 | Primary-match individual $H_1$ presence | 95.3% (143/150) | Paper Table `tab:h1single` / `uniform_150` |
 | Primary-match tactical $H_1$ presence | 12.7% (19/150) | Paper Table `tab:h1single` / `uniform_150` |
-| Spearman $\rho$ (scale complementarity) | 0.264 | Paper §3.5 / `PAPERS/paper_A_JACT/pipeline/outputs/numbers.json` |
-| Bootstrap CI (Spearman) | [0.200, 0.314] | `PAPERS/paper_A_JACT/pipeline/outputs/complementarity/bootstrap_multi_match_ci.json`; bootstrap median 0.262 |
+| Spearman $\rho$ (scale complementarity, **total $H_1$ persistence**) | 0.264 | Paper §3.5 / `PAPERS/paper_A_JACT/pipeline/outputs/numbers.json` |
+| Spearman $\rho$ (same test on **loop counts**, robustness only) | 0.211 | `numbers.json` key `spearman_rho_counts` |
+| Bootstrap CI (Spearman) | [0.200, 0.314] | `PAPERS/paper_A_JACT/pipeline/outputs/complementarity/bootstrap_multi_match_ci.json`; bootstrap median 0.262. CI is for the **total-persistence** statistic |
+| Matched-null $H_1$ excess (tactical) | observed 19.3% vs null 8.3%, excess +11.0 pp, CI [+8.0, +14.1] | `PAPERS/paper_A_JACT/pipeline/outputs/cardinality_null/summary.json` |
+| Matched-null $H_1$ excess (individual) | observed 97.0% vs null 91.2%, excess +5.8 pp, CI [+4.8, +6.9] | same file |
+| Bottleneck distance between scales | median 1.511 m; **p95 3.416 m**; max 7.994 m | `PAPERS/paper_A_JACT/pipeline/outputs/complementarity/tda_native_distances_summary.json` |
+| Landscape $L^2$ distance between scales | median 5.671 | same file |
 | Event–topology pairs | 104,722 (10 matches) | Paper §3.8 / `PAPERS/paper_A_JACT/pipeline/outputs/event_correlation_summary.json` |
+| Linkage comparison (tactical $H_1$ totals, 600 frames, 4 matches) | single 153 / complete 923 / Ward 936 | `PAPERS/paper_A_JACT/pipeline/outputs/linkage/linkage_headline.json` |
 | Validated cutoffs (individual / tactical / team) | 2.98 m / 12.0 m / 30.0 m | Paper methods |
 | Pilot LMM half-effect $\hat\beta_1$ | −0.081 | `half_level_random_effects.py` — **archive long form only** |
 | Pilot LMM $p$ | 0.079 | Archive long form only |
@@ -27,6 +34,8 @@ Headline validation statistics for the live pack. **Subordinate to `FOUNDATION.m
 **Two values that look like errors and are not.** The primary match (1996435) is analysed twice: the `uniform_150` primary-match run gives 143/150 and 19/150, and the ten-match batch row for the same match gives 144/150 and 18/150 under different sampling. The `uniform_150` figures above are canonical whenever "the primary match" is named. See `FOUNDATION.md` ruling R3.
 
 **Do not use 1.39 m.** `regime_summary.csv` records it as the individual-scale Calinski–Harabasz optimum, not the adopted cutoff. The adopted value is 2.98 m. See `FOUNDATION.md` ruling R4.
+
+**Always name the statistic when quoting $\rho=0.264$.** It is a Spearman correlation on *total $H_1$ persistence* per frame, not on loop counts. Paper A's text described it as "counts" until 2026-08-25, which did not match `steps/04_complementarity.py`; the number was always correct and the description was not. The counts version is 0.211 and is now computed in the same step so it can be quoted as a robustness check. The bootstrap CI applies to the total-persistence statistic only. See `FOUNDATION.md` ruling R13.
 
 ## Publication track
 
@@ -39,7 +48,7 @@ Headline validation statistics for the live pack. **Subordinate to `FOUNDATION.m
 
 **Naming in deliverables:** in reviewer-facing documents, refer to these papers **descriptively by content and outlet** ("the methodology paper (JACT)", "the football-analytics paper (JSS)"), **not** by number or letter, which avoids A/B versus 1/2/3 confusion. The `paper_A_JACT` / `paper_B_JSS` names are directory paths only.
 
-**BibTeX keys and V&A citation numbers.** Synced to REV3's 28-entry order of first appearance: the methodology paper is `Brown2026`, compiled number **[22]**; the football-analytics paper is `Brown2026b`, compiled number **[28]**. Both keys live in `shared/references.bib`. Re-check after any citation change; `FOUNDATION.md` §3 carries the full mapping.
+**BibTeX keys and V&A citation numbers.** Synced to REV3 plus Schenck (2022) as [6] (29-entry order of first appearance): the methodology paper is `Brown2026`, compiled number **[23]**; the football-analytics paper is `Brown2026b`, compiled number **[29]**. Both keys live in `shared/references.bib`. Re-check after any citation change; `FOUNDATION.md` §3 carries the full mapping.
 
 **Cross-domain framing.** Name adversarial **health and economic** sectors as *future* translation pathways for the follow-on Standard Grant: health as tumour–immune competition, underpinned by Co-I Powathil's mathematical-oncology expertise; economic and security as competitive logistics and autonomous-fleet coordination. Frame these as pathways and Standard-Grant scope, **not** as deliverables of this award. This satisfies the breadth reviewers expect without committing page space or in-grant impact that could not be realised in 12 months. Do **not** name the armed-conflict study. Keep the Impact section, the Standard Grant pathway paragraph and Powathil's role consistent whenever this framing changes.
 

@@ -1,0 +1,68 @@
+% ============================================================
+%  Paper 1, Multi-Scale Persistent Homology (Draft v4)
+%  Source of truth: Draftv4.md
+%  Previous GPS-centric version: main_legacy_pre_Draftv4.tex
+%  Language: British English | Engine: pdfLaTeX
+%  References: Vancouver (numbered, order of appearance; natbib + unsrtnat)
+% ============================================================
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[british]{babel}
+\usepackage{microtype}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue]{hyperref}
+
+\singlespacing
+
+% Figures: set to png (Draft v4 markdown) or pdf (vector exports) as available
+\newcommand{\figext}{png}
+
+\title{Multi-Scale Persistent Homology for Competitive Spatial Systems:\\
+Measurement-Aware Methods and Validation in Professional Football}
+
+\author{%
+  Dr Rowan Brown\\
+  Biomedical Engineering, Swansea University\\
+  \texttt{[Additional authors and affiliations as required]}
+}
+
+\date{Draft v4, \today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+We present a multi-scale persistent homology framework for analysing competitive spatial systems, validated using optical and broadcast tracking data from 11 professional football matches. Standard single-parameter Vietoris--Rips persistent homology computes topological features across all spatial scales simultaneously; for multi-agent systems with hierarchical organisation, this conflates structure at different organisational levels within a single persistence diagram. We address this through two methodological contributions. First, domain-informed hierarchical clustering with validated cutoff distances decomposes the point cloud by organisational level before computing homology, enabling scale-specific topological characterisation. Second, adaptive filtration, scaling the Vietoris--Rips threshold to the post-clustering point cloud geometry, ensures consistent detection of loop features (first homology) across all analysis scales. Systematic investigation of the cutoff distance parameter space (0.5--30.0~m, 150,213 frames) identifies three validated analysis regimes: individual (2.98~m, 99\% validation), tactical (12.0~m, 96\% validation), and team (28.11~m, 100\% validation). Multi-match application detects 4,670 individual-scale and 368 tactical-scale loop features (5,038 total) across 11 matches, with all 523 single-match loops having their geometric realisations recovered via closed cycle identification. Team-scale loop features are confirmed absent (0 loops across 1,650 frames, 11 matches), an expected null result given the 1--3 centroids produced at this scale. Sensitivity analysis demonstrates that loop detection is robust across cutoff distances from 6 to 17~m and adaptive filtration percentiles from P50 to P95. Temporal analysis reveals match-specific persistence dynamics (Wilcoxon rank-sum test, p\textless0.001 at tactical scale for the primary match), though the direction of change is not consistent across matches. Real event correlation across 10 matches (104,722 event-topology pairs) identifies statistically significant associations between on-ball engagements and persistence decreases (p\textless0.001) and between build-up phases and persistence increases (p\textless0.001). The two analysis scales capture weakly correlated but complementary information (Spearman rank correlation 0.25, p\textless0.001). These methods are domain-agnostic and applicable to any bounded competitive multi-agent system with spatial tracking data.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Keywords:} persistent homology; topological data analysis; multi-scale analysis; competitive systems; sports analytics; optical tracking
+
+\input{sections/introduction}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\section*{Acknowledgements}
+
+We thank SecondSpectrum for optical tracking data access and SkillCorner for broadcast tracking open data. Computations were performed using Ripser \citep{Bauer2021} via Ripser.py \citep{Tralie2018}.
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\end{document}

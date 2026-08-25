@@ -71,26 +71,25 @@ pool, and record the fraction of those evaluations whose cluster count
 lies within $\pm 2$ of the median. A score of $1$ means the partition is
 reproduced to within two clusters in every window at every epoch length;
 a low score means the cluster count is an artefact of the window chosen.
-The tactical scale scores $0.836$ at $12.0$~m and the team scale scores
-$1.000$ at $30.0$~m.
+At the adopted cutoffs, the individual scale scores $0.875$ at
+$2.98$~m, the tactical scale scores $0.836$ at $12.0$~m, and the team
+scale scores $1.000$ at $30.0$~m.
 
-% OPEN (FOUNDATION.md R12): the individual-scale stability score of 0.956
-% recorded in regime_summary.csv was computed at the sweep's
-% Calinski-Harabasz optimum of 1.39 m, NOT at the adopted 2.98 m. It must
-% be recomputed at 2.98 m before it is quoted here. The sentence below
-% also needs revisiting: 2.98 m is carried over from the earlier
-% normalised-coverage derivation (VALIDATED_CUTOFFS in
-% primary_match_skillcorner_analysis.py), not selected by this sweep.
-
-The individual-scale cutoff, 2.98~m, and the team-scale cutoff, 30.0~m,
-are the values selected by these automated metrics directly. The
-tactical-scale cutoff is selected differently, because the automated
-metrics disagree within the tactical range: the silhouette-optimal value
-is 16.31~m and the information-content-optimal value is 6.87~m. We
-select 12.0~m, corresponding to half the width of a standard football
-pitch zone, as a domain-informed value within this range rather than as
-the output of either metric. Section~\ref{sec:sensitivity} reports the
-resulting sensitivity of $H_1$ detection to this choice.
+The individual-scale cutoff of $2.98$~m is carried over from an earlier
+normalised-coverage calibration on this dataset and is retained here
+because it places the expected $H_0$ count in the individual regime
+validated by the sweep ($15$--$22$ clusters). The sweep's
+Calinski--Harabasz optimum lies at $1.39$~m (stability $0.956$); we do
+not adopt it, because that finer partition sits below the validated
+individual $H_0$ band on average. The team-scale cutoff, $30.0$~m, is
+selected directly by the automated metrics. The tactical-scale cutoff is
+selected differently, because the automated metrics disagree within the
+tactical range: the silhouette-optimal value is $16.31$~m and the
+information-content-optimal value is $6.87$~m. We select $12.0$~m,
+corresponding to half the width of a standard football pitch zone, as a
+domain-informed value within this range rather than as the output of
+either metric. Section~\ref{sec:sensitivity} reports the resulting
+sensitivity of $H_1$ detection to this choice.
 
 \subsection{Adaptive Filtration for $H_1$ Detection}
 \label{sec:adaptivefiltration}
@@ -141,12 +140,29 @@ distances lie closest to the midpoint of the persistence interval is
 selected as the geometric representative.
 
 \subsection{Statistical Tests}
+\label{sec:stats}
+
+To test whether $H_1$ detection reflects the arrangement of cluster
+centroids rather than merely their number, each frame is compared
+against a matched null. For a frame whose clustering yields $k$
+centroids, the null draws $k$ points uniformly from the convex hull of
+those same centroids. The null therefore matches the frame on both
+cardinality and spatial envelope, and randomises only the arrangement.
+The adaptive filtration of equation~\eqref{eq:adaptive} is recomputed on
+each null cloud, so nothing else differs between the two. We use 200
+null replicates per frame and report the excess of observed over null
+$H_1$ presence, with 95\% confidence intervals from bootstrap resampling
+over matches.
 
 Scale complementarity (Section~\ref{sec:complementarity}) is assessed by
-Spearman rank correlation and Fisher's exact test on the frame-level
-co-occurrence of $H_1$ features at the individual and tactical scales,
-with 95\% confidence intervals obtained by bootstrap resampling over
-matches (1{,}000 resamples). Bottleneck and landscape distances between
+two frame-level tests comparing the individual and tactical scales. The
+Spearman rank correlation is computed on total $H_1$ persistence, the sum
+of death minus birth over all finite $H_1$ bars in a frame; we also report
+it on loop counts as a robustness check. Fisher's exact test is computed
+on the binary co-occurrence of $H_1$ presence at the two scales. Both
+statistics carry 95\% confidence intervals obtained by bootstrap
+resampling over matches (1{,}000 resamples), the match being the
+resampling unit. Bottleneck and landscape distances between
 the two scales' persistence diagrams are computed using GUDHI, as
 described in Section~\ref{sec:adaptivefiltration}.
 

@@ -1,0 +1,242 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Scale-Specific Connected Components (\(H_0\))}
+\label{sec:scale_h0}
+
+\textbf{Single-match.} Without clustering, \(H_0\) persistence diagrams for each frame encode the full 22-point hierarchical merging sequence. After scale decomposition, \(H_0\) at each level reflects organisation at that specific scale. At the individual scale (\(\delta=2.98\)~m), \(H_0=17.85\pm3.54\) (mean \(\pm\) s.d.), varying with local player proximity patterns. At the tactical scale (\(\delta=12.0\)~m), \(H_0=7.67\pm1.63\), capturing the number of distinct tactical groups. At the team scale (\(\delta=28.11\)~m), \(H_0=1.37\pm0.49\), with 62.6\% of frames having \(H_0=1\) (all 22 players in a single cluster), 37.3\% having \(H_0=2\), and 0.1\% having \(H_0=3\).
+
+\textbf{Multi-match validation (11 matches).} The three-scale \(H_0\) structure is consistent across all 11 matches: individual \(H_0=19.07\pm0.40\) (grand mean \(\pm\) across-match s.d.), tactical \(H_0=4.96\pm0.38\), team \(H_0=1.37\pm0.08\). All matches fall within the expected \(H_0\) ranges for all three scales.
+
+\subsection{\(H_1\) Loop Detection}
+
+\textbf{Single-match (primary).} Across 149 analysis windows, the framework detects 523 \(H_1\) loops:
+
+\begin{table}[H]
+  \centering
+  \caption{Single-match \texorpdfstring{$H_1$}{H1} statistics (primary match, 149 windows).}
+  \label{tab:h1single}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}lccccc@{}}
+    \toprule
+    Scale & Total loops & Frames with loops & Mean loops/frame & Mean persistence & Max persistence \\
+    \midrule
+    Individual (2.98~m) & 470 & 148/149 (99\%) & 3.18 & \(1.781\pm1.455\) & 7.971 \\
+    Tactical (12.0~m)   & 53  & 42/149 (28\%)  & 1.26 & \(3.285\pm2.241\) & 9.392 \\
+    Team (28.11~m)      & 0   & 0/149 (0\%)    & N/A & N/A           & N/A \\
+    \bottomrule
+  \end{tabular}%
+  }
+\end{table}
+
+Individual-scale loops are frequent but transient (low mean persistence), representing dynamic player-level interactions. Tactical-scale loops are less frequent but substantially more persistent, representing stable formation structures, strategic gaps between defensive lines, midfield zones, or coordinated pressing shapes.
+
+\textbf{Team-scale \(H_1\) null result.} The absence of \(H_1\) features at the team scale is a structural consequence of the clustering: at \(\delta=28.11\)~m, the 22 players are reduced to 1--3 centroids in every frame (Section~\ref{sec:scale_h0}). The Vietoris--Rips complex on \(k\leq 3\) points in general position has at most \(\binom{k}{2}=3\) edges. A non-trivial 1-cycle requires at least 3 edges forming a cycle, but with 3 points the single potential triangle is a boundary, not a genuine 1-cycle. This null result is thus expected \emph{a priori} and confirmed empirically across all 1,650 frames (11 matches): \(H_1=0\) universally. Consequently, our multi-scale \(H_1\) analysis operates at two scales (individual and tactical) with three-scale \(H_0\) decomposition.
+
+\textbf{Multi-match validation.} Across 11 matches (1,650 uniformly sampled frames):
+
+\begin{table}[H]
+  \centering
+  \caption{Multi-match \(H_1\) statistics (11 matches).}
+  \label{tab:h1multi}
+  \begin{tabular}{@{}lcccc@{}}
+      \toprule
+      Scale & Total \(H_1\) & \(H_1\) presence rate & Mean persistence & Cross-match s.d. \\
+      \midrule
+      Individual & 4\,670 & \(97.2\%\pm1.6\%\) & 1.850 & 0.040 \\
+      Tactical   & 368    & \(20.1\%\pm7.6\%\)  & 0.692 & 0.38 \\
+      Team       & 0      & \(0.0\%\pm0.0\%\)    & N/A   & N/A \\
+      \bottomrule
+  \end{tabular}
+\end{table}
+
+The individual-scale \(H_1\) presence rate of 97.2\% (s.d.\ 1.6\%) across 11 independent matches confirms that loop structures are a near-universal feature of competitive spatial systems at this scale. Tactical-scale \(H_1\) presence of 20.1\% (s.d.\ 7.6\%) shows meaningful cross-match variability, likely reflecting differences in tactical systems and match dynamics.
+
+\subsection{Closed Cycle Structures}
+\label{sec:closed_cycles}
+
+Closed cycle identification recovers the geometric realisations of all 523 single-match \(H_1\) generators. Individual-scale cycles typically comprise 4--6 nodes (cluster centroids), corresponding to small ring-like player arrangements. Tactical-scale cycles comprise 4--5 nodes with higher persistence, corresponding to larger-scale formation gaps. See Figure~\ref{fig:cycles} for a representative geometric realisation.
+
+Representative examples:
+\begin{itemize}
+  \item \textbf{Individual, Frame 72:} 5-node cycle, persistence 7.97~m, a tight pentagonal pressing arrangement.
+  \item \textbf{Tactical, Frame 73:} 5-node cycle, persistence 9.39~m, the highest-persistence feature, corresponding to a stable gap between defensive and midfield lines.
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig2_cycle_geometry.\figext}
+  \caption{Geometric realisation of \(H_1\) loops at individual and tactical scales.}
+  \label{fig:cycles}
+\end{figure}
+
+\subsection{Temporal Evolution}
+
+\textbf{Primary match (with statistical tests).} Comparison of mean \(H_1\) persistence between match halves using the Wilcoxon rank-sum test:
+
+\begin{table}[H]
+  \centering
+  \caption{Half-time comparison of mean \(H_1\) persistence (primary match).}
+  \label{tab:temporal}
+  \begin{tabular}{@{}lccccc@{}}
+      \toprule
+      Scale & First half mean & Second half mean & Change & Wilcoxon \(p\) & Permutation \(p\) \\
+      \midrule
+      Individual & 1.759 & 1.777 & +1.0\%  & 0.630 & N/A \\
+      Tactical   & 1.380 & 1.065 & \(-\)22.8\% & \textless0.001 & \textless0.001 \\
+      \bottomrule
+  \end{tabular}
+\end{table}
+
+The tactical scale shows a statistically significant decrease in persistence from first to second half (\(p<0.001\)), whilst the individual scale shows no significant change (Figure~\ref{fig:temporal}). This result differs in sign from our preliminary windowed analysis (which suggested an increase). The sign reversal between the preliminary and definitive analyses reflects a methodological difference: the preliminary analysis used overlapping 2-minute windows (50\% overlap), in which each frame contributes to approximately two windows; the definitive analysis uses non-overlapping windows, giving each frame equal weight. The two approaches can produce directionally different half-level means when high-persistence frames cluster near window boundaries. Non-overlapping windows are methodologically preferable as they avoid the unequal frame weighting introduced by overlap, and we therefore treat this analysis as definitive.
+
+\textbf{Multi-match validation.} Across four matches with sufficient per-half data, the direction of persistence change is not consistent: one match shows a significant decrease, one shows a moderate increase, and two show negligible change. This suggests that temporal persistence dynamics are match-specific rather than universal, likely driven by tactical context, match state (score), and team-specific strategies.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig3_temporal_evolution.\figext}
+  \caption{Temporal evolution of \(H_1\) persistence across analysis windows.}
+  \label{fig:temporal}
+\end{figure}
+
+\subsection{Scale Complementarity}
+
+The two scales capture weakly correlated but functionally complementary information. Across 900 frames from 6 matches:
+
+\begin{itemize}
+  \item \textbf{Spearman rank correlation} between individual-scale and tactical-scale \(H_1\) counts: \(\rho=0.254\), \(p<0.001\).
+  \item \textbf{Fisher's exact test} on the \(2\times2\) contingency table (presence/absence at each scale): OR \(=3.52\), \(p=0.093\).
+\end{itemize}
+
+The weak but significant positive correlation indicates that frames with more individual-scale loops tend to have slightly more tactical-scale loops, plausibly because denser player configurations create topological features at multiple scales. The scales show moderate positive co-occurrence (OR \(=3.52\)) that falls short of conventional significance at this sample size (\(p=0.093\)). The Spearman \(\rho=0.254\) provides the primary quantitative evidence that the scales capture predominantly distinct structural information: individual-scale loops can appear without tactical-scale loops and vice versa.
+
+\begin{table}[H]
+  \centering
+  \caption{Comparative properties at the two \(H_1\) scales (single-match primary).}
+  \label{tab:complement}
+  \begin{tabular}{@{}lcc@{}}
+    \toprule
+    Property & Individual scale & Tactical scale \\
+    \midrule
+    Loop frequency & High (3.18/frame) & Low (1.26/frame) \\
+    Mean persistence & Low (\(1.781\pm1.455\)~m) & High (\(3.285\pm2.241\)~m) \\
+    Max persistence & 7.971~m & 9.392~m \\
+    Frames with loops & 148/149 (99\%) & 42/149 (28\%) \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Sensitivity Analysis}
+\label{sec:sensitivity}
+
+\textbf{Cutoff distance sensitivity (tactical scale).} \(H_1\) detection across \(\delta\in[6,17]\)~m on 150 frames of the primary match:
+
+\begin{table}[H]
+  \centering
+  \caption{Tactical-scale sensitivity to cutoff distance (150 frames).}
+  \label{tab:senscut}
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    \(\delta\) (m) & \(H_1\) total & \(H_1\) presence & Mean \(H_0\) \\
+    \midrule
+    6  & 364 & 90.7\% & 14.5 \\
+    8  & 259 & 80.0\% & 11.0 \\
+    10 & 126 & 53.3\% & 7.8 \\
+    12 & 53  & 28.0\% & 5.4 \\
+    14 & 18  & 10.7\% & 3.8 \\
+    16 & 4   & 2.7\%  & 3.0 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\(H_1\) detection decreases monotonically with cutoff distance, as expected: larger cutoffs produce fewer centroids and thus fewer potential cycles. The chosen \(\delta=12.0\)~m is deliberately at the conservative end of the productive range (28\% frame presence vs 90.7\% at \(\delta=6\)~m), prioritising fewer but more robust tactical loops, consistent with our single-linkage philosophy and domain-informed \(H_0\) validation. The framework produces topological features across the full plausible tactical cutoff range (6--17~m).
+
+\textbf{Adaptive filtration ablation.} At \(\delta=12.0\)~m, varying the adaptive percentile:
+
+\begin{table}[H]
+  \centering
+  \caption{Adaptive percentile ablation at \(\delta=12.0\)~m.}
+  \label{tab:sensp}
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    Percentile & \(H_1\) total & \(H_1\) presence & Mean filtration \\
+    \midrule
+    P50 & 49 & 26.7\% & 38.2~m \\
+    P60 & 52 & 27.3\% & 42.1~m \\
+    P75 & 53 & 28.0\% & 49.4~m \\
+    P90 & 53 & 28.0\% & 59.0~m \\
+    P95 & 53 & 28.0\% & 64.3~m \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+P75 is the lowest percentile that achieves maximal \(H_1\) detection (53 loops, 28\% presence), with P50 and P60 marginally under-detecting by 4 and 1 loops respectively. All percentiles from P75 upward produce identical results, confirming that the formula is insensitive to this parameter choice within a broad range and that P75 is not an overfitted selection.
+
+\subsection{Linkage Method Comparison}
+\label{sec:linkage}
+
+Empirical comparison of single-linkage, complete-linkage, and Ward's method across 600 frames from 4 matches:
+
+\begin{table}[H]
+  \centering
+  \caption{Linkage method comparison (tactical scale).}
+  \label{tab:linkage}
+  \begin{tabular}{@{}lcccc@{}}
+    \toprule
+    Method & Tactical clusters & \(H_1\) total & \(H_1\) presence & Chaining ratio \\
+    \midrule
+    Single   & \(5.0\pm1.7\)  & 153 & 22.2\% & 10.96 \\
+    Complete & \(10.8\pm1.8\) & 923 & 86.3\% & 1.38 \\
+    Ward     & \(11.0\pm1.7\) & 936 & 86.0\% & 1.33 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+At the individual scale (\(\delta=2.98\)~m), all three methods produce effectively identical results (1,743--1,765 \(H_1\) loops, 97\% presence), confirming that the chaining effect is negligible at short distances where players are genuinely nearby. At the tactical scale, single-linkage's chaining (ratio \(\approx 11\), measuring tendency to merge into elongated chains) reduces centroids from \(\sim\)11 (complete/Ward) to \(\sim\)5, substantially reducing \(H_1\) detection. Our reported single-linkage results are therefore conservative: the true topological richness at the tactical scale is likely greater than reported. At the team scale, all methods confirm \(H_1=0\) for single-linkage (as expected from 1--2 centroids), whilst complete and Ward produce team-scale loops, a finding that warrants future investigation with appropriate domain validation.
+
+\subsection{Event Correlation}
+
+Real event correlation using SkillCorner annotations across 10 matches (104,722 event-topology pairs) reveals statistically significant associations between match events and topological transitions (Figure~\ref{fig:events}):
+
+\textbf{Individual scale, significant event types:}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    Event type & Mean \(\Delta\) persistence & \(p\)-value & \(n\) \\
+    \midrule
+    On-ball engagement & \(-0.256\) & \textless0.001 & 8\,905 \\
+    Passing option     & \(-0.162\) & \textless0.001 & 24\,343 \\
+    Build-up phase       & +0.731 & \textless0.001 & 618 \\
+    Quick break          & \(-0.766\) & 0.010 & 57 \\
+    Chaotic phase        & \(-0.210\) & 0.043 & 1\,087 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{Tactical scale, significant event types:}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    Event type & Mean \(\Delta\) persistence & \(p\)-value & \(n\) \\
+    \midrule
+    Passing option     & \(-0.046\) & \textless0.001 & 24\,343 \\
+    On-ball engagement & \(-0.058\) & 0.014 & 8\,905 \\
+    Chaotic phase      & \(-0.196\) & \textless0.001 & 1\,087 \\
+    Build-up phase     & +0.342 & \textless0.001 & 618 \\
+    Quick break        & \(-0.666\) & 0.046 & 57 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The pattern is coherent across both scales: events involving spatial disruption (engagements, pressing, quick breaks) are associated with persistence decreases, whilst events involving spatial organisation (build-up) are associated with persistence increases. This is consistent with the topological interpretation: spatial disruption fragments formation structures (reducing \(H_1\)), whilst deliberate build-up creates and sustains them.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/fig4_event_correlation.\figext}
+  \caption{Persistence change by match event type.}
+  \label{fig:events}
+\end{figure}

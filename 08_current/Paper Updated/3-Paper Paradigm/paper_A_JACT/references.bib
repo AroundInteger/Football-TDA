@@ -1,0 +1,253 @@
+% =====================================================================
+% references.bib — Paper A (JACT)
+%
+% Keys match the \cite{} calls in paper_A_JACT/main.tex exactly.
+% All entries verified against published sources unless marked TODO.
+%
+% Citation style: author-year via natbib [round,authoryear] +
+%   \bibliographystyle{plainnat}  (JACT requirement).
+%
+% YEAR DISCREPANCIES TO RESOLVE BEFORE SUBMISSION
+% -----------------------------------------------
+% gu2017        : key implies 2017; entry uses Gu et al. (2022) in
+%                 Chaos, the only verified multi-agent PH change-point
+%                 paper found.  If a 2017 paper exists, replace.
+% schindler2023 : arXiv:2305.04281 (May 2023).
+%                 An earlier 2021 arXiv version may exist; verify.
+% buldu2018     : key implies 2018; verified publication is Buldú et
+%                 al. (2019) in Scientific Reports.  Text will render
+%                 as "Buldú et al. (2019)" which is correct.
+% =====================================================================
+
+
+% ---------------------------------------------------------------
+% Core persistent homology theory
+% ---------------------------------------------------------------
+
+@article{edelsbrunner2002,
+  author    = {Edelsbrunner, Herbert and Letscher, David
+               and Zomorodian, Afra},
+  title     = {Topological persistence and simplification},
+  journal   = {Discrete \& Computational Geometry},
+  year      = {2002},
+  volume    = {28},
+  number    = {4},
+  pages     = {511--533},
+  doi       = {10.1007/s00454-002-2885-2}
+}
+
+@article{zomorodian2005,
+  author    = {Zomorodian, Afra and Carlsson, Gunnar},
+  title     = {Computing persistent homology},
+  journal   = {Discrete \& Computational Geometry},
+  year      = {2005},
+  volume    = {33},
+  number    = {2},
+  pages     = {249--274},
+  doi       = {10.1007/s00454-004-1146-y}
+}
+
+@article{cohensteiner2007,
+  author    = {Cohen-Steiner, David and Edelsbrunner, Herbert
+               and Harer, John},
+  title     = {Stability of persistence diagrams},
+  journal   = {Discrete \& Computational Geometry},
+  year      = {2007},
+  volume    = {37},
+  number    = {1},
+  pages     = {103--120},
+  doi       = {10.1007/s00454-006-1276-5}
+}
+
+@article{bubenik2015,
+  author    = {Bubenik, Peter},
+  title     = {Statistical topological data analysis using
+               persistence landscapes},
+  journal   = {Journal of Machine Learning Research},
+  year      = {2015},
+  volume    = {16},
+  number    = {1},
+  pages     = {77--102}
+}
+
+% ---------------------------------------------------------------
+% Ripser and computational TDA software
+% ---------------------------------------------------------------
+
+@article{bauer2021ripser,
+  author    = {Bauer, Ulrich},
+  title     = {Ripser: efficient computation of {Vietoris--Rips}
+               persistence barcodes},
+  journal   = {Journal of Applied and Computational Topology},
+  year      = {2021},
+  volume    = {5},
+  number    = {3},
+  pages     = {391--423},
+  doi       = {10.1007/s41468-021-00071-5}
+}
+
+@article{tralie2018,
+  author    = {Tralie, Christopher and Saul, Nathaniel and Bar-On, Rann},
+  title     = {{Ripser.py}: A lean persistent homology library for {Python}},
+  journal   = {Journal of Open Source Software},
+  year      = {2018},
+  volume    = {3},
+  number    = {29},
+  pages     = {925},
+  doi       = {10.21105/joss.00925}
+}
+
+% GUDHI version previously cited: 3.11.0. Not used in the reported analyses.
+@misc{gudhi2014,
+  author    = {{The GUDHI Project}},
+  title     = {{GUDHI} User and Reference Manual},
+  year      = {2024},
+  howpublished = {\url{https://gudhi.inria.fr/}},
+  note      = {Version 3.11.0}
+}
+
+@article{tauzin2021,
+  author    = {Tauzin, Guillaume and Lupo, Umberto and Tunstall, Lewis
+               and P{\'e}rez, Julian Burella and Caorsi, Matteo
+               and Medina-Mardones, Anibal M. and Dassatti, Alberto
+               and Hess, Kathryn},
+  title     = {giotto-tda: A topological data analysis toolkit
+               for machine learning and data exploration},
+  journal   = {Journal of Machine Learning Research},
+  year      = {2021},
+  volume    = {22},
+  number    = {39},
+  pages     = {1--6}
+}
+
+% ---------------------------------------------------------------
+% Collective behaviour and multi-agent systems
+% ---------------------------------------------------------------
+
+@article{topaz2015,
+  author    = {Topaz, Chad M. and Ziegelmeier, Lori
+               and Halverson, Tom},
+  title     = {Topological data analysis of biological
+               aggregation models},
+  journal   = {PLoS ONE},
+  year      = {2015},
+  volume    = {10},
+  number    = {5},
+  pages     = {e0126383},
+  doi       = {10.1371/journal.pone.0126383}
+}
+
+% CiteTrue confirmed authentic (2022). Key updated from gu2017.
+@article{gu2022,
+  author    = {Gu, Kedi and Yan, Liang and Li, Xiang
+               and Duan, Xiaojun and Liang, Jiye},
+  title     = {Change point detection in multi-agent systems
+               based on higher-order features},
+  journal   = {Chaos},
+  year      = {2022},
+  volume    = {32},
+  number    = {11},
+  pages     = {113117},
+  doi       = {10.1063/5.0100230}
+}
+
+% ---------------------------------------------------------------
+% Multiparameter and multiscale persistence
+% ---------------------------------------------------------------
+
+% CiteTrue confirmed authentic; EMS Press book published 2023.
+% arXiv preprint appeared 2022 (arXiv:2203.14289); key retained
+% for the arXiv version. Year set to 2023 (book publication).
+@incollection{botnan2022,
+  author    = {Botnan, Magnus Bakke and Lesnick, Michael},
+  title     = {An introduction to multiparameter persistence},
+  booktitle = {Representations of Algebras and Related Structures},
+  publisher = {EMS Press},
+  year      = {2023},
+  pages     = {77--150},
+  note      = {arXiv:2203.14289}
+}
+
+@misc{schindler2023,
+  author    = {Schindler, Daniel J. and Barahona, Mauricio},
+  title     = {Analysing multiscale clusterings with persistent
+               homology},
+  year      = {2023},
+  note      = {arXiv:2305.04281},
+  eprinttype = {arXiv},
+  eprint    = {2305.04281}
+}
+
+% ---------------------------------------------------------------
+% Sports analytics (validate before submission)
+% ---------------------------------------------------------------
+
+% spearman2017 and decroos2018 replaced: both failed CiteTrue
+% verification (2026-06-23).  Replaced with Gudmundsson & Horton
+% (2017), a peer-reviewed ACM Computing Surveys article that covers
+% both pitch-control models and spatio-temporal pattern recognition.
+
+% CiteTrue verified via existing references.bib (Versions/paper).
+@article{gudmundsson2017,
+  author    = {Gudmundsson, Joachim and Horton, Michael},
+  title     = {Spatio-temporal analysis of team sports},
+  journal   = {ACM Computing Surveys},
+  year      = {2017},
+  volume    = {50},
+  number    = {2},
+  pages     = {22:1--22:34},
+  doi       = {10.1145/3054132}
+}
+
+% KEY MISMATCH: key implies 2018; verified publication year is 2019.
+% Text will render correctly as "Buldú et al. (2019)".
+@article{buldu2018,
+  author    = {Buld{\'u}, Javier M. and Busquets, Javier
+               and Echegoyen, Ignacio and Seirul{\`o}, Franc},
+  title     = {Defining a historic football team: using network
+               science to analyse {Guardiola's FC Barcelona}},
+  journal   = {Scientific Reports},
+  year      = {2019},
+  volume    = {9},
+  pages     = {13602},
+  doi       = {10.1038/s41598-019-49969-2}
+}
+
+@article{grund2012,
+  author    = {Grund, Thomas U.},
+  title     = {Network structure and team performance: The case of
+               {English Premier League} soccer teams},
+  journal   = {Social Networks},
+  year      = {2012},
+  volume    = {34},
+  number    = {4},
+  pages     = {682--690},
+  doi       = {10.1016/j.socnet.2012.08.004}
+}
+
+% ---------------------------------------------------------------
+% Data
+% ---------------------------------------------------------------
+
+@misc{SkillCorner2024,
+  author       = {{SkillCorner}},
+  title        = {{SkillCorner} open broadcast tracking data},
+  year         = {2024},
+  howpublished = {\url{https://github.com/SkillCorner/opendata}},
+  note         = {Accessed 2026}
+}
+
+% ---------------------------------------------------------------
+% Companion paper (Outlook section only — per working_foundations
+% §2 Paper A standalone rule)
+% ---------------------------------------------------------------
+
+@unpublished{paperB,
+  author = {Brown, Rowan and Powathil, Gibin and Kilduff, Liam},
+  title  = {What Persistent Homology Reveals about Football:
+            Event Correlation, Geometric Baselines, and
+            Predictive Utility},
+  year   = {2026},
+  note   = {Companion paper, in preparation; to be posted on
+            arXiv. Update with arXiv identifier once available.}
+}

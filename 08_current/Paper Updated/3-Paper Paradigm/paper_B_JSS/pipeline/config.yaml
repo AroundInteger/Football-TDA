@@ -1,0 +1,17 @@
+# Paper B (JSS) pipeline.
+# Event-correlation inputs ship in pipeline/inputs/from_paper_a/ so this
+# folder is self-contained; sibling Paper A outputs remain a fallback.
+primary_match_id: 1996435
+paper_a_outputs: inputs/from_paper_a
+
+sample_every: 100
+frames_per_match: 150
+
+bootstrap:
+  n_boot: 1000
+  seed: 42
+
+predictive:
+  n_boot: 1000
+  n_perm: 2000
+  seed: 42

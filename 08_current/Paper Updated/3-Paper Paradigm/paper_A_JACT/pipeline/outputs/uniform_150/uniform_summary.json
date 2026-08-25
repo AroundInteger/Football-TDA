@@ -1,0 +1,164 @@
+{
+  "match_id": 1996435,
+  "match_name": "Sydney FC vs Adelaide United",
+  "source": "SkillCorner broadcast tracking (open data)",
+  "fps": 10.0,
+  "total_frames_in_match": 43531,
+  "n_frames_analysed": 150,
+  "sampling": "every 290th frame",
+  "h0": {
+    "individual": {
+      "mean": 19.02,
+      "std": 2.47,
+      "min": 9,
+      "max": 22
+    },
+    "tactical": {
+      "mean": 4.77,
+      "std": 1.6,
+      "min": 2,
+      "max": 10
+    },
+    "team": {
+      "mean": 0.88,
+      "std": 1.0,
+      "min": 0,
+      "max": 2
+    }
+  },
+  "h1": {
+    "individual": {
+      "total_loops": 382,
+      "frames_with_loops": 143,
+      "frames_total": 150,
+      "presence_rate": 0.9533,
+      "mean_loops_per_frame": 2.547,
+      "mean_persistence": 1.977,
+      "std_persistence": 1.128,
+      "max_persistence": 12.991
+    },
+    "tactical": {
+      "total_loops": 21,
+      "frames_with_loops": 19,
+      "frames_total": 150,
+      "presence_rate": 0.1267,
+      "mean_loops_per_frame": 0.14,
+      "mean_persistence": 3.797,
+      "std_persistence": 3.008,
+      "max_persistence": 10.771
+    },
+    "team": {
+      "total_loops": 0,
+      "frames_with_loops": 0,
+      "frames_total": 150,
+      "presence_rate": 0.0,
+      "mean_loops_per_frame": 0.0,
+      "mean_persistence": 0.0,
+      "std_persistence": 0.0,
+      "max_persistence": 0.0
+    }
+  },
+  "halftime": {
+    "individual": {
+      "first_half_mean": 1.8902,
+      "second_half_mean": 2.0692,
+      "pct_change": 9.47,
+      "stat": 2388.0,
+      "p": 0.506331,
+      "n1": 74,
+      "n2": 69
+    },
+    "tactical": {
+      "first_half_mean": 2.7651,
+      "second_half_mean": 4.9445,
+      "pct_change": 78.82,
+      "stat": 22.0,
+      "p": 0.066193,
+      "n1": 10,
+      "n2": 9
+    }
+  },
+  "sensitivity_cutoff": [
+    {
+      "cutoff": 6,
+      "h1_total": 275,
+      "h1_presence": 0.8733,
+      "mean_h0": 13.36,
+      "mean_pers": 2.326
+    },
+    {
+      "cutoff": 8,
+      "h1_total": 162,
+      "h1_presence": 0.68,
+      "mean_h0": 9.76,
+      "mean_pers": 2.8238
+    },
+    {
+      "cutoff": 10,
+      "h1_total": 78,
+      "h1_presence": 0.4267,
+      "mean_h0": 6.95,
+      "mean_pers": 3.0366
+    },
+    {
+      "cutoff": 12,
+      "h1_total": 21,
+      "h1_presence": 0.1267,
+      "mean_h0": 4.77,
+      "mean_pers": 3.6475
+    },
+    {
+      "cutoff": 14,
+      "h1_total": 5,
+      "h1_presence": 0.0333,
+      "mean_h0": 3.5,
+      "mean_pers": 3.7663
+    },
+    {
+      "cutoff": 16,
+      "h1_total": 0,
+      "h1_presence": 0.0,
+      "mean_h0": 2.82,
+      "mean_pers": 0.0
+    },
+    {
+      "cutoff": 17,
+      "h1_total": 0,
+      "h1_presence": 0.0,
+      "mean_h0": 2.63,
+      "mean_pers": 0.0
+    }
+  ],
+  "sensitivity_percentile": [
+    {
+      "percentile": 50,
+      "h1_total": 21,
+      "h1_presence": 0.1267,
+      "mean_filtration": 38.5
+    },
+    {
+      "percentile": 60,
+      "h1_total": 21,
+      "h1_presence": 0.1267,
+      "mean_filtration": 42.7
+    },
+    {
+      "percentile": 75,
+      "h1_total": 21,
+      "h1_presence": 0.1267,
+      "mean_filtration": 50.3
+    },
+    {
+      "percentile": 90,
+      "h1_total": 21,
+      "h1_presence": 0.1267,
+      "mean_filtration": 60.5
+    },
+    {
+      "percentile": 95,
+      "h1_total": 21,
+      "h1_presence": 0.1267,
+      "mean_filtration": 65.6
+    }
+  ]
+}

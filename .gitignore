@@ -78,7 +78,18 @@ FieldTest/
 .env
 .env.local
 
-# Documentation builds
-docs/_build/
-site/
+# Paper pipelines — committed reproducibility bundle
+!08_current/Paper Updated/3-Paper Paradigm/paper_A_JACT/pipeline/outputs/
+!08_current/Paper Updated/3-Paper Paradigm/paper_A_JACT/pipeline/outputs/**
+!08_current/Paper Updated/3-Paper Paradigm/paper_B_JSS/pipeline/outputs/
+!08_current/Paper Updated/3-Paper Paradigm/paper_B_JSS/pipeline/outputs/**
+!08_current/Paper Updated/3-Paper Paradigm/paper_B_JSS/pipeline/inputs/
+!08_current/Paper Updated/3-Paper Paradigm/paper_B_JSS/pipeline/inputs/**
+!08_current/Paper Updated/3-Paper Paradigm/paper_A_JACT/figures/
+!08_current/Paper Updated/3-Paper Paradigm/paper_B_JSS/figures/
+!08_current/Paper Updated/3-Paper Paradigm/paper_A_JACT/figures/**
+!08_current/Paper Updated/3-Paper Paradigm/paper_B_JSS/figures/**
+!08_current/Paper Updated/3-Paper Paradigm/paper_C_methods/figures/
+!08_current/Paper Updated/3-Paper Paradigm/paper_C_methods/figures/**
+!08_current/Paper Updated/3-Paper Paradigm/paper_C_methods/numbers.json
 

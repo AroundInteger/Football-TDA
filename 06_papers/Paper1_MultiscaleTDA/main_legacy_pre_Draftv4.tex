@@ -1,0 +1,1336 @@
+% ============================================================
+%  Paper 1 — Multi-Scale Persistent Homology of Football
+%  Team Formations: A GPS-Aware Topological Data Analysis
+%  Framework
+%
+%  Target journal: Journal of Sports Sciences
+%  Language:       British English
+%  LaTeX engine:   pdfLaTeX
+% ============================================================
+
+\documentclass[11pt,a4paper]{article}
+
+% --- Encoding and fonts ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[british]{babel}
+\usepackage{microtype}
+
+% --- Mathematics ---
+\usepackage{amsmath,amsfonts,amssymb}
+
+% --- Layout and formatting ---
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{parskip}
+
+% --- Tables ---
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{array}
+
+% --- Figures ---
+\usepackage{graphicx}
+\usepackage{float}
+
+% --- References ---
+\usepackage[round,authoryear]{natbib}
+
+% --- Hyperlinks (load last) ---
+\usepackage[colorlinks=true,
+            linkcolor=black,
+            citecolor=black,
+            urlcolor=blue]{hyperref}
+
+% --- Double spacing for peer review ---
+\doublespacing
+
+% ============================================================
+\begin{document}
+
+% --- Title block ---
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+
+{\LARGE\bfseries Multi-Scale Persistent Homology of Football
+Team Formations: A GPS-Aware Framework for Topological
+Analysis of Player Positioning Data\par}
+
+\vspace{1.5cm}
+
+{\large
+[Author names and affiliations withheld for peer review]
+\par}
+
+\vspace{1cm}
+
+\textbf{Target journal:} Journal of Sports Sciences
+
+\vspace{1cm}
+
+\textbf{Running head:} Multi-Scale TDA of Football Formations
+
+\vspace{1cm}
+
+\textbf{Word count (approximate):} 7\,500
+
+\vspace{1cm}
+
+\textbf{Corresponding author:} [withheld for review]
+
+\vfill
+\today
+\end{titlepage}
+
+% ============================================================
+\begin{abstract}
+\noindent
+Quantifying the geometric structure of team formations in
+football is central to tactical analysis, yet most existing
+methods reduce rich positional data to scalar summaries that
+are sensitive to coordinate choice or arbitrary thresholds.
+We present a multi-scale persistent homology framework that
+characterises team formations as topological objects at
+three organisational scales --- individual player (2.98~m),
+tactical group (12.0~m), and team (30.0~m) --- validated
+across 11 professional matches (1 SecondSpectrum optical
+tracking, 10 SkillCorner broadcast tracking).
+Domain-informed hierarchical clustering decomposes the
+22-player point cloud by organisational level, and an
+adaptive filtration formula ensures consistent H1 (loop)
+detection across all scales.  Application to the primary
+match detects 523 H1 loops (470 individual-scale, 53
+tactical-scale), with closed cycle identification recovering
+all geometric realisations.  Multi-match validation across
+11 matches detects 5,038 H1 loops in total (4,670
+individual-scale and 368 tactical-scale) and confirms the
+three-scale structure: individual H1
+presence 97.2\% \(\pm\) 1.6\%, tactical 20.1\% \(\pm\) 7.6\%,
+team 0\% (a structural null result given 1--3 centroids).
+Sensitivity analysis demonstrates robust H1 detection across
+cutoff distances 6--17~m and filtration percentiles P50--P95.
+Real event correlation across 10 matches (104,722
+event-topology pairs) identifies significant associations
+between on-ball engagements and persistence decreases
+(\(p < 0.001\)) and between build-up phases and persistence
+increases (\(p < 0.001\)).  Temporal analysis reveals
+match-specific persistence dynamics (Wilcoxon rank-sum
+\(p < 0.001\) at the tactical scale), though the direction
+of change is not consistent across matches.  The framework
+is domain-agnostic and applicable to any bounded competitive
+multi-agent system with spatial tracking data.
+
+\bigskip
+\noindent
+\textbf{Keywords:} topological data analysis; persistent
+homology; football; GPS tracking; team formations; Vietoris--Rips
+complex; Betti numbers
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Introduction}
+\label{sec:introduction}
+
+The increasing availability of high-frequency GPS and optical
+tracking data in professional football has created an
+opportunity to study team dynamics with unprecedented
+temporal and spatial resolution \citep{Cummins2013,Aughey2011}.
+Yet translating raw positional time-series into
+tactically meaningful descriptions of formation behaviour
+remains methodologically challenging.  Classical approaches
+such as centroid distances, team spread, and convex-hull
+area provide useful scalar summaries but are sensitive to
+the choice of reference player or coordinate system, and
+they discard the relational geometry between players
+\citep{Duarte2012,Folgado2014}.  Graph-theoretic methods
+partially address this by encoding pairwise proximity as an
+adjacency matrix, but the resulting metrics are typically
+defined at a single spatial threshold and therefore capture
+only one scale of interaction \citep{Clemente2015}.
+
+Topological data analysis (TDA) offers an alternative that
+is simultaneously coordinate-free, multi-scale, and
+geometrically descriptive \citep{Carlsson2009}.  The central
+tool, persistent homology, summarises how connected
+components, loops, and higher-dimensional voids in a point
+cloud are born and die as a distance parameter is
+continuously increased.  The resulting \emph{persistence
+diagram} encodes this lifetime information in a
+representation that is stable under small perturbations of
+the underlying data \citep{CohenSteiner2007}.  Applied to
+a time series of player positions, persistent homology
+provides a principled, threshold-free description of
+formation structure at every spatial scale simultaneously.
+
+\subsection{Topological intuition for spatial formations}
+\label{sec:intuition}
+
+Before introducing the formal machinery, we briefly translate
+the key topological concepts into spatial and tactical
+language.  Persistent homology detects two kinds of structure
+in a set of player positions.  The first ---
+\emph{connected components} (\(H_0\)) --- counts how many
+spatially distinct groups of players exist at a given
+proximity threshold: if two players are close enough to be
+considered ``together,'' they belong to the same component.
+As the proximity threshold increases, isolated players merge
+into groups, groups merge into larger units, and eventually
+all players form a single cluster.  This is the familiar
+hierarchical clustering sequence, and its topological summary
+provides a principled, coordinate-free measure of team
+compactness and group structure.
+
+The second kind of structure --- \emph{loops} (\(H_1\)) ---
+is less intuitive but tactically richer.  A loop appears when
+a ring-like arrangement of players encloses empty space.  At
+the individual scale, this might be three or four players
+forming a passing triangle or diamond with no one in the
+centre --- a structure fundamental to possession play.  At the
+tactical scale, a loop corresponds to a larger ring of cluster
+centroids surrounding an unoccupied zone: the gap between a
+defensive line and a midfield line, the space inside a
+pressing trap, or the void at the centre of a zonal marking
+scheme.  The \emph{persistence} of a loop --- the range of
+distance thresholds over which it exists --- measures how
+geometrically robust the enclosure is.  A loop that persists
+across a wide range of thresholds represents a deliberate,
+stable spatial arrangement; one that appears and vanishes
+quickly is transient and likely incidental.
+
+Why prefer this topological description over conventional
+spatial metrics such as convex hull area, team spread, or
+nearest-neighbour distance?  Those metrics capture global
+properties (how much space a team occupies) or local
+properties (how close individual players are), but they do not
+capture \emph{relational geometry} --- the arrangement of
+players relative to one another and the spaces they enclose.
+A convex hull cannot distinguish between a compact block and a
+ring of the same area with a gap in the centre; persistent
+homology can, because the ring contains a loop and the block
+does not.  This distinction is precisely the kind of
+structural information relevant to tactical analysis.
+
+\subsection{Previous work and remaining gaps}
+
+Despite the clear conceptual fit, TDA has seen only limited
+application to team-sports analytics
+\citep{Gudmundsson2017,Buldu2019}.  Several obstacles have
+slowed adoption.  First, raw GPS coordinates contain
+measurement noise of the order of 0.5--1.0~m at 10~Hz
+\citep{Aughey2011}, which, if unaddressed, produces
+spurious fine-scale topological features.  Second, when
+persistent homology is computed without specifying a maximum
+filtration distance, the ripser algorithm returns a zeroth
+Betti number \(\beta_0\) equal to the full point-cloud size
+(22 in an 11-versus-11 match), because every point is
+initially its own connected component and no connections
+form until the filtration progresses.  In the literature
+this artefact has gone largely unreported, yet it renders
+the most natural topological feature---the number of
+connected player clusters---uninformative and potentially
+misleading.
+
+The present paper makes three contributions to address
+these gaps.  First, we characterise and correct the
+GPS-induced \(\beta_0\) counting artefact through a
+GPS-aware pre-processing step that collapses co-located
+points before homology computation.  Second, we present the
+first systematic multi-scale temporal analysis of persistent
+homology in football, covering window sizes of 1, 2, 5, and
+10~minutes and quantifying how zeroth- and first-order
+topological features depend on the chosen temporal
+resolution.  Third, we introduce an adaptive filtration
+algorithm for detecting \emph{closed} first-order loops
+(i.e.\ genuine cycles in the Vietoris--Rips complex) at
+two spatial scales representing individual-player proximity
+and tactical-group structure, and we demonstrate that
+tactical-scale loops exhibit markedly higher persistence
+than individual-scale loops.
+
+The remainder of the paper is organised as follows.
+Section~\ref{sec:background} provides the necessary
+background in persistent homology.
+Section~\ref{sec:methods} describes the data, pipeline, and
+analysis strategy.  Section~\ref{sec:results} presents all
+quantitative results, and Sections~\ref{sec:discussion}
+and~\ref{sec:conclusion} discuss implications and conclude.
+
+% ============================================================
+\section{Theoretical Background}
+\label{sec:background}
+
+\subsection{Simplicial complexes and the Vietoris--Rips
+filtration}
+
+Let \(\mathcal{P} = \{p_1, \dots, p_n\} \subset \mathbb{R}^2\)
+be a finite point cloud representing the on-pitch positions
+of \(n\) players at a given instant.  For a real-valued
+parameter \(\varepsilon \geq 0\), the \emph{Vietoris--Rips
+complex} \(\mathrm{VR}(\mathcal{P},\varepsilon)\) is the
+abstract simplicial complex whose \(k\)-simplices are all
+subsets of \(\mathcal{P}\) of cardinality \(k+1\) whose
+pairwise distances are all at most \(\varepsilon\).  As
+\(\varepsilon\) increases from zero to the diameter of
+\(\mathcal{P}\), additional edges, triangles, and higher
+simplices appear, causing topological features to be
+\emph{born} and, when they become surrounded and filled,
+to \emph{die}.
+
+\subsection{Persistent homology and persistence diagrams}
+
+Persistent homology tracks how the \(k\)-th homology group
+\(H_k\bigl(\mathrm{VR}(\mathcal{P},\varepsilon)\bigr)\)
+evolves with \(\varepsilon\) \citep{Zomorodian2005,
+Edelsbrunner2010}.  For \(k=0\), the generators of \(H_0\)
+are connected components (\(\beta_0\)); for \(k=1\), they
+are independent loops or one-dimensional holes (\(\beta_1\));
+for \(k=2\), they are two-dimensional voids (\(\beta_2\)).
+Each generator is characterised by a \emph{birth} value
+\(b\) at which it appears and a \emph{death} value \(d\) at
+which it merges with an older feature.  The
+\emph{persistence} \(d - b\) quantifies the feature's
+geometric prominence.  The multiset of all birth--death
+pairs \((b_i, d_i)\) is the \emph{persistence diagram}
+\(\mathrm{Dgm}_k(\mathcal{P})\), and the \emph{Wasserstein
+stability theorem} guarantees that small perturbations of
+the input point cloud produce small perturbations of the
+diagram under an appropriate distance metric
+\citep{CohenSteiner2007}.
+
+\subsection{The \(\beta_0\) counting artefact}
+\label{sec:artefact}
+
+When the Vietoris--Rips filtration is computed with no upper
+bound on \(\varepsilon\), all \(n\) points are initially
+isolated and the algorithm records \(\beta_0 = n\) features
+born at \(\varepsilon = 0\).  As \(\varepsilon\) grows,
+components merge and all but one feature die.  In practice,
+persistent homology libraries such as Ripser
+\citep{Tralie2018} default to reporting the full birth--death
+sequence, so a naive call
+\texttt{ripser(point\_cloud, maxdim=1)} returns a
+\(k=0\) diagram containing \(n\) features, the vast
+majority of which are born and die at the same filtration
+value.  For GPS data sampled at 10~Hz, consecutive frames
+for the same player are spatially very close, so the
+reported \(\beta_0\) reflects the number of input rows
+rather than the number of distinct player clusters.  With 22
+players tracked at 10~Hz over a two-minute window this
+artefact inflates \(\beta_0\) from approximately 22
+(meaningful: number of player clusters) to 240 or more
+(artefactual: number of sampled frames per player).
+
+The remedy is to supply a maximum filtration threshold
+\(\varepsilon_{\max}\) chosen to reflect the natural spatial
+scale of the data.  For GPS data the appropriate scale is
+the measurement precision, which is of the order of 1~m for
+second-generation stadium GPS systems \citep{Cummins2013}.
+Setting \(\varepsilon_{\max} = 1.0\,\text{m}\) before
+computing \(\beta_0\) merges points that are within GPS
+noise, returning a value that genuinely reflects
+the number of topologically distinct player clusters.
+
+% ============================================================
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Data}
+\label{sec:data}
+
+Positional data were obtained from one professional football
+match using the SecondSpectrum tracking system, which
+employs stadium-mounted cameras supplemented by
+player-worn GPS sensors to provide \(x\)--\(y\) coordinates
+for all 22 outfield players at a sampling frequency of
+10~Hz.  Coordinates were expressed in a pitch-centred
+system in which the origin coincides with the centre
+circle, the \(x\)-axis runs along the length of the pitch,
+and the \(y\)-axis runs along the width, giving a field
+extent of approximately
+\([-52.5, 52.5]\,\text{m} \times [-34, 34]\,\text{m}\).
+All positional records were confirmed complete (no missing
+frames) and required no interpolation.
+
+\subsection{GPS-aware pre-processing}
+\label{sec:preprocess}
+
+Prior to homology computation, a GPS-aware clustering step
+was applied to each temporal window using a hierarchical
+agglomerative algorithm with a maximum linkage distance of
+1.0~m.  Points within this radius are collapsed to their
+cluster centroid, ensuring that multiple consecutive
+observations of the same player do not appear as distinct
+topological features.  The 1.0~m threshold was selected to
+match the manufacturer-reported root-mean-square positional
+error of the tracking system \citep{Cummins2013}, and a
+sensitivity analysis confirmed that the main results are
+stable for thresholds in the range 0.5--1.5~m.
+
+\subsection{Temporal windowing}
+\label{sec:windows}
+
+To investigate scale dependence, the 90-minute match was
+analysed using four non-overlapping window sizes: 1, 2, 5,
+and 10~minutes.  Each window yields one point cloud per
+team consisting of all player positions observed in that
+interval; the two teams' point clouds were analysed both
+separately and jointly.  Table~\ref{tab:windows} summarises
+the number of windows at each scale.
+
+\subsection{Persistent homology computation}
+\label{sec:computation}
+
+Persistent homology up to dimension 2 was computed using the
+Python package Ripser \citep{Bauer2021,Tralie2018} with a maximum
+filtration distance set to the 80th percentile of all
+pairwise Euclidean distances within the window.  This
+percentile threshold was selected using an information-based
+criterion (see Section~\ref{sec:cutoff}), and ensures that
+the filtration captures the topologically relevant scale of
+player interactions without running to the full pitch
+diameter.  From each persistence diagram we extracted:
+
+\begin{itemize}
+  \item \(\beta_0\): the number of \(H_0\) features with
+        persistence \(> 0\) (equivalently, the number of
+        connected components that survive beyond the
+        GPS-aware merge step);
+  \item \(\beta_1\): the number of \(H_1\) features
+        (independent loops) in the filtered complex;
+  \item the \emph{complexity index}
+        \(\kappa = 1 + \beta_1 / \beta_0\), which captures
+        the density of loops relative to components.
+\end{itemize}
+
+\subsection{Cutoff distance selection}
+\label{sec:cutoff}
+
+To determine the optimal maximum filtration parameter
+\(\varepsilon_{\max}\) systematically, we evaluated three
+criteria across temporal epochs: (i) information content of
+the resulting persistence diagram; (ii) silhouette score of
+the induced clustering; and (iii) Calinski--Harabasz score.
+For each window, the value of \(\varepsilon_{\max}\) that
+maximised each criterion was recorded, and stability was
+quantified as the coefficient of variation of optimal values
+across windows.
+
+\subsection{Multi-scale spatial hierarchy}
+\label{sec:hierarchy}
+
+To validate the three-scale interpretation of the VR complex
+independently of the temporal windowing, we additionally
+analysed 150 individual frames at three fixed spatial
+cut-off distances corresponding to the individual
+(2.98~m), tactical (12.0~m), and team (30.0~m) scales.
+At each scale the expected topological ordering---individual
+\(\beta_0 >\) tactical \(\beta_0 >\) team \(\beta_0\)---
+was verified and the proportion of frames in which this
+ordering was satisfied was recorded.
+
+\subsection{StatsBomb cross-validation}
+\label{sec:statsbomb}
+
+To assess whether results obtained from the SecondSpectrum
+match generalise beyond the primary dataset, we applied
+the GPS-aware pipeline to event-linked tracking data from
+three StatsBomb open-access matches
+\citep[match IDs 3879600, 3901250, and 3754300]{Gudmundsson2017}
+using 2-minute non-overlapping windows, yielding 24, 16, and
+30 windows per match respectively (70 windows in total).
+
+\subsection{H1 closed-cycle detection}
+\label{sec:h1cycles}
+
+Standard persistent homology returns birth--death intervals
+for first-order features but does not directly identify
+which players form each loop.  To recover the closed-cycle
+structure we applied a two-scale spatial analysis.  At the
+\emph{individual scale} (cut-off distance 2.98~m, chosen to
+capture inter-player distances within tactical groupings and
+validated on approximately 99\% of frames), the point cloud
+consists of raw GPS positions.  At the \emph{tactical scale}
+(cut-off distance 12.0~m, validated on approximately 96\%
+of frames), positions are first merged into tactical groups
+by hierarchical clustering before homology is computed.
+
+For each \(H_1\) feature with non-trivial persistence,
+the corresponding closed cycle was extracted as follows.
+An adjacency graph was constructed from all edges whose
+filtration distance lies within the feature's
+\([b, d]\) interval.  Breadth-first search (BFS) was applied
+from each vertex to find short closed cycles of length 3--8.
+BFS is preferred over depth-first search because it discovers
+shortest cycles first, yielding the minimal enclosing
+arrangements that are most geometrically natural as
+representatives of formation structures (e.g., the tightest
+ring of players surrounding a gap, rather than an elongated
+path that happens to close).  We do not enumerate the full
+cycle space of the graph --- which can be exponential --- but
+rather collect the set of simple cycles up to length~8
+reachable by BFS from each vertex.  Duplicate cycles
+(rotations and reversals of the same cycle) were removed,
+and cycles with fewer than three vertices were discarded.
+Each surviving cycle was assigned a quality score
+
+\begin{equation}
+  s = \frac{1}{1 + \overline{\lvert d_e - m \rvert}},
+  \quad m = \tfrac{b + d}{2},
+\label{eq:score}
+\end{equation}
+
+\noindent
+where \(\overline{\lvert d_e - m \rvert}\) is the mean
+absolute deviation of edge lengths from the persistence
+midpoint \(m\).  A higher score indicates that the cycle's
+edges sit close to the midpoint of the \([b, d]\) interval,
+making the cycle maximally representative of the detected
+topological feature.  The highest-scoring cycle was
+selected as the representative loop.  The filtration range
+was made adaptive to prevent stalling at the tactical scale:
+
+\begin{equation}
+  \varepsilon_{\text{adapt}} =
+    \max\!\Bigl(
+      Q_{75}\!\left(d_{ij}\right),\;
+      \max\!\bigl(5.0,\; d_{\text{cut}} \times 2.0\bigr)
+    \Bigr),
+\label{eq:adaptive}
+\end{equation}
+
+\noindent
+where \(Q_{75}(d_{ij})\) is the 75th percentile of all
+pairwise inter-point distances in the window and
+\(d_{\text{cut}}\) is the spatial cut-off distance.  Without
+this adaptation, the fixed maximum filtration of 1.5~m used
+in the uncorrected pipeline was too small to form any
+simplices at the tactical scale, yielding \(\beta_1 = 0\)
+at that scale for every frame.
+
+% ============================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{Resolution of the \(\beta_0\) counting artefact}
+\label{sec:artefact_results}
+
+Without the GPS-aware pre-processing step, the mean
+\(\beta_0\) across all 2-minute windows was 240.0 with
+zero variance (every window reported exactly one
+\(H_0\) feature per tracked player position, irrespective
+of formation).  After applying the 1.0~m merge cutoff,
+\(\beta_0\) dropped to \(21.71 \pm 0.59\) (mean
+\(\pm\) standard deviation), closely matching the 22-player
+complement and showing genuine between-window variation
+that reflects changes in player-cluster connectivity.
+Compact formations---in which players are more tightly
+grouped---yielded \(\beta_0 \approx 22\) (near-full
+separation), whilst transitional phases produced values as
+low as 20 as players consolidated into larger connected
+components.  This result confirms that the artefact arose
+solely from the absence of a distance threshold and was
+fully resolved by the GPS-aware clustering step.
+
+\subsection{Multi-scale persistent homology}
+\label{sec:multiscale}
+
+Table~\ref{tab:multiscale} presents the mean and standard
+deviation of \(\beta_0\), \(\beta_1\), and \(\kappa\) for
+each temporal scale.  Several patterns are evident.
+
+\paragraph{Stability of \(\beta_0\).}
+The mean \(\beta_0\) is remarkably consistent across all
+four temporal scales, ranging from \(21.59 \pm 0.86\) at
+the 1-minute scale to \(21.80 \pm 0.52\) at the 5-minute
+scale.  This stability indicates that the number of
+connected player clusters is a robust property of the
+formation that does not depend on the length of the
+observation window once the GPS artefact is removed.
+
+\paragraph{Scale dependence of \(\beta_1\).}
+In contrast, the mean \(\beta_1\) shows moderate scale
+dependence.  At the 1-minute scale \(\beta_1 = 3.17 \pm 1.38\),
+increasing monotonically to a peak of \(3.74 \pm 1.24\) at
+5~minutes before declining slightly to \(3.48 \pm 1.36\) at
+10~minutes.  The peak at 5~minutes suggests that this scale
+best captures the tactical formation loops that persist
+across sequences of individual movements: shorter windows
+are dominated by transient player interactions, whilst
+longer windows average over multiple tactical phases,
+reducing apparent loop complexity.
+
+\paragraph{Temporal stability of optimal filtration.}
+The optimal maximum filtration distance---selected by the
+information-content criterion---varied from approximately
+15.9~m to 46.6~m across individual windows, with a mean
+of \(27.45 \pm 5.88\)~m at the 1-minute scale and
+\(28.78 \pm 5.48\)~m at the 2-minute scale.  Temporal
+stability of the mean optimal cutoff was high across all
+criteria: information content (stability \(= 0.983\)),
+silhouette score (stability \(= 0.968\)), and
+Calinski--Harabasz score (stability \(= 0.874\)).  The
+strong agreement across criteria indicates that the chosen
+filtration range is robust.
+
+\subsection{Segment-level formation metrics}
+\label{sec:segments}
+
+To examine whether first- and second-half formation
+complexity differ, the match was divided into four
+15-minute segments: First Half Start, First Half End,
+Second Half Start, and Second Half End.  The consistency
+score---the proportion of windows in which the same
+topological structure was observed---remained above 0.82
+throughout the match.  The complexity index \(\kappa\)
+ranged from 1.019 to 1.022 across the four segments,
+indicating that the ratio of loops to components was
+essentially constant over the course of the match.
+Table~\ref{tab:segments} gives the full segment breakdown.
+
+\subsection{H1 closed cycles}
+\label{sec:h1loops}
+
+The H1 cycle-detection algorithm was applied to 149 frames
+drawn from across the match.  A total of 523 closed cycles
+were identified: 470 at the individual scale (mean
+3.18~cycles per frame) and 53 at the tactical scale (mean
+1.26~cycles per frame).  Table~\ref{tab:h1stats}
+summarises the key statistics by scale.
+
+\paragraph{Persistence ranges.}
+Individual-scale loops had persistence values in the range
+\([0.00, 7.97]\), with a mean of \(1.78 \pm 1.45\)
+(mean \(\pm\) standard deviation, computed across all
+470 detected loops).
+Tactical-scale loops had persistence values in the range
+\([0.19, 9.39]\), with a mean of \(3.29 \pm 2.24\)
+(computed across all 53 detected loops).
+The substantially higher mean persistence at the tactical
+scale---a factor of \(3.29/1.78 \approx 1.85\)---confirms
+the expectation that group-level topological structures are
+more geometrically stable than player-level ones: a loop
+formed by a defensive line or a midfield diamond persists
+across a wider filtration range than one formed by two or
+three players executing a transient passing triangle.
+
+\paragraph{Most persistent cycles.}
+The most persistent individual-scale loop occurred in
+frame~72 (persistence \(= 7.971\); Figure~\ref{fig:cycles}a),
+where the mean persistence across both loops in that frame
+was \(4.726 \pm 4.589\).
+The most persistent tactical-scale loop occurred in
+frame~73 (persistence \(= 9.392\); Figure~\ref{fig:cycles}b),
+which also contained a second loop of persistence 2.895,
+giving a frame mean of \(6.143 \pm 4.594\).
+Other high-persistence tactical frames include frame~137
+(single loop, persistence 7.922) and frame~116 (single
+loop, persistence 8.481).
+High-persistence tactical loops were predominantly single
+cycles per frame, arranged around a pitch region left
+unoccupied between two tactical groups, consistent with
+deliberate spatial zoning in formation play.
+
+\paragraph{Frames with detected loops.}
+At the individual scale, 148 of the 149 analysed frames
+contained at least one H1 loop (99.3\% coverage).  At the
+tactical scale, 42 of 149 frames contained at least one
+loop (28.2\%), suggesting that closed tactical cycles are
+episodic rather than ubiquitous, appearing during specific
+phases of play in which group-level formation gaps are
+geometrically prominent.
+
+\subsection{Multi-scale spatial hierarchy}
+\label{sec:hierarchy_results}
+
+Analysis of 150 individual frames at three fixed spatial
+cut-off distances confirmed the expected topological
+ordering across scales.
+Table~\ref{tab:hierarchy} summarises the mean \(\beta_0\)
+and \(\beta_1\) at each scale.
+The ordering individual \(\beta_0 >\) tactical \(\beta_0 >\)
+team \(\beta_0\) was satisfied in 96.7\% of frames (145 of
+150), providing strong evidence that the three spatial scales
+capture genuinely distinct levels of formation organisation
+rather than artefacts of the cut-off distance choice.
+The team scale (\(d_{\text{cut}} = 30\)~m) consistently
+returned \(\beta_0 \in \{1, 2\}\), reflecting the expected
+two-team partition of the pitch once all within-team
+distances are spanned, and \(\beta_1 = 0\), confirming that
+no loops form at the coarsest scale.
+
+\subsection{StatsBomb cross-validation}
+\label{sec:statsbomb_results}
+
+Applying the GPS-aware pipeline to three StatsBomb
+open-access matches (70 windows of 2~minutes each) yielded
+mean \(\beta_0\) values of 19.9--21.5 across matches, well
+within the range observed in the primary dataset
+(21.71~\(\pm\)~0.59).  Mean \(\beta_1\) ranged from 1.9 to
+2.8 per window, somewhat lower than the 3.24 observed in
+the primary dataset but consistent with the cross-match
+variability expected from different teams and tactical
+styles.  The conservation stability of total team spread
+across the three matches was 0.874--0.935, indicating that
+the total pitch occupancy of both teams combined is
+remarkably consistent within individual matches.  Full
+cross-match statistics are reported in
+Table~\ref{tab:crossval}.
+
+\subsection{Multi-match validation (11 matches)}
+\label{sec:multivalidation}
+
+To assess generalisability beyond the three StatsBomb matches,
+the pipeline was applied to 10 additional A-League matches
+from the SkillCorner open data repository (broadcast-derived
+tracking at 10~Hz), together with the primary SecondSpectrum
+match, yielding 11 matches in total with 150 uniformly sampled
+frames per match.  Table~\ref{tab:multivalidation} summarises
+the aggregate results.
+
+\begin{table}[H]
+\centering
+\caption{Multi-match validation across 11 professional
+  matches (1 SecondSpectrum + 10 SkillCorner).  Values are
+  grand means across matches \(\pm\) cross-match standard
+  deviation.}
+\label{tab:multivalidation}
+\begin{threeparttable}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Scale      & \(\beta_0\) (grand mean) & Total \(H_1\) & \(H_1\) presence rate & Mean persistence \\
+\midrule
+Individual & \(19.07 \pm 0.40\) & 4\,670 & \(97.2\% \pm 1.6\%\) & 1.850 \\
+Tactical   & \(4.96  \pm 0.38\) & 368    & \(20.1\% \pm 7.6\%\) & 0.692 \\
+Team       & \(1.37  \pm 0.08\) & 0      & \(0.0\%  \pm 0.0\%\) & --- \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Individual-scale \(H_1\) presence of \(97.2\% \pm 1.6\%\)
+  across 11 matches confirms loop structures as a near-universal
+  feature.  Team-scale \(H_1 = 0\) is confirmed in all 1\,650
+  frames across all matches; the VR complex on 1--3 centroids
+  cannot contain non-trivial 1-cycles.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\subsection{Temporal analysis with statistical tests}
+\label{sec:temporal_stats}
+
+Figure~\ref{fig:temporal} shows the temporal evolution of mean
+\(H_1\) persistence across all analysis windows for the primary
+match, with smoothed trend lines.  Comparison of mean \(H_1\)
+persistence between match halves was assessed using the Wilcoxon
+rank-sum test.  For the primary SecondSpectrum match
+(150\,214 frames, non-overlapping 100-frame windows):
+
+\begin{itemize}
+  \item \textbf{Individual scale}: first half \(1.759\),
+        second half \(1.777\) (\(+1.0\%\)),
+        \(p = 0.630\) (not significant).
+  \item \textbf{Tactical scale}: first half \(1.380\),
+        second half \(1.065\) (\(-22.8\%\)),
+        \(p < 0.001\) (highly significant).
+\end{itemize}
+
+\noindent
+The tactical-scale result differs in sign from our preliminary
+windowed analysis (which suggested an increase of
+\(+18.8\%\)).  The reversal arises from a specific
+methodological difference: the preliminary analysis used
+overlapping temporal windows with summary statistics (mean
+persistence per window), which introduces temporal
+autocorrelation between adjacent windows and aggregates
+across transitions in match status (e.g., averaging a
+high-persistence build-up phase with a low-persistence
+pressing phase within the same window).  The revised
+analysis computes persistence at full-frame resolution (every
+100th frame, non-overlapping), attributing each observation
+to a single match state.  At this resolution, the second-half
+decrease reflects the predominance of compact, disrupted
+formations (lower persistence) as the match progressed --- a
+pattern masked in the windowed analysis by the smoothing
+effect of overlapping aggregation.  We regard the frame-level
+analysis as definitive because it avoids the statistical
+non-independence introduced by window overlap and provides
+finer temporal attribution.
+
+Across four matches with sufficient per-half data, the
+direction of persistence change was not consistent: one
+match showed a significant decrease, one a moderate increase,
+and two negligible change, indicating that half-level
+persistence dynamics are match-specific rather than universal.
+
+\subsection{Real event correlation}
+\label{sec:event_correlation}
+
+Topological transitions around match events were quantified
+using SkillCorner dynamic event annotations across 10 matches
+(104\,722 event-topology pairs).  For each event, persistence
+change was computed in a \(\pm 5\)-frame window.  At the
+SkillCorner sampling rate of 10~Hz, \(\pm 5\) frames
+corresponds to \(\pm 0.5\)~seconds --- a window chosen to
+capture the immediate topological response to an event while
+minimising contamination from subsequent unrelated events.
+Football events such as tackles, passes, and pressing
+triggers produce spatial rearrangements within 0.3--1.0
+seconds (approximately 1--3 player reaction times), so a
+\(\pm 0.5\)-second window isolates the proximate topological
+effect.  Key significant associations (Mann-Whitney \(U\)):
+
+\begin{itemize}
+  \item \textbf{On-ball engagements}: mean \(\Delta\)
+        persistence \(-0.256\), \(p < 0.001\) (individual);
+        \(-0.058\), \(p = 0.014\) (tactical).
+  \item \textbf{Build-up phases}: \(+0.731\), \(p < 0.001\)
+        (individual); \(+0.342\), \(p < 0.001\) (tactical).
+  \item \textbf{Quick breaks}: \(-0.766\), \(p = 0.010\)
+        (individual); \(-0.666\), \(p = 0.046\) (tactical).
+  \item \textbf{Chaotic phases}: \(-0.210\), \(p = 0.043\)
+        (individual); \(-0.196\), \(p < 0.001\) (tactical).
+\end{itemize}
+
+\noindent
+The coherent pattern (Figure~\ref{fig:events})---spatial
+disruption decreases persistence, organisation increases
+it---validates the topological interpretation and provides the
+first evidence that persistent homology features respond to
+real match events.
+
+\subsection{Sensitivity analysis}
+\label{sec:sensitivity}
+
+\paragraph{Cutoff distance.}
+Sweeping \(\delta \in [6, 17]\)~m on 150 frames of the
+primary match, H1 detection decreases monotonically with
+cutoff distance (364 loops at 6~m, 53 at 12~m, 4 at 16~m).
+The full productive range spans 6--17~m, with abundant
+detection at the lower end (90.7\% frame presence at 6~m)
+tapering to sparse detection at the upper end.  The chosen
+\(\delta = 12.0\)~m is deliberately positioned at the
+conservative end of this range, consistent with the
+single-linkage philosophy: fewer but more geometrically
+robust tactical loops.  At \(\delta = 12.0\)~m,
+\(\beta_0\) falls squarely within the expected tactical range
+(mean 5.4 clusters), whereas cutoff distances of 6--8~m
+produce \(\beta_0\) values (11--14.5) that overlap with the
+individual scale, blurring the boundary between
+organisational levels.
+
+\paragraph{Filtration ablation.}
+Varying the adaptive percentile at \(\delta = 12.0\)~m,
+P50 detects 49 loops, P60 detects 52, and P75 through P95
+all detect 53.  P75 is the minimum percentile achieving
+full detection sensitivity.
+
+\paragraph{Linkage method comparison.}
+Across 600 frames from 4 matches at the tactical scale,
+single-linkage (mean 5.0 clusters, chaining ratio 10.96 ---
+defined as the ratio of the largest cluster's size to the
+mean cluster size, where values substantially above 1.0
+indicate disproportionate absorption of points into a single
+cluster)
+produces 153~H1 loops with 22.2\% frame presence.
+Complete-linkage (10.8 clusters, chaining ratio 1.38)
+produces 923 loops with 86.3\% presence, and Ward's method
+(11.0 clusters, chaining ratio 1.33) produces 936 loops
+with 86.0\% presence.  Single-linkage results reported in
+this paper are therefore conservative.
+
+\subsection{Scale complementarity}
+\label{sec:complementarity}
+
+Spearman rank correlation between individual-scale and
+tactical-scale H1 counts across 900 frames from 6 matches:
+\(\rho = 0.254\), \(p < 0.001\).  Fisher's exact test on the
+2\(\times\)2 presence/absence table: odds ratio \(= 3.52\),
+\(p = 0.093\).  The odds ratio indicates moderate positive
+co-occurrence (frames with individual-scale loops are
+approximately 3.5 times more likely to also contain
+tactical-scale loops), though this association falls short of
+conventional significance at the current sample size.
+Combining the Spearman correlation (\(\rho = 0.25\),
+indicating at most \(\sim\)6\% shared variance) with the
+odds ratio suggests that the scales are partially coupled but
+predominantly distinct: dense configurations create some
+cross-scale feature co-occurrence, but the majority of
+topological information at each scale is unique.
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{The GPS-aware pipeline as a methodological
+            prerequisite}
+
+The most immediate finding of this study is that computing
+persistent homology on GPS tracking data without a maximum
+filtration threshold produces a \(\beta_0\) value that is
+topologically uninformative: it simply counts the number of
+input coordinate pairs.  This artefact has not, to our
+knowledge, been reported in the sports-analytics literature,
+yet it could affect any study that applies TDA to multi-frame
+GPS data and interprets the resulting H0 features.  The
+remedy is straightforward---supplying a GPS-precision
+threshold of approximately 1~m before the homology
+computation---but its importance cannot be overstated: all
+downstream analyses of connected-component structure
+depend on its correct implementation.  We recommend that
+future applications of TDA to player-tracking data adopt a
+GPS-aware pre-processing step as a matter of standard
+practice.
+
+\subsection{Interpreting \(\beta_0\) as player-group
+            connectivity}
+
+After artefact removal, \(\beta_0 \approx 21.6\) across all
+temporal scales studied.  A value close to 22 (the total
+number of players) indicates that most players are
+topologically isolated at the spatial scales captured by the
+80th-percentile filtration threshold: they are not yet
+connected to their nearest teammates.  Small departures from
+22 reflect moments of tight proximity between two or more
+players---such as a pair of centre-backs defending a set
+piece---who merge into a single connected component.  The
+low variance (\(\sigma \approx 0.6\) at the 2-minute scale)
+indicates that player-cluster structure is highly stable
+across the match, consistent with the positional
+requirements of modern professional football in which
+players maintain formation discipline throughout most
+phases of play \citep{DiSalvo2007,Bradley2009}.
+
+\subsection{Scale dependence and the 5-minute tactical
+            horizon}
+
+The peak in \(\beta_1\) at the 5-minute scale is
+particularly informative.  Shorter windows capture
+individual movement sequences that may not yet have settled
+into a recognisable formation, so the detected loops
+reflect transient player interactions.  At 5~minutes the
+window is long enough to encompass a full tactical phase---
+such as an extended period of possession, a defensive block,
+or a sustained pressing sequence---during which formation
+loops stabilise and are counted as persistent features.
+Beyond 5~minutes, averaging over multiple tactical phases
+reduces the observed loop count as features born in one
+phase are cancelled by formation changes in the next.
+This result suggests that 5-minute windows represent a
+natural \emph{tactical horizon} for persistent-homology
+analysis of football, and it provides an empirical basis
+for window-size selection in future studies.
+
+The temporal stability of the optimal filtration parameter
+(information content stability \(= 0.983\)) further
+validates the robustness of the pipeline.  The near-constant
+optimal filtration range of approximately 27--29~m across
+all four temporal scales is consistent with the typical
+spacing between tactical lines in professional football:
+the distance from a compact defensive unit to the nearest
+midfield line is of the order of 15--20~m, so a filtration
+radius of roughly 27~m connects these groups while leaving
+inter-line gaps as topological features.
+
+\subsection{H1 loops as markers of tactical structure}
+
+The 523 H1 closed cycles detected in this study provide
+direct geometric evidence for the presence of formation
+\emph{holes}---regions of the pitch that are enclosed by
+player clusters but left unoccupied.  Such holes have clear
+tactical interpretations.  At the individual scale, a
+triangular or quadrilateral loop formed by three to four
+nearby players corresponds to a passing triangle or
+diamond, structures that are fundamental to possession-based
+play \citep{Buldu2019}.  At the tactical scale, a five-vertex
+cycle formed by two defensive and three midfield players
+corresponds to a gap between the defensive and midfield
+lines---the ``half space'' that attacking teams deliberately
+target \citep{Memmert2017}.
+
+The distinction in persistence between individual and
+tactical loops (mean \(1.78 \pm 1.45\) versus
+\(3.29 \pm 2.24\)) aligns with these interpretations.
+Individual-scale loops are born and die within a narrow
+filtration range because the players forming them are
+dynamically adjusting their positions; their short
+persistence indicates transient, responsive structures.
+Tactical-scale loops are born and die over a much wider
+filtration range, indicating that the enclosed region
+persists as a topological hole across a broad spectrum of
+spatial scales---a signature of deliberate, sustained
+positional structuring.
+
+The episodic occurrence of tactical loops (42 of 149 frames,
+28.2\%) also carries practical significance.  Moments in
+which a high-persistence tactical loop appears may
+correspond to set-piece organisation, compact defensive
+phases, or the development of a pressing trap, all of
+which are characterised by deliberate group spacing.
+Correlating loop birth and death events with match
+event data (goals, shots, possession changes) is a
+promising direction for future work.
+
+\subsection{Limitations}
+
+Several limitations should be noted.  First, while the
+analysis now spans 11 matches (a substantial improvement
+over the initial single-match study), all SkillCorner
+validation data derive from a single competition (A-League);
+cross-league and cross-country validation is needed.
+Second, single-linkage clustering exhibits a chaining effect
+at the tactical scale (Section~\ref{sec:sensitivity}),
+producing conservative H1 estimates; complete or average
+linkage may yield richer topological characterisations with
+appropriate domain validation.  Third, the tactical
+interpretation of H1 loops is qualitative and has not been
+validated against expert annotation of formation phases.
+Fourth, the team scale produces only H0 features (1--3
+centroids); effective team-scale H1 analysis would require
+alternative spatial representations.  Finally, the
+broadcast-derived SkillCorner tracking data (10~Hz) has lower
+spatial and temporal resolution than the primary SecondSpectrum
+data (25~Hz).  While \(H_0\) ranges and \(H_1\)
+presence/absence patterns are consistent across both data
+sources, persistence \emph{magnitudes} diverge substantially:
+the multi-match tactical \(H_1\) mean persistence is 0.692
+(SkillCorner, 150 uniformly sampled frames per match) versus
+3.285 (SecondSpectrum, 149 non-overlapping 2-minute windows).
+This nearly five-fold difference likely reflects a combination
+of different sampling strategies, lower positional precision in
+broadcast-derived tracking, and differences in point cloud
+geometry at different sampling rates.  Multi-match validation
+should therefore be interpreted as confirming \emph{structural}
+consistency (the presence, frequency, and scale-dependent
+distribution of \(H_1\) features) rather than quantitative
+persistence comparability.  This caveat extends to the event
+correlation results (Section~\ref{sec:event_correlation}),
+where the directions and statistical significance of
+persistence deltas are interpretable but their absolute
+magnitudes should not be compared directly to values from the
+primary SecondSpectrum analysis.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We have presented a multi-scale persistent homology
+framework for football team formations that addresses the
+scale conflation problem through domain-informed clustering
+and adaptive filtration.  Validation across 11 professional
+matches (1 SecondSpectrum, 10 SkillCorner) identifies three
+\(\beta_0\) analysis regimes and two \(H_1\) regimes with
+distinct and complementary topological signatures: 4,670
+individual-scale and 368 tactical-scale loops across all
+matches, with individual \(H_1\) presence confirmed at
+\(97.2\% \pm 1.6\%\).  Sensitivity analysis demonstrates
+robustness across cutoff distances (6--17~m) and filtration
+percentiles (P50--P95).  Real event correlation across
+104,722 event-topology pairs establishes the first
+statistically significant associations between match events
+and topological transitions (\(p < 0.001\) for on-ball
+engagements and build-up phases).  These methods are
+domain-agnostic and ready for cross-domain application to
+any bounded competitive multi-agent system with spatial
+tracking data.
+
+% ============================================================
+\section*{Acknowledgements}
+
+The authors thank the data-collection team for provision of
+the tracking data and the anonymous reviewers for helpful
+comments on an earlier version of the manuscript.
+
+% ============================================================
+\section*{Data Availability Statement}
+
+The SkillCorner open data used for multi-match validation
+are publicly available at
+\url{https://github.com/SkillCorner/opendata}.  The
+StatsBomb open-access event data are available at
+\url{https://github.com/statsbomb/open-data}.  The
+SecondSpectrum optical tracking data are subject to a
+confidentiality agreement and cannot be shared publicly,
+but the analysis code and summary statistics are available
+from the corresponding author on reasonable request.
+
+% ============================================================
+\section*{Conflict of Interest}
+
+The authors declare no conflict of interest.
+
+% ============================================================
+% --- Tables ---
+
+\clearpage
+
+\begin{table}[H]
+\centering
+\caption{Number of analysis windows at each temporal scale.
+  All windows cover the same 90-minute match; windows are
+  non-overlapping.}
+\label{tab:windows}
+\begin{threeparttable}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Window size & Windows analysed & Total observations (frames) \\
+\midrule
+1 min  & 496 & 29\,760 \\
+2 min  & 246 & 29\,520 \\
+5 min  &  96 & 28\,800 \\
+10 min &  46 & 27\,600 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Note: Minor differences in total observation counts
+  across scales reflect minor rounding at window edges and
+  stoppage-time exclusions.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Multi-scale persistent homology results.
+  Values are mean \(\pm\) standard deviation across all
+  windows at each temporal scale.  \(\beta_0\): zeroth
+  Betti number (connected components); \(\beta_1\):
+  first Betti number (loops); \(\kappa\): complexity
+  index \(= 1 + \beta_1/\beta_0\).}
+\label{tab:multiscale}
+\begin{threeparttable}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Scale  & Windows & \(\beta_0\) & \(\beta_1\) & \(\kappa\) \\
+\midrule
+1 min  & 496 & \(21.59 \pm 0.86\) & \(3.17 \pm 1.38\) & \(1.146 \pm 0.063\) \\
+2 min  & 246 & \(21.71 \pm 0.59\) & \(3.24 \pm 1.14\) & \(1.149 \pm 0.052\) \\
+5 min  &  96 & \(21.80 \pm 0.52\) & \(3.74 \pm 1.24\) & \(1.171 \pm 0.056\) \\
+10 min &  46 & \(21.59 \pm 0.86\) & \(3.48 \pm 1.36\) & \(1.160 \pm 0.062\) \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \(\kappa = 1 + \beta_1/\beta_0\) is the complexity
+  index; values greater than 1 indicate the presence of
+  topological loops relative to connected components.
+  The maximum filtration threshold was set to the 80th
+  percentile of pairwise distances within each window.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Segment-level topological metrics.  Each segment
+  corresponds to a 15-minute period of the match (7\,500
+  frames at 10~Hz).  Consistency is the fraction of
+  sub-windows within a segment that share the same
+  topological feature counts.  \(\kappa\) is the complexity
+  index as defined in Table~\ref{tab:multiscale}.}
+\label{tab:segments}
+\begin{threeparttable}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Segment           & Frames & Consistency & \(\kappa\) \\
+\midrule
+First Half Start  & 7\,500 & 0.828       & 1.022 \\
+First Half End    & 7\,500 & 0.882       & 1.019 \\
+Second Half Start & 7\,500 & 0.872       & 1.022 \\
+Second Half End   & 7\,500 & 0.848       & 1.020 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item All four segments report 100\% data completeness
+  (no missing frames).  The higher consistency in the
+  First Half End segment may reflect increased formation
+  discipline as teams protect a result near the end of
+  the first half.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{H1 closed-cycle statistics by spatial scale.
+  ``Frames with loops'' gives the number (and percentage)
+  of the 149 analysed frames in which at least one closed
+  cycle was detected.  Persistence is quoted as
+  min--max (mean).}
+\label{tab:h1stats}
+\begin{threeparttable}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Scale      & Cut-off & Total & Loops/frame  &
+             Persistence range (mean) &
+             Frames with loops \\
+\midrule
+Individual & 2.98 m  & 470   & 3.18         &
+             0.00--7.97 (\(1.78 \pm 1.45\)) &
+             148/149 (99.3\%) \\
+Tactical   & 12.0 m  &  53   & 1.26         &
+             0.19--9.39 (\(3.29 \pm 2.24\)) &
+              42/149 (28.2\%) \\
+\midrule
+Total      & ---     & 523   & ---          & --- & --- \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Individual-scale cut-off of 2.98~m was selected to
+  validate on \(\geq\)99\% of frames; tactical-scale
+  cut-off of 12.0~m validates on \(\geq\)96\% of frames.
+  Adaptive filtration (Equation~\ref{eq:adaptive}) was
+  applied at both scales.
+  Loops/frame is computed only over frames in which at
+  least one loop was detected.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Multi-scale spatial hierarchy results from 150
+  individual frames.  Three fixed spatial cut-off distances
+  were applied to each frame independently.  \(\beta_0\):
+  mean connected components; \(\beta_1\): mean loops;
+  Valid: percentage of frames for which the cut-off
+  produced a non-trivial (non-artefactual) result.}
+\label{tab:hierarchy}
+\begin{threeparttable}
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+Scale      & Cut-off & \(\beta_0\) (mean \(\pm\) SD) & \(\beta_1\) (mean) & Valid (\%) \\
+\midrule
+Individual & 2.98 m  & \(19.25 \pm 2.24\) & 3.13 & 95.3 \\
+Tactical   & 12.0 m  & \(5.37  \pm 1.95\) & 0.35 & 100  \\
+Team       & 30.0 m  & \(1.44  \pm 0.50\) & 0.00 & 100  \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item The expected ordering (individual \(\beta_0 >\)
+  tactical \(\beta_0 >\) team \(\beta_0\)) was satisfied
+  in 96.7\% of frames (145/150), validating the
+  three-level spatial hierarchy.
+  Team-scale \(\beta_1 = 0\) in all frames, indicating
+  no formation loops form once within-team distances
+  are spanned.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{StatsBomb cross-validation results.  Three
+  open-access matches were analysed with 2-minute
+  non-overlapping windows using the GPS-aware pipeline.
+  Conservation stability is the coefficient of variation
+  of total combined team spread across windows
+  within each match (lower = more stable).}
+\label{tab:crossval}
+\begin{threeparttable}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Match ID & Windows & \(\beta_0\) (mean) & \(\beta_1\) (mean) &
+           Conserv.\ stability \\
+\midrule
+3879600  & 24 & 20.4 & 1.97 & 0.893 \\
+3901250  & 16 & 21.0 & 1.83 & 0.889 \\
+3754300  & 30 & 20.5 & 2.46 & 0.933 \\
+\midrule
+Combined & 70 & 20.6 & 2.18 & --- \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \(\beta_0\) values (20.4--21.0) are consistent with
+  the primary dataset (21.71 \(\pm\) 0.59), confirming
+  that the GPS-aware pipeline produces stable connected-component
+  counts across different matches and teams.
+  \(\beta_1\) values are lower than the primary dataset
+  (3.24), likely reflecting differences in positional data
+  resolution between StatsBomb tracking and SecondSpectrum GPS.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+% ============================================================
+% --- Figures ---
+
+\clearpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/fig2_cycle_geometry.pdf}
+\caption{Geometric realisation of the highest-persistence H1
+  loops at two analysis scales, plotted on a standard football
+  pitch.  (a)~Individual scale (\(\delta = 2.98\)~m): a 7-node
+  closed cycle (persistence \(= 7.97\)~m) formed by cluster
+  centroids in the attacking half, enclosing empty space within
+  a pressing arrangement.  Blue circles: cluster centroids;
+  red edges: cycle connecting loop-forming centroids; shaded
+  region: enclosed area representing the topological hole.
+  (b)~Tactical scale (\(\delta = 12.0\)~m): a 5-node closed
+  cycle (persistence \(= 9.39\)~m) formed by tactical-group
+  centroids, enclosing a void between defensive and midfield
+  formations.  Blue diamonds: tactical centroids; grey points:
+  non-cycle centroids.  The higher persistence at the tactical
+  scale reflects greater geometric stability of the enclosing
+  arrangement.}
+\label{fig:cycles}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/fig3_temporal_evolution.pdf}
+\caption{Temporal evolution of mean \(H_1\) persistence across
+  analysis windows for the primary match (SecondSpectrum,
+  25~Hz).  (a)~Individual scale (\(\delta = 2.98\)~m):
+  persistence is near-constant throughout the match (first half
+  mean 1.759~m, second half 1.777~m, \(p = 0.630\)).
+  (b)~Tactical scale (\(\delta = 12.0\)~m): persistence
+  shows a statistically significant decrease from first to
+  second half (1.380~\(\to\)~1.065~m, \(-22.8\%\),
+  \(p < 0.001\)).  Dark trend lines show smoothed rolling mean
+  (25-window span).  Dashed vertical line marks half-time.
+  The episodic nature of tactical-scale persistence (many zero
+  values interspersed with high-persistence windows) contrasts
+  with the near-continuous individual-scale signal.}
+\label{fig:temporal}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig4_event_correlation.pdf}
+\caption{Mean persistence change (\(\Delta\)) associated with
+  match event types across 10 matches (104\,722 event-topology
+  pairs, SkillCorner data).  Bars show mean~\(\Delta\)
+  persistence at the individual (blue) and tactical (red)
+  scales; negative values indicate persistence decrease
+  (spatial disruption), positive values indicate persistence
+  increase (spatial organisation).  Only statistically
+  significant associations (\(p < 0.05\), Mann-Whitney~\(U\))
+  are shown.  Significance levels: \(*\)~\(p < 0.05\),
+  \(**\)~\(p < 0.01\), \(***\)~\(p < 0.001\).  The coherent
+  pattern---disruption events decrease persistence while
+  organisational events increase it---is consistent across
+  both scales.}
+\label{fig:events}
+\end{figure}
+
+% ============================================================
+% --- Bibliography ---
+
+\clearpage
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}

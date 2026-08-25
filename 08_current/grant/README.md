@@ -67,7 +67,7 @@ Also removed: six Word lock files (`~$*.docx`), `.DS_Store`, `__pycache__`.
 
 ## Conventions
 
-- **LaTeX** is the citation-numbering source of truth (`natbib`, `unsrtnat`, Vancouver order of appearance). Markdown twins use manual `[n]` synced from the compiled PDF. The current order is REV3's 28 entries; `FOUNDATION.md` §3 is the mapping source.
+- **LaTeX** is the citation-numbering source of truth (`natbib`, `unsrtnat`, Vancouver order of appearance). Markdown twins use manual `[n]` synced from the compiled PDF. The current order is REV3's 29 entries (Schenck 2022 inserted as [6]); `FOUNDATION.md` §3 is the mapping source.
 - **UK English** throughout.
 - **Panel legibility.** EPSRC maths panels include adjacent-subfield reviewers who may not be TDA specialists. Vision and Background stay generally readable; Approach and Methodology may be more technical.
 - **Language discipline.** The mandatory substitutions are in `FOUNDATION.md` §6, not here, so there is one copy.

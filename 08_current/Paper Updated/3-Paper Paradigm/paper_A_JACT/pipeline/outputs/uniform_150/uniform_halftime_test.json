@@ -1,0 +1,20 @@
+{
+  "individual": {
+    "first_half_mean": 1.8902,
+    "second_half_mean": 2.0692,
+    "pct_change": 9.47,
+    "stat": 2388.0,
+    "p": 0.506331,
+    "n1": 74,
+    "n2": 69
+  },
+  "tactical": {
+    "first_half_mean": 2.7651,
+    "second_half_mean": 4.9445,
+    "pct_change": 78.82,
+    "stat": 22.0,
+    "p": 0.066193,
+    "n1": 10,
+    "n2": 9
+  }
+}

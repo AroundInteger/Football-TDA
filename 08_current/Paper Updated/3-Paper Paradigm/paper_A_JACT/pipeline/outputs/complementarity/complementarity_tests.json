@@ -1,0 +1,42 @@
+{
+  "complementarity": {
+    "n_frames": 1500,
+    "spearman_statistic": "h1_total_persistence",
+    "spearman_rho": 0.26402726908627605,
+    "spearman_p": 2.419290472214985e-25,
+    "spearman_rho_counts": 0.21061609581917992,
+    "spearman_p_counts": 1.6800806404581746e-16,
+    "fisher_statistic": "h1_presence (h1 > 0)",
+    "fisher_odds_ratio": 10.90566037735849,
+    "fisher_p": 0.0009436285098743346,
+    "contingency": [
+      [
+        289,
+        1166
+      ],
+      [
+        1,
+        44
+      ]
+    ]
+  },
+  "tda_native": {
+    "n_frames": 1500,
+    "n_matches": 10,
+    "source_csv": "tda_native_distances.csv",
+    "bottleneck": {
+      "median": 1.5111043453216553,
+      "iqr": 1.323767066001892,
+      "p95": 3.4159289598464966,
+      "max": 7.993807792663574,
+      "n": 1500
+    },
+    "landscape_l2": {
+      "median": 5.671066210313729,
+      "iqr": 6.948534798851904,
+      "p95": 17.660858292798896,
+      "max": 51.56458527559751,
+      "n": 1500
+    }
+  }
+}

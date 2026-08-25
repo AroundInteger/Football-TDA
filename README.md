@@ -1,300 +1,129 @@
-# GPS-TDA: Quantum Dot-Inspired Topological Data Analysis for Football Team Dynamics
+# Football-TDA
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![MATLAB](https://img.shields.io/badge/MATLAB-R2025a-blue.svg)](https://www.mathworks.com/products/matlab.html)
-[![Python](https://img.shields.io/badge/Python-3.9+-green.svg)](https://www.python.org/)
-[![TDA](https://img.shields.io/badge/TDA-Persistent%20Homology-purple.svg)](https://en.wikipedia.org/wiki/Persistent_homology)
+Multi-scale Topological Data Analysis of competitive collective systems, using professional football as a rigorous mathematical testbed.
 
-## 🌟 Overview
+> **Active source of truth:** `08_current/` contains the live paper (`08_current/paper/`) and grant (`08_current/grant/`). Directories `06_papers/` and `07_grants/` are archived legacy snapshots and are **not** being updated; they are retained for provenance only. When preparing edits, PRs, or CI checks that target the current manuscript or proposal, scope them to `08_current/`.
 
-This repository presents a groundbreaking approach to analyzing football team dynamics using **Topological Data Analysis (TDA)** combined with **quantum dot physics analogies**. Our research extends beyond existing literature by introducing novel quantum-inspired models for understanding team formation dynamics, player interactions, and tactical effectiveness.
+## Research Summary
 
-### 🎯 Key Innovation
+This project develops mathematical frameworks for analysing hierarchical, time-evolving systems where groups actively compete — from player formations to drone swarms. The core contribution is the first application of multi-scale persistent homology to competitive, coupled, high-frequency dynamical systems.
 
-We are the **first to apply quantum dot physics** to football team dynamics, creating unprecedented analogies between:
-- **Quantum dots** ↔ **Team formations**
-- **Exciton dynamics** ↔ **Player interactions** 
-- **Quantum tunneling** ↔ **Tactical transitions**
-- **Photoluminescence** ↔ **Performance emission**
+**Key preliminary results (single match, SecondSpectrum GPS data):**
+- 523 distinct structural patterns detected across 149 analysis windows (>95% statistical reliability)
+- Three validated analysis scales: individual (3 m), tactical (12 m), team (30 m)
+- Topological features correlate with attacking effectiveness (r = 0.68, p < 0.001)
+- GPS-aware clustering resolves H0 artefacts from measurement noise
+- Adaptive filtration enables consistent H1 detection across all three scales
 
-## 🔬 Research Framework
+---
 
-Our analysis follows a systematic 4-step framework:
-
-### Step 1: Coupled Collective Variables
-- **Inter-Team Centroid Vector**: Distance and angle between team centroids
-- **Team Shape Coupling**: Ratio of convex hull areas
-- **Nearest Opponent Distance (NOD)**: Mean distance to closest opponents
-- **Tactical Phase Identification**: Clustering of coupled metrics
-
-### Step 2: State Space Reconstruction
-- **Time-Delay Embedding**: Takens' theorem implementation
-- **Attractor State Identification**: K-means clustering
-- **Transition Matrix**: State transition probabilities
-- **Attractor Characteristics**: Frequency, duration, stability
-
-### Step 3: Zero-Sum Competition & Symmetry Breaking
-- **Cross-Correlation Analysis**: Opposing team metric relationships
-- **Competitive Balance**: Quantification of tactical equilibrium
-- **Field Symmetry**: Player distribution analysis
-- **Numerical Overloads**: Tactical advantage identification
-
-### Step 4: Persistent Homology with Quantum Dot Insights
-- **Vietoris-Rips Complex**: Simplicial complex construction
-- **Persistence Diagrams**: Birth-death of topological features
-- **Quantum Dot Physics**: Novel quantum analogies
-- **Tactical Effectiveness**: Topology-performance correlations
-
-## 🚀 Novel Contributions
-
-### 1. Quantum Dot Physics for Football
-```matlab
-% Quantum dot size from team formation compactness
-quantumDotSize = 1 / (meanAreaRatio + 1e-6);
-
-% Energy levels from attractor states
-energyLevels = -log(frequency + 1e-6) - log(stability + 1e-6);
-
-% Band gap between formation states
-bandGap = sortedEnergies(2) - sortedEnergies(1);
-```
-
-### 2. Exciton Dynamics for Player Interactions
-```matlab
-% Exciton binding energy from player proximity
-excitonBindingEnergy = 1 / (meanNOD + 1e-6);
-
-% Formation and decay rates
-excitonFormationRate = 1 / (meanNOD + 1e-6);
-excitonDecayRate = meanNOD / 10;
-```
-
-### 3. Quantum Tunneling for Tactical Transitions
-```matlab
-% Tunneling probability based on energy barriers
-tunnelingProb = exp(-alpha * energyBarrier);
-
-% Quantum coherence from transition probabilities
-coherenceMatrix(i,j) = sqrt(transitionProb);
-```
-
-### 4. Photoluminescence for Performance
-```matlab
-% Performance emission intensity
-photoluminescenceIntensity = mean(effectivenessScores);
-
-% Quantum yield (efficiency)
-quantumYield = intensity / (intensity + 1);
-```
-
-## 📊 Key Results
-
-### Topological Features
-- **H0 Features (Connected Components)**: 1,655 features
-- **H1 Features (Cycles)**: 1,779 total features
-- **Complexity Index**: 0.005 (topological complexity)
-- **Persistence Range**: 0.1 - 1.0 (filtration values)
-
-### Quantum Dot Analysis
-- **Quantum Dot Size**: 1.000 (formation compactness)
-- **Band Gap**: 0.100 (energy difference between states)
-- **Exciton Binding Energy**: 0.100 (player interaction strength)
-- **Quantum Confinement**: 0.100 (spatial constraints)
-
-### Performance Metrics
-- **Photoluminescence Intensity**: 0.500 (performance emission)
-- **Quantum Yield**: 0.333 (efficiency)
-- **Quantum Coherence**: 0.500 (transition coherence)
-- **Gillespie Simulation**: Balanced state frequencies [0.328, 0.351, 0.321]
-
-## 🛠️ Technical Implementation
-
-### Dependencies
-- **MATLAB R2025a+**: Core analysis framework
-- **Python 3.9+**: TDA computation (ripser, gudhi)
-- **Teaspoon TSP**: Topological signal processing
-- **Statistics Toolbox**: Clustering and correlation analysis
-
-### Installation
-```bash
-# Clone repository
-git clone https://github.com/yourusername/Football-TDA.git
-cd Football-TDA
-
-# Install Python dependencies
-pip install ripser gudhi teaspoon numpy scipy pandas matplotlib
-
-# Add MATLAB path
-addpath(genpath('.'))
-```
-
-### Quick Start
-```matlab
-% Run complete analysis pipeline
-run('demo_final_integration.m')
-
-% Run standalone Python analysis
-python3 standalone_step4_analysis.py
-
-% Import Python results to MATLAB
-import_step4_results('./step4_standalone_results', './step4_matlab_results')
-
-% Run advanced quantum analysis
-run('demo_advanced_quantum_dot.m')
-```
-
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 Football-TDA/
-├── README.md                           # This file
-├── GPS-TDA.md                         # Original research proposal
-├── 
-├── Step 1: Coupled Variables/
-│   ├── CoupledCollectiveVariables.m   # Main analysis class
-│   ├── demo_coupled_variables.m       # Demonstration script
-│   └── step1_coupled_variables_results/
 │
-├── Step 2: State Space Reconstruction/
-│   ├── StateSpaceReconstruction.m     # Main analysis class
-│   ├── demo_state_space_reconstruction.m
-│   └── step2_state_space_results/
+├── 01_data/                    Raw and reference data
+│   ├── open-data/              StatsBomb open data
+│   ├── FieldTest/              GPS capture scripts and sample match videos
+│   ├── secondspectrum_results/ Loaded SecondSpectrum tracking data
+│   └── *.m / *.py              Data loading and exploration scripts
 │
-├── Step 3: Zero-Sum Analysis/
-│   ├── ZeroSumSymmetryAnalysis.m      # Main analysis class
-│   ├── demo_zero_sum_symmetry.m
-│   └── step3_zero_sum_symmetry_results/
+├── 02_tda_core/                Core TDA methodology (underpins Paper 1 and grant)
+│   ├── corrected_analysis/     GPS-aware pipeline results
+│   ├── cutoff_distance_analysis/  Cutoff distance investigation
+│   ├── cutoff_efficacy_results/   Multi-scale cutoff efficacy
+│   ├── h0_investigation/       H0 artefact diagnosis
+│   ├── final_h0_solution/      GPS-aware H0 resolution
+│   ├── tactical_cutoff_test_results/
+│   └── *.py / *.m              Pipeline, filtration, and validation scripts
 │
-├── Step 4: Persistent Homology/
-│   ├── standalone_step4_analysis.py   # Python TDA analysis
-│   ├── import_step4_results.m         # MATLAB import
-│   ├── demo_standalone_step4.m
-│   └── step4_standalone_results/
+├── 03_football_analysis/       Football-specific empirical analyses
+│   ├── first_half_efficient_results/   108-window first half analysis
+│   ├── second_half_efficient_results/  108-window second half analysis
+│   ├── statsbomb_complete_results/     StatsBomb multi-match analysis
+│   ├── parallel_segment_results/       Segment-level analysis
+│   ├── temporal_spatial_analysis/      Temporal and spatial H0 analysis
+│   └── *.py                            Match analysis and sliding window scripts
 │
-├── Advanced Quantum Analysis/
-│   ├── AdvancedQuantumDotAnalysis.m   # Quantum dot physics
-│   ├── QuantumDotAttractorModel.m     # Gillespie simulations
-│   ├── demo_advanced_quantum_dot.m
-│   └── advanced_quantum_dot_results/
+├── 04_h1_loops/                H1 closed-cycle detection (key grant result)
+│   ├── h1_loop_analysis/       Complete H1 loop results and visualisations
+│   │   ├── in_play_visualizations/
+│   │   ├── event_correlation/
+│   │   ├── temporal_analysis/
+│   │   └── multiscale_upstream_effects/
+│   └── *.py                    Loop detection, visualisation, and event correlation
 │
-├── Data Processing/
-│   ├── DataPipeline.m                 # GPS data preprocessing
-│   ├── load_secondspectrum_working.m  # Real data loader
-│   └── visualize_secondspectrum_final.m
+├── 05_physics_analogies/       Speculative exploratory threads (feeds Paper 2)
+│   ├── step1–step4 results/    MATLAB pipeline steps
+│   ├── quantum_dot_*results/   Quantum dot attractor state analysis
+│   ├── complete_quantum_game_theory_results/
+│   └── *.py / *.m              Quantum, game theory, zero-sum scripts
 │
-└── Utilities/
-    ├── create_initial_visualizations.m
-    ├── demo_final_integration.m
-    └── analyze_timeframe.m
+├── 06_papers/                  LEGACY manuscript snapshots (see 06_papers/LEGACY.md)
+│   ├── Paper1_MultiscaleTDA/   Archived draft; superseded by 08_current/paper/
+│   └── Paper2_PhysicsAnalogies/ Archived exploratory draft (not under active revision)
+│
+├── 07_grants/                  LEGACY grant drafts (see 07_grants/LEGACY.md)
+│   ├── small_grants/           Archived EPSRC materials; superseded by 08_current/grant/
+│   └── UKRI_AI_Strategy_Alignment/  Archived exploratory strand
+│
+├── 08_current/                 ACTIVE sources of truth (see 08_current/README.md)
+│   ├── paper/                  Multi-scale TDA paper (Draftv5.md, main.tex, sections/, references.bib)
+│   ├── grant/                  EPSRC Small Grant (NN_*.md + tex/)
+│   └── data/                   Provenance notes for tracking data used in 08_current
+│
+├── Presentation_Figures/       Figures, slides, and audience summaries
+├── tda_visualisations/         Visualisation suite scripts and guides
+├── figures/                    Core summary figures
+├── _archive/                   Superseded intermediate explorations
+│
+├── GPS-TDA.md                  Original research proposal
+├── PROJECT_STATUS.md           Current project status
+└── COMPREHENSIVE_PRESENTATION_DECK.tex  LaTeX presentation
 ```
 
-## 🔬 Methodology
+---
 
-### Data Sources
-- **Real GPS Data**: SecondSpectrum tracking data (JSONL format)
-- **Synthetic Data**: Generated for testing and validation
-- **Sample Datasets**: Included for demonstration
+## Paper Roadmap
 
-### Analysis Pipeline
-1. **Data Preprocessing**: GPS coordinate cleaning and synchronization
-2. **Feature Extraction**: Coupled collective variables computation
-3. **State Space Reconstruction**: Time-delay embedding and attractor identification
-4. **Topological Analysis**: Persistent homology computation
-5. **Quantum Modeling**: Quantum dot physics application
-6. **Performance Linking**: Topology-effectiveness correlations
+### Paper 1 — Multi-scale TDA (active)
+**"Multi-Scale Persistent Homology for Competitive Spatial Systems: Measurement-Aware Methods and Validation in Professional Football"**
 
-### Validation Methods
-- **Cross-Validation**: Multiple dataset testing
-- **Synthetic Data**: Controlled parameter validation
-- **Statistical Testing**: Significance of correlations
-- **Gillespie Simulation**: Stochastic model validation
+- Active sources: `08_current/paper/` (Markdown: `Draftv5.md`; LaTeX: `main.tex` + `sections/`; bibliography: `references.bib`)
+- Legacy snapshot: `06_papers/Paper1_MultiscaleTDA/` — **do not edit**
+- Status: 10-match validation complete; post-execution numbers incorporated into `08_current/paper/` (April 2026)
+- Target journals: Journal of Applied and Computational Topology; SIAM Journal on Applied Mathematics
 
-## 📈 Results and Findings
+### Paper 2 — Exploratory (future)
+**"Quantum Dot Attractor States in Football Team Dynamics: An Exploratory Framework"**
 
-### 1. Topological Signatures of Tactical Effectiveness
-- **H0 Features**: Connected components correlate with team cohesion
-- **H1 Features**: Cycles indicate tactical complexity
-- **Persistence**: Long-lived features suggest stable formations
-
-### 2. Quantum Dot Physics Insights
-- **Formation States**: Mapped to quantum energy levels
-- **Player Interactions**: Modeled as exciton dynamics
-- **Tactical Transitions**: Described by quantum tunneling
-- **Performance**: Quantified as photoluminescence
-
-### 3. Novel Research Directions
-- **Quantum Coherence**: Team coordination analysis
-- **Quantum Confinement**: Spatial constraint effects
-- **Quantum Tunneling**: Formation transition probabilities
-- **Photoluminescence**: Performance emission modeling
-
-## 🎓 Academic Impact
-
-### Publications Ready
-1. **"Quantum Dot Physics for Football Team Dynamics"** - Novel methodology
-2. **"Topological Data Analysis of GPS Tracking Data"** - TDA application
-3. **"Exciton Dynamics in Sports: A New Paradigm"** - Cross-disciplinary research
-
-### Research Extensions
-- **Multi-Level Quantum Models**: Deeper energy level analysis
-- **Quantum Entanglement**: Player correlation studies
-- **Quantum Machine Learning**: AI-enhanced analysis
-- **Quantum Optimization**: Optimal formation finding
-
-## 🤝 Contributing
-
-We welcome contributions to this groundbreaking research! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### Areas for Contribution
-- **New Quantum Analogies**: Additional physics models
-- **Advanced TDA Methods**: Improved topological analysis
-- **Real Data Validation**: More GPS datasets
-- **Performance Metrics**: Enhanced KPI integration
-
-## 📚 References
-
-### Key Papers
-1. **Topological Data Analysis**: Carlsson, G. (2009). "Topology and data"
-2. **Persistent Homology**: Edelsbrunner, H. & Harer, J. (2010). "Computational topology"
-3. **Quantum Dots**: Bimberg, D. (2008). "Quantum dot heterostructures"
-4. **Sports Analytics**: Memmert, D. et al. (2017). "Tactical analysis in team sports"
-
-### Related Work
-- **TDA in Sports**: Limited applications to date
-- **Quantum Physics**: No previous sports applications
-- **GPS Analysis**: Traditional statistical methods
-- **Team Dynamics**: Lacking topological approaches
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Authors
-
-- **Primary Researcher**: [Your Name]
-- **Institution**: [Your Institution]
-- **Email**: [your.email@institution.edu]
-
-## 🙏 Acknowledgments
-
-- **SecondSpectrum**: For providing GPS tracking data
-- **MATLAB Community**: For computational tools
-- **Python TDA Libraries**: ripser, gudhi, teaspoon
-- **Research Collaborators**: [Names and affiliations]
-
-## 📞 Contact
-
-For questions, collaborations, or media inquiries:
-- **Email**: [your.email@institution.edu]
-- **Twitter**: [@yourhandle]
-- **LinkedIn**: [Your Profile]
+- Legacy snapshot: `06_papers/Paper2_PhysicsAnalogies/` (not under active revision)
+- Status: Speculative — requires independent experimental validation before submission
+- Target journal: Chaos, Solitons & Fractals
 
 ---
 
-## 🌟 **This research represents a paradigm shift in sports analytics, introducing quantum physics concepts to understand the beautiful complexity of football team dynamics.**
+## Grant Applications
 
-*"In the quantum realm of football, every formation is a quantum dot, every player interaction an exciton, and every tactical transition a quantum tunnel."* - The GPS-TDA Team
+| Grant | Active sources | Legacy snapshot | Status |
+|---|---|---|---|
+| EPSRC Small Grant (12-month, multi-match validation) | `08_current/grant/` (`submission/` = 3-page JeS V&A; `full/` = long form) | `07_grants/small_grants/` | Active submission |
+| UKRI AI Strategy — Conflict Topology | — | `07_grants/UKRI_AI_Strategy_Alignment/` | Archived / exploratory |
 
 ---
 
-**⭐ If you find this research interesting, please give us a star! ⭐**
+## Running the Analysis
+
+All scripts use paths relative to the project root. Always run from here:
+
+```bash
+cd /path/to/Football-TDA
+python 02_tda_core/corrected_tda_pipeline.py
+python 04_h1_loops/analyze_h1_loops.py
+```
+
+**Dependencies:** `ripser`, `gudhi`, `giotto-tda`, `numpy`, `scipy`, `matplotlib`, `pandas`
+
+```bash
+pip install ripser gudhi giotto-tda numpy scipy matplotlib pandas
+```

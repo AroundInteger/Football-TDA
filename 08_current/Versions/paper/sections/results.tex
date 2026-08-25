@@ -1,0 +1,415 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Scale-Specific Connected Components (\(H_0\))}
+\label{sec:scale_h0}
+
+\textbf{Single-match.} Without clustering, \(H_0\) persistence diagrams for each frame encode the full 22-point hierarchical merging sequence. After scale decomposition, \(H_0\) at each level reflects organisation at that specific scale. At the individual scale (\(\delta=2.98\)~m), \(H_0=19.02\pm2.47\) (mean \(\pm\) s.d.), varying with local player proximity patterns. At the tactical scale (\(\delta=12.0\)~m), \(H_0=4.77\pm1.60\), capturing the number of distinct tactical groups. At the team scale (\(\delta=30.0\)~m), \(H_0=1.44\pm0.50\), with 56.0\% of frames having \(H_0=1\) (all 22 players in a single cluster), 44.0\% having \(H_0=2\).
+
+\textbf{Multi-match validation (10 matches).} The three-scale \(H_0\) structure is consistent across all 10 matches: individual \(H_0=19.05\pm0.39\) (grand mean \(\pm\) across-match s.d.), tactical \(H_0=4.92\pm0.36\), team \(H_0=1.38\pm0.08\). All matches fall within the expected \(H_0\) ranges for all three scales.
+
+\subsection{\(H_1\) Loop Detection}
+
+\textbf{Single-match (primary).} Across 150 analysis frames, the framework detects 403 \(H_1\) loops:
+
+\begin{table}[H]
+  \centering
+  \caption{Single-match \texorpdfstring{$H_1$}{H1} statistics (primary match, 150 frames).}
+  \label{tab:h1single}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}lccccc@{}}
+    \toprule
+    Scale & Total loops & Frames with loops & Mean loops/frame & Mean persistence & Max persistence \\
+    \midrule
+    Individual (2.98~m) & 382 & 143/150 (95.3\%) & 2.55 & \(1.977\pm1.128\) & 12.991 \\
+    Tactical (12.0~m)   & 21 & 19/150 (12.7\%) & 0.14 & \(3.797\pm3.008\) & 10.771 \\
+    Team (30.0~m)      & 0   & 0/150 (0\%)    & N/A & N/A           & N/A \\
+    \bottomrule
+  \end{tabular}%
+  }
+\end{table}
+
+Individual-scale loops are frequent but transient (low mean persistence), representing dynamic player-level interactions. Tactical-scale loops are less frequent but substantially more persistent, representing stable formation structures, strategic gaps between defensive lines, midfield zones, or coordinated pressing shapes.
+
+The team-scale \(H_1\) null result is an \emph{a priori} combinatorial consequence of the clustering (see Remark~\ref{rem:team_null}), confirmed empirically (\(H_1=0\) across all 1,500 frames); our multi-scale \(H_1\) analysis therefore operates at two scales (individual and tactical) with three-scale \(H_0\) decomposition.
+
+\begin{remark}[Team-scale \(H_1\) is zero \emph{a priori}]\label{rem:team_null}
+At \(\delta=30.0\)~m the 22 players are reduced to \(k\in\{1,2\}\) centroids in every frame (Section~\ref{sec:scale_h0}). The Vietoris--Rips complex on \(k\leq 3\) points in general position has at most \(\binom{k}{2}=3\) edges, and any filled triangle at \(k=3\) is a boundary rather than a non-trivial 1-cycle. Hence \(H_1=0\) for every admissible filtration, independently of the data, and effective team-scale \(H_1\) analysis would require an alternative representation (e.g.\ spatial density fields or Delaunay triangulations).
+\end{remark}
+
+\textbf{Multi-match validation.} Across 10 matches (1,500 uniformly sampled frames):
+
+\begin{table}[H]
+  \centering
+  \caption{Multi-match \(H_1\) statistics (10 matches). Presence rates are given with 95\% bootstrap CIs (1{,}000 resamples over matches).}
+  \label{tab:h1multi}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}lccccc@{}}
+    \toprule
+    Scale & Total \(H_1\) & \(H_1\) presence rate & 95\% CI (matches) & Mean persistence & Cross-match s.d. \\
+    \midrule
+    Individual & 4\,200 & \(97.0\%\pm1.5\%\) & \(96.1\%\)--\(97.9\%\) & 1.854 & 0.163 \\
+    Tactical   & 315    & \(19.3\%\pm7.2\%\)  & \(15.3\%\)--\(23.7\%\) & 0.666 & 0.299 \\
+    Team       & 0      & \(0.0\%\pm0.0\%\)   & ---                 & N/A   & N/A \\
+    \bottomrule
+  \end{tabular}%
+  }
+\end{table}
+
+The individual-scale \(H_1\) presence rate of 97.0\% (s.d.\ 1.5\%; 95\% CI over matches \(96.1\%\)--\(97.9\%\)) across 10 independent matches confirms that loop structures are a near-universal feature of competitive spatial systems at this scale. Tactical-scale \(H_1\) presence of 19.3\% (s.d.\ 7.2\%; 95\% CI over matches \(15.3\%\)--\(23.7\%\)) shows meaningful cross-match variability, likely reflecting differences in tactical systems and match dynamics. The primary-match value of 12.7\% (19/150 frames; Table~\ref{tab:h1single}) sits within one standard deviation of this 10-match mean (\(|(12.7 - 19.3)/7.2|\approx 0.92\)), consistent with ordinary between-match variability rather than the primary match being an outlier; the primary match was selected for its broadcast quality and complete event annotation, not its tactical \(H_1\) rate.
+
+\subsection{Closed Cycle Structures}
+\label{sec:closed_cycles}
+
+Closed cycle identification recovers the geometric realisations of all 403 single-match \(H_1\) generators. Individual-scale cycles typically comprise 4--6 nodes (cluster centroids), corresponding to small ring-like player arrangements. Tactical-scale cycles comprise 4--5 nodes with higher persistence, corresponding to larger-scale formation gaps. See Figure~\ref{fig:cycles} for a representative geometric realisation.
+
+Representative examples:
+\begin{itemize}
+  \item \textbf{Individual, Frame 50:} 5-node cycle, persistence 12.99~m, a tight pentagonal pressing arrangement.
+  \item \textbf{Tactical, Frame 50:} 4-node cycle, persistence 10.77~m, the highest-persistence feature, corresponding to a stable gap between defensive and midfield lines.
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig2_cycle_geometry.\figext}
+  \caption[Geometric realisation of \(H_1\) cycles]{Geometric realisation of representative \(H_1\) loops at individual (\(\delta=2.98\)~m) and tactical (\(\delta=12.0\)~m) scales for SkillCorner match 1996435, frame 50. Loops are the highest-persistence cycle per scale (individual: 5-node, persistence 12.99~m; tactical: 4-node, persistence 10.77~m), recovered from the adaptive filtration with \(\varepsilon_{\max}\) per equation~\eqref{eq:adaptive}. Single-match sample: \(n=150\) analysis frames (uniform, every 100th).}
+  \label{fig:cycles}
+\end{figure}
+
+\subsection{Temporal Evolution}
+\label{sec:temporal}
+
+\textbf{Primary match (with statistical tests).} Comparison of mean \(H_1\) persistence between match halves using the Wilcoxon rank-sum test:
+
+\begin{table}[H]
+  \centering
+  \caption{Half-time comparison of mean \(H_1\) persistence (primary match).}
+  \label{tab:temporal}
+  \begin{tabular}{@{}lccccc@{}}
+      \toprule
+      Scale & First half mean & Second half mean & Change & Wilcoxon \(p\) & Permutation \(p\) \\
+      \midrule
+      Individual & 1.890 & 2.069 & +9.5\%  & 0.506 & N/A \\
+      Tactical   & 2.765 & 4.945 & +78.8\% & 0.066 & N/A \\
+      \bottomrule
+  \end{tabular}
+\end{table}
+
+Neither scale shows a statistically significant change between halves at the conventional $\alpha=0.05$ level. The tactical scale shows a large but non-significant increase (+78.8\%, $p=0.066$), whilst the individual scale shows a small non-significant increase (+9.5\%, $p=0.506$). This result is consistent with the multi-match finding (below) that temporal persistence dynamics are match-specific rather than universal.
+
+\textbf{Multi-match validation.} Across four matches with sufficient per-half data, the direction of persistence change is not consistent: one match shows a significant decrease, one shows a moderate increase, and two show negligible change. This suggests that temporal persistence dynamics are match-specific rather than universal, likely driven by tactical context, match state (score), and team-specific strategies.
+
+\textbf{Formal test: linear mixed model.} To substitute a statistic for this informal statement, we fit a linear mixed model across all 10 matches to per-window tactical-scale \(H_1\) persistence with match as a random intercept and ``half'' as both a fixed effect and a random slope:
+\[
+  \mathtt{persistence}_{mw} \;=\; \beta_0 + \beta_1 \cdot \mathtt{half}_{w} + u_{0m} + u_{1m}\cdot\mathtt{half}_{w} + \varepsilon_{mw}.
+\]
+A significant random-slope variance (\(\mathrm{Var}(u_1)\)) indicates between-match heterogeneity of the half effect, formalising the ``match-specific dynamics'' claim. A stratified permutation test (10{,}000 permutations of the \texttt{half} label within match) complements the parametric fit (LMM fitted in \texttt{statsmodels}; see \texttt{paper\_v5\_revisions/half\_level\_random\_effects.py}):
+
+\begin{itemize}
+  \item Fixed effect \(\hat\beta_1\) (half): \(-0.081\) (95\% CI \([-0.172,\,0.0093]\), LMM \(p=0.079\)).
+  \item Random-slope variance \(\widehat{\mathrm{Var}}(u_1)\): \(0.00101\).
+  \item Stratified permutation \(p\): \(0.051\).
+\end{itemize}
+
+We deliberately retain the coarse binary \texttt{half} factor here so that the LMM is directly comparable to the single-match Wilcoxon test of Table~\ref{tab:temporal}. A finer-grained treatment --- continuous time-in-match, or phase-of-play covariates from the SkillCorner annotations --- is deferred to the forthcoming functional persistence-landscape analysis \citep{Bubenik2015,Chazal2014}, where each match is treated as an element \(t \mapsto \lambda_\delta(t)\) of landscape space and regime transitions are the natural object of inference rather than half-averages.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig3_temporal_evolution.\figext}
+  \caption[Temporal evolution of \(H_1\) persistence]{Temporal evolution of mean \(H_1\) persistence across 2-minute non-overlapping windows for SkillCorner match 1996435 (primary). Individual scale (\(\delta=2.98\)~m) and tactical scale (\(\delta=12.0\)~m) are shown separately; \(n=36\) windows (10~Hz, complete 22-player frames). Shaded bands indicate the half-time division used for the Wilcoxon rank-sum test reported in Table~\ref{tab:temporal}.}
+  \label{fig:temporal}
+\end{figure}
+
+\subsection{Scale Complementarity}
+\label{sec:scale_complementarity}
+
+The two scales capture weakly correlated but functionally complementary information. The analysis is computed across 900 frames from six of the ten matches in Table~\ref{tab:h1multi} (inclusion rule: at least one sampled frame with tactical-scale $H_1 > 0$; four matches record zero tactical-scale $H_1$ across all 150 sampled frames and are therefore uninformative for the cross-scale co-occurrence analysis). The six contributing match IDs are emitted to the summary JSON by \texttt{paper\_v5\_revisions/bootstrap\_multi\_match\_ci.py} and ship in the supplementary material:
+
+\begin{itemize}
+  \item \textbf{Spearman rank correlation} between individual-scale and tactical-scale \(H_1\) counts: \(\rho=0.254\), \(p<0.001\); 95\% match-level bootstrap CI \([0.200,\,0.314]\) (1{,}000 resamples over the six matches contributing to this block; \texttt{paper\_v5\_revisions/bootstrap\_multi\_match\_ci.py}).
+  \item \textbf{Fisher's exact test} on the \(2\times2\) contingency table (presence/absence at each scale): OR \(=3.52\), \(p=0.093\); 95\% match-level bootstrap CI \([2.59,\,13.53]\) (1{,}000 resamples over the same six matches).
+\end{itemize}
+
+The weak but significant positive correlation indicates that frames with more individual-scale loops tend to have slightly more tactical-scale loops, plausibly because denser player configurations create topological features at multiple scales. The scales show moderate positive co-occurrence (OR \(=3.52\)) that falls short of conventional significance on the frame-level Fisher test (\(p=0.093\)). The wide match-level bootstrap CI for the odds ratio \([2.59,\,13.53]\) reflects substantial between-match heterogeneity, and although its lower bound exceeds 1 it should not be read as a significant rejection of independence in the frequentist sense: we therefore treat the OR result as exploratory positive evidence of cross-scale co-occurrence pending full-season replication, and use the Spearman \(\rho=0.254\) as the primary quantitative evidence that the scales capture predominantly distinct structural information: individual-scale loops can appear without tactical-scale loops and vice versa.
+
+\begin{table}[H]
+  \centering
+  \caption{Comparative properties at the two \(H_1\) scales. Primary match is 1996435; the final row reports the 10-match mean \(\pm\) across-match s.d.\ for frame presence for context.}
+  \label{tab:complement}
+  \begin{tabular}{@{}lcc@{}}
+      \toprule
+      Property & Individual scale & Tactical scale \\
+      \midrule
+      Loop frequency (primary match)      & High (2.55/frame)          & Low (0.14/frame) \\
+      Mean persistence (primary match)    & Low (\(1.977\pm1.128\)~m)  & High (\(3.797\pm3.008\)~m) \\
+      Max persistence (primary match)     & 12.991~m                   & 10.771~m \\
+      Frames with loops (primary match)   & 143/150 (95.3\%)           & 19/150 (12.7\%) \\
+      Frames with loops (10-match mean $\pm$ s.d.) & \(97.0\%\pm1.5\%\) & \(19.3\%\pm7.2\%\) \\
+      \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{TDA-native distance between scales.} The Spearman/Fisher summary above is based on scalar counts. As a TDA-native supplement, we compute per frame the bottleneck distance \(d_B(D_\mathrm{ind}, D_\mathrm{tac})\) between the individual-scale and tactical-scale \(H_1\) persistence diagrams, and the landscape \(L^2\) distance \(\|\lambda_\mathrm{ind}-\lambda_\mathrm{tac}\|_{L^2}\) \citep{Bubenik2015} using GUDHI \citep{Tauzin2021}. Their distributions across 1{,}500 frames (10 matches) quantify how different the two scales' diagrams actually are, beyond their loop counts.
+
+\begin{table}[H]
+  \centering
+  \caption{TDA-native cross-scale distance distributions (1{,}500 frames, 10 matches). These distances quantify within-frame complementarity between the individual-scale and tactical-scale persistence diagrams; between-tactical-class distances (required for a fully powered landscape-$L^2$ comparison at population scale) are a distinct quantity, deferred to the forthcoming full-season analysis.}
+  \label{tab:tda_distances}
+  \begin{tabular}{@{}lccc@{}}
+      \toprule
+      Metric & Median & IQR & Max \\
+      \midrule
+      Bottleneck \(d_B(D_\mathrm{ind}, D_\mathrm{tac})\) (m) & 1.511 & 1.324 & 7.994 \\
+      Landscape \(L^2\) \(\|\lambda_\mathrm{ind}-\lambda_\mathrm{tac}\|\) & 5.671 & 6.949 & 51.565 \\
+      \bottomrule
+  \end{tabular}
+\end{table}
+
+These distances are interpreted with the mean individual-scale \(H_1\) persistence (1.977~m; Table~\ref{tab:h1single}) as a reference. The median bottleneck distance (1.511~m) is of the same order as a typical individual-scale feature length, while the 95th-percentile tail (max 7.994~m) approaches twice the tactical-scale mean persistence (3.797~m, Table~\ref{tab:h1single}). The landscape \(L^2\) distances (median 5.671) confirm a non-trivial separation in functional space. Together these TDA-native summaries corroborate the complementarity claim in a metric that is independent of the Spearman/Fisher rank-based summaries above.
+
+\subsection{Sensitivity Analysis}
+\label{sec:sensitivity}
+
+\textbf{Cutoff distance sensitivity (tactical scale).} \(H_1\) detection across \(\delta\in[6,16]\)~m on 150 frames of the primary match ($H_1$ becomes zero at $\delta=16$~m, so the effective operative range is $[6,14]$~m):
+
+\begin{table}[H]
+  \centering
+  \caption{Tactical-scale sensitivity to cutoff distance (150 frames).}
+  \label{tab:senscut}
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    \(\delta\) (m) & \(H_1\) total & \(H_1\) presence & Mean \(H_0\) \\
+    \midrule
+    6  & 275 & 87.3\% & 13.4 \\
+    8  & 162 & 68.0\% & 9.8 \\
+    10 & 78 & 42.7\% & 7.0 \\
+    12 & 21 & 12.7\% & 4.8 \\
+    14 & 5 & 3.3\% & 3.5 \\
+    16 & 0 & 0.0\% & 2.8 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\(H_1\) detection decreases monotonically with cutoff distance, as expected: larger cutoffs produce fewer centroids and thus fewer potential cycles. The chosen \(\delta=12.0\)~m is deliberately at the conservative end of the productive range (12.7\% frame presence vs 87.3\% at \(\delta=6\)~m), prioritising fewer but more robust tactical loops, consistent with our single-linkage philosophy and domain-informed \(H_0\) validation. The framework produces topological features across the operative tactical cutoff range (6--14~m); detection collapses to zero at \(\delta \geq 16\)~m for the single-linkage, 150-frame primary-match sample.
+
+\textbf{Adaptive filtration ablation.} At \(\delta=12.0\)~m, varying the adaptive percentile:
+
+\begin{table}[H]
+  \centering
+  \caption{Adaptive percentile ablation at \(\delta=12.0\)~m.}
+  \label{tab:sensp}
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    Percentile & \(H_1\) total & \(H_1\) presence & Mean filtration \\
+    \midrule
+    P50 & 21 & 12.7\% & 38.5~m \\
+    P60 & 21 & 12.7\% & 42.7~m \\
+    P75 & 21 & 12.7\% & 50.3~m \\
+    P90 & 21 & 12.7\% & 60.5~m \\
+    P95 & 21 & 12.7\% & 65.6~m \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+All percentiles from P50 to P95 produce identical results (21 loops, 12.7\% presence), confirming that the adaptive filtration formula is insensitive to this parameter choice across the full tested range.
+
+\subsection{Linkage Method Comparison}
+\label{sec:linkage}
+
+Empirical comparison of single-linkage, complete-linkage, and Ward's method across 600 frames from 4 matches:
+
+\begin{table}[H]
+  \centering
+  \caption{Linkage method comparison (tactical scale).}
+  \label{tab:linkage}
+  \begin{tabular}{@{}lcccc@{}}
+    \toprule
+    Method & Tactical clusters & \(H_1\) total & \(H_1\) presence & Chaining ratio \\
+    \midrule
+    Single   & \(5.0\pm1.7\)  & 153 & 22.2\% & 10.96 \\
+    Complete & \(10.8\pm1.8\) & 923 & 86.3\% & 1.38 \\
+    Ward     & \(11.0\pm1.7\) & 936 & 86.0\% & 1.33 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+At the individual scale (\(\delta=2.98\)~m), all three methods produce effectively identical results (1,743--1,765 \(H_1\) loops, 97\% presence), confirming that the chaining effect is negligible at short distances where players are genuinely nearby. At the tactical scale, single-linkage's chaining (ratio \(\approx 11\), measuring tendency to merge into elongated chains) reduces centroids from \(\sim\)11 (complete/Ward) to \(\sim\)5, substantially reducing \(H_1\) detection. Our reported single-linkage results are therefore conservative: the true topological richness at the tactical scale is likely greater than reported. At the team scale, all methods confirm \(H_1=0\) for single-linkage (as expected from 1--2 centroids), whilst complete and Ward produce team-scale loops, a finding that warrants future investigation with appropriate domain validation.
+
+\subsection{Event Correlation}
+\label{sec:event_correlation}
+
+Real event correlation using SkillCorner annotations across 10 matches (104,722 event-topology pairs) reveals statistically significant associations between match events and topological transitions (Figure~\ref{fig:events}):
+
+\textbf{Individual scale, significant event types:}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    Event type & Mean \(\Delta\) persistence & \(p\)-value & \(n\) \\
+    \midrule
+    On-ball engagement & \(-0.256\) & \textless0.001 & 8\,905 \\
+    Passing option     & \(-0.162\) & \textless0.001 & 24\,343 \\
+    Build-up phase       & +0.731 & \textless0.001 & 618 \\
+    Quick break          & \(-0.766\) & 0.010 & 57 \\
+    Chaotic phase        & \(-0.210\) & 0.043 & 1\,087 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{Tactical scale, significant event types:}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    Event type & Mean \(\Delta\) persistence & \(p\)-value & \(n\) \\
+    \midrule
+    Passing option     & \(-0.046\) & \textless0.001 & 24\,343 \\
+    On-ball engagement & \(-0.058\) & 0.014 & 8\,905 \\
+    Chaotic phase      & \(-0.196\) & \textless0.001 & 1\,087 \\
+    Build-up phase     & +0.342 & \textless0.001 & 618 \\
+    Quick break        & \(-0.666\) & 0.046 & 57 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The pattern is coherent across both scales: events involving spatial disruption (engagements, pressing, quick breaks) are associated with persistence decreases, whilst events involving spatial organisation (build-up) are associated with persistence increases. This is consistent with the topological interpretation: spatial disruption fragments formation structures (reducing \(H_1\)), whilst deliberate build-up creates and sustains them.
+
+\textbf{Sensitivity to event-window half-width.} To confirm that the headline event-type effects are not an artefact of the \(\pm 5\)-frame ($\pm 0.5$~s) window, we re-ran the analysis at \(\pm \{5, 10, 20, 50\}\) frames ($\pm \{0.5, 1, 2, 5\}$~s); results are summarised in Table~\ref{tab:event_window} (sign of mean \(\Delta\) persistence at the tactical scale; \texttt{paper\_v5\_revisions/event\_window\_sensitivity.py}).
+
+\begin{table}[H]
+  \centering
+  \caption{Sign of mean \(\Delta\) persistence for the five leading event types at the tactical scale across four event-window half-widths. \(+\) indicates persistence increase, \(-\) decrease. Individual-scale sign table is identical in structure (not shown). The corresponding per-window mean \(\Delta\) persistence magnitudes (at both scales) are provided in the supplementary material for comparison with the \(\pm 0.5\)\,s headline values reported in the Tables above.}
+  \label{tab:event_window}
+  \begin{tabular}{@{}lcccc@{}}
+      \toprule
+      Event type & \(\pm 0.5\)~s & \(\pm 1\)~s & \(\pm 2\)~s & \(\pm 5\)~s \\
+      \midrule
+      On-ball engagement & \(-\) & \(-\) & \(-\) & \(-\) \\
+      Passing option     & \(-\) & \(-\) & \(-\) & \(-\) \\
+      Build-up phase     & \(+\) & \(+\) & \(+\) & \(+\) \\
+      Quick break        & \(-\) & \(-\) & \(-\) & \(-\) \\
+      Chaotic phase      & \(-\) & \(-\) & \(-\) & \(-\) \\
+      \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/fig4_event_correlation.\figext}
+  \caption[Persistence change by event type]{Mean change in \(H_1\) persistence (post--event minus pre--event, \(\pm 5\) frames at 10~Hz, i.e.\ \(\pm 0.5\)~s) by match-event type for the individual (\(\delta=2.98\)~m) and tactical (\(\delta=12.0\)~m) scales. Source: 10 SkillCorner matches, 104{,}722 event--topology pairs; significance from Mann--Whitney U tests against zero, FDR-corrected. Error bars are 95\% CIs.}
+  \label{fig:events}
+\end{figure}
+
+\subsection{Baseline Comparison: Topology vs Geometric Descriptors}
+\label{sec:baseline}
+
+To test whether tactical-scale \(H_1\) persistence carries information beyond standard football-analytics geometric descriptors, we computed per frame across all 10 matches: team length (range of \(x\)-coordinates), team width (range of \(y\)), convex-hull area, and Voronoi dispersion entropy \citep{Folgado2014,FernandezBornn2018}, alongside the tactical-scale \(H_1\) total persistence. Spearman rank correlation and partial \(R^2\) (topological variable entered after the geometric baseline block, by linear regression) quantify the added information.
+
+\begin{table}[H]
+  \centering
+  \begin{threeparttable}
+    \caption{Baseline geometric descriptors versus tactical-scale \(H_1\) persistence (10 SkillCorner matches, 1{,}500 frames).}
+    \label{tab:baseline}
+    \begin{tabular}{@{}lccc@{}}
+      \toprule
+      Baseline descriptor & Spearman \(\rho\) & \(p\) & Partial \(R^2\) (topology residual) \\
+      \midrule
+      Team length (m)                  & \(-0.005\) & \(0.857\) & \(0.025\) \\
+      Team width (m)                   & \(0.356\) & \(<10^{-40}\) & \(0.036\) \\
+      Convex-hull area (m\(^2\))       & \(0.431\) & \(<10^{-65}\) & \(0.091\) \\
+      Voronoi dispersion entropy      & \(0.126\) & \(9.9\times10^{-7}\) & \(0.004\) \\
+      \bottomrule
+    \end{tabular}
+    \begin{tablenotes}
+      \small
+      \item Partial \(R^2\) reports the variance in the baseline descriptor not accounted for by the remaining baselines that is explained by the tactical-scale \(H_1\) persistence; this is a symmetric proxy for non-redundancy short of a fully specified ANCOVA.
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+Geometric descriptors and tactical-scale \(H_1\) persistence are weakly-to-moderately associated (Spearman $|\rho|$ up to $0.43$ for convex-hull area); the partial \(R^2\) values show that topology explains non-negligible residual variance in the baselines after controlling for the other three (convex-hull area $0.091$; team width $0.036$; team length $0.025$), so tactical-scale \(H_1\) persistence is not reducible to these geometric descriptors alone. The largest pairing (hull area $0.091$) exceeds a $0.05$ effect-size threshold commonly used as a non-redundancy criterion in regression-based baseline comparisons; the partial \(R^2\) reported here is a symmetric proxy, not the fully-specified ANCOVA with topology as the tested block, which is the definitive test to be conducted at full-season scale. Section~\ref{sec:predictive} converts this correlational statement into a cross-validated predictive-utility claim on held-out matches.
+
+\paragraph{Multiple testing and effect sizes.} With four Spearman tests, a Bonferroni-adjusted threshold of $\alpha/4 = 0.0125$ leaves team width, convex-hull area, and Voronoi dispersion entropy significant at the corrected level, and team length ($p=0.857$) non-significant, so the qualitative picture is unchanged. The extremely small $p$-values for team width ($<10^{-40}$) and hull area ($<10^{-65}$) are driven by the large per-frame sample size ($N=1{,}500$ frames pooled across 10 matches), not by large effect sizes: Spearman $|\rho|$ is at most $0.43$, and the largest partial $R^2$ is $0.091$, so the geometric and topological descriptors are not redundant but are also not strongly coupled on a per-frame basis.
+
+\subsection{Bilateral Topological Coupling}
+\label{sec:bilateral}
+
+The 22-player analyses reported above merge home and away players into a single point cloud, which discards team identity. Here we run the tactical-scale pipeline (\(\delta=12.0\)~m, adaptive Vietoris--Rips filtration) independently on each team's 11-player sub-cloud and report per-team \(H_1\) statistics and the per-frame cross-team coupling across the 10-match uniform sample (1{,}500 frames; \texttt{paper\_v5\_revisions/bilateral\_topology.py}).
+
+\begin{table}[H]
+  \centering
+  \caption{Per-team tactical-scale \(H_1\) statistics, single-linkage at \(\delta=12.0\)~m on each team's 11-player sub-cloud (10 SkillCorner matches, 1{,}500 frames). Per-team rates are nearly identical between home and away (sanity check) and substantially exceed the 22-player merged tactical \(H_1\) rate of \(19.3\%\pm7.2\%\) reported in Table~\ref{tab:h1multi}.}
+  \label{tab:bilateral_perteam}
+  \begin{tabular}{@{}lcccc@{}}
+      \toprule
+      Sub-cloud & Mean tactical clusters & \(H_1\) presence rate & Mean \(H_1\) total persistence & Mean \(H_1\) persistence (when present) \\
+      \midrule
+      Home (11 players) & \(5.27\pm2.28\) & \(36.1\%\) & 1.535 & 3.597 \\
+      Away (11 players) & \(5.21\pm2.39\) & \(36.4\%\) & 1.552 & 3.522 \\
+      \midrule
+      22-player merged \emph{(reference; Table~\ref{tab:h1multi})} & \(4.92\pm0.36\) & \(19.3\%\pm7.2\%\) & --- & --- \\
+      \bottomrule
+  \end{tabular}
+\end{table}
+
+The per-team tactical-\(H_1\) presence rate of \(36\%\) is roughly twice the 22-player merged rate, indicating that bilateral decomposition exposes per-team formation structure that the merger obscures: the same single-linkage chaining that produces \(\sim 5\) tactical clusters in the merged cloud also produces \(\sim 5\) clusters \emph{per team} in the bilateral cloud, so the 11+11 view operates on roughly twice as many centroids in total and gives the Vietoris--Rips complex correspondingly more opportunity for a 1-cycle.
+
+\begin{table}[H]
+  \centering
+  \caption{Cross-team coupling at the tactical scale (10 SkillCorner matches, 1{,}500 frames). Spearman \(\rho\) is computed within each match on \(H_1\) total persistence and aggregated as a weighted mean over matches; 95\% CI is a match-level bootstrap (1{,}000 resamples). Bottleneck \(d_B(D_\mathrm{home}, D_\mathrm{away})\) and landscape \(L^2\) summaries use GUDHI as in Section~\ref{sec:scale_complementarity}; ``finite only'' restricts to the 1{,}485 frames in which both diagrams are non-empty.}
+  \label{tab:bilateral_coupling}
+  \begin{tabular}{@{}lcc@{}}
+      \toprule
+      Quantity & Value & 95\% CI \\
+      \midrule
+      Cross-team Spearman \(\rho\) (lag 0)         & \(0.037\)  & \([-0.018,\;0.087]\) \\
+      Cross-team Spearman \(\rho\) (lag \(\pm 1\) frames)  & \(\in[-0.048,\,-0.013]\)  & --- \\
+      Cross-team Spearman \(\rho\) (lag \(\pm 5\) frames)  & \(\in[-0.057,\,-0.040]\)  & --- \\
+      Cross-team Spearman \(\rho\) (lag \(\pm 10\) frames) & \(\in[-0.023,\,+0.033]\)  & --- \\
+      Co-occurrence \(P(\text{both teams } H_1>0)\) & \(14.7\%\) & --- \\
+      Co-occurrence \(P(\text{exactly one team } H_1>0)\) & \(43.2\%\) (home only \(21.5\%\); away only \(21.7\%\)) & --- \\
+      Co-occurrence \(P(\text{neither team})\) & \(42.1\%\) & --- \\
+      \midrule
+      Bottleneck \(d_B(D_\mathrm{home}, D_\mathrm{away})\) (m), finite only & median \(0.58\); IQR \(2.13\); max \(6.35\)  & --- \\
+      Landscape \(L^2\,\|\lambda_\mathrm{home}-\lambda_\mathrm{away}\|\)  & median \(1.11\); IQR \(8.61\); max \(49.6\) & --- \\
+      \bottomrule
+  \end{tabular}
+\end{table}
+
+The cross-team Spearman \(\rho\) at lag 0 is small (\(0.037\)) with a 95\% match-level bootstrap CI of \([-0.018,\,0.087]\) that contains zero; the same picture holds at every tested lag from \(\pm 1\) to \(\pm 10\) frames (\(|\rho|\leq 0.06\)). The two teams' tactical persistence sequences therefore evolve close to independently at this temporal resolution. The co-occurrence table is consistent with this: under independence \(P(\text{both})\) would equal \(P(\text{home})\,P(\text{away})\approx 0.131\); the observed \(0.147\) gives an odds ratio of \(1.32\), a modest positive co-occurrence in the same direction as the small positive \(\rho\), but not a strong dependence. The median cross-team bottleneck distance (finite-only) of \(0.58\)~m is small compared with the mean tactical-scale \(H_1\) persistence reported in Table~\ref{tab:h1single} (\(3.797\)~m), so when both teams have tactical \(H_1\) the two persistence diagrams are typically close; the heavier landscape \(L^2\) tail (IQR \(8.61\)) reflects the small number of frames where the diagrams differ in essential features.
+
+\subsection{Predictive Incremental Utility on Held-Out Matches}
+\label{sec:predictive}
+
+The partial-\(R^2\) statement in Section~\ref{sec:baseline} is correlational: topology explains residual variance in each baseline descriptor after controlling for the other three. To convert that statement into a predictive claim, we ask whether tactical-scale \(H_1\) carries information for an out-of-sample classification task on top of the same geometric baselines. The label is the binary frame indicator
+\(\,\mathbf{1}[\,\text{frame }t\text{ lies in a build-up phase}\,]\,\)
+constructed from the SkillCorner \texttt{team\_in\_possession\_phase\_type} annotation; the build-up class is the largest of the positively-signed event types in Section~\ref{sec:event_correlation} and yields a balanced-enough target across the 10-match cohort (prevalence \(13.7\%\) of frames). Two feature blocks are compared:
+
+\begin{itemize}
+  \item Block A (baselines): team length, team width, convex-hull area, Voronoi dispersion entropy.
+  \item Block B: block A plus tactical-scale \(H_1\) total persistence (\(\delta=12.0\)~m).
+\end{itemize}
+
+L\(_2\)-regularised logistic regression (\texttt{sklearn} default \(C=1.0\); features standardised within each fold) is fit under \texttt{GroupKFold(n\_splits=10)} over \texttt{match\_id}, so every fold's test set consists entirely of held-out matches. We report out-of-fold AUC, log-loss, and Brier score, plus the block-B-minus-block-A deltas with match-level bootstrap 95\% CIs (1{,}000 resamples) and a stratified within-match permutation \(p\)-value (2{,}000 permutations) on \(\Delta\text{AUC}\) (\texttt{paper\_v5\_revisions/predictive\_utility.py}).
+
+\begin{table}[H]
+  \centering
+  \caption{Cross-validated predictive performance for \(\mathbf{1}[\text{build-up phase}]\) on the 10 SkillCorner matches (\(n=1{,}500\) frames, prevalence \(13.7\%\)). \texttt{GroupKFold} over \texttt{match\_id}; out-of-fold metrics on the pooled test predictions. \(\Delta\) is block B minus block A; positive values would indicate that tactical \(H_1\) helps. The match-level bootstrap CI columns resample the 10 matches with replacement and recompute \(\Delta\) on the resampled out-of-fold predictions; the permutation column gives the within-match permutation \(p\)-value for \(\Delta\text{AUC}\geq 0\).}
+  \label{tab:predictive}
+  \begin{tabular}{@{}lcccc@{}}
+      \toprule
+      Topology summary added & AUC (B / A) & \(\Delta\text{AUC}\) [95\% CI] & \(\Delta\text{log-loss}\) [95\% CI] & Permutation \(p\) \\
+      \midrule
+      Tactical \(H_1\) total persistence & 0.687 / 0.693 & \(-0.005\) \([-0.015,\,+0.001]\) & \(+0.0017\) \([-0.0004,\,+0.0049]\) & \(1.00\) \\
+      Tactical \(H_1\) count             & 0.689 / 0.693 & \(-0.004\) \([-0.010,\,+0.0004]\) & \(+0.0014\) \([+0.0001,\,+0.0036]\) & \(1.00\) \\
+      Tactical \(H_1\) max persistence   & 0.687 / 0.693 & \(-0.006\) \([-0.016,\,+0.001]\) & \(+0.0020\) \([-0.0002,\,+0.0056]\) & \(1.00\) \\
+      \midrule
+      \multicolumn{5}{l}{\emph{Robustness target: \(\mathbf{1}[\text{chaotic phase}]\) (prevalence \(7.0\%\))}} \\
+      Tactical \(H_1\) total persistence & 0.716 / 0.719 & \(-0.002\) \([-0.005,\,+0.0006]\) & \(+0.0005\) \([+0.00001,\,+0.0011]\) & \(1.00\) \\
+      \bottomrule
+  \end{tabular}
+\end{table}
+
+The geometric baseline block A already achieves AUC \(\approx 0.69\) for build-up and AUC \(\approx 0.72\) for chaotic phases, so the task is not trivial but well-served by the four geometric descriptors. Across all three tactical-\(H_1\) summaries (total persistence, count, max persistence) and both targets, the point estimate of \(\Delta\text{AUC}\) is small and slightly negative, the match-level bootstrap CIs contain zero or are centred just below zero, and the stratified permutation \(p\) is \(1.0\) (the observed \(\Delta\text{AUC}\) is at the lower end of the permutation null). The log-loss and Brier deltas are small in absolute terms; the log-loss tightening with the count and chaotic-target specifications reflects a small calibration penalty, not a discrimination gain. The conclusion is that on the present 10-match cohort with the four-feature geometric baseline already in place, tactical-scale \(H_1\) total persistence carries no detectable incremental predictive utility for held-out-match phase classification. Section~\ref{sec:scale_complementarity_discussion} reconciles this null finding with the partial-\(R^2\) statement of Section~\ref{sec:baseline}.
