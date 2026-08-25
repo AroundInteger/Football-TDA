@@ -1,0 +1,11 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "Football-TDA (canonical — ~/TDA/Football)"
+    }
+  ],
+  "settings": {
+    "python.defaultInterpreterPath": "${workspaceFolder}/08_current/Paper Updated/3-Paper Paradigm/paper_A_JACT/.venv/bin/python"
+  }
+}

@@ -221,13 +221,30 @@ Both copies were ~22 GB because each includes the nested `01_data` clones.
 Deleting Documents frees space only if you are not keeping a duplicate 22 GB
 tree elsewhere.
 
-### 4.4 Conflict-TDA
+### 4.4 Conflict-TDA (separate from TackleTEK)
+
+**TackleTEK** (`github.com/TackleTEK/TackleTEK`) is rugby tackle analysis — a
+different project entirely.
+
+**Conflict-TDA** is the UKRI / ACLED conflict-topology strand. Canonical files
+are currently at:
+
+```
+~/TDA/Conflict/UKRI_AI_Strategy_Alignment/
+```
+
+That folder is **not yet its own git repository**. It should be initialised (or
+cloned) as a dedicated repo, e.g. `AroundInteger/Conflict-TDA`, not folded into
+Football-TDA or TackleTEK.
 
 If a `Conflict-TDA` folder remains under `~/Documents/GitHub/`:
 
-- Confirm `~/TDA/Conflict` (or your chosen canonical Conflict path) is current.
-- Push that repo to its remote.
-- Delete the Documents copy using the same Finder procedure.
+- Confirm `~/TDA/Conflict` holds the content you need.
+- Initialise/push the dedicated Conflict repo before deleting any Documents copy.
+
+**Note:** if `git status` run from `~/TDA/Conflict` shows your entire home
+directory, a stray `~/.git` exists — fix that before creating Conflict-TDA's
+repo (see `~/TDA/README.md`).
 
 ---
 
