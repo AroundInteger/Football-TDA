@@ -221,30 +221,21 @@ Both copies were ~22 GB because each includes the nested `01_data` clones.
 Deleting Documents frees space only if you are not keeping a duplicate 22 GB
 tree elsewhere.
 
-### 4.4 Conflict-TDA (separate from TackleTEK)
+### 4.4 Conflict-TDA (done 25 Aug 2026)
 
-**TackleTEK** (`github.com/TackleTEK/TackleTEK`) is rugby tackle analysis — a
-different project entirely.
+Dedicated repository: **[AroundInteger/Conflict-TDA](https://github.com/AroundInteger/Conflict-TDA)**
 
-**Conflict-TDA** is the UKRI / ACLED conflict-topology strand. Canonical files
-are currently at:
+Canonical working copy:
 
 ```
 ~/TDA/Conflict/UKRI_AI_Strategy_Alignment/
 ```
 
-That folder is **not yet its own git repository**. It should be initialised (or
-cloned) as a dedicated repo, e.g. `AroundInteger/Conflict-TDA`, not folded into
-Football-TDA or TackleTEK.
+Open `~/TDA/Conflict/Conflict-TDA.code-workspace` in Cursor. Raw ACLED CSVs are
+gitignored; download per `Data/README.md`. Manuscript data-availability links
+point at Conflict-TDA, not Football-TDA.
 
-If a `Conflict-TDA` folder remains under `~/Documents/GitHub/`:
-
-- Confirm `~/TDA/Conflict` holds the content you need.
-- Initialise/push the dedicated Conflict repo before deleting any Documents copy.
-
-**Note:** if `git status` run from `~/TDA/Conflict` shows your entire home
-directory, a stray `~/.git` exists — fix that before creating Conflict-TDA's
-repo (see `~/TDA/README.md`).
+**TackleTEK** (`TackleTEK/TackleTEK`) is a separate rugby project — not this repo.
 
 ---
 
