@@ -40,7 +40,7 @@ REPO = repo_root()
 sys.path.insert(0, str(REPO / "01_data"))
 sys.path.insert(0, str(REPO / "02_tda_core"))
 
-from loaders import skillcorner  # noqa: E402
+from loaders import skillcorner, subsample_uniform  # noqa: E402
 from tda_utils import (  # noqa: E402
     VALIDATED_CUTOFFS,
     adaptive_filtration,
@@ -135,7 +135,7 @@ def main() -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     rng = np.random.default_rng(args.seed)
 
-    mm = cfg["multi_match"]
+    n_sample = int(cfg["sampling"]["uniform_150"]["n_frames"])
     match_ids = [m["id"] for m in skillcorner.list_matches()]
     if args.primary_only:
         match_ids = [cfg["primary_match_id"]]
@@ -144,12 +144,15 @@ def main() -> None:
     for n, mid in enumerate(match_ids, 1):
         match = skillcorner.load_match(
             mid,
-            sample_every=mm["sample_every"],
+            sample_every=1,
             require_complete=True,
-            max_frames=mm["frames_per_match"],
         )
-        frames = match.complete_frames
-        print(f"[{n}/{len(match_ids)}] match {mid}: {len(frames)} frames", flush=True)
+        frames, step = subsample_uniform(match.complete_frames, n_sample)
+        print(
+            f"[{n}/{len(match_ids)}] match {mid}: {len(frames)} frames "
+            f"(stride {step} of {len(match.complete_frames)} complete)",
+            flush=True,
+        )
         for fi, frame in enumerate(frames):
             for scale in SCALES:
                 k, observed, null_rate = analyse_frame(

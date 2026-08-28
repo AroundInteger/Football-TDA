@@ -26,6 +26,7 @@ echo "=== Paper A pipeline ==="
 echo "Repo: $REPO_ROOT"
 echo "Output: $PIPELINE_DIR/outputs"
 
+python3 "$PIPELINE_DIR/steps/00_pipeline_figure.py"
 python3 "$PIPELINE_DIR/steps/01_primary_uniform.py"
 python3 "$PIPELINE_DIR/steps/02_cutoff_sweep.py"
 python3 "$PIPELINE_DIR/steps/03_multi_match.py"
@@ -34,6 +35,7 @@ python3 "$PIPELINE_DIR/steps/04_complementarity.py"
 python3 "$PIPELINE_DIR/steps/07_cardinality_null.py"
 python3 "$PIPELINE_DIR/steps/08_linkage_comparison.py"
 python3 "$PIPELINE_DIR/steps/06_figures.py"
+python3 "$PIPELINE_DIR/steps/09_acf_supplement.py"
 python3 "$PIPELINE_DIR/lib/build_numbers.py"
 
 python3 "$PIPELINE_DIR/sync_to_paper.py" || true
@@ -42,7 +44,7 @@ python3 -c "
 import sys
 sys.path.insert(0, '$PIPELINE_DIR/lib')
 from common import write_manifest
-write_manifest({'steps_completed': ['01','02','03','04','05','06','07','08','build_numbers']})
+write_manifest({'steps_completed': ['00','01','02','03','04','05','06','07','08','09','build_numbers']})
 "
 
 echo "=== Paper A pipeline complete ==="

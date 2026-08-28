@@ -3,7 +3,9 @@
 
 \subsection{Background}
 
-Competitive spatial systems, collections of agents that interact, coordinate within groups, and compete between groups within a bounded domain, are ubiquitous. Autonomous vehicle fleets sharing road space,
+Competitive spatial systems---collections of agents that interact,
+coordinate within groups, and compete between groups within a bounded
+domain---are ubiquitous. Autonomous vehicle fleets sharing road space,
 opposing crowd flows at transport hubs, predator--prey populations in an
 ecosystem, and sports teams contesting territory all share this
 structure. Such systems characteristically operate across multiple
@@ -17,8 +19,9 @@ Agents within such systems can arrange themselves in ring-like
 formations that enclose empty space: a pressing trap encircling a player in possession, or a gap between two organisational units that creates room to manoeuvre. These arrangements have a topological
 character: they are loops in the position data, and their persistence
 over time distinguishes deliberate structural organisation from
-transient clustering. Conventional geometric summaries, including convex-hull area, nearest-neighbour distance, and the range of agent positions along each axis, capture different aspects of spatial dispersion but do not
-directly quantify this loop structure.
+transient clustering. Conventional geometric summaries capture different aspects of spatial
+dispersion. Convex-hull area, nearest-neighbour distance, and the range
+of agent positions along each axis do not directly quantify loop structure.
 
 Persistent homology, the central tool of topological data analysis,
 provides a principled way to detect and measure such formations across
@@ -28,14 +31,15 @@ multi-scale structure in a mathematically rigorous way; applications
 span protein structure, materials science, and collective behaviour.
 Applying standard single-parameter persistent homology directly to a
 multi-agent point cloud, however, presents a practical difficulty that
-motivates the framework developed here.
+motivates the pipeline developed here.
 
 \subsection{The Scale Conflation Problem}
 
 A single Vietoris--Rips filtration applied to a multi-agent point cloud
 computes topological features across all spatial scales simultaneously,
-encoding the full hierarchical clustering structure of the point cloud
-, from individual proximity through small-group formation to system-wide organisation, within a single persistence diagram. For
+encoding the full hierarchical clustering structure of the point cloud,
+from individual proximity through small-group formation to system-wide
+organisation, within a single persistence diagram. For
 exploratory analysis of a system with no known hierarchical structure,
 this is a strength: every scale is examined without prior commitment to
 which one matters. For a system with known hierarchical organisation
@@ -48,40 +52,38 @@ literature, and Section~\ref{sec:relatedwork} positions the present
 approach against it in detail.
 
 We take a domain-informed path rather than developing new algebraic
-machinery: the point cloud is decomposed by organisational level through
-hierarchical clustering at validated cutoff distances, and scale-specific
-persistent homology is computed on each reduced point cloud in turn.
-This decomposition introduces a second problem that a single-scale
-analysis never encounters. Clustering changes the point cloud's geometry at each scale, so a fixed Vietoris--Rips threshold suitable at
-one organisational level produces null $H_1$ results at another. The
-adaptive filtration developed in Section~\ref{sec:adaptivefiltration}
-resolves this second problem.
+machinery. Birth values in a single Vietoris--Rips diagram already carry
+a spatial scale: they record when a loop closes among the original
+points. That scale is not the organisational level of the units that
+enclose the loop. To attribute $H_1$ to a level, we change the point
+cloud first. Hierarchical clustering at validated cutoff distances
+decomposes the cloud by organisational level, and scale-specific
+persistent homology is computed on each reduced cloud in turn.
+
+This decomposition introduces a second measurement problem. Clustering
+changes the geometry at each scale. A fixed Vietoris--Rips threshold
+suited to one organisational level produces null $H_1$ at another. The
+data-driven truncation in Section~\ref{sec:adaptivefiltration} is the
+practical fix, not a new filtration.
 
 \subsection{Contributions}
 
-This paper makes four contributions, two methodological and two
-empirical.
+The measurement pipeline has two steps. Domain-informed hierarchical
+clustering, with cutoffs checked against independent clustering-quality
+metrics, separates organisational levels before homology is computed. A
+data-driven truncation of the Vietoris--Rips parameter keeps $H_1$
+detection from collapsing once clustering has changed the geometry.
+Neither step is algebraically new; the content is that the combination
+survives broadcast tracking.
 
-Methodologically, it introduces domain-informed scale decomposition: a
-hierarchical clustering preprocessing step, with cutoff distances
-validated by independent clustering-quality metrics, that separates
-organisational levels and enables scale-specific topological analysis of
-a multi-agent point cloud. It also introduces an adaptive filtration: a
-data-driven maximum filtration scale that adjusts to the post-clustering
-point cloud's geometry, ensuring $H_1$ detection remains consistent
-across analysis scales rather than collapsing to zero at scales the
-original threshold was not designed for.
-
-Empirically, it provides multi-match scale validation: a systematic
-sweep of the cutoff distance over $[0.5, 30.0]$~m identifies three
-stable analysis regimes, confirmed across ten independent matches rather
-than a single demonstration case. It also provides multi-scale
-topological characterisation: detection of $H_1$ loops at two of the
-three scales, geometric realisation demonstrated for every generator in
-the primary-match analysis, evidence that the two $H_1$ scales carry
-distinct rather than redundant information, and a minimal correlation
-with real match events confirming the detected features track genuine
-structure rather than measurement noise.
+The empirical findings are four. A sweep of the cutoff over
+$[0.5, 30.0]$~m identifies three stable $H_0$ regimes across ten
+matches, not a single demonstration case. $H_1$ is detected at two of
+the three scales, with a geometric cycle representative for every
+feature in the primary-match analysis. The two $H_1$ scales carry
+complementary rather than redundant information. A minimal correlation
+with match events serves as a construct-validity check against
+measurement noise.
 
 \subsection{Related Work}
 \label{sec:relatedwork}
@@ -108,20 +110,18 @@ simultaneous multi-scale analysis, but computational cost currently
 limits its application to point clouds much smaller than the 22-agent,
 high-frequency case considered here. \citet{schindler2023} address
 hierarchical decomposition directly, developing tools for analysing
-multiscale clusterings with persistent homology; the present work
-differs in providing an explicit mechanism, the adaptive filtration of Section~\ref{sec:adaptivefiltration}, for keeping $H_1$ detection
-consistent as the clustering scale itself changes the point cloud's
-geometry, a coupling that arises specifically when clustering precedes
-single-parameter persistent homology, and in validating the resulting
-scale regimes empirically across ten independent real matches rather
-than within a single theoretical or simulated setting.
+multiscale clusterings with persistent homology. The present work asks
+whether cluster-then-persistent homology, with the data-driven truncation
+of Section~\ref{sec:adaptivefiltration}, survives a real, high-frequency,
+noisy point cloud and yields stable scale regimes across ten independent
+matches.
 
 In sports analytics specifically, spatial analysis methods including
 pitch-control models and spatio-temporal pattern recognition are
 surveyed in \citet{gudmundsson2017}. Related perspectives model teams as
 coordinated multi-agent systems and apply network metrics to passing and
 collective structure \citep{buldu2018,grund2012}; these approaches
-complement the present framework but do not quantify two-dimensional
+complement the present pipeline but do not quantify two-dimensional
 enclosure through persistent homology. To our knowledge, no prior work
 combines domain-informed scale decomposition with persistent homology
 for a competitive, high-frequency spatial system, or validates the

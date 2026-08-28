@@ -5,7 +5,17 @@ fps: 10.0
 sampling:
   uniform_150:
     n_frames: 150
-    description: "Uniformly spaced complete frames for Paper A tables"
+    description: >
+      Operational rule for all headline tables: from each match's complete
+      22-player frames, take every (N // 150)th frame. On the primary match
+      N = 43531 so the stride is 290 frames (~29 s at 10 Hz). This is not an
+      independence claim; it is a fixed-cardinality design across matches.
+  acf_supplement:
+    decimate: 10
+    max_lag_s: 60
+    description: >
+      1 Hz series on the primary match only, to show residual autocorrelation
+      of topological summaries. Not the operational sampling rule.
   cutoff_sweep:
     n_cutoffs: 100
     delta_min: 0.5
@@ -23,7 +33,7 @@ validated_cutoffs:
 multi_match:
   skillcorner_only: true
   frames_per_match: 150
-  sample_every: 100
+  sampling: uniform_complete
 
 bootstrap:
   n_boot: 1000

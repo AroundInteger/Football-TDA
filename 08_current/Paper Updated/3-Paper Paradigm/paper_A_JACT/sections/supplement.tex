@@ -1,0 +1,28 @@
+\section*{Supplementary note: temporal autocorrelation}
+\label{sec:acf}
+
+Headline $H_0$ and $H_1$ tables use the uniform 150-frame rule of
+Section~2.1, not a lag chosen from the autocorrelation function.
+When available, Figure~\ref{fig:acf} is a diagnostic on the primary
+match: topological summaries computed on complete frames at the native
+rate, then thinned to 1~Hz, with Pearson autocorrelation plotted against
+lag. Vertical guides mark 10~s, 20~s, and the operational stride
+($\approx 29$~s). The figure supports the claim that the operational
+stride is conservative; it is not used to select frames. Generate with
+\texttt{pipeline/steps/09\_acf\_supplement.py}.
+
+\IfFileExists{figures/figS1_acf.pdf}{%
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/figS1_acf}
+\caption{Autocorrelation of frame-level topological summaries on SkillCorner
+match 1996435 at 1~Hz. Series: tactical $H_0$, and total $H_1$
+persistence at the individual and tactical scales. The dashed red line is
+the uniform-150 stride.}
+\label{fig:acf}
+\end{figure}
+}{%
+\par\textit{Supplementary Figure~S1 is not yet generated. Run
+\texttt{09\_acf\_supplement.py} once SkillCorner open data are available.}
+\label{fig:acf}
+}

@@ -29,12 +29,21 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / '01_data'))
 sys.path.insert(0, str(PROJECT_ROOT / '02_tda_core'))
 
-from loaders import secondspectrum, skillcorner, MatchData
+from loaders import MatchData, secondspectrum, skillcorner, subsample_uniform
 from tda_utils import compute_h1_at_scale, VALIDATED_CUTOFFS, persistence_stats
 
 OUTPUT_DIR = PROJECT_ROOT / 'results' / 'multi_match'
 FRAMES_PER_MATCH = 150
-SAMPLE_RATE = 100  # every 100th frame
+
+
+def _uniform_match(match: MatchData, n_sample: int) -> MatchData:
+    """Apply the uniform_150 complete-frame rule used on the primary match."""
+    sampled, step = subsample_uniform(match.complete_frames, n_sample)
+    print(
+        f"    uniform_150: {len(sampled)} of {len(match.complete_frames)} "
+        f"complete frames (stride {step})"
+    )
+    return MatchData(info=match.info, frames=sampled)
 
 
 def load_all_matches(skillcorner_only: bool = False) -> list:
@@ -42,11 +51,11 @@ def load_all_matches(skillcorner_only: bool = False) -> list:
     matches = []
 
     if not skillcorner_only:
-        # SecondSpectrum
         try:
             ss = secondspectrum.load_match(
-                sample_every=SAMPLE_RATE, require_complete=True, max_frames=FRAMES_PER_MATCH,
+                sample_every=1, require_complete=True,
             )
+            ss = _uniform_match(ss, FRAMES_PER_MATCH)
             matches.append(ss)
             print(f"  [SecondSpectrum] {ss.info.home_team} vs {ss.info.away_team}: {ss.n_frames} frames")
         except FileNotFoundError:
@@ -54,7 +63,6 @@ def load_all_matches(skillcorner_only: bool = False) -> list:
     else:
         print("  [SecondSpectrum] Skipped (--skillcorner-only).")
 
-    # SkillCorner
     try:
         sc_matches = skillcorner.list_matches()
     except FileNotFoundError:
@@ -64,8 +72,9 @@ def load_all_matches(skillcorner_only: bool = False) -> list:
         mid = m['id']
         try:
             sc = skillcorner.load_match(
-                mid, sample_every=SAMPLE_RATE, require_complete=True, max_frames=FRAMES_PER_MATCH,
+                mid, sample_every=1, require_complete=True,
             )
+            sc = _uniform_match(sc, FRAMES_PER_MATCH)
             matches.append(sc)
             print(f"  [SkillCorner] {sc.info.home_team} vs {sc.info.away_team}: {sc.n_frames} frames")
         except FileNotFoundError as e:

@@ -37,21 +37,21 @@ restores that forcing function.
 
 ### 1a. Locked claims paragraphs (working-order item 1 — completed)
 
-**Paper A (JACT).** This paper presents a multi-scale persistent homology framework
-that resolves the scale-conflation problem in competitive multi-agent point clouds,
-through two methodological contributions: domain-informed hierarchical clustering that
-separates organisational levels before persistent homology is computed, and an adaptive
-Vietoris–Rips filtration that keeps H1 detection consistent across scales despite the
-clustering changing the point cloud's geometry at each level. Validated on ten
-professional football matches, the framework identifies three stable H0 regimes and two
-H1 regimes — individual and tactical — that hold across independent matches, across a
-wide range of clustering cutoffs, and across the adaptive filtration's percentile
-parameter; we further show the two H1 scales carry distinct rather than redundant
-topological information, and that every H1 generator can be recovered as an
-interpretable geometric cycle. A minimal correlation with real match events confirms the
-detected features track genuine structure rather than noise. Football is a validated
-testbed; the framework itself is domain-agnostic and intended for any bounded
-competitive multi-agent system with spatial tracking data.
+**Paper A (JACT).** This paper is an empirical study of whether persistent
+homology can be made scale-attributable on a real, high-frequency, noisy
+point cloud. It does not introduce a new filtration. Hierarchical
+clustering at validated interaction lengths, followed by a data-driven
+truncation of the Vietoris–Rips parameter, produces diagrams on which
+$H_1$ does not collapse after clustering. Validated on ten professional
+football matches, the pipeline identifies three stable $H_0$ regimes and
+two $H_1$ regimes that hold across independent matches, across a wide
+range of clustering cutoffs, and across the truncation percentile;
+the two $H_1$ scales carry distinct rather than redundant topological
+information, and every $H_1$ feature examined has a geometric cycle
+proxy. A minimal correlation with real match events is a
+construct-validity check against noise. Football is the measurement
+setting; the same pipeline applies to other bounded competitive systems
+once interaction lengths are re-derived.
 
 **Paper B (JSS).** This paper asks what persistent-homology-based measures of team shape
 add for football analysis, building on a validated multi-scale topological method

@@ -1,14 +1,14 @@
 % =======================================================================
 \section{Conclusion}
 
-This paper introduces a multi-scale persistent homology framework for
-competitive multi-agent point clouds, validated on ten professional
-football matches. Two methodological contributions, domain-informed scale decomposition and an adaptive Vietoris--Rips filtration, resolve
-the scale-conflation problem that arises when a single filtration is
-applied directly to a hierarchically organised point cloud. The
-resulting three $H_0$ regimes and two $H_1$ regimes are stable across
-independent matches and across wide ranges of the framework's two free
-parameters, and the two $H_1$ scales carry complementary rather than
-redundant information. Football served here only as a validated
-testbed; the framework itself is intended for any bounded competitive
-multi-agent system with spatial tracking data.
+This paper reports an empirical study of scale-attributable persistent
+homology on competitive multi-agent point clouds, using ten professional
+football matches as the measurement setting. Domain-informed clustering
+and a data-driven truncation of the Vietoris--Rips parameter are
+measurement choices, not new algebraic machinery; they made a stable
+result possible on noisy broadcast tracking. Three $H_0$ regimes and two
+$H_1$ regimes hold across independent matches and across wide ranges of
+the cutoff and truncation percentile. The two $H_1$ scales carry
+complementary rather than redundant information. The same pipeline
+applies to other bounded competitive systems once interaction lengths
+are re-derived.

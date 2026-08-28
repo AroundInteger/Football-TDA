@@ -11,7 +11,7 @@ Usage:
 """
 
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import List, Optional, Sequence, Tuple
 import numpy as np
 
 
@@ -71,3 +71,18 @@ class MatchData:
     def get_period(self, period: int) -> List[Frame]:
         """Get frames for a specific match period."""
         return [f for f in self.frames if f.period == period]
+
+
+def subsample_uniform(
+    frames: Sequence[Frame],
+    n_sample: int,
+) -> Tuple[List[Frame], int]:
+    """Keep ``n_sample`` uniformly spaced frames from a complete-frame list.
+
+    Stride is ``len(frames) // n_sample`` (at least 1), matching the primary
+    ``uniform_150`` rule.
+    """
+    if not frames or n_sample < 1:
+        return [], 1
+    step = max(1, len(frames) // n_sample)
+    return list(frames[::step][:n_sample]), step

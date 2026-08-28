@@ -177,7 +177,7 @@ The novelty argument is not "nobody has done TDA on football". It is that each i
 
 | Output | Status | Claims | Does **not** license |
 |---|---|---|---|
-| **Paper A** — multi-scale PH for competitive spatial systems | Submitted, *J. Applied and Computational Topology* | Cluster-then-adaptive-filtration; three $H_0$ regimes and two $H_1$ regimes across 10 matches; scales carry distinct information; every $H_1$ generator recoverable as a geometric cycle | Any statistical guarantee under dependence. Event correlation is construct validity only |
+| **Paper A** — multi-scale PH for competitive spatial systems | Submitted, *J. Applied and Computational Topology* | Cluster-then-truncated-VR as a measurement pipeline; three $H_0$ regimes and two $H_1$ regimes across 10 matches; scales carry distinct information; geometric cycle *proxy* for every examined $H_1$ feature. Not a new filtration theory | Any statistical guarantee under dependence. Event correlation is construct validity only |
 | **Paper B** — topological signatures of tactical organisation | In preparation, *J. Sports Sciences* | Persistence tracks events; non-redundancy with geometric descriptors; home/away near-independence; predictive null | Anything in the grant. Paper B is deliberately absent from the V&A |
 | **Paper C** — methods note | After A and B submit | Diagram $W_1/W_2$ analogues on synthetic ecology and robotics generators; three-tier claim split | Landscape T1 or T2. Never quote ecology $\hat T$ as T2 in JeS |
 | **Toy model** | Internal, 10 figures | Mechanism illustration under known ground truth | Any results section. See the prohibition in §4.3 |

@@ -1,13 +1,48 @@
-# Pinned for Paper A pipeline reproducibility (Python 3.10+)
+# =============================================================================
+# Paper A (JACT) — pinned Python dependencies
+# =============================================================================
+# Python 3.10+ required; headline analyses reported under Python 3.11
+# (sections/methods.tex, Software and Reproducibility).
+#
+# Every software package cited in the manuscript maps as follows
+# (references.bib key → pip package):
+#
+#   bauer2021ripser, tralie2018  →  ripser==0.6.12
+#       Ripser.py; primary Vietoris–Rips persistence diagrams
+#   gudhi2014                    →  gudhi==3.11.0
+#       Bottleneck distance and persistence landscapes (Bubenik 2015
+#       via gudhi.representations.Landscape; key bubenik2015)
+#   tauzin2021                   →  giotto-tda==0.6.0
+#       Independent PH cross-check (not invoked by pipeline/run_all.sh)
+#
+# Supporting stack named in methods.tex §Software:
+#   numpy==2.0.2, scipy==1.13.1, pandas==2.3.2, scikit-learn==1.6.1
+#
+# Pipeline-only (used by run_all.sh; not separately cited in methods):
+#   matplotlib — pipeline/steps/06_figures.py, cutoff-sweep plots
+#   PyYAML     — pipeline/config.yaml
+#
+# Non-pip data prerequisite (references.bib SkillCorner2024):
+#   Clone https://github.com/SkillCorner/opendata (see 01_data/README.md)
+#
+# Theory / methods citations without a pip package (references.bib only):
+#   edelsbrunner2002, zomorodian2005, cohensteiner2007, bubenik2015,
+#   topaz2015, gu2022, carlsson2010clustering, botnan2022, schindler2023,
+#   gudmundsson2017, buldu2018, grund2012, paperB
+# =============================================================================
+
+# --- Supporting scientific Python (methods.tex §Software) ---
 numpy==2.0.2
 pandas==2.3.2
 scipy==1.13.1
 matplotlib==3.9.4
 scikit-learn==1.6.1
 PyYAML==6.0.3
+
+# --- TDA stack (methods.tex; keys above) ---
 ripser==0.6.12
-persim==0.3.8
-# TDA-native distances (step 04 with RUN_TDA_NATIVE=1); matches methods.tex
 gudhi==3.11.0
-# Cross-check cited in methods.tex; not invoked by run_all.sh
 giotto-tda==0.6.0
+
+# Transitive dependency of giotto-tda; pinned for environment reproducibility
+persim==0.3.8

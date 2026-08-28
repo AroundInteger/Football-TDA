@@ -1,22 +1,16 @@
 % =====================================================================
 % references.bib — Paper A (JACT)
 %
-% Keys match the \cite{} calls in paper_A_JACT/main.tex exactly.
-% All entries verified against published sources unless marked TODO.
+% Keys match every \cite{} call in sections/*.tex and main.tex.
+% All entries verified against published sources (August 2026).
 %
-% Citation style: author-year via natbib [round,authoryear] +
+% Citation style: author–year via natbib [round,authoryear] +
 %   \bibliographystyle{plainnat}  (JACT requirement).
 %
-% YEAR DISCREPANCIES TO RESOLVE BEFORE SUBMISSION
-% -----------------------------------------------
-% gu2017        : key implies 2017; entry uses Gu et al. (2022) in
-%                 Chaos, the only verified multi-agent PH change-point
-%                 paper found.  If a 2017 paper exists, replace.
-% schindler2023 : arXiv:2305.04281 (May 2023).
-%                 An earlier 2021 arXiv version may exist; verify.
-% buldu2018     : key implies 2018; verified publication is Buldú et
-%                 al. (2019) in Scientific Reports.  Text will render
-%                 as "Buldú et al. (2019)" which is correct.
+% Key / year notes (resolved; keys retained for stable \cite{} calls):
+%   buldu2018     — key says 2018; publication year is 2019 (Sci Rep).
+%   botnan2022    — arXiv 2022; EMS Press book chapter published 2023.
+%   schindler2023 — arXiv preprint May 2023 (doi:10.48550/arXiv.2305.04281).
 % =====================================================================
 
 
@@ -97,13 +91,12 @@
   doi       = {10.21105/joss.00925}
 }
 
-% GUDHI version previously cited: 3.11.0. Not used in the reported analyses.
 @misc{gudhi2014,
-  author    = {{The GUDHI Project}},
-  title     = {{GUDHI} User and Reference Manual},
-  year      = {2024},
+  author       = {{The GUDHI Project}},
+  title        = {{GUDHI} User and Reference Manual},
+  year         = {2024},
   howpublished = {\url{https://gudhi.inria.fr/}},
-  note      = {Version 3.11.0}
+  note         = {Version 3.11.0}
 }
 
 @article{tauzin2021,
@@ -137,7 +130,6 @@
   doi       = {10.1371/journal.pone.0126383}
 }
 
-% CiteTrue confirmed authentic (2022). Key updated from gu2017.
 @article{gu2022,
   author    = {Gu, Kedi and Yan, Liang and Li, Xiang
                and Duan, Xiaojun and Liang, Jiye},
@@ -151,13 +143,20 @@
   doi       = {10.1063/5.0100230}
 }
 
+@article{carlsson2010clustering,
+  author  = {Carlsson, Gunnar and M{\'e}moli, Facundo},
+  title   = {Characterization, stability and convergence of
+             hierarchical clustering methods},
+  journal = {Journal of Machine Learning Research},
+  year    = {2010},
+  volume  = {11},
+  pages   = {1425--1470}
+}
+
 % ---------------------------------------------------------------
 % Multiparameter and multiscale persistence
 % ---------------------------------------------------------------
 
-% CiteTrue confirmed authentic; EMS Press book published 2023.
-% arXiv preprint appeared 2022 (arXiv:2203.14289); key retained
-% for the arXiv version. Year set to 2023 (book publication).
 @incollection{botnan2022,
   author    = {Botnan, Magnus Bakke and Lesnick, Michael},
   title     = {An introduction to multiparameter persistence},
@@ -169,25 +168,19 @@
 }
 
 @misc{schindler2023,
-  author    = {Schindler, Daniel J. and Barahona, Mauricio},
-  title     = {Analysing multiscale clusterings with persistent
-               homology},
-  year      = {2023},
-  note      = {arXiv:2305.04281},
-  eprinttype = {arXiv},
-  eprint    = {2305.04281}
+  author       = {Schindler, Juni and Barahona, Mauricio},
+  title        = {Analysing multiscale clusterings with persistent
+                  homology},
+  year         = {2023},
+  eprinttype   = {arXiv},
+  eprint       = {2305.04281},
+  doi          = {10.48550/arXiv.2305.04281}
 }
 
 % ---------------------------------------------------------------
-% Sports analytics (validate before submission)
+% Sports analytics
 % ---------------------------------------------------------------
 
-% spearman2017 and decroos2018 replaced: both failed CiteTrue
-% verification (2026-06-23).  Replaced with Gudmundsson & Horton
-% (2017), a peer-reviewed ACM Computing Surveys article that covers
-% both pitch-control models and spatio-temporal pattern recognition.
-
-% CiteTrue verified via existing references.bib (Versions/paper).
 @article{gudmundsson2017,
   author    = {Gudmundsson, Joachim and Horton, Michael},
   title     = {Spatio-temporal analysis of team sports},
@@ -199,8 +192,6 @@
   doi       = {10.1145/3054132}
 }
 
-% KEY MISMATCH: key implies 2018; verified publication year is 2019.
-% Text will render correctly as "Buldú et al. (2019)".
 @article{buldu2018,
   author    = {Buld{\'u}, Javier M. and Busquets, Javier
                and Echegoyen, Ignacio and Seirul{\`o}, Franc},
@@ -234,7 +225,7 @@
   title        = {{SkillCorner} open broadcast tracking data},
   year         = {2024},
   howpublished = {\url{https://github.com/SkillCorner/opendata}},
-  note         = {Accessed 2026}
+  note         = {Accessed August 2026}
 }
 
 % ---------------------------------------------------------------

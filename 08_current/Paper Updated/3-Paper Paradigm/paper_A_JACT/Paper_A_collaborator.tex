@@ -1,0 +1,163 @@
+% =====================================================================
+% Paper A — collaborator copy
+%
+% Typeset briefing of Paper_A_collaborator.md. The manuscript body is
+% the same as main.tex (sections/*.tex + references.bib). Edit those
+% files, not this wrapper, if the paper itself changes.
+%
+% Compile from this directory:
+%   tectonic Paper_A_collaborator.tex
+% or: pdflatex + bibtex + pdflatex x2
+%
+% JACT uses name--year citations (natbib authoryear), not Vancouver
+% numbering. That is a journal exception, not a project-wide change.
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage[round,authoryear]{natbib}
+\usepackage{hyperref}
+
+% Placeholder if the cycle-geometry PDF has not been generated.
+\let\oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{%
+  \IfFileExists{#2.pdf}{\oldincludegraphics[#1]{#2}}{%
+    \IfFileExists{#2}{\oldincludegraphics[#1]{#2}}{%
+      \fbox{\parbox{0.75\textwidth}{\centering\itshape
+        Figure file not present in this copy:\\[0.4em]
+        \texttt{#2.pdf}}}%
+    }%
+  }%
+}
+
+\theoremstyle{plain}
+\newtheorem{remark}{Remark}
+
+\title{Multi-Scale Persistent Homology for Competitive Spatial Systems}
+\author{Rowan Brown \\
+\small Swansea University}
+\date{Collaborator copy --- August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{black}{gray!8}{%
+\begin{minipage}{0.92\textwidth}
+\small
+\textbf{Note for collaborators.}
+This is a typeset briefing of the working JACT manuscript.
+It is not the submission file; \texttt{main.tex} remains the source of
+truth. Status: not yet submitted.
+
+\vspace{0.6em}
+\textbf{What this paper is.}
+An empirical measurement study, not a new filtration theory.
+It asks whether persistent homology can be made \emph{scale-attributable}
+on a real, high-frequency, noisy point cloud.
+Football is the measurement setting, not the audience.
+
+\vspace{0.4em}
+\textbf{What it is not.}
+A football-analytics paper, and not a claim of new algebraic machinery.
+Event interpretation, geometric baselines, bilateral (home/away)
+coupling, and predictive utility belong to a companion manuscript
+(Paper~B, \emph{Journal of Sports Sciences}, in preparation).
+Paper~A treats event correlation only as a construct-validity check
+(``not noise'').
+
+\vspace{0.4em}
+\textbf{Headline claim.}
+Clustering at validated interaction lengths, then a data-driven
+truncation of the Vietoris--Rips parameter, produces stable
+scale-attributable diagrams on broadcast tracking.
+On ten professional matches: three $H_0$ regimes and two $H_1$ regimes;
+the two $H_1$ scales carry distinct information; every examined $H_1$
+feature has a geometric cycle proxy.
+
+\vspace{0.4em}
+\textbf{Locked cutoffs (metres).}
+Individual $2.98$; tactical $12.0$ (domain-informed, inside a
+metric-disagreement range); team $30.0$.
+Operative tactical $H_1$ range: $[6,14]$\,m.
+
+\vspace{0.4em}
+\textbf{Sample.}
+Ten A-League matches, SkillCorner open broadcast tracking at $10$\,Hz.
+Persistent homology on $150$ uniformly spaced complete frames per match
+($1{,}500$ frames in total).
+Primary match: SkillCorner ID~$1996435$, $43{,}531$ complete $22$-player
+frames.
+
+\vspace{0.4em}
+\textbf{Open methodological questions} (already flagged in the paper).
+Linkage choice (single vs complete vs Ward changes tactical $H_1$ by
+nearly an order of magnitude); a more principled tactical cutoff;
+team-scale $H_1$ needs a different representation (centroids collapse
+to $k\in\{1,2\}$).
+
+\vspace{0.4em}
+\textbf{Suggested first read.}
+Abstract $\to$ \S1.2--1.3 $\to$ equation~\eqref{eq:adaptive} $\to$
+Tables~\ref{tab:h1single}--\ref{tab:h1multi} and the null table
+$\to$ \S4.3 Limitations.
+Skip \S2.7 and Declarations unless you are checking reproducibility.
+\end{minipage}}
+\end{center}
+
+\vspace{1.2em}
+
+\begin{abstract}
+\noindent
+Standard single-parameter Vietoris--Rips persistent homology applied to a
+multi-agent point cloud mixes features from distinct organisational
+levels in one diagram. This paper is an empirical study of whether
+persistent homology can be made scale-attributable on a real,
+high-frequency, noisy point cloud. We do not introduce a new filtration.
+The point cloud is decomposed by hierarchical clustering at validated
+interaction lengths, and Vietoris--Rips homology is computed on the
+resulting centroids. Clustering changes the geometry, so a maximum
+filtration scale suited to one cutoff returns no $H_1$ (loops) at
+another. A data-driven truncation of the Vietoris--Rips parameter
+removes that obstruction. On ten professional football matches
+(broadcast tracking at 10~Hz), three stable $H_0$
+(connected-component) regimes appear: individual (2.98~m), tactical
+(12.0~m), and team (30.0~m). Two $H_1$ regimes appear with them:
+individual-scale loops are frequent and transient
+($97.0\%\pm1.5\%$ frame presence across matches); tactical-scale loops
+are rarer but more persistent ($19.3\%\pm7.2\%$); team-scale $H_1$ is
+absent a priori as a structural consequence of the clustering. Both
+structures hold across matches and across wide ranges of the cutoff and
+the truncation percentile. The two $H_1$ scales carry distinct rather
+than redundant information (Spearman $\rho=0.264$ across 1{,}500 sampled
+frames). Geometric cycle representatives are recovered for every $H_1$
+feature examined. A minimal association with match events is a
+construct-validity check against measurement noise. Football is the
+measurement setting. The same pipeline applies to other bounded
+competitive systems once interaction lengths are re-derived.
+\end{abstract}
+
+\noindent\textbf{Keywords:} persistent homology, multi-scale topology,
+Vietoris--Rips filtration, multi-agent systems, spatial tracking data,
+sports analytics
+
+\input{sections/introduction}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+\input{sections/declarations}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

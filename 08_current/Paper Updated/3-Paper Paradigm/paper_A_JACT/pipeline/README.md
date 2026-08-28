@@ -19,9 +19,13 @@ are vendored under the paper folder (`../01_data`, `../02_tda_core`,
 
 | Profile | Frames | Used for |
 |---------|--------|----------|
-| `uniform_150` | 150 uniformly spaced complete frames | Paper A Tables (`tab:h1single`, `tab:h1multi`, sensitivity, complementarity) |
+| `uniform_150` | 150 uniformly spaced **complete** frames (`stride = N // 150`) | Paper A tables (primary and ten-match), sensitivity, complementarity, cardinality null |
+| `acf_supplement` | 1 Hz on the primary match | Supplementary ACF panel only; does **not** choose the stride |
 | `cutoff_sweep_windows` | 58 windows × 4 epoch lengths | `tab:regimes`, stability scores |
 | `temporal_2min` | 2-min non-overlapping windows | Grant-only temporal analysis (not headline Paper A tables) |
+| native 10 Hz | complete frames | Event construct-validity (step 05) |
+
+Ten-match validation previously used every 100th tracking line. That is no longer used. Re-run steps 03, 04, and 07 after this change before treating committed `outputs/` as matching the Methods.
 
 ## Reading `regime_summary.csv`
 
@@ -48,6 +52,7 @@ chmod +x run_all.sh
 Individual steps:
 
 ```bash
+python3 steps/00_pipeline_figure.py
 python3 steps/01_primary_uniform.py
 python3 steps/02_cutoff_sweep.py
 python3 steps/03_multi_match.py
@@ -56,6 +61,7 @@ python3 steps/04_complementarity.py
 python3 steps/07_cardinality_null.py
 python3 steps/08_linkage_comparison.py
 python3 steps/06_figures.py
+python3 steps/09_acf_supplement.py
 python3 lib/build_numbers.py
 python3 sync_to_paper.py
 ```
@@ -69,4 +75,6 @@ python3 sync_to_paper.py
 - `outputs/aggregate_stats.json`
 - `outputs/complementarity/complementarity_tests.json`
 - `outputs/linkage/linkage_headline.json` — Discussion linkage comparison (600 frames, 4 matches)
+- `../figures/fig1_pipeline_schematic.pdf`
 - `../figures/fig2_cycle_geometry.pdf`
+- `../figures/figS1_acf.pdf` (after step 09)

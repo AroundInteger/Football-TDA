@@ -4,52 +4,85 @@
 \subsection{Data}
 
 The primary single-match analysis uses SkillCorner open broadcast
-tracking data, match ID 1996435 (Sydney FC versus Adelaide United,
+tracking data \citep{SkillCorner2024}, match ID 1996435 (Sydney FC versus Adelaide United,
 A-League 2024/25), at 10 frames per second. We retain only frames with
 complete 22-player coverage, yielding 43{,}531 frames, approximately 72
 minutes of play at this sampling rate; positions are $(x,y)$ coordinates
 in metres on a standard pitch model. Nine additional A-League matches,
 each comprising approximately 40{,}000--48{,}000 frames, were obtained
-from the same repository to validate the framework's generalisability
+from the same repository to validate the pipeline's generalisability
 across teams, tactical systems, and competition contexts.
 
-Persistent homology is computed on uniformly subsampled frames rather
-than on the full 10~Hz stream. For the primary match and for each of the
-nine additional matches, we retain 150 frames by taking every 290th
-complete 22-player frame, yielding a consistent cross-match sample of
-1{,}500 frames.
+Native tracking is 10~Hz. Consecutive complete frames are highly
+autocorrelated, so pooling the full stream as independent draws would
+inflate precision. For prevalence and scale-regime analysis we therefore
+subsample. The operational rule is the same on every match: list complete
+22-player frames, set the stride to $\lfloor N/150\rfloor$, and retain
+150 frames. On the primary match $N=43{,}531$, so the stride is 290
+frames ($\approx 29$~s). That yields a fixed-cardinality sample of
+1{,}500 frames across ten matches. The design limits temporal
+pseudo-replication; it does not establish statistical independence, and
+it does not resolve formation or dispersion of loops between samples.
+Event association uses the native-rate stream and is a construct-validity
+check, not a dynamical model. Supplementary
+Figure~\ref{fig:acf} reports autocorrelation of frame-level topological
+summaries on the primary match at 1~Hz. Residual correlation is already
+weak by 10--20~s, so the operational stride is conservative relative to
+that diagnostic. The autocorrelation plot does not choose the stride.
 
 \subsection{Proximity-Aware Clustering}
+\label{sec:clustering}
 
-At each time step $t$, the 22 player positions form a point cloud
+Figure~\ref{fig:pipeline} summarises the pipeline of
+Sections~\ref{sec:clustering}--\ref{sec:cycles}. At each time
+step $t$, the 22 player positions form a point cloud
 $P(t)=\{p_1(t),\dots,p_{22}(t)\}\subset\mathbb{R}^2$. Computing
 persistent homology directly on $P(t)$ produces a single diagram
 encoding inter-agent distance relationships at all scales
 simultaneously; to separate organisational levels before computing
 topology, we preprocess with hierarchical clustering.
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig1_pipeline_schematic}
+\caption{Analysis pipeline. Clustering at a validated cutoff $\delta$
+reduces $P(t)$ to centroids $\tilde P(t)$ (Section~2.2). Persistent
+homology is Vietoris--Rips on those centroids, truncated at the
+data-driven $\varepsilon_{\max}$ of equation~\eqref{eq:adaptive}
+(Section~2.4). A closed cycle on the 1-skeleton is a geometric proxy
+for an $H_1$ pair (Section~2.5), not a matrix-reduction generator.
+Panel geometry is schematic; Figure~\ref{fig:cycles} shows the cycle
+step on real tracking data.}
+\label{fig:pipeline}
+\end{figure}
+
 For a cutoff distance $\delta>0$, single-linkage hierarchical clustering
 partitions $P(t)$ into clusters $C_1,\dots,C_k$ such that every pair of
 points within a cluster is connected by a chain of pairwise distances
-not exceeding $\delta$. The reduced point cloud is the set of cluster
-centroids,
+not exceeding $\delta$. That partition is the connected-component
+structure of the Vietoris--Rips complex on $P(t)$ at filtration value
+$\delta$ \citep{carlsson2010clustering}. The homology computed below is
+not that of $\mathrm{VR}(P(t))$. It is the homology of a new point cloud,
+the set of cluster centroids,
 \[
-\tilde{P}(t)=\left\{\bar{c}_j : \bar{c}_j=\frac{1}{|C_j|}\sum_{p\in C_j} p,\; j=1,\dots,k\right\},
+\tilde{P}(t)=\left\{\bar{c}_j : \bar{c}_j=\frac{1}{|C_j|}\sum_{p\in C_j} p,\; j=1,\dots,k\right\}.
 \]
-and persistent homology is computed on $\tilde{P}(t)$ rather than on
-$P(t)$ itself.
+Scale attribution is therefore by construction of the input, not by
+slicing bars of $\mathrm{VR}(P(t))$ according to birth.
 
-We use single-linkage throughout. Its definition, clusters as chains of points connected by short pairwise distances, is the most direct
-reading of spatial proximity, and it produces a conservative estimate of
-$H_1$ features: reported loops represent robust topological structure
-rather than artefacts of over-partitioning. Section~\ref{sec:limitations}
+We use single-linkage throughout. Its definition---clusters as chains of
+points connected by short pairwise distances---is the most direct reading
+of spatial proximity. It also produces a conservative estimate of $H_1$
+features: reported loops represent robust topological structure rather
+than artefacts of over-partitioning. Section~\ref{sec:limitations}
 examines the consequences of this choice relative to complete-linkage and
 Ward's method.
 
-The framework extends to labelled sub-populations by running the same
-pipeline independently on each label's point cloud rather than on the
-merged 22-player cloud; we use this here only to confirm the method is
-agnostic to such relabelling. The substantive application, decomposing by team identity and examining bilateral tactical coupling, is deferred to forthcoming work.
+The pipeline extends to labelled sub-populations by running the same
+pipeline independently on each label's point cloud. We use this here only
+to confirm the method is agnostic to relabelling; decomposing by team
+identity and examining bilateral tactical coupling is deferred to
+forthcoming work.
 
 \subsection{Domain-Informed Cutoff Distance Selection}
 \label{sec:cutoffselection}
@@ -91,43 +124,47 @@ domain-informed value within this range rather than as the output of
 either metric. Section~\ref{sec:sensitivity} reports the resulting
 sensitivity of $H_1$ detection to this choice.
 
-\subsection{Adaptive Filtration for $H_1$ Detection}
+\subsection{A Data-Driven Maximum Filtration Scale}
 \label{sec:adaptivefiltration}
 
 Clustering at cutoff $\delta$ produces a reduced point cloud
 $\tilde{P}(t)$ whose inter-centroid distances are typically much larger
-than $\delta$ itself, so a fixed maximum filtration scale
-$\varepsilon_{\max}$ that is appropriate at one cutoff is insufficient
-for $H_1$ detection at another. We define an adaptive filtration,
+than $\delta$ itself. A maximum filtration scale $\varepsilon_{\max}$
+that is appropriate at one cutoff then fails to reach the loop regime at
+another. We do not modify the Vietoris--Rips complex. We choose a
+data-driven truncation of its parameter,
 \begin{equation}
 \varepsilon_{\max} = \max\Big(P_{75}\{d(\bar c_i,\bar c_j) : i<j\},\; \max(5.0,\,2\delta)\Big),
 \label{eq:adaptive}
 \end{equation}
 where $P_{75}$ denotes the 75th percentile of pairwise inter-centroid
-distances. The first term adapts the filtration to the geometry of the
-reduced point cloud at each $\delta$; the second term imposes a floor
-proportional to the clustering scale, preventing degenerate filtration
-at small $\delta$ and ensuring the filtration reaches at least the
-inter-cluster distance regime.
+distances. The first term tracks the geometry of the reduced point cloud
+at each $\delta$. The second imposes a floor proportional to the
+clustering scale, so the filtration is not degenerate at small $\delta$
+and reaches at least the inter-cluster distance regime.
 
-The $P_{75}$ percentile is chosen as a conventional upper-quartile
-summary of inter-centroid distances.
-Section~\ref{sec:sensitivity} reports an ablation across $P_{50}$
-through $P_{95}$, showing that every tested percentile returns
-identical $H_1$ totals and frame-presence rates; the choice of
-$P_{75}$ is therefore a reporting convention, not an optimisation.
+The $P_{75}$ percentile is a conventional upper-quartile summary of
+inter-centroid distances. Section~\ref{sec:sensitivity} reports an
+ablation across $P_{50}$ through $P_{95}$; every tested percentile
+returns identical $H_1$ totals and frame-presence rates, so $P_{75}$ is
+a reporting convention rather than an optimisation.
 
 Persistence diagrams are computed with Ripser via Ripser.py
-\citep{bauer2021ripser}. We cross-checked all primary-match diagrams
-against GUDHI \citep{gudhi2014} and giotto-tda \citep{tauzin2021},
-confirming identical birth--death pairs to within numerical tolerance
-($10^{-6}$~m); GUDHI is also used for the bottleneck-distance and
-landscape computations reported in Section~\ref{sec:complementarity}.
+\citep{bauer2021ripser}, with coefficients in $\mathbb{F}_2$. We report
+finite $H_1$ bars. At filtration value $0$, $H_0$ of $\tilde{P}(t)$ equals
+the number of centroids; the $H_0$ figures in
+Section~\ref{sec:scaleh0} are these counts. We cross-checked all
+primary-match diagrams against GUDHI \citep{gudhi2014} and giotto-tda
+\citep{tauzin2021}, confirming identical birth--death pairs to within
+numerical tolerance ($10^{-6}$~m). GUDHI is also used for the
+bottleneck-distance and landscape computations reported in
+Section~\ref{sec:complementarity}.
 
 \subsection{Closed Cycle Identification}
+\label{sec:cycles}
 
 Each $H_1$ feature corresponds to a 1-cycle in the Vietoris--Rips
-complex. To recover its geometric realisation, we build the adjacency
+complex. To recover a geometric realisation, we build the adjacency
 graph of edges whose distances fall within the feature's persistence
 interval $[\text{birth},\text{death}]$, then enumerate closed cycles of
 length at least 3 by breadth-first search from each vertex. If that
@@ -137,7 +174,9 @@ search because it prioritises shorter cycles, which correspond to
 minimal enclosing arrangements and are more directly interpretable as
 formation structures. Among the enumerated cycles, the one whose edge
 distances lie closest to the midpoint of the persistence interval is
-selected as the geometric representative.
+selected as the geometric representative. This is a geometric proxy for
+the persistence pair, not a homology generator extracted from the matrix
+reduction.
 
 \subsection{Statistical Tests}
 \label{sec:stats}
@@ -148,23 +187,23 @@ against a matched null. For a frame whose clustering yields $k$
 centroids, the null draws $k$ points uniformly from the convex hull of
 those same centroids. The null therefore matches the frame on both
 cardinality and spatial envelope, and randomises only the arrangement.
-The adaptive filtration of equation~\eqref{eq:adaptive} is recomputed on
+The truncation of equation~\eqref{eq:adaptive} is recomputed on
 each null cloud, so nothing else differs between the two. We use 200
 null replicates per frame and report the excess of observed over null
 $H_1$ presence, with 95\% confidence intervals from bootstrap resampling
 over matches.
 
 Scale complementarity (Section~\ref{sec:complementarity}) is assessed by
-two frame-level tests comparing the individual and tactical scales. The
-Spearman rank correlation is computed on total $H_1$ persistence, the sum
-of death minus birth over all finite $H_1$ bars in a frame; we also report
-it on loop counts as a robustness check. Fisher's exact test is computed
-on the binary co-occurrence of $H_1$ presence at the two scales. Both
-statistics carry 95\% confidence intervals obtained by bootstrap
-resampling over matches (1{,}000 resamples), the match being the
-resampling unit. Bottleneck and landscape distances between
-the two scales' persistence diagrams are computed using GUDHI, as
-described in Section~\ref{sec:adaptivefiltration}.
+two frame-level tests comparing the individual and tactical scales.
+Spearman rank correlation is computed on total $H_1$ persistence, the
+sum of death minus birth over all finite $H_1$ bars in a frame, with
+loop counts as a robustness check. Fisher's exact test is computed on
+the binary co-occurrence of $H_1$ presence at the two scales. Both
+statistics carry 95\% confidence intervals from bootstrap resampling
+over matches (1{,}000 resamples), with the match as the resampling unit.
+Bottleneck and landscape distances between the two scales' persistence
+diagrams are computed using GUDHI, as described in
+Section~\ref{sec:adaptivefiltration}.
 
 \subsection{Software and Reproducibility}
 
