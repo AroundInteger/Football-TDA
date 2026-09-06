@@ -17,7 +17,7 @@ Self-contained **01–08** pack aligned to:
 | Vision & Approach | `02_Vision_and_Approach.md` | `VA_140826.md`; `VA_230826_reconstructed.docx` (pre-cut); `full/02_Vision_and_Approach.md`; older `submission/VA_V*.md` |
 | R4RI capability | `03_Applicant_and_Team_Capability.md` | generic R4RI drafts under `07_grants/` |
 | References | `04_References.md` (Vancouver order of `02_Vision_and_Approach_REV3.md`, 29 entries) | `full/04_References.md` |
-| Timeline / FTE | `TIMELINE.md` | any Gantt in `full/02` |
+| Timeline / FTE | `TIMELINE.md` (lock: PI 0.10; Co-I Villamizar 0.05; RA Months **5–10**) | any Gantt in `full/02`; older 9-month RA / Kilduff–Powathil Co-I drafts |
 
 ## JeS map
 

@@ -23,6 +23,6 @@ First, establish whether the multi-level measurements are stably comparable acro
 
 ## Potential Applications and Benefits
 
-This award delivers the football-validated theory and software. Transfer to another system is a later step, once interaction lengths are re-derived. The follow-on Standard Grant will test whether those guarantees transfer to spatial predator–prey dynamics, including cellular competition relevant to cancer biology through the team's mathematical-oncology expertise.
+This award delivers the football-validated theory and software. Transfer to another system is a later step, once interaction lengths are re-derived. The follow-on Standard Grant will test whether those guarantees transfer to spatial predator–prey dynamics, including cellular competition relevant to cancer biology through mathematical-oncology collaborators brought in for that programme.
 
 The primary output is a documented, containerised open-source package that computes multi-scale topological summaries from tracking data, released with a DOI. Swansea City AFC and StatsBomb co-develop the work: the club receives structural measures of pressing, formation gaps and defensive-line organisation, while the data partner receives a candidate feature set beyond conventional geometry. The evidence pack supports the follow-on Standard Grant.

@@ -32,4 +32,4 @@ Findable (DOIs, metadata); accessible (open software and aggregates); interopera
 
 ## Stewardship
 
-PI is data steward. RA (Months 2–10) maintains hashes and the barcode/landscape store (D1–D2). At Month 10 the store and container pass to the PI with the evidence-pack handover.
+PI is data steward. RA (Months 5–10) maintains hashes and the barcode/landscape store (D1–D2). At Month 10 the store and container pass to the PI with the evidence-pack handover.

@@ -25,4 +25,4 @@ Aligned to `VA_230826_reconstructed.docx` §6 (risk) and §7 (host data-governan
 
 ## Oversight
 
-Ethics review via Swansea University before data processing beyond the existing pilot. Fast-track is appropriate: anonymised secondary data, no participant contact. The PI is accountable; Co-Is and the Research Office provide compliance support. Quarterly check that outputs remain squad-level.
+Ethics review via Swansea University before data processing beyond the existing pilot. Fast-track is appropriate: anonymised secondary data, no participant contact. The PI is accountable; Co-I Villamizar and the Research Office provide compliance support. Quarterly check that outputs remain squad-level.

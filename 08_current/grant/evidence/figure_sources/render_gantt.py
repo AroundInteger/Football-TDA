@@ -63,9 +63,9 @@ ax.plot([CR, CR], [grid_bottom, 25.85], color=GRID, lw=0.4)
 y_pi = 24.15
 y_co = y_pi - PITCH
 y_ra = y_co - PITCH
-row("PI (0.2 FTE)", y_pi, 1, 12, DARK, 0.18, DARK)
-row("Co-Is (0.1)", y_co, 1, 12, PURPLE, 0.22, PURPLE)
-row("Res. Associate", y_ra, 2, 10, BLUE, 0.85)
+row("PI (0.10 FTE)", y_pi, 1, 12, DARK, 0.18, DARK)
+row("Co-I NV (0.05)", y_co, 1, 12, PURPLE, 0.22, PURPLE)
+row("Res. Associate", y_ra, 5, 10, BLUE, 0.85)
 section("Team", y_ra, y_pi + BH)
 
 div1 = y_ra - 0.40
@@ -102,8 +102,8 @@ for n in (2, 10, 11, 12):
         closed=True, facecolor=PURPLE, edgecolor="none",
     ))
 
-# [17] has room; M10–12 hang diagonally down-left so they cannot collide.
-ax.text(mx(2), y_out - 0.70, "[17]", ha="center", va="top",
+# Methodology paper [23] at M2; M10–12 hang diagonally down-left so they cannot collide.
+ax.text(mx(2), y_out - 0.70, "[23]", ha="center", va="top",
         fontsize=7.5, color=PURPLE)
 for n, lbl in ((10, "Handover"), (11, "Paper"), (12, "Pack")):
     ax.text(
@@ -119,7 +119,7 @@ ax.text(3.5, 4.70, "1  OSF + cutoff (M2)   2  barcodes (M7)   3  landscape modul
         ha="left", va="center", fontsize=7, color=DARK)
 ax.add_patch(Polygon([(2.4, 3.45), (3.0, 2.60), (1.8, 2.60)],
                      closed=True, facecolor=PURPLE, edgecolor="none"))
-ax.text(3.5, 2.85, "[17] (M2)   RA handover (M10)   season paper (M11)   evidence pack (M12)",
+ax.text(3.5, 2.85, "[23] (M2)   RA handover (M10)   season paper (M11)   evidence pack (M12)",
         ha="left", va="center", fontsize=7, color=PURPLE)
 
 fig.subplots_adjust(left=0.02, right=0.995, top=0.99, bottom=0.02)

@@ -13,7 +13,7 @@ The Principal Investigator, Dr Rowan Brown, is Senior Lecturer in Biomedical Eng
 
 1. Brown MR, et al. Flow-based cytometric analysis of cell cycle via simulated cell populations. *PLoS Computational Biology* 2010; 6(4): e1000741 — ensemble models from individual measurements.
 2. Brown MR, et al. Fractal discrimination of random fractal aggregates and its application in biomarker analysis for blood coagulation. *Chaos, Solitons & Fractals* 2012 — geometric characterisation of spatial networks.
-3. Brown R, Scott G, Kilduff L. Relative Advantage: quantifying performance in noisy competitive settings. Preprint 2025 — with Co-I Kilduff; competitive systems as a measurement domain.
+3. Brown R, Scott G, Kilduff L. Relative Advantage: quantifying performance in noisy competitive settings. Preprint 2025 — competitive systems as a measurement domain.
 
 **Technical innovations (this programme)**:
 
@@ -28,17 +28,17 @@ Validation across 10 matches is detailed in Vision and Approach. The analysis fr
 
 **Current doctoral supervision**: The PI is first supervisor to six full-time doctoral students working on Championship match-outcome analytics (EPSRC DTP with Swansea City AFC), an EPSRC studentship with the UK Sports Institute (UKSI), spatiotemporal rugby and football analytics, international swimming performance prediction, uncertainty in head-acceleration signals, and digital twins for talent identification with Team INEOS; and second supervisor to a doctoral student on responsible AI in government security operations.
 
-**Research Associate development plan**: The Research Associate receives structured training in advanced TDA, statistical inference, and scientific programming, with co-authorship, conference dissemination, and involvement in Standard Grant preparation. Supervision includes weekly meetings and monthly progress reviews.
+**Research Associate development plan**: The Research Associate (1.0 FTE, Months 5–10) receives structured training in advanced TDA, statistical inference under dependence, and scientific programming, with co-authorship, conference dissemination, and involvement in Standard Grant drafting at Months 9–10. Supervision includes weekly meetings with the PI, monthly progress reviews, and scheduled mathematical guidance from Co-I Villamizar.
 
-**Concrete RA deliverables**: The RA post (1.0 FTE, Months 2–10) has three time-stamped deliverables aligned with Objectives 1–2:
+**Concrete RA deliverables**: The RA post has three time-stamped deliverables aligned with Objectives 1–2:
 
 - **D1 — Full-season barcode database (Month 7)**: reproducible store of H0 and H1 diagrams at both validated scales for all ~540 Championship matches, with provenance hashes (O1 gate).
 - **D2 — Landscape library (Month 8)**: module computing persistence landscapes, Fréchet means, and CUSUM statistics at both scales (O2 landscape-module milestone). O1 comparison-geometry results and T1/T2 statements follow at Month 9, against the Month-2 OSF pre-registration.
-- **D3 — Handover pack (Month 10)**: results finalised for the season paper, documented pipeline, figures, tables, and prose snippets transferred to the PI for the Month-12 Standard Grant evidence pack. Calibrated change-point outputs sit with the T1/T2 statements at Month 9.
+- **D3 — Handover pack (Month 10)**: results finalised for the season paper, documented pipeline, figures, tables, and prose snippets transferred to the PI for the Month-12 Standard Grant evidence pack. Calibrated change-point outputs sit with the T1/T2 statements at Month 9. Months 1–4 are PI-led (runnable pipeline and Month-2 gate) so D1–D3 are implementation, not invention.
 
 **Equality, diversity and inclusion**: RA recruitment follows Swansea University's EDI code of practice, with anonymised shortlisting, a diverse interview panel (minimum two genders and at least one external or industry member), and advertising through venues that include under-represented-group networks (e.g. Piscopia, BWM, LMS).
 
-**Collaborative research**: Data access and validation combine championship club partnerships (UK) with Genius Sports (UK) and Borussia Dortmund (Germany, former-student pathway). Co-Investigator Professor Liam Kilduff provides sport and exercise science expertise for tactical interpretation; Co-Investigator Professor Gibin Powathil provides mathematical-biology and mathematical-oncology expertise that underpins planned translation to adversarial biomedical systems in the follow-on Standard Grant.
+**Collaborative research**: Data access and validation combine championship club partnerships (UK) with Genius Sports (UK) and Borussia Dortmund (Germany, former-student pathway). Co-Investigator Dr Nelly Villamizar (Mathematics) provides applied algebraic and topological guidance for the O2 inference programme and for RA training. The follow-on Standard Grant will bring in mathematical-oncology collaborators for the health-sector translation pathway; that pathway is not an in-grant deliverable of this award.
 
 ## Contributions to the Wider Research and Innovation Community
 
@@ -46,7 +46,7 @@ Validation across 10 matches is detailed in Vision and Approach. The analysis fr
 
 **Innovation partnerships and translation**: Existing partnerships with Swansea City AFC, the UK Sports Institute, Sport Wales (WIPS), and Team INEOS provide a pathway through professional sport. The ONR hetero-swarm programme evidences the same multi-agent methods beyond sport.
 
-**Cross-domain relevance and public engagement**: Beyond football, the same analytical lens adapts to other bounded competitive systems wherever domain-validated scales exist; the priority translation targets for the follow-on Standard Grant are adversarial spatial systems in the health sector (for example tumour–immune competition, underpinned by Co-I Powathil's mathematical-oncology expertise) and the economic and security sector (for example competitive logistics and autonomous-fleet coordination). Public engagement is supported by intuitive visualisations of sophisticated mathematics through sport, and by educational outreach that shows applied mathematics addressing concrete problems.
+**Cross-domain relevance and public engagement**: Beyond football, the same analytical lens adapts to other bounded competitive systems wherever domain-validated scales exist; the priority translation targets for the follow-on Standard Grant are adversarial spatial systems in the health sector (for example tumour–immune competition, with mathematical-oncology collaborators) and the economic and security sector (for example competitive logistics and autonomous-fleet coordination). Public engagement is supported by intuitive visualisations of sophisticated mathematics through sport, and by educational outreach that shows applied mathematics addressing concrete problems.
 
 ## Contributions to Broader Research or Innovation Users and Towards Wider Societal Benefit
 

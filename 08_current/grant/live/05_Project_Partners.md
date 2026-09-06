@@ -5,7 +5,7 @@ Aligned to `VA_230826_reconstructed.docx` §4 and §7. Primary data route is sec
 ## Swansea City AFC (project partner)
 
 - **Role:** Live co-development environment; practitioner interpretation of topological summaries as structural measures (pressing, formation gaps, defensive-line organisation).
-- **Contribution:** Access to Championship tracking data and tactical labels through the club’s StatsBomb agreement; domain expertise via Co-I Kilduff’s sport-science link.
+- **Contribution:** Access to Championship tracking data and tactical labels through the club’s StatsBomb agreement; practitioner interpretation of organisational states (formations, pressing structure) in co-development reviews.
 - **Value:** In-kind data and validation. No cash contribution.
 - **Status:** Secured. The V&A treats this agreement as the delivery route for O1–O2.
 
