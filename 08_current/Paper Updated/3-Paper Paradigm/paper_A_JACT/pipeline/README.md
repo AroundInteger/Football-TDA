@@ -66,6 +66,19 @@ python3 lib/build_numbers.py
 python3 sync_to_paper.py
 ```
 
+### Figure 1 layout editor (interactive)
+
+To adjust panel (a) cluster positions and annotations with a live panel (b) preview:
+
+```bash
+python3 steps/00_pipeline_figure_layout_editor.py
+```
+
+Drag the coloured handles, then **Save YAML** (or press `s`). Positions are stored in
+`config/fig1_layout.yaml`. **Export PDF** (or `e`) writes the full four-panel figure via
+`steps/00_pipeline_figure.py`. Subsequent non-interactive runs load the saved layout
+automatically.
+
 ## Outputs (committed)
 
 - `outputs/manifest.json` — SHA-256 hashes, git commit, timestamp
