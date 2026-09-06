@@ -86,7 +86,7 @@ Native tracking is $10$ Hz. Consecutive complete frames are highly autocorrelate
 
 Figure 1 summarises the pipeline of Sections 2.2--2.5. At each time step $t$, the $22$ player positions form a point cloud $P(t) = \{p_1(t), \dots, p_{22}(t)\} \subset \mathbb{R}^2$. Computing persistent homology directly on $P(t)$ produces a single diagram encoding inter-agent distance relationships at all scales simultaneously; to separate organisational levels before computing topology, we preprocess with hierarchical clustering.
 
-> **Figure 1** (`figures/fig1_pipeline_schematic.pdf`). Methods schematic covering clustering (Section 2.2), adaptive Vietoris--Rips truncation (Section 2.4), and the graph-cycle proxy (Section 2.5). Toy geometry; homology is on centroids, not the raw 22-player cloud.
+> **Figure 1** (`figures/fig1_pipeline_schematic.pdf`). Analysis pipeline (schematic geometry; each panel shows the step and its output). **(a)** Colour-coded local groups in $P(t)$ (left, 2×2 layout) with dashed $\delta$-disks and a representative gap $< \delta$; centroids in $\tilde{P}(t)$ (right column) linked by colour-matched dashed lines (Section 2.2). **(b)** Vietoris–Rips on $\tilde{P}(t)$ truncated at adaptive $\varepsilon_{\max}$ (equation (1); Section 2.4). **(c)** Finite $H_1$ birth–death pairs. **(d)** Graph-cycle proxy for an $H_1$ pair (Section 2.5). Figure 2 shows the cycle step on real tracking data.
 
 For a cutoff distance $\delta > 0$, single-linkage hierarchical clustering partitions $P(t)$ into clusters $C_1, \dots, C_k$ such that every pair of points within a cluster is connected by a chain of pairwise distances not exceeding $\delta$. The reduced point cloud is the set of cluster centroids,
 
@@ -163,7 +163,7 @@ On the primary match, the pipeline detects $403$ $H_1$ loops across 150 uniforml
 | Team ($30.0$ m)       | $0$         | $0/150$ ($0\%$)      | N/A              | N/A               | N/A             |
 
 
-> **Remark (Team-scale $H_1$ vanishes a priori).** At $\delta = 30.0$ m the 22 players reduce to $k \in \{1, 2\}$ centroids in every frame (Section 3.1). A Vietoris–Rips complex on at most three points cannot carry a non-trivial $1$-cycle: there are at most three edges, and any filled triangle bounds rather than generates a loop. So $H_1 = 0$ at every admissible filtration at this scale, regardless of the data. Team-scale loop structure would require a different representation (density fields or Delaunay triangulations, for example). Our $H_1$ analysis therefore runs at two scales—individual and tactical—against the three-scale $H_0$ decomposition above.
+> **Remark (Team-scale $H_1$ vanishes a priori).** At $\delta = 30.0$ m the 22 players reduce to $k \in \{1, 2\}$ centroids in every frame (Section 3.1). A Vietoris–Rips complex on at most three points cannot carry a non-trivial $1$-cycle: there are at most three edges, and any filled triangle bounds rather than generates a loop. So $H_1 = 0$ at every admissible filtration at this scale, regardless of the data. Team-scale loop structure would require a different representation (density fields or Delaunay triangulations, for example). Our $H_1$ analysis therefore runs at two scales (individual and tactical) against the three-scale $H_0$ decomposition above.
 
 The two-scale $H_1$ pattern extends to all ten matches ($1{,}500$ uniformly sampled frames; Table 2). Individual-scale presence is $97.0\% \pm 1.5\%$ ($95\%$ CI $96.1$–$97.9\%$), between $95\%$ and $99\%$ in every match. Tactical presence is $19.3\% \pm 7.2\%$ ($95\%$ CI $15.3$–$23.7\%$), ranging from $12\%$ to $34\%$ across matches. The primary match ($12.7\%$ tactical) sits within one standard deviation of the ten-match mean. That match was chosen for broadcast quality and event annotation, not for its tactical $H_1$ rate.
 
@@ -181,7 +181,7 @@ Mean persistence in Table 2 averages over all sampled frames, including those wi
 
 Remark 1 explains why $H_1$ vanishes when clustering leaves at most three centroids; the tactical scale sits close to that floor. In the ten-match sample, $44\%$ of frames have four or fewer tactical centroids, and none of them carries a loop. Presence rate alone cannot tell formation geometry from cluster count. We separate the two with the matched null of Section 2.6, which fixes centroid number and spatial envelope and randomises only arrangement.
 
-Table 3 summarises the result. Tactical observed presence is more than twice the null rate. Table 4 splits by centroid count $k$: presence is zero at $k \le 4$, as expected, then rises from $12.0\%$ at $k = 5$ to $75.0\%$ at $k = 8$, always above the null. At the individual scale the null already exceeds $91\%$—twenty points in a bounded region almost always close a cycle—so the observed excess is modest ($+5.8$ pp). Tactical $H_1$ carries information about how units are arranged; individual presence is near-saturated and reads better as background than as a discriminating signal.
+Table 3 summarises the result. Tactical observed presence is more than twice the null rate. Table 4 splits by centroid count $k$: presence is zero at $k \le 4$, as expected, then rises from $12.0\%$ at $k = 5$ to $75.0\%$ at $k = 8$, always above the null. At the individual scale the null already exceeds $91\%$: twenty points in a bounded region almost always close a cycle, so the observed excess is modest ($+5.8$ pp). Tactical $H_1$ carries information about how units are arranged; individual presence is near-saturated and reads better as background than as a discriminating signal.
 
 **Table 3.** $H_1$ presence against a cardinality- and envelope-matched null ($10$ matches, $1{,}500$ frames, $200$ null replicates per frame). Excess is in percentage points, with $95$ bootstrap CIs over matches.
 
@@ -215,7 +215,7 @@ All $403$ primary-match $H_1$ features receive a geometric realisation via close
 
 The two $H_1$ scales carry related but largely distinct information. Over $1{,}500$ uniformly sampled frames, total individual and tactical $H_1$ persistence correlate weakly (Spearman $\rho = 0.264$, $p < 0.001$; $95\%$ bootstrap CI $[0.200, 0.314]$). The same holds for loop counts ($\rho = 0.211$, $p < 0.001$), so the finding does not depend on how persistence is summarised.
 
-Co-occurrence exceeds chance (Fisher odds ratio $10.91$, $p < 0.001$; bootstrap CI $[2.59, 13.53]$), but Table 5 shows the asymmetry: $1{,}166$ frames carry individual loops without a tactical partner, and only one frame does the reverse. Weak rank correlation remains the main evidence for complementarity—joint presence need not mean the scales measure the same structure.
+Co-occurrence exceeds chance (Fisher odds ratio $10.91$, $p < 0.001$; bootstrap CI $[2.59, 13.53]$), but Table 5 shows the asymmetry: $1{,}166$ frames carry individual loops without a tactical partner, and only one frame does the reverse. Weak rank correlation remains the main evidence for complementarity: joint presence need not mean the scales measure the same structure.
 
 **Table 5.** Frame counts of $H_1$ presence at the two scales ($1{,}500$ frames).
 
@@ -226,7 +226,7 @@ Co-occurrence exceeds chance (Fisher odds ratio $10.91$, $p < 0.001$; bootstrap 
 | Individual $H_1$ absent  | $1$                    | $44$                  |
 
 
-A TDA-native check agrees. Bottleneck distance between the two scales' diagrams has median $1.511$ m and $95$th-percentile tail $3.416$ m—on the order of typical tactical loop size on the primary match ($3.797$ m mean persistence where loops appear; Table 1). Landscape $L^2$ distance has median $5.671$. The scales differ by roughly as much as their features are large, not by a small perturbation of one shared pattern.
+A TDA-native check agrees. Bottleneck distance between the two scales' diagrams has median $1.511$ m and $95$th-percentile tail $3.416$ m: on the order of typical tactical loop size on the primary match ($3.797$ m mean persistence where loops appear; Table 1). Landscape $L^2$ distance has median $5.671$. The scales differ by roughly as much as their features are large, not by a small perturbation of one shared pattern.
 
 ### 3.5 Sensitivity Analysis
 
@@ -261,7 +261,7 @@ The adaptive truncation (equation 1) is likewise stable. At $\delta = 12.0$ m, e
 
 ### 3.6 Event Correlation
 
-As a sanity check against measurement noise, we asked whether persistence moves with real match events (SkillCorner annotations; $104{,}722$ event–topology pairs across ten matches). Events that disrupt shape—on-ball engagements, quick breaks— tend to precede lower persistence; sustained build-up tends to precede higher persistence (Mann–Whitney $U$ on pre-specified classes; several nominal $p < 0.001$ at both scales). We treat this as construct validity only; multiple-testing control and football interpretation belong elsewhere.
+As a sanity check against measurement noise, we asked whether persistence moves with real match events (SkillCorner annotations; $104{,}722$ event–topology pairs across ten matches). Events that disrupt shape (on-ball engagements, quick breaks) tend to precede lower persistence; sustained build-up tends to precede higher persistence (Mann–Whitney $U$ on pre-specified classes; several nominal $p < 0.001$ at both scales). We treat this as construct validity only; multiple-testing control and football interpretation belong elsewhere.
 
 ---
 

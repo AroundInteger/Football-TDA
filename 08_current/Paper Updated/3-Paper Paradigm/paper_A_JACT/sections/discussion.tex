@@ -18,7 +18,7 @@ finely tuned setting would not travel; this one does, once interaction
 lengths are re-derived on the new domain.
 
 The cutoff distance is a scale selector, not a parameter to optimise
-away. Three regimes---individual, tactical, and team---emerge from a
+away. Three regimes (individual, tactical, and team) emerge from a
 sweep over $\delta\in[0.5,30.0]$~m, are checked by independent
 clustering-quality metrics, and recur across all ten matches. The
 tactical cutoff sits where automated metrics disagree (6.87--16.31~m);
@@ -44,7 +44,7 @@ The clustering step produces two informationally distinct objects.
 Linkage selection is a substantive methodological choice. Across a
 600-frame, four-match comparison sample, single-linkage detects 153
 tactical-scale $H_1$ loops, against 923 for complete-linkage and 936
-for Ward's method---almost an order of magnitude more. That gap is large
+for Ward's method: almost an order of magnitude more. That gap is large
 enough to change which scientific picture the data support, not merely
 the precision of one estimate. We retain single-linkage because its
 definition is the most natural reading of spatial proximity and is
@@ -54,8 +54,8 @@ the other two methods as an open question.
 A more principled selection criterion would come from the dynamical
 system itself rather than from clustering-quality metrics alone. One
 candidate is the linkage method under which a governing equation for a
-persistence functional---the landscape $L^2$ norm or the tactical $H_1$
-total-persistence sequence---admits the sparsest representation in the
+persistence functional (the landscape $L^2$ norm or the tactical $H_1$
+total-persistence sequence) admits the sparsest representation in the
 sense of sparse identification of nonlinear dynamics. Operationalising
 this would require choosing the dynamical state, defending the sparsity
 of the recovered library against AIC, BIC, or cross-validation
@@ -67,8 +67,8 @@ match sequences makes the sparsity comparison meaningful.
 The tactical cutoff of 12.0~m is a domain-informed choice within, rather
 than derived from, an automated-metric range (silhouette-optimal
 16.31~m; information-content-optimal 6.87~m). The justification in
-Section~\ref{sec:cutoffselection}---correspondence to half a standard
-football zone width---is domain-reasonable but ultimately a judgement
+Section~\ref{sec:cutoffselection} (correspondence to half a standard
+football zone width) is domain-reasonable but ultimately a judgement
 call. Section~\ref{sec:sensitivity} reports the operative range
 $[6,14]$~m as an empirical property. A more principled criterion would
 select the cutoff minimising variation of the persistence landscape path
@@ -90,8 +90,8 @@ triangulations, rather than a centroid-based point cloud at any cutoff.
 All data analysed here are broadcast-derived tracking at 10~Hz.
 Broadcast tracking typically offers lower spatial precision than
 higher-frequency optical systems, which may affect the magnitude of
-persistence values reported. The structural findings---the three scale
-regimes, the $H_1$ presence rates, and the sensitivity profiles---are
+persistence values reported. The structural findings (the three scale
+regimes, the $H_1$ presence rates, and the sensitivity profiles) are
 expected to be robust across tracking technologies, since they depend on
 relative rather than absolute spatial precision. A direct comparison of
 persistence magnitudes against optical tracking data remains for future
@@ -107,7 +107,7 @@ norms, and to test tactical-fingerprint classification at population
 scale. This is also the setting in which the SINDy-based linkage
 criterion proposed above becomes evaluable. Separately, persistence
 landscape dynamics are being developed to treat each match as a path
-through landscape space---the setting in which the landscape-stability
+through landscape space: the setting in which the landscape-stability
 cutoff criterion can itself be evaluated, since its resampling unit is
 the match-level landscape rather than the per-frame summary used here.
 

@@ -1,6 +1,6 @@
 # Hierarchical adversarial point processes: a diagram analogue of mean-path and change-point inference
 
-**Working draft (Paper C)** — methods note, UK English. Developed **after Papers A and B are submitted.** Not for JACT or JSS. Cite Paper A for observational football; do not re-analyse SkillCorner. Numbers from `numbers.json`. Proofs of the tractable cases: `lemmas.md`.
+**Working draft (Paper C):** methods note, UK English. Developed **after Papers A and B are submitted.** Not for JACT or JSS. Cite Paper A for observational football; do not re-analyse SkillCorner. Numbers from `numbers.json`. Proofs of the tractable cases: `lemmas.md`.
 
 **Intended venues (in order):** *Journal of the Royal Society Interface*; *SIAM Journal on Mathematics of Data Science* or *Foundations of Data Science* if the Tier-2 lemmas carry the paper; *Methods in Ecology and Evolution* only if the editor accepts a simulation-first note. Not JACT (Paper A).
 
@@ -16,7 +16,7 @@ Competitive collectives organise at several spatial scales at once, and consecut
 
 When two populations compete inside a bounded region, local clusters, larger groupings, and the envelope of the whole collection coexist. Single-threshold homology folds those levels into one picture. Consecutive snapshots are also not exchangeable: each agent's movement constrains what happens next. Those two obstacles are the reason a football-validated Small Grant targets landscape-valued convergence of an empirical mean path (T1) and a Wasserstein-stability bound for landscape-valued CUSUM (T2).
 
-This paper does not prove T1 or T2. It is the **diagram $W_1/W_2$ analogue** on controlled adversarial clouds — the fallback named in the grant if the landscape argument is intractable — with known ground truth. Claims carry three weights, so a reviewer need not guess:
+This paper does not prove T1 or T2. It is the **diagram $W_1/W_2$ analogue** on controlled adversarial clouds (the fallback named in the grant if the landscape argument is intractable) with known ground truth. Claims carry three weights, so a reviewer need not guess:
 
 - **Tier 1.** Cohen–Steiner et al. (2007) stability; Carlsson and Mémoli (2010) $H_0$/MST; Page (1954) CUSUM. Cited, not re-derived.
 - **Tier 2.** Lemma T1-lite and Proposition T2-lite (`lemmas.md`): the $W_2$ barycentre of equal-cardinality birth-zero diagrams; a first-order gap to the $W_1$ Fréchet mean; a Wald delay $h/\delta$ for CUSUM on $\xi_t=W_1(D_t,D_{\mathrm{ref}})$ under uncorrelated increments. Overlay on Monte Carlo (Figure 5).
@@ -24,7 +24,7 @@ This paper does not prove T1 or T2. It is the **diagram $W_1/W_2$ analogue** on 
 
 Football remains the calibrated empirical testbed (Paper A). We do not re-analyse those matches, and we do not copy football metre values. One paragraph of origin is enough: the pipeline was first used on twelve-agent pitch clouds; the present generators change $N$, diameter, and hierarchy depth.
 
-The lead generator is territorial predator–prey ecology. The PI already publishes with a bio-logging group on high-resolution animal movement (Gunner et al. 2026): paths composed of fundamental steps and turns, with prey pursuit and predator evasion among the causes of heading change. That work is a different mathematical object — one trajectory, not two competing point clouds — and is not the dataset here. Movebank pack GPS is the observational next step, not Domain 1 of this note.
+The lead generator is territorial predator–prey ecology. The PI already publishes with a bio-logging group on high-resolution animal movement (Gunner et al. 2026): paths composed of fundamental steps and turns, with prey pursuit and predator evasion among the causes of heading change. That work is a different mathematical object (one trajectory, not two competing point clouds) and is not the dataset here. Movebank pack GPS is the observational next step, not Domain 1 of this note.
 
 A second generator, multi-robot pursuit–evasion in a corridor, uses pair geometry rather than the football triangle. Oncology is named in the Outlook. Vipond et al. (2021) already classify static multiplex images with multiparameter landscapes; a 2025 vineyard/zigzag study already treats synthetic tumour–immune dynamics. Our remaining gap is serial paired clouds with competitive dependence.
 
@@ -83,13 +83,13 @@ The statistics are the same; the metre values are not.
 
 ## 5. Dependence with identical marginals
 
-Cluster centres are displaced by a zero-mean Gaussian field of fixed marginal variance. In the coupled model the predator (or pursuer) field is a lagged AR(1) of the prey (or evader) field — a tug-of-war. In the independent model each frame is a fresh draw. The one-frame marginal of every agent is the same, so a difference in the topological signal is dependence, not a change of noise level. The statistic is $W_1(D_t,D_{\mathrm{ref}})$ against the undisturbed cloud; consecutive-frame $W_1$ is autocorrelated even under independence and must not be used for this comparison.
+Cluster centres are displaced by a zero-mean Gaussian field of fixed marginal variance. In the coupled model the predator (or pursuer) field is a lagged AR(1) of the prey (or evader) field (a tug-of-war). In the independent model each frame is a fresh draw. The one-frame marginal of every agent is the same, so a difference in the topological signal is dependence, not a change of noise level. The statistic is $W_1(D_t,D_{\mathrm{ref}})$ against the undisturbed cloud; consecutive-frame $W_1$ is autocorrelated even under independence and must not be used for this comparison.
 
 On the ecology generator, $80$ replicates: coupled $\rho_1=+0.296$ (s.d. $0.139$); independent $\rho_1=-0.025$ (s.d. $0.106$). One realisation is shown in Figure 4D.
 
 ## 6. Limitations and Outlook
 
-Diagrams are not landscapes. Tier 2 is not grant T1/T2. Simulation is not field data. Figure 5 of the football toy — four painted domains with identical $8$–$2$–$1$ barcodes — is a schematic of a transfer *hypothesis*; the present generators are the transfer *test*.
+Diagrams are not landscapes. Tier 2 is not grant T1/T2. Simulation is not field data. Figure 5 of the football toy (four painted domains with identical $8$–$2$–$1$ barcodes) is a schematic of a transfer *hypothesis*; the present generators are the transfer *test*.
 
 The Standard Grant closes the gap between (A1) coin-flip increments and tug-of-war, and between diagrams and landscapes. This paper's job is to state that gap precisely and to show the workflow on two non-football generators first.
 
@@ -101,11 +101,11 @@ Authorship may include a named subset of the biologging group to check the gener
 
 ## Figures
 
-- `figures/fig1_ecology_territory.png` — three snapshots and prey $H_0$ barcodes.
-- `figures/fig2_conflation_h1.png` — scale conflation; ring vs filled $H_1$.
-- `figures/fig3_cusum_frechet.png` — operational consecutive-frame CUSUM, Fréchet variance, encirclement, Monte Carlo.
-- `figures/fig4_robotics_dependence.png` — corridor intercept; coupled vs independent; evader barcode.
-- `figures/fig5_t2_lite.png` — interpolant CUSUM vs Wald vs Monte Carlo of $\xi_t$; consecutive-frame delay as a separate object.
+- `figures/fig1_ecology_territory.png`: three snapshots and prey $H_0$ barcodes.
+- `figures/fig2_conflation_h1.png`: scale conflation; ring vs filled $H_1$.
+- `figures/fig3_cusum_frechet.png`: operational consecutive-frame CUSUM, Fréchet variance, encirclement, Monte Carlo.
+- `figures/fig4_robotics_dependence.png`: corridor intercept; coupled vs independent; evader barcode.
+- `figures/fig5_t2_lite.png`: interpolant CUSUM vs Wald vs Monte Carlo of $\xi_t$; consecutive-frame delay as a separate object.
 
 ## References (author–year for this markdown draft)
 

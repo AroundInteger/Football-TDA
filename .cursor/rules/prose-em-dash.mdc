@@ -1,0 +1,38 @@
+---
+description: Avoid em dashes in scientific and grant prose; pick the punctuation that states the logical relation
+globs: "**/*.md,**/*.tex"
+alwaysApply: true
+---
+
+# No em dashes in scientific prose
+
+Write in an objective, neutral, measured register. Do not use em dashes (`—`, Unicode U+2014, HTML `&mdash;`, or LaTeX `---`).
+
+The mark introduces a dramatic pause, a sudden shift, or a conversational aside. Major scientific style manuals (AMA, IEEE, ACS) treat it as too literary, theatrical, or journalistic for technical argument. It is also a punctuation shortcut: one glyph can stand in for a comma, colon, semicolon, or parenthesis, so the exact logical relation between clauses is left undeclared. Dense technical prose needs that relation to be explicit.
+
+## Choose the exact mark
+
+- **Colon:** an explicit explanation or illustration follows.
+- **Semicolon:** two closely related independent propositions; prefer a full stop if they can stand alone.
+- **Parentheses:** secondary background context.
+- **Comma:** an ordinary clause or list boundary.
+
+## Do not substitute
+
+- Do not use `—` or LaTeX `---` for pauses, afterthoughts, or emphasis.
+- Do not fake an em dash with a spaced hyphen (`word - word`).
+- En dashes remain correct for numeric ranges (`10–12`) and compound attribution (`author–year`) where house style already uses them.
+
+## Examples
+
+BAD: The persistence diagram encodes birth–death pairs — the essential topological features of the window.
+
+GOOD: The persistence diagram encodes birth–death pairs: the essential topological features of the window.
+
+BAD: We report only preregistered endpoints — exploratory analyses are in the supplement.
+
+GOOD: We report only preregistered endpoints. Exploratory analyses are in the supplement.
+
+BAD: The windowing rule — validated first on WYSL — is unchanged on the open corpus.
+
+GOOD: The windowing rule (validated first on WYSL) is unchanged on the open corpus.

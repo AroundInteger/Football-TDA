@@ -24,9 +24,9 @@ Write sentences a reviewer grasps in a single pass.
 1. One idea per sentence; split independent claims.
 2. Target <= 25-30 words; rewrite anything over ~35.
 3. Max one subordinate clause; do not stack "because..., which..., where..., aligning...".
-4. Max one aside (em-dash pair or parenthesis) per sentence; none if a subordinate clause is present.
+4. Max one parenthetical aside per sentence; none if a subordinate clause is present. Do not use em dashes.
 5. Subject + main verb early; avoid long run-ups before the main clause.
-6. Do not parallel-load lists where each item carries example + rationale + citation — use separate sentences or bullets.
+6. Do not parallel-load lists where each item carries example + rationale + citation: use separate sentences or bullets.
 7. No punctuation collisions: shorten, quote, or move a term containing a colon/comma (e.g. an EPSRC priority title) rather than embedding it mid-clause.
 8. Prefer full stops to semicolons; reserve a semicolon for a tight, symmetrical pair.
 9. One citation cluster per clause; do not interleave several `[n]` through one argument.

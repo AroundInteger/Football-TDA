@@ -45,14 +45,22 @@ topology, we preprocess with hierarchical clustering.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig1_pipeline_schematic}
-\caption{Analysis pipeline. Clustering at a validated cutoff $\delta$
-reduces $P(t)$ to centroids $\tilde P(t)$ (Section~2.2). Persistent
-homology is Vietoris--Rips on those centroids, truncated at the
-data-driven $\varepsilon_{\max}$ of equation~\eqref{eq:adaptive}
-(Section~2.4). A closed cycle on the 1-skeleton is a geometric proxy
-for an $H_1$ pair (Section~2.5), not a matrix-reduction generator.
-Panel geometry is schematic; Figure~\ref{fig:cycles} shows the cycle
-step on real tracking data.}
+\caption{Analysis pipeline (schematic geometry; each panel shows the
+step and its output).
+\textbf{(a)}~On the left, $P(t)$ comprises colour-coded local player
+groups (2$\times$2 layout) with deliberate separation at point level;
+dashed circles mark cutoff~$\delta$ and a representative inter-group gap
+($<\delta$).  On the right, $\tilde P(t)$ lists the corresponding
+centroids in a separate column; colour-matched dashed lines map each
+group to its centroid (Section~2.2).
+\textbf{(b)}~Vietoris--Rips filtration on $\tilde P(t)$, truncated at
+the data-driven $\varepsilon_{\max}$ of equation~\eqref{eq:adaptive}
+(Section~2.4): a truncation of the filtration parameter, not a new
+filtration.
+\textbf{(c)}~Finite $H_1$ birth--death pairs from that filtration.
+\textbf{(d)}~Closed cycle on the 1-skeleton as a geometric proxy for an
+$H_1$ pair (Section~2.5), not a matrix-reduction generator.
+Figure~\ref{fig:cycles} shows the cycle step on real tracking data.}
 \label{fig:pipeline}
 \end{figure}
 
@@ -70,8 +78,8 @@ the set of cluster centroids,
 Scale attribution is therefore by construction of the input, not by
 slicing bars of $\mathrm{VR}(P(t))$ according to birth.
 
-We use single-linkage throughout. Its definition---clusters as chains of
-points connected by short pairwise distances---is the most direct reading
+We use single-linkage throughout. Its definition (clusters as chains of
+points connected by short pairwise distances) is the most direct reading
 of spatial proximity. It also produces a conservative estimate of $H_1$
 features: reported loops represent robust topological structure rather
 than artefacts of over-partitioning. Section~\ref{sec:limitations}
