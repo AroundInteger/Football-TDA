@@ -1,0 +1,34 @@
+---
+description: Wrap maths in LaTeX headings with texorpdfstring so PDF bookmarks stay valid
+globs: "**/*.tex"
+alwaysApply: true
+---
+
+# Maths in TeX headings
+
+PDF bookmarks cannot carry TeX maths. When writing or editing `.tex` files, wrap every equation or expression in a sectioning command with `\texorpdfstring`. Use an empty PDF argument.
+
+```latex
+\texorpdfstring{$equation or expression$}{}
+```
+
+Applies to `\section`, `\subsection`, `\subsubsection`, and any other heading that `hyperref` writes to the outline. Use the same wrap in `\caption` when the caption contains maths.
+
+## Examples
+
+BAD:
+
+```latex
+\subsection{$H_1$ Loop Detection}
+\section{Canonical Form and the $\kappa \leftrightarrow 1/\kappa$ Symmetry}
+```
+
+GOOD:
+
+```latex
+\subsection{\texorpdfstring{$H_1$}{} Loop Detection}
+\section{Canonical Form and the \texorpdfstring{$\kappa \leftrightarrow 1/\kappa$}{} Symmetry}
+\label{sec:canonical}
+```
+
+Do not leave raw `$...$` in a heading. Do not put a prose fallback in the second argument unless a journal template requires a non-empty bookmark string.
