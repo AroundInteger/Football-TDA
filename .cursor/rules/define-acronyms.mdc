@@ -1,0 +1,32 @@
+---
+description: Define every acronym at first use in papers and grants
+globs: "**/*.md,**/*.tex"
+alwaysApply: true
+---
+
+# Define acronyms at first use
+
+Scientific prose must define every acronym, even familiar ones. Do not assume the reader knows VR, TDA, CUSUM, or similar.
+
+At the first occurrence in a deliverable, write the full form, then the acronym in parentheses. After that, the short form is allowed.
+
+```latex
+% BAD
+the VR complex $\mathrm{VR}(P(t))$
+
+% GOOD
+the Vietoris--Rips (VR) complex $\mathrm{VR}(P(t))$
+```
+
+```markdown
+BAD: CUSUM on the landscape series
+GOOD: cumulative sum (CUSUM) on the landscape series
+```
+
+## Scope
+
+- Applies to papers, grants, captions, abstracts, and collaborator notes.
+- Homology degrees ($H_0$, $H_1$) and standard mathematical operators are notation, not acronyms.
+- Do not redefine the same acronym in every section of one paper.
+- If the short form never appears, do not invent an acronym.
+- Journal keywords may keep the full name only.

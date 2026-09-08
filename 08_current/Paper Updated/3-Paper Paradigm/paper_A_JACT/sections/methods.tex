@@ -55,9 +55,8 @@ centroids in a separate column; colour-matched dashed lines map each
 group to its centroid (Section~2.2).
 \textbf{(b)}~Vietoris--Rips filtration on \texorpdfstring{$\tilde P(t)$}{}, truncated at
 the data-driven \texorpdfstring{$\varepsilon_{\max}$}{} of equation~\eqref{eq:adaptive}
-(Section~2.4): a truncation of the filtration parameter, not a new
-filtration.
-\textbf{(c)}~Finite \texorpdfstring{$H_1$}{} birth--death pairs from that filtration.
+(Section~2.4): a truncation of the filtration parameter.
+\textbf{(c)}~Persistence diagram: finite \texorpdfstring{$H_1$}{} birth--death pairs from that filtration.
 \textbf{(d)}~Closed cycle on the 1-skeleton as a geometric proxy for an
 \texorpdfstring{$H_1$}{} pair (Section~2.5), not a matrix-reduction generator.
 Figure~\ref{fig:cycles} shows the cycle step on real tracking data.}
@@ -68,9 +67,9 @@ For a cutoff distance $\delta>0$, single-linkage hierarchical clustering
 partitions $P(t)$ into clusters $C_1,\dots,C_k$ such that every pair of
 points within a cluster is connected by a chain of pairwise distances
 not exceeding $\delta$. That partition is the connected-component
-structure of the Vietoris--Rips complex on $P(t)$ at filtration value
-$\delta$ \citep{carlsson2010clustering}. The homology computed below is
-not that of $\mathrm{VR}(P(t))$. It is the homology of a new point cloud,
+structure of the Vietoris--Rips (VR) complex $\mathrm{VR}(P(t))$ at
+filtration value $\delta$ \citep{carlsson2010clustering}. The homology
+computed below is not that of $\mathrm{VR}(P(t))$. It is the homology of a new point cloud,
 the set of cluster centroids,
 \[
 \tilde{P}(t)=\left\{\bar{c}_j : \bar{c}_j=\frac{1}{|C_j|}\sum_{p\in C_j} p,\; j=1,\dots,k\right\}.

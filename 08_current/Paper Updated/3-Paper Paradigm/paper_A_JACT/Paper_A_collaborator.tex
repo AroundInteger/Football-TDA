@@ -20,6 +20,8 @@
 \usepackage{amsthm}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{flafter}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{xcolor}
@@ -61,14 +63,14 @@ truth. Status: not yet submitted.
 
 \vspace{0.6em}
 \textbf{What this paper is.}
-An empirical measurement study, not a new filtration theory.
-It asks whether persistent homology can be made \emph{scale-attributable}
-on a real, high-frequency, noisy point cloud.
+An empirical study of whether persistent homology can be made
+\emph{scale-attributable} on a real, high-frequency, noisy point cloud
+from a competitive collective system.
 Football is the measurement setting, not the audience.
 
 \vspace{0.4em}
 \textbf{What it is not.}
-A football-analytics paper, and not a claim of new algebraic machinery.
+A football-analytics paper.
 Event interpretation, geometric baselines, bilateral (home/away)
 coupling, and predictive utility belong to a companion manuscript
 (Paper~B, \emph{Journal of Sports Sciences}, in preparation).
@@ -119,10 +121,12 @@ Skip \S2.7 and Declarations unless you are checking reproducibility.
 \begin{abstract}
 \noindent
 Standard single-parameter Vietoris--Rips persistent homology applied to a
-multi-agent point cloud mixes features from distinct organisational
-levels in one diagram. This paper is an empirical study of whether
-persistent homology can be made scale-attributable on a real,
-high-frequency, noisy point cloud. We do not introduce a new filtration.
+hierarchically organised point cloud mixes features from distinct
+organisational levels in one diagram. In a competitive collective system
+the hierarchy has named levels, so that mixing blocks scale attribution.
+The interaction lengths are not assumed: this paper recovers them by a
+cutoff sweep and asks whether persistent homology can then be made
+scale-attributable on a real, high-frequency, noisy point cloud.
 The point cloud is decomposed by hierarchical clustering at validated
 interaction lengths, and Vietoris--Rips homology is computed on the
 resulting centroids. Clustering changes the geometry, so a maximum
@@ -135,15 +139,14 @@ removes that obstruction. On ten professional football matches
 individual-scale loops are frequent and transient
 ($97.0\%\pm1.5\%$ frame presence across matches); tactical-scale loops
 are rarer but more persistent ($19.3\%\pm7.2\%$); team-scale $H_1$ is
-absent a priori as a structural consequence of the clustering. Both
-structures hold across matches and across wide ranges of the cutoff and
-the truncation percentile. The two $H_1$ scales carry distinct rather
-than redundant information (Spearman $\rho=0.264$ across 1{,}500 sampled
-frames). Geometric cycle representatives are recovered for every $H_1$
-feature examined. A minimal association with match events is a
-construct-validity check against measurement noise. Football is the
-measurement setting. The same pipeline applies to other bounded
-competitive systems once interaction lengths are re-derived.
+absent a priori as a structural consequence of the clustering. These
+regime counts hold across matches and across wide ranges of both the
+cutoff and the truncation percentile. The two $H_1$ scales carry distinct
+rather than redundant information (Spearman $\rho=0.264$ across 1{,}500
+sampled frames). Geometric cycle representatives are recovered for every
+$H_1$ feature examined. Football supplies the measurement setting; the
+same pipeline applies to other bounded competitive systems once
+interaction lengths are re-derived.
 \end{abstract}
 
 \noindent\textbf{Keywords:} persistent homology, multi-scale topology,
@@ -157,6 +160,7 @@ sports analytics
 \input{sections/conclusion}
 \input{sections/declarations}
 
+\FloatBarrier
 \bibliographystyle{plainnat}
 \bibliography{references}
 

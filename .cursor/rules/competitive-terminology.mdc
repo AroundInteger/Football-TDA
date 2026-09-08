@@ -1,0 +1,30 @@
+---
+description: Locked competitive terminology for papers A–C and the Small/Standard Grant packs
+globs: "**/*.md,**/*.tex"
+alwaysApply: true
+---
+
+# Competitive terminology (papers and grants)
+
+Use these three forms only. They are already locked in the Small Grant V&A.
+
+| Term | Meaning |
+|---|---|
+| **Competitive collective system** | The class: agents in a bounded domain, coordinating internally while responding to an opponent |
+| **Competitive dependence** | The statistical property: successive observations are not exchangeable |
+| **Bounded competitive system** | Transfer scope: the same pipeline once interaction lengths are re-derived |
+
+Do not invent a parallel class name. *Competitive spatial system*, *adversarial TDA*, and *hierarchical adversarial point process* are not the locked class.
+
+**Adversary** or **opponent** may appear once, in the definition of the class. Do not use *adversarial* as a paper title, grant strand, or system label.
+
+## Which paper owns which claim
+
+- **Paper A:** the class and scale-attributable homology. Name competitive dependence in at most one sentence; do not treat the inference problem.
+- **Paper B:** football nouns (*team shape*, home/away). Cite Paper A as the method for a competitive collective system.
+- **Paper C:** competitive dependence is the Tier 3 property. Title and abstract use the locked class, not *adversarial*.
+- **Small Grant / Standard Grant:** the three forms only. Replace leftover *adversarial dynamics* or *adversarial spatial systems* with *competitive dependence* or *bounded competitive system*.
+
+## Do not repeat the same disclaimer
+
+State that clustering plus truncation is not a new filtration **once** (Paper A Contributions). Do not restate it in the abstract, caption, and conclusion.

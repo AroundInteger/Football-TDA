@@ -15,6 +15,8 @@
 \usepackage{amsthm}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{flafter}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{xurl}
@@ -36,10 +38,12 @@
 \begin{abstract}
 \noindent
 Standard single-parameter Vietoris--Rips persistent homology applied to a
-multi-agent point cloud mixes features from distinct organisational
-levels in one diagram. This paper is an empirical study of whether
-persistent homology can be made scale-attributable on a real,
-high-frequency, noisy point cloud. We do not introduce a new filtration.
+hierarchically organised point cloud mixes features from distinct
+organisational levels in one diagram. In a competitive collective system
+the hierarchy has named levels, so that mixing blocks scale attribution.
+The interaction lengths are not assumed: this paper recovers them by a
+cutoff sweep and asks whether persistent homology can then be made
+scale-attributable on a real, high-frequency, noisy point cloud.
 The point cloud is decomposed by hierarchical clustering at validated
 interaction lengths, and Vietoris--Rips homology is computed on the
 resulting centroids. Clustering changes the geometry, so a maximum
@@ -57,10 +61,9 @@ regime counts hold across matches and across wide ranges of both the
 cutoff and the truncation percentile. The two $H_1$ scales carry distinct
 rather than redundant information (Spearman $\rho=0.264$ across 1{,}500
 sampled frames). Geometric cycle representatives are recovered for every
-$H_1$ feature examined. A minimal association with match events serves as
-a construct-validity check against measurement noise. Football supplies the
-measurement setting; the same pipeline applies to other bounded competitive
-systems once interaction lengths are re-derived.
+$H_1$ feature examined. Football supplies the measurement setting; the
+same pipeline applies to other bounded competitive systems once
+interaction lengths are re-derived.
 \end{abstract}
 
 \noindent\textbf{Keywords:} persistent homology, multi-scale topology,
@@ -79,6 +82,7 @@ sports analytics
 \input{sections/supplement}
 
 % =======================================================================
+\FloatBarrier
 \bibliographystyle{plainnat}
 \bibliography{references}
 
