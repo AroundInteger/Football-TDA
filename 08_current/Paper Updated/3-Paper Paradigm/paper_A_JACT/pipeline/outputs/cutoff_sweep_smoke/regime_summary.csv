@@ -1,0 +1,4 @@
+scale,adopted_cutoff_m,selection_rule,pooled_mean_h0,acceptance_lo,acceptance_hi,acceptance_all_ok,n_matches_failing_acceptance,per_match_delta_mean,per_match_delta_std,n_matches,n_frames_pooled
+individual,2.75,largest delta with mean H0 >= 19,19.385215794306703,15.0,22.0,True,0,2.75,0.0,1,4356
+tactical,11.75,argmin |mean H0 - 5| among P(k >= 4) >= 0.5,4.971533516988062,4.0,10.0,True,0,11.75,0.0,1,4356
+team,22.5,smallest delta with mean H0 <= 2,1.9965564738292012,1.0,2.5,True,0,22.5,0.0,1,4356

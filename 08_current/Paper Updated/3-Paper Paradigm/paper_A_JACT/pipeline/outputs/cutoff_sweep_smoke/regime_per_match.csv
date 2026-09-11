@@ -1,0 +1,4 @@
+scale,match_id,adopted_cutoff_m,match_inverted_cutoff_m,mean_h0_at_adopted,acceptance_ok,selection_rule,acceptance_lo,acceptance_hi,n_frames
+individual,1996435,2.75,2.75,19.385215794306703,True,largest delta with mean H0 >= 19,15.0,22.0,4356
+tactical,1996435,11.75,11.75,4.971533516988062,True,argmin |mean H0 - 5| among P(k >= 4) >= 0.5,4.0,10.0,4356
+team,1996435,22.5,22.5,1.9965564738292012,True,smallest delta with mean H0 <= 2,1.0,2.5,4356

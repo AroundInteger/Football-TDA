@@ -1,0 +1,16 @@
+{
+  "smoke": true,
+  "sample_every": 10,
+  "match_ids": [
+    1996435
+  ],
+  "n_frames": {
+    "1996435": 4356
+  },
+  "adopted_cutoffs": {
+    "individual": 2.75,
+    "tactical": 11.75,
+    "team": 22.5
+  },
+  "preview_note": "compare smoke to ~2.9 / ~12 / ~22 m on the old 38-snapshot curve"
+}
