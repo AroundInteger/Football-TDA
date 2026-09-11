@@ -222,16 +222,16 @@ class Fig1LayoutEditor:
                 marker="D", colour=colour, size=70, label=f"{name[0].upper()} $\\tilde P$",
             )
 
-        self._add_handle("label_pt", self.layout.label_pt, label=r"$P(t)$", colour="#F9A825")
+        self._add_handle("label_pt", self.layout.label_pt, label=r"$P(\tilde{t})$", colour="#F9A825")
         self._add_handle(
-            "label_pt_tilde", self.layout.label_pt_tilde, label=r"$\tilde P(t)$", colour="#F9A825",
+            "label_pt_tilde", self.layout.label_pt_tilde, label=r"$\tilde{P}(\tilde{t})$", colour="#F9A825",
         )
         self._add_handle(
             "label_lt_delta", self._bracket_label_xy(), label=r"$<\delta$", colour="#757575",
         )
         self._add_handle(
             "label_pt_tilde_b", self.layout.label_pt_tilde_b,
-            label=r"$\tilde P(t)$ b", colour="#F9A825",
+            label=r"$\tilde{P}(\tilde{t})$ b", colour="#F9A825",
         )
         self._add_handle(
             "eps_label", self._eps_label_xy(), label=r"$\varepsilon_{\max}$", colour="#E65100",

@@ -99,17 +99,28 @@ def main() -> None:
     ap.add_argument("--max-frames", type=int, default=150)
     args = ap.parse_args()
 
+    data_root = Path(__file__).resolve().parents[2] / "01_data" / "opendata" / "data"
+    TABLE_S1 = {
+        1886347, 1899585, 1925299, 1953632, 1996435,
+        2006229, 2011166, 2013725, 2015213, 2017461,
+    }
+    from loaders import subsample_uniform, MatchData
+
     rows = []
-    for meta in skillcorner.list_matches():
+    for meta in skillcorner.list_matches(data_root):
+        if int(meta["id"]) not in TABLE_S1:
+            continue
         try:
             match = skillcorner.load_match(
                 meta["id"],
-                sample_every=args.sample_every,
+                opendata_path=data_root,
+                sample_every=1,
                 require_complete=True,
-                max_frames=args.max_frames,
             )
         except FileNotFoundError:
             continue
+        sampled, _step = subsample_uniform(match.complete_frames, 150)
+        match = MatchData(info=match.info, frames=sampled)
         print(f"[{meta['id']}] {len(match.complete_frames)} frames")
         for frame_idx, frame in enumerate(match.complete_frames):
             ind = compute_h1_at_scale(frame.all_positions, VALIDATED_CUTOFFS["individual"])

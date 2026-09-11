@@ -37,27 +37,35 @@ def main() -> None:
     if regime_path.exists():
         df = pd.read_csv(regime_path)
         for _, row in df.iterrows():
-            cutoff_col = (
-                "adopted_cutoff_m"
-                if "adopted_cutoff_m" in df.columns
-                else "optimal_cutoff"
-            )
-            stability_col = (
-                "stability_at_adopted"
-                if "stability_at_adopted" in df.columns
-                else "stability"
-            )
+            if "adopted_cutoff_m" not in df.columns:
+                raise ValueError(
+                    "regime_summary.csv must come from the cardinality-inversion "
+                    "protocol (column adopted_cutoff_m)."
+                )
             entry = {
-                "adopted_cutoff_m": float(row[cutoff_col]),
-                "validation_rate": float(row["validation_rate"]),
-                "stability_at_adopted": float(row[stability_col]),
+                "adopted_cutoff_m": float(row["adopted_cutoff_m"]),
+                "selection_rule": row.get("selection_rule"),
+                "pooled_mean_h0": (
+                    float(row["pooled_mean_h0"])
+                    if "pooled_mean_h0" in df.columns
+                    else None
+                ),
+                "acceptance_all_ok": (
+                    bool(row["acceptance_all_ok"])
+                    if "acceptance_all_ok" in df.columns
+                    else None
+                ),
+                "per_match_delta_mean": (
+                    float(row["per_match_delta_mean"])
+                    if "per_match_delta_mean" in df.columns
+                    else None
+                ),
+                "per_match_delta_std": (
+                    float(row["per_match_delta_std"])
+                    if "per_match_delta_std" in df.columns
+                    else None
+                ),
             }
-            if "ch_optimum_m" in df.columns and pd.notna(row.get("ch_optimum_m")):
-                entry["ch_optimum_m"] = float(row["ch_optimum_m"])
-            if "stability_at_ch_optimum" in df.columns and pd.notna(
-                row.get("stability_at_ch_optimum")
-            ):
-                entry["stability_at_ch_optimum"] = float(row["stability_at_ch_optimum"])
             regimes[row["scale"]] = entry
 
     h1_primary = uniform.get("h1", {})
@@ -104,15 +112,9 @@ def main() -> None:
         ),
         "spearman_rho": comp.get("complementarity", {}).get("spearman_rho"),
         "spearman_rho_counts": comp.get("complementarity", {}).get("spearman_rho_counts"),
-        "stability_individual": regimes.get("individual", {}).get(
-            "stability_at_adopted", regimes.get("individual", {}).get("stability")
-        ),
-        "stability_tactical": regimes.get("tactical", {}).get(
-            "stability_at_adopted", regimes.get("tactical", {}).get("stability")
-        ),
-        "stability_team": regimes.get("team", {}).get(
-            "stability_at_adopted", regimes.get("team", {}).get("stability")
-        ),
+        "cutoff_individual": regimes.get("individual", {}).get("adopted_cutoff_m"),
+        "cutoff_tactical": regimes.get("tactical", {}).get("adopted_cutoff_m"),
+        "cutoff_team": regimes.get("team", {}).get("adopted_cutoff_m"),
         "event_topology_pairs": event_pairs,
     }
     if linkage.get("tactical_h1_total"):

@@ -1,4 +1,4 @@
-# Multi-Scale Persistent Homology for Competitive Spatial Systems
+# Multi-Scale Persistent Homology for Competitive Collective Systems
 
 Manuscript (target: *Journal of Applied and Computational Topology*) plus a
 self-contained analysis pipeline. The `article` class source is suitable for

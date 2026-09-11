@@ -44,7 +44,7 @@
 \theoremstyle{plain}
 \newtheorem{remark}{Remark}
 
-\title{Multi-Scale Persistent Homology for Competitive Spatial Systems}
+\title{Multi-Scale Persistent Homology for Competitive Collective Systems}
 \author{Rowan Brown \\
 \small Swansea University}
 \date{Collaborator copy: August 2026}
@@ -79,17 +79,17 @@ Paper~A treats event correlation only as a construct-validity check
 
 \vspace{0.4em}
 \textbf{Headline claim.}
-Clustering at validated interaction lengths, then a data-driven
-truncation of the Vietoris--Rips parameter, produces stable
+Clustering at recovered interaction lengths, then a truncation of the
+Vietoris--Rips parameter taken from the reduced cloud, produces stable
 scale-attributable diagrams on broadcast tracking.
 On ten professional matches: three $H_0$ regimes and two $H_1$ regimes;
-the two $H_1$ scales carry distinct information; every examined $H_1$
+the two $H_1$ levels carry distinct information; every examined $H_1$
 feature has a geometric cycle proxy.
 
 \vspace{0.4em}
 \textbf{Locked cutoffs (metres).}
-Individual $2.98$; tactical $12.0$ (domain-informed, inside a
-metric-disagreement range); team $30.0$.
+Individual $2.75$; tactical $11.75$; team $23.0$
+(cardinality inversion on all complete SkillCorner frames).
 Operative tactical $H_1$ range: $[6,14]$\,m.
 
 \vspace{0.4em}
@@ -104,7 +104,7 @@ frames.
 \textbf{Open methodological questions} (already flagged in the paper).
 Linkage choice (single vs complete vs Ward changes tactical $H_1$ by
 nearly an order of magnitude); a more principled tactical cutoff;
-team-scale $H_1$ needs a different representation (centroids collapse
+team-level $H_1$ needs a different representation (centroids collapse
 to $k\in\{1,2\}$).
 
 \vspace{0.4em}
@@ -130,20 +130,20 @@ scale-attributable on a real, high-frequency, noisy point cloud.
 The point cloud is decomposed by hierarchical clustering at validated
 interaction lengths, and Vietoris--Rips homology is computed on the
 resulting centroids. Clustering changes the geometry, so a maximum
-filtration scale suited to one cutoff returns no $H_1$ (loops) at
-another. A data-driven truncation of the Vietoris--Rips parameter
-removes that obstruction. On ten professional football matches
-(broadcast tracking at 10~Hz), three stable $H_0$
-(connected-component) regimes appear: individual (2.98~m), tactical
-(12.0~m), and team (30.0~m). Two $H_1$ regimes appear with them:
-individual-scale loops are frequent and transient
-($97.0\%\pm1.5\%$ frame presence across matches); tactical-scale loops
-are rarer but more persistent ($19.3\%\pm7.2\%$); team-scale $H_1$ is
-absent a priori as a structural consequence of the clustering. These
-regime counts hold across matches and across wide ranges of both the
-cutoff and the truncation percentile. The two $H_1$ scales carry distinct
-rather than redundant information (Spearman $\rho=0.264$ across 1{,}500
-sampled frames). Geometric cycle representatives are recovered for every
+filtration distance suited to one cutoff returns no $H_1$ (loops) at
+another. Truncating the Vietoris--Rips parameter from the pairwise
+distances of the reduced cloud removes that obstruction. On ten
+professional football matches (broadcast tracking at 10~Hz), three
+stable $H_0$ (connected-component) regimes appear: individual
+(2.75~m), tactical (11.75~m), and team (23.0~m). Two $H_1$ regimes
+appear with them: loops at the individual level are frequent and
+transient ($96.5\%\pm1.5\%$ frame presence across matches); loops at
+the tactical level are rarer but more persistent ($18.8\%\pm6.5\%$);
+team-level $H_1$ is absent on the sampled frames (most complete frames
+at $23.0$~m have $k\le 2$ centroids). These regime counts hold across matches and across wide
+ranges of both the cutoff and the truncation percentile. The two
+$H_1$ levels carry distinct rather than redundant information
+(Spearman $\rho=0.234$ across 1{,}500 sampled frames). Geometric cycle representatives are recovered for every
 $H_1$ feature examined. Football supplies the measurement setting; the
 same pipeline applies to other bounded competitive systems once
 interaction lengths are re-derived.
@@ -159,6 +159,7 @@ sports analytics
 \input{sections/discussion}
 \input{sections/conclusion}
 \input{sections/declarations}
+\input{sections/supplement}
 
 \FloatBarrier
 \bibliographystyle{plainnat}

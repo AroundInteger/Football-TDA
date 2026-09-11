@@ -6,7 +6,9 @@
 
 **Locked costing (do not reopen):** PI 0.10 FTE · Co-I Villamizar 0.05 FTE · RA Months **5–10** · no LK/GP · ~£95.2k fEC (`Costs` v3).
 
-**Masters:** `live/TIMELINE.md` · `live/02_Vision_and_Approach_REV3.md` · `Paper_A_collaborator.md` / `sections/*.tex`.
+**Masters:** `live/TIMELINE.md` · `live/02_Vision_and_Approach_REV4.md` · `Paper_A_collaborator.md` / `sections/*.tex`.
+
+**Addendum Friday 11 September 2026.** Cardinality-inversion pivot (FOUNDATION.md R15). Paper A cutoffs are 2.75 / 11.75 / 23.0 m. Grant lock files and the REV4 Month-2 gate were rewritten this day. Papers B and C are deferred. REV3 remains archive of the 0.80 / collage-metre V&A.
 
 ---
 
@@ -36,7 +38,7 @@
 ### Paper A
 - [ ] Decide send format: PDF from `Paper_A_collaborator.tex` / `main.tex` **or** markdown + note that `.tex` is SoT
 - [ ] Compile clean PDF (no Overleaf blockers); spot-check Abstract, Tables 1–2, §4.3 Limitations
-- [ ] Confirm numbers still match `CANONICAL_NUMBERS.md` / `pipeline/outputs/numbers.json` (ρ = 0.264 = total $H_1$ persistence)
+- [ ] Confirm numbers still match `CANONICAL_NUMBERS.md` / `pipeline/outputs/numbers.json` (ρ = 0.234 = total $H_1$ persistence)
 - [ ] Draft short cover note (scope: maths methods; not football analytics; Paper B owns events/baselines)
 - [ ] Collaborator list + send slot Tuesday
 
@@ -45,12 +47,12 @@
 ## Tuesday 8 September — text freeze + Paper A out
 
 ### Grant (V&A is the risk item)
-- [ ] **Strip** HTML comment / revision notes from top of `02_Vision_and_Approach_REV3.md` before JeS paste
-- [ ] **Page check:** V&A ≤ 3 pages Calibri 11 pt (~2 cm margins); cut if still over (~266 words flagged in REV3 header)
+- [ ] **Strip** HTML comment / revision notes from top of `02_Vision_and_Approach_REV4.md` before JeS paste
+- [ ] **Page check:** V&A ≤ 3 pages Calibri 11 pt (~2 cm margins); cut if still over (REV4 header: 1,604 words; re-measure after the 11 Sep gate rewrite)
 - [ ] Prefer cuts in §5 T1/T2 detail first; **do not** cut proof-of-principle, RA training sentence, new collaboration, Month-2 gate, or geometric baselines
 - [ ] Confirm §4/§7 match lock: PI 0.10 · NV 0.05 · RA Months 5–10 · SCAFC · Standard Grant drafting from M9–10
 - [ ] Paste / attach **updated Gantt** (`live/grant_figure_gantt.png`)
-- [ ] Sync `04_References.md` to 29 Vancouver entries in REV3 order (header still notes old 23-entry risk — verify)
+- [ ] Sync `04_References.md` to 29 Vancouver entries in REV4 order (unchanged from REV3; 11 Sep pivot did not reopen numbering)
 - [ ] Paste into JeS: `01` Summary (≤550 words) · `02` V&A · `03` R4RI (≤1000) · `04` Refs · `05`–`08`
 - [ ] Word-count each JeS box after paste (formatting eats space)
 

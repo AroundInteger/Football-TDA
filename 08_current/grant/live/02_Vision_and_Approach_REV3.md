@@ -100,7 +100,7 @@
 
 ### 1. Research Problem and Mathematical Contribution
 
-This project builds the statistical-topology framework that competitive collective systems currently lack, and proves the two theorems that make it usable. These are agents distributed in a bounded domain, coordinating internally while responding to an active adversary: autonomous multi-agent coordination, biological collectives, tactical team sports. Statistical topology can already summarise spatial organisation where observations are independent or exchangeable. No framework yet quantifies how large-scale organisation forms, changes and breaks down under competition. This grant is a proof of principle. It proves both theorems, then tests their consequences at season scale on a fully tracked platform (professional football, §2). The result is the evidence base for a follow-on Standard Grant.
+When two groups of agents compete inside a bounded space, each shapes the other's organisation at every scale at once, and no statistical theory yet describes that record. Such competitive collective systems comprise two or more groups of agents that share a bounded domain. Each group coordinates internally while responding to opposing agents in that same domain. They arise in autonomous multi-agent coordination, biological collectives and tactical team sports. Statistical topology can already summarise spatial organisation where observations are independent or exchangeable. It cannot yet say how large-scale organisation forms, changes and breaks down under competition. This project seeks that theory: one that can average configurations at population scale and locate organisational change with a proven error bound. The grant is a proof of principle. It tests the framework at population scale on a fully tracked platform (professional football, §2). The result is the evidence base for a follow-on Standard Grant.
 
 **Importance.** Two obstacles limit existing approaches.
 
@@ -108,13 +108,13 @@ This project builds the statistical-topology framework that competitive collecti
 
 *Dependence.* Each agent continuously adapts to its opponents. This violates the exchangeability assumptions underpinning current statistical topology [7,8]. Inference that treats successive observations as independent understates the uncertainty.
 
-**Mathematical contribution.** The project targets two theorems (§5).
+**Mathematical contribution.** The framework rests on two theorems this project seeks to prove (§5).
 
 **(T1) Averaging under competitive dependence is well posed.** The empirical mean path of landscape summaries converges under temporal mixing rather than exchangeability. Its limiting covariance is the long-run covariance, not the marginal one [7,9,10]. Competitive dependence does not move the mean; it changes every variance built on it.
 
 **(T2) Transitions are localised with a proven error bound.** The bound is governed by the size of the change, T1's long-run variance and the worst-case perturbation of the input diagrams [11–14]. Below an explicit threshold set by that perturbation, a transition cannot be located at all.
 
-Both are explicit, checkable claims with named failure conditions. O1 establishes the population-scale geometry they rest on, and O2 delivers the proofs (§4). If the landscape argument proves intractable, the R3 fallback applies (§6).
+Both are explicit, checkable claims with named failure conditions. O1 establishes the population-scale geometry they rest on. O2 carries the proofs (§4). If the landscape argument proves intractable, the R3 fallback applies (§6).
 
 ### 2. Background, Timeliness, Need and Opportunity
 
@@ -148,9 +148,9 @@ Topological methods can already detect and quantify spatial organisation in mult
 - **Dependence diagnostic** (gate, Month 9) — empirical autocovariance decay consistent with the summable-mixing condition T1 and T2 assume, with the eigengap required by the projected form of T2 recorded alongside.
 - **Discriminability** (gate, Month 9) — separation of at least three organisational states (p < 0.05, BH-corrected), benchmarked against team length, width and convex-hull area [21,22].
 
-The Month-2 gate licenses the start of O2. The Month-9 criteria are the hypotheses under which T1 and T2 are proved.
+The Month-2 gate licenses the start of O2. The Month-9 criteria are the hypotheses under which T1 and T2 are to be proved.
 
-**O2: Inference for dependent topological processes (PI Months 4–10; RA and Co-I Months 5–10).** O2 proves both theorems by functional analysis of landscape-valued time series and sequential change-point detection (§5). Month 4 is PI-led protocol specification; the RA implements from Month 5 with Co-I mathematical guidance. It succeeds on two counts. Both theorems are proved under the O1 conditions. And detected change-points recover at least 70% of held-out annotated transitions within ±10 s, at a calibrated 5% false-alarm rate (permutation p < 0.05).
+**O2: Inference for dependent topological processes (PI Months 4–10; RA and Co-I Months 5–10).** O2 seeks to prove both theorems by functional analysis of landscape-valued time series and sequential change-point detection (§5). Month 4 is PI-led protocol specification; the RA implements from Month 5 with Co-I mathematical guidance. It succeeds on two counts. Both theorems hold under the O1 conditions. Detected change-points recover at least 70% of held-out annotated transitions within ±10 s, at a calibrated 5% false-alarm rate (permutation p < 0.05).
 
 **Figure 1.** Twelve-month workplan: decision gates (diamonds) and dated outputs (triangles).
 

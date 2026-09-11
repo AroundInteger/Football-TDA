@@ -1,5 +1,5 @@
 % =====================================================================
-% Paper A — Multi-Scale Persistent Homology for Competitive Spatial
+% Paper A: Multi-Scale Persistent Homology for Competitive Collective
 % Systems. Target: Journal of Applied and Computational Topology (JACT).
 %
 % Uses a standard article-class scaffold rather than Springer's sn-jnl
@@ -26,7 +26,7 @@
 \theoremstyle{plain}
 \newtheorem{remark}{Remark}
 
-\title{Multi-Scale Persistent Homology for Competitive Spatial Systems}
+\title{Multi-Scale Persistent Homology for Competitive Collective Systems}
 \author{Rowan Brown \\
 \small Swansea University}
 \date{}
@@ -41,26 +41,28 @@ Standard single-parameter Vietoris--Rips persistent homology applied to a
 hierarchically organised point cloud mixes features from distinct
 organisational levels in one diagram. In a competitive collective system
 the hierarchy has named levels, so that mixing blocks scale attribution.
-The interaction lengths are not assumed: this paper recovers them by a
-cutoff sweep and asks whether persistent homology can then be made
-scale-attributable on a real, high-frequency, noisy point cloud.
+The interaction lengths are not assumed in metres: the class names
+the organisational levels by cardinality, and a cutoff sweep reads
+the metres from the $H_0(\delta)$ curve. The paper then asks whether
+persistent homology can be made scale-attributable on a real,
+high-frequency, noisy point cloud.
 The point cloud is decomposed by hierarchical clustering at validated
 interaction lengths, and Vietoris--Rips homology is computed on the
 resulting centroids. Clustering changes the geometry, so a maximum
-filtration scale suited to one cutoff returns no $H_1$ (loops) at
-another. A data-driven truncation of the Vietoris--Rips parameter
-removes that obstruction. On ten professional football matches
-(broadcast tracking at 10~Hz), three stable $H_0$
-(connected-component) regimes appear: individual (2.98~m), tactical
-(12.0~m), and team (30.0~m). Two $H_1$ regimes appear with them:
-individual-scale loops are frequent and transient
-($97.0\%\pm1.5\%$ frame presence across matches); tactical-scale loops
-are rarer but more persistent ($19.3\%\pm7.2\%$); team-scale $H_1$ is
-absent a priori as a structural consequence of the clustering. These
-regime counts hold across matches and across wide ranges of both the
-cutoff and the truncation percentile. The two $H_1$ scales carry distinct
-rather than redundant information (Spearman $\rho=0.264$ across 1{,}500
-sampled frames). Geometric cycle representatives are recovered for every
+filtration distance suited to one cutoff returns no $H_1$ (loops) at
+another. Truncating the Vietoris--Rips parameter from the pairwise
+distances of the reduced cloud removes that obstruction. On ten
+professional football matches (broadcast tracking at 10~Hz), three
+stable $H_0$ (connected-component) regimes appear: individual
+(2.75~m), tactical (11.75~m), and team (23.0~m). Two $H_1$ regimes
+appear with them: loops at the individual level are frequent and
+transient ($96.5\%\pm1.5\%$ frame presence across matches); loops at
+the tactical level are rarer but more persistent ($18.8\%\pm6.5\%$);
+team-level $H_1$ is absent on the sampled frames (most complete frames
+at $23.0$~m have $k\le 2$ centroids). These regime counts hold across matches and across wide
+ranges of both the cutoff and the truncation percentile. The two
+$H_1$ levels carry distinct rather than redundant information
+(Spearman $\rho=0.234$ across 1{,}500 sampled frames). Geometric cycle representatives are recovered for every
 $H_1$ feature examined. Football supplies the measurement setting; the
 same pipeline applies to other bounded competitive systems once
 interaction lengths are re-derived.

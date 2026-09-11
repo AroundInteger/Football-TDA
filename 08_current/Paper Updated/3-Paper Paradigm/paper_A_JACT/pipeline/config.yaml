@@ -17,18 +17,20 @@ sampling:
       1 Hz series on the primary match only, to show residual autocorrelation
       of topological summaries. Not the operational sampling rule.
   cutoff_sweep:
-    n_cutoffs: 100
-    delta_min: 0.5
-    delta_max: 30.0
-    epoch_lengths_min: [1, 2, 5, 10]
+    description: >
+      Cardinality inversion on every complete 22-player frame of the ten
+      Table S1 matches. Grid 0.25–40.0 m at 0.25 m. See CUTOFF_PROTOCOL.md.
+    delta_min: 0.25
+    delta_max: 40.0
+    delta_step: 0.25
   temporal_2min:
     window_size_min: 2.0
     description: "Grant-only temporal windows; not used for headline H1 tables"
 
 validated_cutoffs:
-  individual: 2.98
-  tactical: 12.0
-  team: 30.0
+  individual: 2.75
+  tactical: 11.75
+  team: 23.0
 
 multi_match:
   skillcorner_only: true
@@ -40,6 +42,8 @@ bootstrap:
   seed: 42
 
 figures:
-  # Max-persistence frames in uniform_150/uniform_frame_results.csv
-  individual_frame_idx: 141
-  tactical_frame_idx: 97  # recovered via edges ≤ death (VR 1-skeleton)
+  # Same sample frame at both levels. Compact four-cycles (high
+  # circularity) among frames that carry H1 at both cutoffs. Not the
+  # persistence argmax: frame 141 is a sliver (circularity 0.10).
+  individual_frame_idx: 95
+  tactical_frame_idx: 95

@@ -136,7 +136,12 @@ def main() -> None:
     rng = np.random.default_rng(args.seed)
 
     n_sample = int(cfg["sampling"]["uniform_150"]["n_frames"])
-    match_ids = [m["id"] for m in skillcorner.list_matches()]
+    data_root = REPO / "01_data" / "opendata" / "data"
+    TABLE_S1 = [
+        1886347, 1899585, 1925299, 1953632, 1996435,
+        2006229, 2011166, 2013725, 2015213, 2017461,
+    ]
+    match_ids = list(TABLE_S1)
     if args.primary_only:
         match_ids = [cfg["primary_match_id"]]
 
@@ -144,6 +149,7 @@ def main() -> None:
     for n, mid in enumerate(match_ids, 1):
         match = skillcorner.load_match(
             mid,
+            opendata_path=data_root,
             sample_every=1,
             require_complete=True,
         )

@@ -14,9 +14,9 @@ Self-contained **01–08** pack aligned to:
 | Field | Source | Do not use |
 |---|---|---|
 | Summary (public, 550 words) | `01_Summary.md` (= Lay Summary) | `full/01_Application_Summary.md` |
-| Vision & Approach | `02_Vision_and_Approach.md` | `VA_140826.md`; `VA_230826_reconstructed.docx` (pre-cut); `full/02_Vision_and_Approach.md`; older `submission/VA_V*.md` |
+| Vision & Approach | `02_Vision_and_Approach_REV4.md` (page-fit master, 10 Sep 2026; **gate rewritten 11 Sep 2026**, FOUNDATION R15; REV3 is the archive of record) | `02_Vision_and_Approach_REV3.md` for edits; `VA_140826.md`; `VA_230826_reconstructed.docx` (pre-cut); `full/02_Vision_and_Approach.md`; older `submission/VA_V*.md` |
 | R4RI capability | `03_Applicant_and_Team_Capability.md` | generic R4RI drafts under `07_grants/` |
-| References | `04_References.md` (Vancouver order of `02_Vision_and_Approach_REV3.md`, 29 entries) | `full/04_References.md` |
+| References | `04_References.md` (Vancouver order of `02_Vision_and_Approach_REV4.md`, 29 entries) | `full/04_References.md` |
 | Timeline / FTE | `TIMELINE.md` (lock: PI 0.10; Co-I Villamizar 0.05; RA Months **5–10**) | any Gantt in `full/02`; older 9-month RA / Kilduff–Powathil Co-I drafts |
 
 ## JeS map

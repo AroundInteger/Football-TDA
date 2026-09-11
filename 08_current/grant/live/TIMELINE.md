@@ -1,6 +1,8 @@
 # Locked timeline
 
-Duration: **12 months**. Do not change month numbers in 01–08 without updating `02_Vision_and_Approach_REV3.md` first.
+Duration: **12 months**. Do not change month numbers in 01–08 without updating `02_Vision_and_Approach_REV4.md` first. REV3 is archive.
+
+**11 Sep 2026.** Cutoff gate is cardinality inversion of [23] with named connected-component bands (FOUNDATION.md R15), not a 0.80 score.
 
 **Costed team lock (Costs v3 / JeS):** PI 0.10 FTE + Co-I Villamizar 0.05 FTE + Research Associate 1.0 FTE for **six months (Months 5–10)**. Kilduff and Powathil are **not** on the award.
 
@@ -15,7 +17,7 @@ Section numbers below follow the reconstructed 7-section V&A (Vision §1–§3; 
 
 | Objective | Who | Window | Milestones |
 |---|---|---|---|
-| **O1** Population-scale geometry | PI Months 1–9; RA Months 5–9 | Months 1–9 | OSF pre-registration **Month 2**; cutoff gate **Month 2** (20-match batch; stability < 0.80 → re-derive); barcode database and moment conditions **Month 7**; comparison-geometry results **Month 9** |
+| **O1** Population-scale geometry | PI Months 1–9; RA Months 5–9 | Months 1–9 | OSF pre-registration **Month 2**; cutoff gate **Month 2** (20-match batch; invert [23]; fail a named band → re-derive); barcode database and moment conditions **Month 7**; comparison-geometry results **Month 9** |
 | **O2** Inference for dependent topological processes | PI Months 4–10 (Month 4 specification); PI + RA + Co-I Months 5–10 | Months 4–10 | Landscape module **Month 8**; T1/T2 statements **and** calibrated change-point outputs **Month 9**; RA handover **Month 10** |
 
 | Output (not an objective) | Who | Date |

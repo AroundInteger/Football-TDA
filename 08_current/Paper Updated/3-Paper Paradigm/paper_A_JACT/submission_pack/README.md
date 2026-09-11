@@ -17,7 +17,7 @@ described in `01_data/README.md`.
 
 | Field | Value |
 |-------|--------|
-| Title | Multi-Scale Persistent Homology for Competitive Spatial Systems |
+| Title | Multi-Scale Persistent Homology for Competitive Collective Systems |
 | Author | Rowan Brown |
 | Primary category | math.AT |
 | Cross-list | cs.CG |

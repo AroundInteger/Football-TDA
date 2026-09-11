@@ -2,39 +2,48 @@
 \section{Introduction}
 
 \subsection{Background}
+\label{sec:background}
 
-Competitive collective systems are agents distributed in a bounded
-domain, coordinating internally while responding to an opponent.
-Autonomous vehicle fleets sharing road space, opposing crowd flows at
+Collective systems of agents in space are typically hierarchically
+organised. Starling murmurations, fish shoals, and insect swarms, for
+example, show individuals, local groups, and a system-wide envelope
+occupying distinct spatial scales at once \citep{sumpter2006}.
+Understanding how those scales interact is a standing challenge in
+applied mathematics, and one that high-frequency spatial tracking data
+is increasingly able to inform \citep{herbertread2011}.
+
+Competitive collective systems are a subset of that class: agents
+distributed in a bounded domain, coordinating internally while
+responding to an opponent. Examples that share this structure are
+autonomous vehicle fleets sharing road space, opposing crowd flows at
 transport hubs, predator--prey populations in an ecosystem, and sports
-teams contesting territory all share this structure. Consecutive
-positions are coupled by that opposition (competitive dependence); this
-paper asks only whether homology can be attributed by organisational
-scale. Such systems operate across multiple spatial scales at once:
-individual agent decisions at the scale of metres, small-group
-coordination at tens of metres, and whole-system organisation at
-hundreds of metres. Understanding how these scales interact is a
-standing challenge in applied mathematics, and one that high-frequency
-spatial tracking data is increasingly able to inform
-\citep{gudmundsson2017}.
+teams contesting pitch or court territory.
 
-Agents within such systems can arrange themselves in ring-like
-formations that enclose empty space: a pressing trap encircling a player in possession, or a gap between two organisational units that creates room to manoeuvre. These arrangements have a topological
-character: they are loops in the position data, and their persistence
-over time distinguishes deliberate structural organisation from
-transient clustering. Conventional geometric summaries capture different aspects of spatial
-dispersion \citep{gudmundsson2017}. Convex-hull area, nearest-neighbour
-distance, and the range of agent positions along each axis do not
-directly quantify loop structure.
+Agents in such systems can arrange themselves in ring-like formations
+that enclose empty space: milling in a fish school, a vortex in a
+swarm, or, in the competitive subset, encirclement of an opponent.
+These arrangements are important to identify because enclosure is a
+distinct mode of organisation, not a change in density or alignment: a
+loop holds a region of space, whether that region is an empty core or
+the space denied to an opponent. Their persistence over time
+distinguishes stable structure from transient clustering. Conventional
+geometric summaries, including convex-hull area, nearest-neighbour
+distance, and polarisation, capture dispersion and alignment
+\citep{sumpter2006} but do not directly quantify this loop structure.
 
-Persistent homology provides a principled way to detect and measure such
-formations across scale \citep{edelsbrunner2010,carlsson2009}. A
-filtration of simplicial complexes indexed by a scale parameter tracks
-the birth and death of topological features. Each feature is recorded as
-a bar: the interval from the scale at which it appears (birth) to the
-scale at which it disappears (death). The collection of bars is the
-persistence diagram \citep{cohensteiner2007}.
-Figure~\ref{fig:pipeline}(c) shows a schematic of finite $H_1$ pairs.
+Persistent homology, a central tool of topological data analysis (TDA),
+provides a principled way to detect and measure such formations across
+a continuum of scales
+\citep{edelsbrunner2002,edelsbrunner2010,carlsson2009,munch2017,chazal2021}.
+A filtration of simplicial complexes indexed by a scale parameter
+tracks the birth and death of topological features. Each feature is
+recorded as a bar: the interval from the scale at which it appears
+(birth) to the scale at which it disappears (death) \citep{ghrist2008}.
+The collection of bars is the persistence diagram
+\citep{cohensteiner2007}. Efficient computation via the Vietoris--Rips
+filtration is due to \citet{bauer2021ripser}; persistence landscapes
+provide a functional representation for later statistical analysis
+\citep{bubenik2015}.
 
 That representation has recovered cavities in protein atom clouds that
 mark flexibility and folding \citep{xia2014}. It has identified
@@ -42,8 +51,12 @@ medium-range order in amorphous solids that conventional crystallography
 does not resolve \citep{hiraoka2016}. In biological aggregation models
 it has shown that distinct swarming organisations appear at different
 filtration values \citep{topaz2015}. The same single-parameter
-construction, applied directly to a multi-agent point cloud, raises the
-measurement difficulty treated in Section~\ref{sec:scaleconflation}.
+construction, applied directly to a hierarchically organised multi-agent
+point cloud, raises the measurement difficulty treated in
+Section~\ref{sec:scaleconflation}. This paper asks whether that homology
+can be attributed by organisational scale on a competitive collective
+system. Opposition couples successive positions (competitive
+dependence); that inference problem is not treated here.
 
 \subsection{The Scale Conflation Problem}
 \label{sec:scaleconflation}
@@ -52,98 +65,89 @@ A single-parameter Vietoris--Rips filtration on the full point cloud
 records features at many filtration values in one persistence diagram.
 Bars born at different distances therefore occupy the same object,
 whether they arise from local proximity, small-group arrangement, or
-system-wide organisation.
+system-wide organisation. If that mixing is not recognised, and the
+diagram is read as if the cloud had a single organisational level,
+features from distinct levels are treated as commensurate. A change in
+the diagram then cannot be assigned to a level: it may be a local
+rearrangement, a change in group structure, or a change in the system
+envelope, and those alternatives are not distinguished. Counts and
+persistence summaries inherit the same ambiguity.
 
-That mixing is scale conflation, and it is a property of the filtration
-on a hierarchically organised point cloud, not of competition. Birth
-records when a loop closes among the original points. It does not name
-the organisational level of the units that enclose the loop. In a
-competitive collective system the hierarchy has named levels
-(individual, small group, envelope), so a superimposed diagram cannot
-attribute an $H_1$ feature to a named level, and it cannot track that
-level through time. The metre values of those levels are not given in
-advance; they are recovered by a cutoff sweep
-(Section~\ref{sec:cutoffselection}).
-Aggregation models already show distinct organisational structures at
-different filtration values \citep{topaz2015}. Multi-agent snapshots
-likewise yield Vietoris--Rips summaries that depend on the chosen scale
-\citep{gu2022}.
+Applied studies make that mixing visible without removing it. Betti
+numbers from biological aggregation models, plotted against simulation
+time and filtration value, show that distinct swarming organisations
+appear at different filtration values \citep{topaz2015}. That display
+remains one mixed summary. A parallel construction computes
+Vietoris--Rips features on multi-agent snapshots and yields a
+topological time series at a chosen scale \citep{gu2022}. That series
+can detect change points; it does not decompose the cloud by
+organisational level.
 
-Two existing responses address related difficulties. Multiparameter
-persistence treats several scales as simultaneous algebraic parameters
-\citep{botnan2022}. Computational cost currently limits that machinery
-to point clouds much smaller than the 22-agent, high-frequency case
-used here. Persistent homology of multiscale clusterings analyses the
-hierarchy produced by the clustering itself \citep{schindler2023}. It
-does not yield a scale-attributable diagram on a reduced point cloud.
-Section~\ref{sec:relatedwork} reviews these lines in more detail.
+Responses for the general case exist, but they do not return a
+scale-attributable diagram. Multiparameter persistence treats several
+scales as simultaneous algebraic parameters \citep{botnan2022}. The
+output is a module in several filtration parameters, not a single
+persistence diagram that names an organisational level. The
+construction is at present computationally feasible only on clouds far
+smaller, and sampled far more slowly, than a video-rate cloud of a few
+dozen agents. Persistent homology of multiscale clusterings, by
+contrast, analyses the hierarchy produced by the clustering itself
+\citep{schindler2023}. The output is a topological summary of how
+partitions merge as the cutoff varies, not a diagram of loops among
+units at one chosen level.
 
-Organisational level is assigned here by changing the input, not by
-slicing bars of one diagram. Hierarchical clustering at validated cutoff
-distances decomposes the cloud; persistent homology is then computed on
-the centroids. Clustering changes the geometry. A Vietoris--Rips range
-suited to one cutoff can return no $H_1$ at another. A data-driven
-truncation of the filtration parameter removes that obstruction
-(Section~\ref{sec:adaptivefiltration}).
+The methods above leave that mixing in place: a bar records when a loop
+closes, not which organisational level enclosed it. In a competitive
+collective system those levels are named (individual, small group,
+envelope), so a superimposed diagram cannot attribute an $H_1$ feature
+to a level or track that level through time.
 
 \subsection{Contributions}
 
-The measurement pipeline has two steps. Domain-informed hierarchical
-clustering, with cutoffs checked against independent clustering-quality
-metrics, separates organisational levels before homology is computed. A
-data-driven truncation of the Vietoris--Rips parameter keeps $H_1$
-detection from collapsing once clustering has changed the geometry.
-Neither step is algebraically new
+Section~\ref{sec:scaleconflation} leaves a concrete question: whether
+persistent homology can be made scale-attributable on a competitive
+collective system. This paper answers that question by changing the
+input rather than slicing bars of one diagram. The input is changed by
+a cutoff distance $\delta$: agents closer than $\delta$ are grouped,
+and each group is replaced by its centroid, so the reduced cloud
+represents one organisational level. The class names the level by
+cardinality. The cutoff that selects it is read from the
+\texorpdfstring{$H_0(\delta)$}{} curve on this corpus
+(Section~\ref{sec:cutoffselection}). Quality metrics are a check, not
+the selector.
+Vietoris--Rips homology is then computed on those centroids.
+Clustering stretches the cloud: inter-centroid distances are typically
+larger than $\delta$, so a filtration range fitted to one cutoff can
+return no $H_1$ at another. A maximum filtration distance is therefore
+taken from the pairwise distances of the reduced cloud itself, not from
+a global constant (Section~\ref{sec:adaptivefiltration}). The output is
+a persistence diagram whose points are those centroids, so each bar is
+a feature among the units of one organisational level. Each $H_1$ bar
+is realised as a closed loop of centroids whose edge lengths lie in
+that bar's birth--death interval, so the feature is a loop in space and
+not only a pair of numbers (Section~\ref{sec:cycles}). Neither
+clustering nor the truncation is algebraically new
 \citep{carlsson2010clustering,schindler2023}; the content is that the
-combination survives broadcast tracking.
+combination survives a real, high-frequency, noisy point cloud.
 
-The empirical findings are four. A sweep of the cutoff over
-$[0.5, 30.0]$~m identifies three stable $H_0$ regimes across ten
-matches, not a single demonstration case. $H_1$ is detected at two of
-the three scales, with a geometric cycle representative for every
-feature in the primary-match analysis. The two $H_1$ scales carry
+When we apply this methodology to football broadcast data, four
+findings follow. Broadcast tracking records the positions of all 22
+players at $10$~Hz from televised professional matches, as $(x,y)$
+coordinates in metres on a standard pitch model; the corpus is ten
+A-League matches from the SkillCorner open repository
+(Section~\ref{sec:data}). Cardinality inversion of the pooled
+\texorpdfstring{$H_0(\delta)$}{} curve on every complete frame of
+those matches returns three cutoffs, not a single demonstration case. $H_1$ is detected at two of the three
+organisational levels, with a geometric cycle representative for every
+feature in the primary-match analysis. The two $H_1$ levels carry
 complementary rather than redundant information. Event association is
 reported only as construct validity in Section~\ref{sec:eventcorr}.
-
-\subsection{Related Work}
-\label{sec:relatedwork}
-
-Persistent homology was introduced by \citet{edelsbrunner2002} and
-placed on firm computational foundations by \citet{zomorodian2005}.
-Stability of persistence diagrams under perturbation was established by
-\citet{cohensteiner2007}, and efficient computation via the
-Vietoris--Rips filtration is provided by \citet{bauer2021ripser}.
-Persistence landscapes provide a functional representation suitable for
-statistical analysis \citep{bubenik2015}.
-
-Applications of topological data analysis (TDA) to collective behaviour
-include
-\citet{topaz2015}, who applied the method to biological aggregation
-models and visualised scale-dependent structure by plotting Betti
-numbers across both simulation time and filtration value.
-\citet{gu2022} applied Vietoris--Rips persistent homology to multi-agent
-system snapshots for change-point detection, demonstrating the utility
-of topological features for temporal dynamics, though their analysis
-operates at a single scale rather than decomposing by organisational
-level. The multiparameter persistence literature, surveyed by
-\citet{botnan2022}, provides a theoretical framework for genuinely
-simultaneous multi-scale analysis, but computational cost currently
-limits its application to point clouds much smaller than the 22-agent,
-high-frequency case considered here. \citet{schindler2023} address
-hierarchical decomposition directly, developing tools for analysing
-multiscale clusterings with persistent homology. The present work asks
-whether cluster-then-persistent homology, with the data-driven truncation
-of Section~\ref{sec:adaptivefiltration}, survives a real, high-frequency,
-noisy point cloud and yields stable scale regimes across ten independent
-matches.
-
-In sports analytics specifically, spatial analysis methods including
-pitch-control models and spatio-temporal pattern recognition are
-surveyed in \citet{gudmundsson2017}. Related perspectives model teams as
-coordinated multi-agent systems and apply network metrics to passing and
-collective structure \citep{buldu2018,grund2012}; these approaches
-complement the present pipeline but do not quantify two-dimensional
-enclosure through persistent homology. To our knowledge, no prior work
-combines domain-informed scale decomposition with persistent homology
-for a competitive collective system at high frequency, or validates the
-resulting scale regimes across multiple independent matches.
+Spatial analysis of team sport, including pitch-control models and
+network metrics on passing and collective structure, is surveyed by
+\citet{gudmundsson2017} and by \citet{buldu2018} and \citet{grund2012};
+those methods complement the present pipeline but do not quantify
+two-dimensional enclosure through persistent homology. To our
+knowledge, no prior work combines cutoff-selected organisational levels
+with persistent homology for a competitive collective system, or
+validates the resulting regimes on high-frequency tracking across
+multiple independent recordings.

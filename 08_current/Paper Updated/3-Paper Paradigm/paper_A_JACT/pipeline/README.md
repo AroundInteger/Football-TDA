@@ -21,25 +21,25 @@ are vendored under the paper folder (`../01_data`, `../02_tda_core`,
 |---------|--------|----------|
 | `uniform_150` | 150 uniformly spaced **complete** frames (`stride = N // 150`) | Paper A tables (primary and ten-match), sensitivity, complementarity, cardinality null |
 | `acf_supplement` | 1 Hz on the primary match | Supplementary ACF panel only; does **not** choose the stride |
-| `cutoff_sweep_windows` | 58 windows × 4 epoch lengths | `tab:regimes`, stability scores |
+| `cutoff_sweep` | Every complete frame, ten Table S1 matches (436{,}648 frames); grid 0.25–40.0 m | Cardinality inversion; Figure 2; `regime_summary.csv` |
 | `temporal_2min` | 2-min non-overlapping windows | Grant-only temporal analysis (not headline Paper A tables) |
 | native 10 Hz | complete frames | Event construct-validity (step 05) |
 
-Ten-match validation previously used every 100th tracking line. That is no longer used. Re-run steps 03, 04, and 07 after this change before treating committed `outputs/` as matching the Methods.
+Headline tables use the uniform 150-frame sample on the ten Table S1 matches. That is the operational rule in `config.yaml`.
 
 ## Reading `regime_summary.csv`
 
-Ruling R12 (closed 25 Aug 2026). The file records **adopted** cutoffs and
-**stability at the adopted cutoff**, not the raw Calinski–Harabasz optimum.
+Step 02 writes this file from `CUTOFF_PROTOCOL.md`. There is no hand overlay.
+Adopted metres are the cardinality inversion on the pooled $H_0(\delta)$ curve.
 
-| Scale | Adopted $\delta$ | Stability at adopted | Notes |
-|-------|------------------|----------------------|-------|
-| Individual | 2.98 m | 0.875 | CH optimum is 1.39 m (stability 0.956); not adopted |
-| Tactical | 12.0 m | 0.836 | domain-informed within metric disagreement |
-| Team | 30.0 m | 1.000 | IC / team $H_0$ validation |
+| Scale | Adopted $\delta$ | Selection rule |
+|-------|------------------|----------------|
+| Individual | 2.75 m | largest $\delta$ with mean $H_0 \ge 19$ |
+| Tactical | 11.75 m | nearest mean $H_0 = 5$ among $P(k \ge 4) \ge 0.5$ |
+| Team | 23.0 m | smallest $\delta$ with mean $H_0 \le 2$ |
 
-Cluster at the **adopted** values in `VALIDATED_CUTOFFS`. Never cluster at 1.39 m
-expecting to reproduce the paper.
+`config.yaml` `validated_cutoffs` is written by the same step. Later steps
+read those values. Quality metrics are diagnostics only.
 
 ## Run order
 
@@ -55,6 +55,7 @@ Individual steps:
 python3 steps/00_pipeline_figure.py
 python3 steps/01_primary_uniform.py
 python3 steps/02_cutoff_sweep.py
+python3 steps/10_cutoff_sweep_figure.py
 python3 steps/03_multi_match.py
 python3 steps/05_event_validity.py
 python3 steps/04_complementarity.py
@@ -89,5 +90,6 @@ automatically.
 - `outputs/complementarity/complementarity_tests.json`
 - `outputs/linkage/linkage_headline.json` — Discussion linkage comparison (600 frames, 4 matches)
 - `../figures/fig1_pipeline_schematic.pdf`
-- `../figures/fig2_cycle_geometry.pdf`
+- `../figures/fig2_cutoff_sweep.pdf`
+- `../figures/fig3_cycle_geometry.pdf`
 - `../figures/figS1_acf.pdf` (after step 09)

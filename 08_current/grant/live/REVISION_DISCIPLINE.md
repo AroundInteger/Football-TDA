@@ -3,6 +3,8 @@
 Record of how REV2 went off piste, and the rules that would have caught it.
 Written 24 Aug 2026 after the REV2 → REV3 pass. UK English throughout.
 
+**Addendum 11 September 2026.** Failure mode 4 (the 0.80 score) is historical. The live Month-2 gate is cardinality inversion of [23] with named connected-component bands (FOUNDATION.md R15; REV4 §4). Do not restore 0.80 as if it were still defined in the methodology paper. REV4 is the V&A master; REV3 is archive.
+
 ## The budget is three pages, not a word count
 
 The V&A is three pages including Figure 1. The known-good fit is the

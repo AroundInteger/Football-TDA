@@ -63,16 +63,27 @@ def load_all_matches(skillcorner_only: bool = False) -> list:
     else:
         print("  [SecondSpectrum] Skipped (--skillcorner-only).")
 
+    data_root = PROJECT_ROOT / "01_data" / "opendata" / "data"
     try:
-        sc_matches = skillcorner.list_matches()
+        sc_matches = skillcorner.list_matches(data_root)
     except FileNotFoundError:
         sc_matches = []
 
+    # Paper A uses the ten Table S1 identifiers only (not every file in matches.json).
+    TABLE_S1 = {
+        1886347, 1899585, 1925299, 1953632, 1996435,
+        2006229, 2011166, 2013725, 2015213, 2017461,
+    }
     for m in sc_matches:
         mid = m['id']
+        if int(mid) not in TABLE_S1:
+            continue
         try:
             sc = skillcorner.load_match(
-                mid, sample_every=1, require_complete=True,
+                mid,
+                opendata_path=data_root,
+                sample_every=1,
+                require_complete=True,
             )
             sc = _uniform_match(sc, FRAMES_PER_MATCH)
             matches.append(sc)

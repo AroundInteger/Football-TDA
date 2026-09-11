@@ -1,0 +1,27 @@
+{
+  "n_complete": 43531,
+  "n_series": 4354,
+  "dt_s": 1.0,
+  "uniform_150_stride_frames": 290,
+  "uniform_150_stride_s": 29.0,
+  "first_lag_acf_abs_lt_0.1_s": {
+    "h0_tactical": 14.0,
+    "h1_pers_individual": 10.0,
+    "h1_pers_tactical": 10.0
+  },
+  "acf_at_10s": {
+    "h0_tactical": 0.19756325995310053,
+    "h1_pers_individual": 0.08631327546428302,
+    "h1_pers_tactical": 0.07498604989578676
+  },
+  "acf_at_20s": {
+    "h0_tactical": 0.038060386622623295,
+    "h1_pers_individual": -0.034502447402723964,
+    "h1_pers_tactical": 0.04653719144441324
+  },
+  "acf_at_uniform_stride": {
+    "h0_tactical": -0.011615593025579565,
+    "h1_pers_individual": -0.007750328148623816,
+    "h1_pers_tactical": 0.021186579844194087
+  }
+}

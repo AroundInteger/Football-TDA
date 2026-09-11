@@ -8,43 +8,43 @@
   "sampling": "every 290th frame",
   "h0": {
     "individual": {
-      "mean": 19.02,
-      "std": 2.47,
-      "min": 9,
+      "mean": 19.32,
+      "std": 2.34,
+      "min": 10,
       "max": 22
     },
     "tactical": {
-      "mean": 4.77,
-      "std": 1.6,
+      "mean": 5.04,
+      "std": 1.69,
       "min": 2,
       "max": 10
     },
     "team": {
-      "mean": 0.88,
-      "std": 1.0,
+      "mean": 1.87,
+      "std": 0.62,
       "min": 0,
-      "max": 2
+      "max": 3
     }
   },
   "h1": {
     "individual": {
-      "total_loops": 382,
-      "frames_with_loops": 143,
+      "total_loops": 378,
+      "frames_with_loops": 144,
       "frames_total": 150,
-      "presence_rate": 0.9533,
-      "mean_loops_per_frame": 2.547,
-      "mean_persistence": 1.977,
-      "std_persistence": 1.128,
+      "presence_rate": 0.96,
+      "mean_loops_per_frame": 2.52,
+      "mean_persistence": 1.974,
+      "std_persistence": 1.118,
       "max_persistence": 12.991
     },
     "tactical": {
-      "total_loops": 21,
-      "frames_with_loops": 19,
+      "total_loops": 25,
+      "frames_with_loops": 23,
       "frames_total": 150,
-      "presence_rate": 0.1267,
-      "mean_loops_per_frame": 0.14,
-      "mean_persistence": 3.797,
-      "std_persistence": 3.008,
+      "presence_rate": 0.1533,
+      "mean_loops_per_frame": 0.167,
+      "mean_persistence": 3.914,
+      "std_persistence": 2.745,
       "max_persistence": 10.771
     },
     "team": {
@@ -60,69 +60,76 @@
   },
   "halftime": {
     "individual": {
-      "first_half_mean": 1.8902,
-      "second_half_mean": 2.0692,
-      "pct_change": 9.47,
-      "stat": 2388.0,
-      "p": 0.506331,
-      "n1": 74,
+      "first_half_mean": 1.8953,
+      "second_half_mean": 2.0587,
+      "pct_change": 8.62,
+      "stat": 2432.0,
+      "p": 0.53536,
+      "n1": 75,
       "n2": 69
     },
     "tactical": {
-      "first_half_mean": 2.7651,
-      "second_half_mean": 4.9445,
-      "pct_change": 78.82,
-      "stat": 22.0,
-      "p": 0.066193,
-      "n1": 10,
-      "n2": 9
+      "first_half_mean": 3.2972,
+      "second_half_mean": 4.586,
+      "pct_change": 39.09,
+      "stat": 48.0,
+      "p": 0.281458,
+      "n1": 12,
+      "n2": 11
     }
   },
   "sensitivity_cutoff": [
     {
-      "cutoff": 6,
+      "cutoff": 6.0,
       "h1_total": 275,
       "h1_presence": 0.8733,
       "mean_h0": 13.36,
       "mean_pers": 2.326
     },
     {
-      "cutoff": 8,
+      "cutoff": 8.0,
       "h1_total": 162,
       "h1_presence": 0.68,
       "mean_h0": 9.76,
       "mean_pers": 2.8238
     },
     {
-      "cutoff": 10,
+      "cutoff": 10.0,
       "h1_total": 78,
       "h1_presence": 0.4267,
       "mean_h0": 6.95,
       "mean_pers": 3.0366
     },
     {
-      "cutoff": 12,
+      "cutoff": 11.75,
+      "h1_total": 25,
+      "h1_presence": 0.1533,
+      "mean_h0": 5.04,
+      "mean_pers": 3.7783
+    },
+    {
+      "cutoff": 12.0,
       "h1_total": 21,
       "h1_presence": 0.1267,
       "mean_h0": 4.77,
       "mean_pers": 3.6475
     },
     {
-      "cutoff": 14,
+      "cutoff": 14.0,
       "h1_total": 5,
       "h1_presence": 0.0333,
       "mean_h0": 3.5,
       "mean_pers": 3.7663
     },
     {
-      "cutoff": 16,
+      "cutoff": 16.0,
       "h1_total": 0,
       "h1_presence": 0.0,
       "mean_h0": 2.82,
       "mean_pers": 0.0
     },
     {
-      "cutoff": 17,
+      "cutoff": 17.0,
       "h1_total": 0,
       "h1_presence": 0.0,
       "mean_h0": 2.63,
@@ -132,33 +139,33 @@
   "sensitivity_percentile": [
     {
       "percentile": 50,
-      "h1_total": 21,
-      "h1_presence": 0.1267,
-      "mean_filtration": 38.5
+      "h1_total": 25,
+      "h1_presence": 0.1533,
+      "mean_filtration": 37.6
     },
     {
       "percentile": 60,
-      "h1_total": 21,
-      "h1_presence": 0.1267,
-      "mean_filtration": 42.7
+      "h1_total": 25,
+      "h1_presence": 0.1533,
+      "mean_filtration": 41.8
     },
     {
       "percentile": 75,
-      "h1_total": 21,
-      "h1_presence": 0.1267,
-      "mean_filtration": 50.3
+      "h1_total": 25,
+      "h1_presence": 0.1533,
+      "mean_filtration": 49.6
     },
     {
       "percentile": 90,
-      "h1_total": 21,
-      "h1_presence": 0.1267,
-      "mean_filtration": 60.5
+      "h1_total": 25,
+      "h1_presence": 0.1533,
+      "mean_filtration": 60.0
     },
     {
       "percentile": 95,
-      "h1_total": 21,
-      "h1_presence": 0.1267,
-      "mean_filtration": 65.6
+      "h1_total": 25,
+      "h1_presence": 0.1533,
+      "mean_filtration": 65.3
     }
   ]
 }

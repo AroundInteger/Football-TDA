@@ -1,122 +1,125 @@
 % =======================================================================
 \section{Discussion}
 
-\subsection{Empirical contribution}
-
-Each component of this pipeline has precedent in isolation.
-Hierarchical clustering before persistent homology underlies
-\citet{schindler2023}'s analysis of multiscale clusterings; truncating
-a filtration threshold to local geometry is not new in principle. The
-contribution is that the combination produces a stable,
-scale-attributable diagram on a real, high-frequency, noisy point cloud.
+\subsection{Operating range}
 
 The result that matters for use is the width of the operating range.
-$H_1$ detection holds across cutoffs from 6 to 14~m and across every
-truncation percentile from $P_{50}$ to $P_{95}$ tested
+$H_1$ detection holds across cutoffs from 6 to 14~m. It also holds
+across every truncation percentile from $P_{50}$ to $P_{95}$ tested
 (Section~\ref{sec:sensitivity}). A pipeline that works only at one
-finely tuned setting would not travel; this one does, once interaction
-lengths are re-derived on the new domain.
+finely tuned setting would not travel. This one does, once interaction
+lengths are re-derived on a new domain.
 
-The cutoff distance is a scale selector, not a parameter to optimise
-away. Three regimes (individual, tactical, and team) emerge from a
-sweep over $\delta\in[0.5,30.0]$~m, are checked by independent
-clustering-quality metrics, and recur across all ten matches. The
-tactical cutoff sits where automated metrics disagree (6.87--16.31~m);
-Section~\ref{sec:sensitivity} shows that this domain-informed choice
-does not compromise robustness.
+The three $H_0$ regimes (individual, tactical, and team) are the
+cardinality targets of Section~\ref{sec:cutoffselection}. The metres
+that select them are read from the pooled
+\texorpdfstring{$H_0(\delta)$}{} curve on every complete frame of the
+ten matches (Figure~\ref{fig:cutoff}): $2.75$, $11.75$, and $23.0$~m.
+Quality metrics are a check. They are not the selector.
+Section~\ref{sec:sensitivity} shows that tactical $H_1$ is not a
+spike at $11.75$~m.
 
-\subsection{Multi-Scale Topological Structure}
+$P_{75}$ in equation~\eqref{eq:adaptive} is a reporting convention.
+All tested percentiles return identical $H_1$ totals and presence
+rates.
 
-The weak correlation and the divergent presence rates reported in
-Section~\ref{sec:complementarity} together support the same conclusion:
-the two scales are not measuring the same structure at different
-resolutions. If the tactical-scale signal were a coarsened version of
-the individual-scale signal, the two would co-occur far more
-consistently than Table~\ref{tab:fisher} shows, and the bottleneck and
-landscape distances would be small relative to each scale's own
-persistence values. Decomposing by scale before computing persistent
-homology is therefore not merely a convenience for separating noise.
-The clustering step produces two informationally distinct objects.
+\subsection{Distinct structure at two levels}
+
+The weak correlation and the divergent presence rates in
+Section~\ref{sec:complementarity} support the same conclusion. The two
+levels are not measuring the same structure at different resolutions.
+If the tactical signal were a coarsened version of the individual
+signal, the two would co-occur far more consistently than
+Table~\ref{tab:fisher} shows. The bottleneck and landscape distances
+would also be small relative to each level's own persistence values.
+Clustering before persistent homology is therefore not a convenience
+for separating noise. It produces two informationally distinct
+objects.
 
 \subsection{Limitations}
 \label{sec:limitations}
 
 Linkage selection is a substantive methodological choice. Across a
-600-frame, four-match comparison sample, single-linkage detects 153
-tactical-scale $H_1$ loops, against 923 for complete-linkage and 936
-for Ward's method: almost an order of magnitude more. That gap is large
-enough to change which scientific picture the data support, not merely
-the precision of one estimate. We retain single-linkage because its
-definition is the most natural reading of spatial proximity and is
-robust against over-partitioning artefacts, but we treat the gap with
-the other two methods as an open question.
+600-frame, four-match comparison sample, single-linkage detects 106
+tactical-level $H_1$ loops. Complete-linkage detects 802. Ward's
+method detects 822. That is a difference of almost an order of
+magnitude. The gap is large enough to change which scientific picture
+the data support, not merely the precision of one estimate. We retain
+single-linkage because its definition is the most natural reading of
+spatial proximity. It is also robust against over-partitioning
+artefacts. We treat the gap with the other two methods as an open
+question.
 
 A more principled selection criterion would come from the dynamical
-system itself rather than from clustering-quality metrics alone. One
-candidate is the linkage method under which a governing equation for a
-persistence functional (the landscape $L^2$ norm or the tactical $H_1$
-total-persistence sequence) admits the sparsest representation in the
-sense of sparse identification of nonlinear dynamics. Operationalising
-this would require choosing the dynamical state, defending the sparsity
+system itself, rather than from clustering-quality metrics alone. One
+candidate is the linkage under which a governing equation for a
+persistence functional admits the sparsest representation, in the
+sense of sparse identification of nonlinear dynamics. The functional
+would be the landscape $L^2$ norm or the tactical $H_1$
+total-persistence sequence. Operationalising this would require three
+things. First, choose the dynamical state. Second, defend the sparsity
 of the recovered library against AIC, BIC, or cross-validation
-baselines, and confirming that the resulting persistence sequence is
-genuinely lower-dimensional under the selected linkage. We defer this to
-the forthcoming full-season work, where a population-sized sample of
-match sequences makes the sparsity comparison meaningful.
+baselines. Third, confirm that the resulting persistence sequence is
+genuinely lower-dimensional under the selected linkage. We defer this
+to the forthcoming full-season work. A population-sized sample of
+match sequences is what makes the sparsity comparison meaningful.
 
-The tactical cutoff of 12.0~m is a domain-informed choice within, rather
-than derived from, an automated-metric range (silhouette-optimal
-16.31~m; information-content-optimal 6.87~m). The justification in
-Section~\ref{sec:cutoffselection} (correspondence to half a standard
-football zone width) is domain-reasonable but ultimately a judgement
-call. Section~\ref{sec:sensitivity} reports the operative range
-$[6,14]$~m as an empirical property. A more principled criterion would
-select the cutoff minimising variation of the persistence landscape path
-under small perturbations of $\delta$; this is computable with the same
-landscape infrastructure used in Section~\ref{sec:complementarity}, but
-the relevant sample size is the number of matches, not frames, so
-evaluating it on ten matches would be premature. We defer this to the
-persistence-landscape companion work and treat 12.0~m as a reference
-point within the validated $[6,14]$~m range.
+The tactical cutoff is the inversion of a named cardinality (mean
+$H_0$ nearest 5, with $k\ge 4$ still common). On the 1~Hz diagnostic
+subset the only interior silhouette local maximum is at $7.0$~m, a
+small-group alternative. Silhouette is omitted at $k=1$. Among frames
+that still have $k\ge 2$ it then keeps rising into the two-envelope
+regime. Those features are alternatives, not adopted cutoffs. A
+landscape-path stability criterion (minimise variation of the
+persistence landscape under small perturbations of $\delta$) remains a
+future estimator. It is computable with the landscape infrastructure of
+Section~\ref{sec:complementarity}. We defer it to the
+persistence-landscape companion work.
+Section~\ref{sec:sensitivity} reports the operative tactical $H_1$
+range as an empirical property around the adopted $11.75$~m.
 
-The pipeline identifies three $H_0$ regimes but only two $H_1$ regimes.
-The absence of team-scale $H_1$ is a structural consequence of the
-clustering reducing the point cloud to one or two centroids at
-$\delta=30.0$~m, not a limitation of the persistent homology computation
-itself. Detecting team-scale loop structure would require an alternative
-representation, such as spatial density fields or Delaunay
-triangulations, rather than a centroid-based point cloud at any cutoff.
+The pipeline identifies three $H_0$ regimes but only two $H_1$
+regimes in the headline analysis. At $\delta=23.0$~m the cloud has
+mean $H_0=1.98$ and $k\le 2$ in 93.6\% of complete frames. A
+Vietoris--Rips complex on at most two points cannot carry a
+non-trivial 1-cycle. Residual frames with $k=3$ are few (6.4\%).
+Team-level loop structure on the typical envelope would require a
+different representation, such as spatial density fields or Delaunay
+triangulations.
 
 All data analysed here are broadcast-derived tracking at 10~Hz.
 Broadcast tracking typically offers lower spatial precision than
-higher-frequency optical systems, which may affect the magnitude of
-persistence values reported. The structural findings (the three scale
-regimes, the $H_1$ presence rates, and the sensitivity profiles) are
-expected to be robust across tracking technologies, since they depend on
-relative rather than absolute spatial precision. A direct comparison of
-persistence magnitudes against optical tracking data remains for future
-work.
+higher-frequency optical systems. That may affect the magnitude of
+persistence values reported. The structural findings (the three $H_0$
+regimes, the $H_1$ presence rates, and the sensitivity profiles)
+depend on relative rather than absolute spatial precision. They are
+therefore expected to be robust across tracking technologies. A
+direct comparison of persistence magnitudes against optical tracking
+data remains for future work.
 
 \subsection{Outlook}
 
-Two extensions are in progress; a third output sits alongside rather
-than ahead of them. The ten-match evidence base is being scaled to a full
-season of Championship matches to characterise population-level
-distributions of $H_0$ and $H_1$ counts, barcode lengths, and landscape
-norms, and to test tactical-fingerprint classification at population
-scale. This is also the setting in which the SINDy-based linkage
-criterion proposed above becomes evaluable. Separately, persistence
-landscape dynamics are being developed to treat each match as a path
-through landscape space: the setting in which the landscape-stability
-cutoff criterion can itself be evaluated, since its resampling unit is
-the match-level landscape rather than the per-frame summary used here.
+Two extensions are in progress. A third output sits alongside them
+rather than ahead of them. The ten-match evidence base is being scaled
+to a full season of Championship matches. That sample will
+characterise population-level distributions of $H_0$ and $H_1$
+counts, barcode lengths, and landscape norms, and will test
+tactical-fingerprint classification at population scale. It is also
+the setting in which the linkage criterion proposed above becomes
+evaluable. Recovering a sparse governing equation for a persistence
+functional requires the population-sized sample of match sequences
+that a single season provides. Separately, persistence landscape
+dynamics are being developed to treat each match as a path through
+landscape space. That is the setting in which the landscape-stability
+cutoff criterion can itself be evaluated. Its resampling unit is the
+match-level landscape, not the per-frame summary used here.
 
 A companion paper \citep{paperB} interprets the present ten-match
-findings for a football-analytics readership: event correlation as a
-central result rather than a brief validity check, comparison against
-standard geometric descriptors, bilateral home-and-away coupling, and a
-cross-validated test of predictive utility for phase-of-play
-classification. That paper depends methodologically on the pipeline
-validated here but asks what these topological measures reveal about
-football specifically, rather than whether the pipeline itself is
-sound.
+findings for a football-analytics readership. Event correlation is a
+central result there rather than a brief validity check. That paper
+also compares the pipeline against standard geometric descriptors,
+examines bilateral home-and-away coupling, and tests predictive
+utility for phase-of-play classification. It depends methodologically
+on the pipeline validated here. It asks what these topological
+measures reveal about football specifically, rather than whether the
+pipeline itself is sound.

@@ -1,20 +1,20 @@
 {
   "individual": {
-    "first_half_mean": 1.8902,
-    "second_half_mean": 2.0692,
-    "pct_change": 9.47,
-    "stat": 2388.0,
-    "p": 0.506331,
-    "n1": 74,
+    "first_half_mean": 1.8953,
+    "second_half_mean": 2.0587,
+    "pct_change": 8.62,
+    "stat": 2432.0,
+    "p": 0.53536,
+    "n1": 75,
     "n2": 69
   },
   "tactical": {
-    "first_half_mean": 2.7651,
-    "second_half_mean": 4.9445,
-    "pct_change": 78.82,
-    "stat": 22.0,
-    "p": 0.066193,
-    "n1": 10,
-    "n2": 9
+    "first_half_mean": 3.2972,
+    "second_half_mean": 4.586,
+    "pct_change": 39.09,
+    "stat": 48.0,
+    "p": 0.281458,
+    "n1": 12,
+    "n2": 11
   }
 }

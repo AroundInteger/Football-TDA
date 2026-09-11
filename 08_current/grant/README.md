@@ -8,6 +8,8 @@ Restructured 24 August 2026 to remove cross-contamination: unrelated bids, unrel
 
 **`FOUNDATION.md` is the normative document.** Where any file disagrees with it, it wins and the other file is corrected. It carries the formal definition of the system, the parameter register, the prior-art ledger, the rigour contract, the Month-1 work plan and the standing rulings on contested numbers.
 
+**11 September 2026.** Cardinality-inversion pivot (FOUNDATION ruling R15). Paper A cutoffs are 2.75 / 11.75 / 23.0 m. The live V&A is `live/02_Vision_and_Approach_REV4.md`. REV3 is archive. Papers B and C are not synced on this date.
+
 `CANONICAL_NUMBERS.md` holds the headline statistics and is subordinate to `FOUNDATION.md` §2 and §4.
 
 ## Layout
@@ -20,8 +22,9 @@ grant/
 │
 ├── live/                      THE SUBMISSION. Edit here, nowhere else
 │   ├── 01_Summary.md … 08_Data_Management_Plan.md
-│   ├── 02_Vision_and_Approach_REV3.md    Current V&A
-│   ├── grant_figure_gantt.png            Figure 1, embedded by REV3
+│   ├── 02_Vision_and_Approach_REV4.md    Current V&A (page-fit; 11 Sep 2026 gate)
+│   ├── 02_Vision_and_Approach_REV3.md    Archive of record (0.80 / collage metres)
+│   ├── grant_figure_gantt.png            Figure 1, embedded by REV4
 │   ├── LaySummary.docx                   JeS public summary
 │   ├── TIMELINE.md                       Locked month table
 │   ├── T1_T2_Six_Registers.md            T1/T2 for six audiences
@@ -48,7 +51,7 @@ grant/
 | Task | Location |
 |---|---|
 | Anything definitional, or a contested number | `FOUNDATION.md` **first** |
-| JeS Vision & Approach | `live/02_Vision_and_Approach_REV3.md` |
+| JeS Vision & Approach | `live/02_Vision_and_Approach_REV4.md` |
 | JeS Summary (public) | `live/01_Summary.md`, from `live/LaySummary.docx` |
 | R4RI capability, costs, DMP, ethics, partners | `live/03`–`08` |
 | Bibliography entries | `shared/references.bib`; numbered list in `live/04_References.md` |
@@ -83,4 +86,4 @@ cd 08_current/grant/archive/submission/tex && pdflatex main && bibtex main && pd
 
 Bibliography paths in both were updated to `../../../shared/references` when they moved into `archive/`.
 
-**Figures are not required** by EPSRC for the Vision & Approach text. Figure 1 (Gantt) is optional and is included in REV3; verify the pasted V&A is ≤3 pages before submitting.
+**Figures are not required** by EPSRC for the Vision & Approach text. Figure 1 (Gantt) is optional and is included in REV4; verify the pasted V&A is ≤3 pages before submitting.

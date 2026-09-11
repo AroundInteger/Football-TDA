@@ -198,7 +198,15 @@ def main():
     if WINDOW_BEFORE != 5 or WINDOW_AFTER != 5:
         print(f"Event window half-width: {WINDOW_BEFORE} frames (EVENT_WINDOW_HALF)")
 
-    sc_matches = skillcorner.list_matches()
+    data_root = PROJECT_ROOT / "01_data" / "opendata" / "data"
+    TABLE_S1 = {
+        1886347, 1899585, 1925299, 1953632, 1996435,
+        2006229, 2011166, 2013725, 2015213, 2017461,
+    }
+    sc_matches = [
+        m for m in skillcorner.list_matches(data_root)
+        if int(m["id"]) in TABLE_S1
+    ]
     print(f"Found {len(sc_matches)} SkillCorner matches\n")
 
     all_corr = []
@@ -206,7 +214,12 @@ def main():
     for m in sc_matches:
         mid = m['id']
         try:
-            match = skillcorner.load_match(mid, sample_every=1, require_complete=True)
+            match = skillcorner.load_match(
+                mid,
+                opendata_path=data_root,
+                sample_every=1,
+                require_complete=True,
+            )
         except FileNotFoundError:
             continue
 
@@ -220,7 +233,7 @@ def main():
             topo_df = compute_per_frame_topology(match, scale)
 
             try:
-                events = skillcorner.load_events(mid)
+                events = skillcorner.load_events(mid, opendata_path=data_root)
                 corr = align_events_to_topology(topo_df, events)
                 corr['match_id'] = mid
                 corr['scale'] = scale
@@ -231,7 +244,7 @@ def main():
                 pass
 
             try:
-                phases = skillcorner.load_phases(mid)
+                phases = skillcorner.load_phases(mid, opendata_path=data_root)
                 corr_p = align_events_to_topology(topo_df, phases)
                 corr_p['match_id'] = mid
                 corr_p['scale'] = scale

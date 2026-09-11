@@ -1,8 +1,31 @@
 {
-  "individual_frame_idx": 141,
-  "tactical_frame_idx": 97,
+  "individual_frame_idx": 95,
+  "tactical_frame_idx": 95,
+  "same_frame": true,
+  "layout": "2x2",
+  "selection": "compact four-cycle at both cutoffs among frames with H1 at both levels; not the persistence argmax",
   "sampling_step": 290,
   "n_frames_analysed": 150,
-  "individual_max_persistence_m": 12.991,
-  "tactical_max_persistence_m": 10.771
+  "individual_max_persistence_m": 6.54,
+  "tactical_max_persistence_m": 9.942,
+  "individual_cycle_nodes": 4,
+  "tactical_cycle_nodes": 4,
+  "individual_edges_m": [
+    19.2,
+    18.3,
+    17.8,
+    18.7
+  ],
+  "tactical_edges_m": [
+    22.1,
+    26.0,
+    21.1,
+    28.7
+  ],
+  "tactical_cycle_cluster_sizes": [
+    2,
+    14,
+    2,
+    1
+  ]
 }

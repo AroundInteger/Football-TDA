@@ -2,7 +2,7 @@
 
 **Statistical topology of competitive collective systems.** EPSRC Mathematical Sciences Small Grant, Swansea University.
 
-**Status: normative.** Where this file disagrees with any other document in the repository, this file wins and the other document is corrected. Written 24 August 2026. UK English throughout.
+**Status: normative.** Where this file disagrees with any other document in the repository, this file wins and the other document is corrected. Written 24 August 2026. **Cutoff pivot recorded 11 September 2026 (ruling R15).** UK English throughout.
 
 This document exists because the project's knowledge was spread across five partial foundations that had drifted apart. It replaces none of them; it governs them. Its test is operational: if we are funded, an incoming Research Associate should be able to read this file alone and know what to do in week one, and why.
 
@@ -23,7 +23,7 @@ This document exists because the project's knowledge was spread across five part
 |---|---|---|
 | 1 | **This file** | Object definition, parameters, tiers, rulings |
 | 2 | `CANONICAL_NUMBERS.md` | Headline statistics, subordinate to §2 and §4 here |
-| 3 | `live/02_Vision_and_Approach_REV3.md` | Submitted narrative |
+| 3 | `live/02_Vision_and_Approach_REV4.md` | Submitted narrative (REV3 is archive of record) |
 | 4 | `live/T1_T2_Six_Registers.md` | Audience-specific wording of T1 and T2 |
 | 5 | `live/REVISION_DISCIPLINE.md` | Revision process |
 | 6 | `evidence/toy_models/AdversarialTDA_Specification.md` | The synthetic system |
@@ -93,17 +93,17 @@ Status codes: **M** measured from data; **C** chosen by convention with a stated
 
 ### 2.2 Interaction lengths
 
-The single most error-prone table in the project. Read the last row before using any value.
+The class names three organisational levels by cardinality. The sweep reads the metres from the pooled $H_0(\delta)$ curve. Clustering-quality metrics are diagnostics; they do not pick $\delta$. Protocol: `PAPERS/paper_A_JACT/pipeline/CUTOFF_PROTOCOL.md`. Ruling R15.
 
 | Scale | Adopted $\delta$ | Status | Why this value | Action |
 |---|---|---|---|---|
-| Individual | **2.98 m** | M | Carried over from an earlier normalised-coverage calibration; retained because the sweep validates the individual $H_0$ band ($15$–$22$ clusters) at this value. Cross-epoch stability **0.875** at 2.98 m. The Calinski–Harabasz optimum is **1.39 m** (stability 0.956); not adopted | Use 2.98 m; quote stability 0.875, not 0.956 |
-| Tactical | **12.0 m** | M / C | The automated metrics *disagree* here: silhouette optimum 16.31 m, information-content optimum 6.87 m. 12.0 m is a domain-informed choice within that range, being half the width of a standard pitch zone | Present as a judgement call with both metric optima named. Presenting it as a metric output is the single easiest way to lose a methods referee |
-| Team | **30.0 m** | M | Selected directly by the automated metrics | Use 30.0 m |
-| Sweep design | 100 points over $[0.5, 30.0]$ m, against 58 temporal windows balanced across epoch lengths of 1, 2, 5 and 10 minutes | M | Defines what "cross-epoch" means in the stability score | Any re-derivation must reuse this design or state its departure |
-| Operative range, tactical $H_1$ | $[6, 14]$ m | M | $H_1$ frame presence falls from 87.3% at 6 m to 3.3% at 14 m and 0% at 16 m | The robustness claim is that detection survives across this band, not that 12.0 m is optimal |
-| Filtration percentile | $P_{75}$ | C | $P_{50}$ through $P_{95}$ return *identical* $H_1$ totals and presence rates | State as a reporting convention, never as an optimisation |
-| **Do not use: 1.39 m** | — | — | `PAPERS/paper_A_JACT/pipeline/outputs/regime_summary.csv` and `numbers.json` record `optimal_cutoff_m = 1.39` for the individual scale with `selection_method = "CH optimum"`. This is the raw Calinski–Harabasz optimum, not the adopted value | **Cluster at 2.98 m.** An RA reading the pipeline outputs unaided will otherwise use 1.39 m and reproduce nothing. See ruling R4 in §9 |
+| Individual | **2.75 m** | M | Largest $\delta$ with pooled mean $H_0 \ge n-3 = 19$ on every complete frame of the ten Table S1 matches (436{,}648 frames). Per-match inversions $2.80 \pm 0.20$ m. Pooled mean $H_0 = 19.31$ | Cluster at 2.75 m. Do not use 2.98 m |
+| Tactical | **11.75 m** | M | $\delta$ minimising $|\mathrm{mean}\,H_0 - 5|$ among candidates with $P(k \ge 4) \ge 0.5$. Per-match inversions $11.80 \pm 0.35$ m. Pooled mean $H_0 = 5.06$ | Cluster at 11.75 m. Do not use 12.0 m. Do not present Calinski–Harabasz, silhouette, or entropy as the selector |
+| Team | **23.0 m** | M | Smallest $\delta$ with pooled mean $H_0 \le 2$. Per-match inversions $22.98 \pm 0.72$ m. Pooled mean $H_0 = 1.98$. At this cutoff $k \le 2$ in 93.6\% of complete frames | Cluster at 23.0 m. Do not use 30.0 m. Team $H_1$ is empty on $k \le 2$; it is not impossible on the 6.4\% of frames with $k = 3$ |
+| Sweep design | $\delta \in [0.25, 40.0]$ m at $0.25$ m (160 points); all complete 22-player frames; single linkage; team labels unused | M | Closed estimator. No SecondSpectrum, GPS, 30\% draw, or four mixed epochs | Championship re-derivation uses the same inversion rules on the new corpus, not the four-epoch / 58-window score |
+| Operative range, tactical $H_1$ | $[6, 14]$ m | M | On the primary match, $H_1$ frame presence falls from 87.3\% at 6 m to 3.3\% at 14 m and 0\% at 16 m. Adopted 11.75 m sits at the conservative end (15.3\% presence) | The robustness claim is that detection survives across this band, not that 11.75 m is a unique spike |
+| Filtration percentile | $P_{75}$ | C | $P_{50}$ through $P_{95}$ return identical $H_1$ totals and presence rates (25 loops, 15.3\%) | State as a reporting convention, never as an optimisation |
+| Diagnostic only | silhouette interior local maximum 7.0 m | M | 1 Hz subset; $k=1$ omitted, not coded as 0 | Quote as a characteristic separation, never as an adopted cutoff. Do not quote 1.39 m, 6.87 m, or 16.31 m |
 
 ### 2.3 Gates and thresholds
 
@@ -111,7 +111,7 @@ Every gate here is a point at which the project can be told it is wrong. That is
 
 | Gate | Threshold | When | Why this threshold | Action on failure |
 |---|---|---|---|---|
-| Cutoff stability | $\geq 0.80$ | Month 2 | At the **adopted** cutoffs, cross-epoch stability is 0.875 / 0.836 / 1.000 (individual / tactical / team). The 0.80 floor sits below the weakest adopted scale with margin | Re-derive interaction lengths on Championship data before O2 begins |
+| Cutoff acceptance | Named $H_0$ bands at the inverted $\delta$ | Month 2 | Transfer the SkillCorner triple, or invert the same cardinality rules on the 20-match Championship batch. Every match's mean $H_0$ must lie in individual $[15, 22]$, tactical $[4, 10]$, team $[1, 2.5]$. The old $\geq 0.80$ cross-epoch score is not defined in [23] after 11 Sep 2026 | Re-derive interaction lengths on Championship data before O2 begins |
 | Dependence diagnostic | Autocovariance decay consistent with summable mixing | Month 9 | T1 and T2 assume $\alpha$-mixing with summable coefficients. This checks the assumption rather than asserting it | Consistency is not proof. The label is "diagnostic"; do not upgrade it to "verified" |
 | Eigengap | Recorded, not thresholded | Month 9 | The projected (FPCA-score) form of T2 needs Davis–Kahan; the landscape-series form does not | State T2 on the landscape series. Report the eigengap alongside for the projected form |
 | Discriminability | $\geq 3$ organisational states separated, $p < 0.05$ BH-corrected | Month 9 | Benchmarked against team length, width and convex-hull area | Below this, the comparison geometry does not support fingerprinting |
@@ -122,9 +122,9 @@ Every gate here is a point at which the project can be told it is wrong. That is
 | Quantity | Value | Why | Action |
 |---|---|---|---|
 | Fixtures | 552 in a Championship season, $\approx 540$ after pre-registered exclusions | $24 \times 46 / 2 = 552$; a reviewer will do this arithmetic | Tie the reduction to the OSF exclusion criteria, never leave $\approx 540$ unexplained |
-| Unit of analysis | **The fixture**, represented by one focal team, opponent as covariate | The two teams in a fixture are maximally dependent. Counting them separately is precisely the error §1 accuses the field of making | State the unit explicitly in any power claim |
-| Stratification | Venue $\times$ opponent strength $=$ 6 cells, $\approx 90$ matches each | Phase of play is a *within*-match factor and cannot partition matches | Never include phase of play in the crossing; it enters as repeated measures |
-| Precision target | 32 matches per cell gives 95% CI half-width 0.025 at pilot s.d. 0.072 | $1.96 \times 0.072/\sqrt{32} = 0.0249$ | Smallest cell (~90) clears this comfortably |
+| Unit of analysis | **The fixture**, represented by one focal team, opposition as covariate | The two teams in a fixture are maximally dependent. Counting them separately is precisely the error §1 accuses the field of making | State the unit explicitly in any power claim |
+| Stratification | Venue $\times$ opposition strength $=$ 6 cells, $\approx 90$ matches each | Phase of play is a *within*-match factor and cannot partition matches | Never include phase of play in the crossing; it enters as repeated measures |
+| Precision target | 32 matches per cell gives 95% CI half-width 0.025 at the locked sample size | Current pilot s.d. is 0.065, so $1.96 \times 0.065/\sqrt{32} = 0.0225$. The printed 32 remains conservative relative to 0.025 | Smallest cell (~90) clears this comfortably. Do not reopen $n=32$ |
 | Formation power | 180 per class detects Cohen's $d \geq 0.30$ at 80% power, $\alpha = 0.05$, BH-FDR | $540/180 = 3$ balanced classes exactly | Scope to the three most common formations as a pre-registered comparison set |
 | Replication target | Stratified permutation $p = 0.051$ | A borderline within-match pilot effect is the thing season scale is meant to resolve | Cite as motivation for replication, never as a positive finding |
 
@@ -177,7 +177,7 @@ The novelty argument is not "nobody has done TDA on football". It is that each i
 
 | Output | Status | Claims | Does **not** license |
 |---|---|---|---|
-| **Paper A** — multi-scale PH for competitive spatial systems | Submitted, *J. Applied and Computational Topology* | Cluster-then-truncated-VR as a measurement pipeline; three $H_0$ regimes and two $H_1$ regimes across 10 matches; scales carry distinct information; geometric cycle *proxy* for every examined $H_1$ feature. Not a new filtration theory | Any statistical guarantee under dependence. Event correlation is construct validity only |
+| **Paper A** — multi-scale PH for competitive collective systems | Submitted, *J. Applied and Computational Topology*; measurement pipeline aligned 11 Sep 2026 (R15) | Cardinality inversion of three $H_0$ levels; cluster-then-truncated-VR as a measurement pipeline; two $H_1$ regimes across 10 matches; scales carry distinct information; geometric cycle *proxy* for every examined $H_1$ feature. Not a new filtration theory | Any statistical guarantee under dependence. Event correlation is construct validity only |
 | **Paper B** — topological signatures of tactical organisation | In preparation, *J. Sports Sciences* | Persistence tracks events; non-redundancy with geometric descriptors; home/away near-independence; predictive null | Anything in the grant. Paper B is deliberately absent from the V&A |
 | **Paper C** — methods note | After A and B submit | Diagram $W_1/W_2$ analogues on synthetic ecology and robotics generators; three-tier claim split | Landscape T1 or T2. Never quote ecology $\hat T$ as T2 in JeS |
 | **Toy model** | Internal, 10 figures | Mechanism illustration under known ground truth | Any results section. See the prohibition in §4.3 |
@@ -186,27 +186,27 @@ The novelty argument is not "nobody has done TDA on football". It is that each i
 
 Ten A-League matches, SkillCorner open broadcast tracking. Primary match 1996435 (Sydney FC v Adelaide United), 43,531 complete-coverage frames at 10 Hz, subsampled to 150.
 
-**$H_0$ regimes, ten matches (grand means).** Individual $19.05$, tactical $4.92$, team $1.38$.
+**$H_0$ regimes, ten matches (grand means of cluster counts).** Individual $19.31 \pm 0.31$, tactical $5.09 \pm 0.38$, team $1.98 \pm 0.06$.
 
-**$H_0$, primary match.** Individual $19.02 \pm 2.47$, tactical $4.77 \pm 1.60$.
+**$H_0$, primary match** (cluster counts / $n$ centroids). Individual $19.32 \pm 2.34$ (range 10–22); tactical $5.04 \pm 1.69$ (range 2–10); team $1.96 \pm 0.36$ (8.7\% $k=1$, 86.7\% $k=2$, 4.7\% $k=3$). Do not quote `uniform_summary.json` team $H_0 = 1.87$: that file drops the infinite $H_0$ bar when $k=1$.
 
 **$H_1$, primary match** (403 loops total):
 
 | Scale | Loops | Frames with loops | Mean persistence (m) | Max (m) |
 |---|---|---|---|---|
-| Individual (2.98 m) | 382 | 143/150 = **95.3%** | $1.977 \pm 1.128$ | 12.991 |
-| Tactical (12.0 m) | 21 | 19/150 = **12.7%** | $3.797 \pm 3.008$ | 10.771 |
-| Team (30.0 m) | 0 | 0/150 = 0% | — | — |
+| Individual (2.75 m) | 378 | 144/150 = **96.0%** | $1.974 \pm 1.118$ | 12.991 |
+| Tactical (11.75 m) | 25 | 23/150 = **15.3%** | $3.914 \pm 2.745$ | 10.771 |
+| Team (23.0 m) | 0 | 0/150 = 0% | — | — |
 
-**$H_1$, ten matches** (4,515 loops total): individual presence $97.0\% \pm 1.5\%$ (bootstrap CI $[96.1, 97.9]$, 4,200 loops); tactical presence $19.3\% \pm 7.2\%$ (CI $[15.3, 23.7]$, 315 loops); team presence 0% across all 1,500 frames.
+**$H_1$, ten matches** (4,345 loops total): individual presence $96.5\% \pm 1.5\%$ (bootstrap CI $[95.6, 97.3]$, 4,039 loops); tactical presence $18.8\% \pm 6.5\%$ (CI $[15.2, 22.7]$, 306 loops); team presence 0% across all 1,500 frames.
 
-**Team-scale $H_1$ is zero a priori, not empirically.** Clustering at 30.0 m leaves at most two centroids, and $H_1$ of one or two points is trivially empty. This is a structural remark, and it is a small genuine piece of mathematics worth leaning on as evidence of rigour. Do not report it as a finding about football.
+**Team-scale $H_1$ is empty on $k \le 2$, not impossible on every frame.** At 23.0 m, 93.6\% of complete SkillCorner frames have $k \le 2$, so $H_1$ is trivially empty there. The remaining 6.4\% have $k=3$ and can in principle carry a loop. The 1,500-frame headline sample still has zero team $H_1$. Do not report the sample zero as a theorem about football, and do not restore the 30.0 m "at most two centroids on every frame" claim.
 
-**Scale complementarity.** Spearman $\rho = 0.264$ on **total $H_1$ persistence** over 1,500 frames, $p = 2.4 \times 10^{-25}$; the same test on loop counts gives $0.211$ (ruling R13, and never quote either without naming which). Match-resampled bootstrap (1,000 draws, seed 42) gives median 0.262, CI $[0.200, 0.314]$, for the total-persistence statistic. Fisher exact odds ratio 10.91, $p = 9.4 \times 10^{-4}$, contingency $[[289, 1166], [1, 44]]$, computed on binary $H_1$ presence. Bottleneck distance between scales has median 1.511 m with a 95th-percentile tail of 7.994 m; landscape $L^2$ distance has median 5.671.
+**Scale complementarity.** Spearman $\rho = 0.234$ on **total $H_1$ persistence** over 1,500 frames, $p = 4.8 \times 10^{-20}$; the same test on loop counts gives $0.205$ (ruling R13, and never quote either without naming which). Match-resampled bootstrap (1,000 draws, seed 42) gives median 0.232, CI $[0.181, 0.276]$, for the total-persistence statistic. Fisher exact odds ratio 6.12, $p = 0.002$, contingency $[[280, 1167], [2, 51]]$, computed on binary $H_1$ presence. Bottleneck distance between scales has median 1.456 m, p95 3.556 m, max 6.737 m; landscape $L^2$ distance has median 5.477.
 
-**Cross-epoch stability (at adopted cutoffs).** Individual **0.875** at 2.98 m, tactical 0.836 at 12.0 m, team 1.000 at 30.0 m; validation rate 1.000 at all three scales. The Calinski–Harabasz optimum for individual is 1.39 m (stability 0.956); not adopted. See ruling R12.
+**Cutoff protocol, not a stability score.** Adopted metres 2.75 / 11.75 / 23.0 from cardinality inversion on 436,648 complete frames. All ten matches pass the named $H_0$ bands. The four-epoch / 58-window scores 0.875 / 0.836 / 1.000 are historical (R12) and are not selectors. See ruling R15.
 
-**Event–topology pairs.** 104,722 across ten matches.
+**Event–topology pairs.** 103,856 across ten matches.
 
 **Within-match effect.** Stratified permutation $p = 0.051$; pilot half-level random-effects $\hat\beta_1 = -0.081$, $p = 0.079$. Borderline. Motivates replication; is not a result.
 
@@ -219,7 +219,7 @@ Reference values: $W_1(\text{A\_WIDE}, \text{A\_NARROW}) = 76.13$ by exact optim
 **Prohibitions.**
 
 1. No toy number enters a results section of any paper, or the grant. Not 12.66, not 76.13, not $\hat T = 54$.
-2. The toy's display scales $\delta \in \{4.5, 40, 66\}$ are **not** interaction lengths and bear no relation to 2.98 / 12.0 / 30.0 m.
+2. The toy's display scales $\delta \in \{4.5, 40, 66\}$ are **not** interaction lengths and bear no relation to 2.75 / 11.75 / 23.0 m.
 3. Figure 5 shows four domains sharing a barcode *because the same cluster template was copied into each*. It is a schematic of a transfer hypothesis. It is not a transfer test, and calling it theorem-level would not survive a methods referee.
 4. The historical order is football first, toy afterwards. Never write the project as though the synthetic work preceded the ten-match study.
 5. The toy computes **diagram** $W_1/W_2$; the grant theorems are **landscape**-valued. The toy is evidence for the R3 fallback, which is what it actually is.
@@ -232,7 +232,7 @@ Reference values: $W_1(\text{A\_WIDE}, \text{A\_NARROW}) = 76.13$ by exact optim
 
 **Why it is currently unanswerable.** Two obstacles, and each maps to one theorem.
 
-*Scale.* Organisation exists at several interaction lengths simultaneously. Persistent homology is multi-scale in its filtration parameter, but a single filtration over the full agent set does not separate organisational levels: features from different levels interleave in one diagram and cannot be attributed to a level. Multiparameter persistence is the principled alternative and is impractical at these data rates. Our answer is to decompose by validated interaction length *before* computing homology, which is what makes the summaries scale-attributable.
+*Scale.* Organisation exists at several interaction lengths simultaneously. Persistent homology is multi-scale in its filtration parameter, but a single filtration over the full agent set does not separate organisational levels: features from different levels interleave in one diagram and cannot be attributed to a level. Multiparameter persistence is the principled alternative and is impractical at these data rates. Our answer is to name the levels by cardinality and read the metres from $H_0(\delta)$ *before* computing homology, which is what makes the summaries scale-attributable.
 
 *Dependence.* Each agent adapts continuously to its opponents, so observations are neither independent nor exchangeable. Existing statistical topology assumes otherwise, and inference built on that assumption understates uncertainty.
 
@@ -260,7 +260,7 @@ Every claim the project makes sits in exactly one tier. The tier determines the 
 |---|---|---|---|
 | **1. Cited** | Established in the literature, used as-is | "follows from", "by" | Bottleneck stability; MST–$H_0$ correspondence; Page CUSUM; landscapes in $L^2$ |
 | **2. Proved here** | Proved under stated hypotheses within the grant | "we prove", "under (H)" | T1 limit law; T2 localisation bound; the team-null remark |
-| **3. Gated** | An empirical condition tested at a declared checkpoint | "we test whether", "gated at" | Cutoff stability $\geq 0.80$; mixing diagnostic; discriminability |
+| **3. Gated** | An empirical condition tested at a declared checkpoint | "we test whether", "gated at" | Cutoff acceptance (named $H_0$ bands); mixing diagnostic; discriminability |
 | **4. Demonstrated** | Computed under known ground truth, synthetic | "illustrates", "under known ground truth" | Everything the toy model produces; Paper C's Monte Carlo |
 | **5. Conjectured** | Believed, not established | "we conjecture", "remains open" | Transfer to non-football systems; topology-conditional switching; the Collatz thread |
 
@@ -315,8 +315,8 @@ The acceptance test for this document. If §§1–7 are right, an RA can execute
 1. Build the container against the pinned stack in §2.5. Pass condition: `pip freeze` matches the pinned versions exactly.
 2. Pull SkillCorner match 1996435. Retain only complete 22-player frames. Pass condition: **43,531** frames.
 3. Subsample every 290th complete frame. Pass condition: **150** frames.
-4. Cluster with single linkage at $\delta = 2.98$, $12.0$ and $30.0$ m and reduce to centroids. **Ignore the 1.39 m value in `PAPERS/paper_A_JACT/pipeline/outputs/regime_summary.csv`** (§2.2, ruling R4). Pass condition: $H_0$ means $19.02$, $4.77$.
-5. Compute Vietoris–Rips $H_1$ with the adaptive $\varepsilon_{\max}$ of §2.5. Pass condition: **382** individual loops in 143/150 frames; **21** tactical loops in 19/150 frames; **0** team loops.
+4. Cluster with single linkage at $\delta = 2.75$, $11.75$ and $23.0$ m and reduce to centroids. Invert from `PAPERS/paper_A_JACT/pipeline/outputs/regime_summary.csv`; do not read a Calinski–Harabasz column as a cutoff (§2.2, ruling R15). Pass condition: $H_0$ means $19.32$, $5.04$ (cluster counts; team $1.96$).
+5. Compute Vietoris–Rips $H_1$ with the adaptive $\varepsilon_{\max}$ of §2.5. Pass condition: **378** individual loops in 144/150 frames; **25** tactical loops in 23/150 frames; **0** team loops.
 6. Cross-check one match's diagrams against GUDHI and giotto-tda. Pass condition: agreement to $10^{-6}$ m.
 
 *If step 5 fails,* the fault is almost always the filtration floor or the linkage method. Single linkage, and the floor is $\max(5.0, 2\delta)$.
@@ -325,9 +325,9 @@ The acceptance test for this document. If §§1–7 are right, an RA can execute
 
 *Rationale.* Establishes that the reproduction is not specific to one match, and exercises the bootstrap machinery O1 will depend on.
 
-1. Repeat weeks 1.2–1.5 for the nine additional matches. Pass condition: grand means $19.05$ / $4.92$ / $1.38$; presence $97.0\%$ and $19.3\%$; 4,515 loops total.
-2. Recompute scale complementarity. Pass condition: $\rho = 0.264$, and match-resampled bootstrap (1,000 draws, seed 42) median $0.262$ with CI $[0.200, 0.314]$.
-3. Recompute cross-epoch stability using the sweep design in §2.2 and the definition now in Paper A's methods: pool sweep evaluations within 0.5 m of the cutoff, take the median cluster count, score the fraction within $\pm 2$ of it. Pass condition: **0.875** at the individual scale (2.98 m), **0.836** at the tactical scale, and **1.000** at the team scale.
+1. Repeat weeks 1.2–1.5 for the nine additional matches. Pass condition: grand means $19.31$ / $5.09$ / $1.98$; presence $96.5\%$ and $18.8\%$; 4,345 loops total.
+2. Recompute scale complementarity. Pass condition: $\rho = 0.234$ on total $H_1$ persistence, and match-resampled bootstrap (1,000 draws, seed 42) median $0.232$ with CI $[0.181, 0.276]$.
+3. Invert the three cardinality rules of `PAPERS/paper_A_JACT/pipeline/CUTOFF_PROTOCOL.md` on all complete frames. Pass condition: adopted $2.75$ / $11.75$ / $23.0$ m; every match `acceptance_all_ok`; per-match $\delta^*$ $2.80 \pm 0.20$, $11.80 \pm 0.35$, $22.98 \pm 0.72$ m. Do not recompute the four-epoch / 58-window $0.80$ score.
 
 ### Week 3 — Championship ingestion
 
@@ -342,9 +342,9 @@ The acceptance test for this document. If §§1–7 are right, an RA can execute
 
 *Rationale.* The gates are the project's falsification points. They are prepared, pre-registered and only then run — running them first and pre-registering afterwards would be worthless.
 
-1. Recompute cutoff stability on the 20-match batch using the definition written in week 2.3. Pass condition: $\geq 0.80$ at all three scales. **Below that, interaction lengths are re-derived before O2 starts.** This is a real decision point, not a formality.
+1. Invert the cardinality rules of week 2.3 on the 20-match Championship batch, or transfer the SkillCorner triple and test the named bands. Pass condition: every match's mean $H_0$ in individual $[15, 22]$, tactical $[4, 10]$, team $[1, 2.5]$ at the inverted (or transferred) metres. **A match outside a named band triggers re-derivation before O2 starts.** This is a real decision point, not a formality.
 2. Run the 1 Hz preservation check: compare $H_0$ regimes and $H_1$ presence between the 10 Hz and 1 Hz streams on the same matches. Rationale: pilot cutoffs are 10 Hz-derived and production is 1 Hz, so this closes the downsampling objection.
-3. Draft the OSF pre-registration: exclusion criteria (the 552 to ~540 reduction), the venue $\times$ opponent-strength stratification, the three pre-registered formation classes, and the BH-FDR procedure.
+3. Draft the OSF pre-registration: exclusion criteria (the 552 to ~540 reduction), the venue $\times$ opposition-strength stratification, the three pre-registered formation classes, and the BH-FDR procedure.
 4. Draft the Supercomputing Wales job structure. Rationale: frame-level homology is embarrassingly parallel, so the season is a scheduling problem, not a compute problem.
 
 ### What the RA should not do in Month 1
@@ -357,19 +357,19 @@ Not touch landscapes; the landscape module is Month 8. Not attempt bilateral or 
 
 Each ruling resolves a contradiction that existed across the repository on 24 August 2026, and each is settled against pipeline evidence rather than by preferring a document.
 
-**Status.** R1, R2, R4, R7, R8, R12, R13 and R14 were actioned on 24–25 August 2026; all are marked closed in place, because the reasoning is what prevents the error recurring. R3, R9 and R10 are standing prohibitions with no work attached. **R6 and R11 remain open and need a decision or a recompute.**
+**Status.** R1, R2, R4, R7, R8, R12, R13 and R14 were actioned on 24–25 August 2026 and remain as history of those errors. **R3 and R6 closed 11 September 2026 by R15** (uniform stride and cluster-count $H_0$ now agree with Paper A). R9 and R10 are standing prohibitions with no work attached. **R11 remains open** (pitch diameter). **R15 is the cutoff pivot of 11 September 2026** and supersedes the operational parts of R4, R5 and R12.
 
-**R1 — Spearman $\rho$ is 0.264.** Evidence: `PAPERS/paper_A_JACT/pipeline/outputs/numbers.json` gives $0.26403$ over 1,500 frames, $p = 2.4 \times 10^{-25}$; `PAPERS/paper_A_JACT/pipeline/outputs/complementarity/bootstrap_multi_match_ci.json` gives median $0.2617$, CI $[0.1999, 0.3137]$. `CANONICAL_NUMBERS.md` is correct. The value 0.254 in `working_foundations.md` §11 predates the 6 July recompute. *Action: delete 0.254 from `working_foundations.md`.* **Closed 24 Aug 2026.**
+**R1 — Spearman $\rho$ is 0.264.** Evidence: `PAPERS/paper_A_JACT/pipeline/outputs/numbers.json` gives $0.26403$ over 1,500 frames, $p = 2.4 \times 10^{-25}$; `PAPERS/paper_A_JACT/pipeline/outputs/complementarity/bootstrap_multi_match_ci.json` gives median $0.2617$, CI $[0.1999, 0.3137]$. `CANONICAL_NUMBERS.md` is correct. The value 0.254 in `working_foundations.md` §11 predates the 6 July recompute. *Action: delete 0.254 from `working_foundations.md`.* **Closed 24 Aug 2026.** **Superseded as a point estimate 11 Sep 2026:** the SkillCorner cascade at 2.75 / 11.75 m gives $\rho = 0.234$ (counts $0.205$). The standing rule is unchanged: always name the statistic. See R15.
 
-**R2 — Primary-match $H_1$ presence is 95.3% and 12.7%, and the standing instruction to change it is wrong.** Evidence: `PAPERS/paper_A_JACT/pipeline/outputs/uniform_150/uniform_summary.json` and Paper A's Table `tab:h1single` both give 143/150 and 19/150. `working_foundations.md` §11 items 2 and 3 instruct updating the grant to 96.0% and 12.0%, which would put the grant *out* of agreement with the paper. *Action: delete those two instructions.* **Closed 24 Aug 2026** — both are struck in place, with the sampling difference explained rather than deleted.
+**R2 — Primary-match $H_1$ presence is 95.3% and 12.7%, and the standing instruction to change it is wrong.** Evidence: `PAPERS/paper_A_JACT/pipeline/outputs/uniform_150/uniform_summary.json` and Paper A's Table `tab:h1single` both give 143/150 and 19/150. `working_foundations.md` §11 items 2 and 3 instruct updating the grant to 96.0% and 12.0%, which would put the grant *out* of agreement with the paper. *Action: delete those two instructions.* **Closed 24 Aug 2026** — both are struck in place, with the sampling difference explained rather than deleted. **Historical after R15:** those rates were at 2.98 / 12.0 m. Current primary rates are 96.0% (144/150) and 15.3% (23/150) at 2.75 / 11.75 m.
 
-**R3 — Match 1996435 has two legitimate analyses, and the primary one is canonical.** The multi-match batch row for the same match gives 144/150 (96.0%) individual and 18/150 (12.0%) tactical, under different sampling. Both are real. *Action: quote the `uniform_150` primary-match analysis whenever "the primary match" is named. Cite the multi-match row only as one of ten.*
+**R3 — Match 1996435 has two legitimate analyses, and the primary one is canonical.** The multi-match batch row for the same match gives 144/150 (96.0%) individual and 18/150 (12.0%) tactical, under different sampling. Both are real. *Action: quote the `uniform_150` primary-match analysis whenever "the primary match" is named. Cite the multi-match row only as one of ten.* **Closed 11 Sep 2026 by R15.** Both runs now use stride $N//150$. For 1996435 they agree: 144/150, 378 loops (individual) and 23/150, 25 loops (tactical).
 
-**R4 — The individual cutoff is 2.98 m; 1.39 m is not an adopted value.** Evidence: `PAPERS/paper_A_JACT/pipeline/outputs/regime_summary.csv` and `numbers.json` record `optimal_cutoff_m = 1.39` with `selection_method = "CH optimum"`, while Paper A, the grant and `CANONICAL_NUMBERS.md` all use 2.98 m. 1.39 m is the raw Calinski–Harabasz optimum. *Action: annotate the pipeline outputs to distinguish metric optimum from adopted value. Until then, §2.2 is the authority.* **Closed 24 Aug 2026** — the trap is documented in `PAPERS/paper_A_JACT/pipeline/README.md`. See R12, which is the deeper form of this problem and remains open.
+**R4 — The individual cutoff is 2.98 m; 1.39 m is not an adopted value.** Evidence: `PAPERS/paper_A_JACT/pipeline/outputs/regime_summary.csv` and `numbers.json` record `optimal_cutoff_m = 1.39` with `selection_method = "CH optimum"`, while Paper A, the grant and `CANONICAL_NUMBERS.md` all use 2.98 m. 1.39 m is the raw Calinski–Harabasz optimum. *Action: annotate the pipeline outputs to distinguish metric optimum from adopted value. Until then, §2.2 is the authority.* **Closed 24 Aug 2026** — the trap is documented in `PAPERS/paper_A_JACT/pipeline/README.md`. See R12 for the collage-era form of this problem. **Operational part superseded 11 Sep 2026 by R15:** `regime_summary.csv` is inversion-only; the adopted individual cutoff is 2.75 m. Do not quote 1.39 m or 2.98 m as current.
 
-**R5 — The cutoff stability score is now defined, and the definition is not what the name suggests.** Evidence: `identify_regimes()` in `ANALYSIS/AvailableData/primary_match_skillcorner_analysis.py` pools every sweep evaluation within 0.5 m of the selected cutoff, takes the median cluster count over that pool, and scores the fraction of evaluations whose cluster count lies within $\pm 2$ of that median. So it measures **reproducibility of the partition**, not reproducibility of the cutoff. Added to Paper A's cutoff-selection subsection on 24 August 2026. *Action: when quoting the 0.80 gate, describe it as partition reproducibility across temporal windows. Do not describe it as cutoff agreement.*
+**R5 — The cutoff stability score is now defined, and the definition is not what the name suggests.** Evidence: `identify_regimes()` in `ANALYSIS/AvailableData/primary_match_skillcorner_analysis.py` pools every sweep evaluation within 0.5 m of the selected cutoff, takes the median cluster count over that pool, and scores the fraction of evaluations whose cluster count lies within $\pm 2$ of that median. So it measures **reproducibility of the partition**, not reproducibility of the cutoff. Added to Paper A's cutoff-selection subsection on 24 August 2026. *Action: when quoting the 0.80 gate, describe it as partition reproducibility across temporal windows. Do not describe it as cutoff agreement.* **Historical after R15.** The live Month-2 gate is cardinality inversion plus named $H_0$ bands, not a 0.80 score.
 
-**R6 — Team-scale $H_0$ has three recorded values under unstated conventions.** `numbers.json` gives 0.88 for the primary match; Paper A's results text gives $1.44 \pm 0.50$; the multi-match grand mean is 1.38. These differ in how the single all-players cluster is counted. *Action: fix one convention, state it in §1.2 terms, and recompute. Until resolved, quote 1.38 for the ten-match grand mean and do not quote 0.88 anywhere.*
+**R6 — Team-scale $H_0$ has three recorded values under unstated conventions.** `numbers.json` gives 0.88 for the primary match; Paper A's results text gives $1.44 \pm 0.50$; the multi-match grand mean is 1.38. These differ in how the single all-players cluster is counted. *Action: fix one convention, state it in §1.2 terms, and recompute. Until resolved, quote 1.38 for the ten-match grand mean and do not quote 0.88 anywhere.* **Closed 11 Sep 2026 by R15.** Paper A quotes cluster counts ($k$, including $k=1$). Primary $1.96 \pm 0.36$; ten-match $1.98 \pm 0.06$. Do not quote the finite-bar 1.87 from `uniform_summary.json`, and do not restore 1.38 / 0.88 / 1.44.
 
 **R7 — Reference numbering is out of sync.** REV3 renumbered to 28 entries in first-appearance order; `04_References.md` still holds 23; `CANONICAL_NUMBERS.md` still records the methodology paper as [19] and the football paper as [22]. *Action: sync both to REV3, using §3 of this file as the mapping source.* **Closed 24 Aug 2026** — then 28 entries at [22] and [28]. The same-day Schenck insertion (§10) makes this 29 entries: methodology paper [23], football-analytics paper [29].
 
@@ -389,13 +389,13 @@ Second, and consequently, the individual-scale stability score of **0.956 was co
 
 *Action, in order.* (i) Recompute individual-scale stability at 2.98 m. (ii) Decide whether Paper A's sentence is corrected to state that 2.98 m is carried over and independently validated, or whether the individual cutoff is re-derived on this sweep. This is a decision for the PI, not a silent edit, because the manuscript is submitted. (iii) Until (i) is done, quote 0.84–1.00 as the stability range only for the tactical and team scales. A LaTeX comment marking this sits in `methods.tex` immediately above the affected sentence.
 
-*Action.* **Closed 25 Aug 2026 (Option A).** Individual stability at the adopted 2.98 m cutoff is **0.875** (recomputed from `cutoff_sweep_results.csv`). Paper A `methods.tex` now states that 2.98 m is carried over from an earlier normalised-coverage calibration, names 1.39 m as the CH optimum not adopted (stability 0.956), and quotes 0.875 / 0.836 / 1.000 at the three adopted cutoffs. `regime_summary.csv` and `numbers.json` distinguish adopted cutoffs from the CH optimum. *Standing rule: never quote 0.956 as individual stability without stating it is at 1.39 m, not 2.98 m.*
+*Action.* **Closed 25 Aug 2026 (Option A).** Individual stability at the adopted 2.98 m cutoff is **0.875** (recomputed from `cutoff_sweep_results.csv`). Paper A `methods.tex` now states that 2.98 m is carried over from an earlier normalised-coverage calibration, names 1.39 m as the CH optimum not adopted (stability 0.956), and quotes 0.875 / 0.836 / 1.000 at the three adopted cutoffs. `regime_summary.csv` and `numbers.json` distinguish adopted cutoffs from the CH optimum. *Standing rule: never quote 0.956 as individual stability without stating it is at 1.39 m, not 2.98 m.* **Operational part superseded 11 Sep 2026 by R15.** Do not restore the collage metres or the 0.80 score as live claims.
 
 **R13 — $\rho = 0.264$ is a correlation on total persistence, and Paper A described it as a correlation on counts.** `steps/04_complementarity.py` computes the Spearman statistic from `h1_total_persistence_ind` against `h1_total_persistence_tac`, giving $0.26403$. Paper A's `results.tex` read "individual-scale and tactical-scale $H_1$ **counts** correlate weakly (Spearman $\rho=0.264$)". The counts version of the same test is $0.211$, so the text named one statistic and quoted another. `methods.tex` compounded this by describing both the Spearman and the Fisher test as operating on "frame-level co-occurrence", which is true only of the Fisher test.
 
 The number was never wrong and the bootstrap CI $[0.200, 0.314]$ is valid, because `bootstrap_multi_match_ci.py` line 57 uses the same total-persistence column as the point estimate. Only the prose was wrong.
 
-*Action.* **Closed 25 Aug 2026.** `results.tex` now says "total $H_1$ persistence" and quotes $\rho=0.211$ on counts as a robustness check; `methods.tex` now defines both statistics separately; `04_complementarity.py` emits `spearman_statistic`, `spearman_rho_counts` and `fisher_statistic` so the definition travels with the number; `numbers.json` was rebuilt with every other headline value unchanged. *Standing rule: never quote $\rho=0.264$ without naming the statistic it is computed on.*
+*Action.* **Closed 25 Aug 2026.** `results.tex` now says "total $H_1$ persistence" and quotes $\rho=0.211$ on counts as a robustness check; `methods.tex` now defines both statistics separately; `04_complementarity.py` emits `spearman_statistic`, `spearman_rho_counts` and `fisher_statistic` so the definition travels with the number; `numbers.json` was rebuilt with every other headline value unchanged. *Standing rule: never quote a Spearman $\rho$ without naming the statistic it is computed on.* Point estimate as of 11 Sep 2026: $0.234$ on total persistence; $0.205$ on counts. The historical 0.264 / 0.211 pair is the GPS-era cascade.
 
 **R14 — the bottleneck "95th-percentile tail" was the maximum, and the TDA-native numbers had no backing file in the pipeline.** Found while closing R13, in the same Results subsection. Two faults.
 
@@ -403,18 +403,26 @@ First, provenance. `results.tex` §3.4 quoted a bottleneck median of 1.511 m and
 
 Second, and more serious, the number. The paper described **7.994 m** as "a 95th-percentile tail". `tda_native_distances_summary.json` records 7.9938 as `max`. The true 95th percentile is **3.416 m**. The sentence compares that tail to the tactical scale's own mean persistence of 3.797 m and calls it "comparable", which is true of 3.416 and not of 7.994, so the intent was clearly the percentile and the maximum was picked up by mistake.
 
-*Action.* **Closed 25 Aug 2026, but the number change needs PI confirmation before the arXiv push**, because it alters a value in a manuscript recorded as submitted. The CSV and an enriched summary carrying `p95` alongside `median`, `iqr` and `max` now live in `pipeline/outputs/complementarity/`; `numbers.json` carries `tda_native` populated; `results.tex` reads 3.416 m; the `sync_to_paper.py` check was inverted from forbidding 1.511 to forbidding 7.994. *Standing rule: gudhi is not in the working environment, so any recompute of these four values must be done where GUDHI 3.11.0 is installed, per `methods.tex`.*
+*Action.* **Closed 25 Aug 2026, but the number change needs PI confirmation before the arXiv push**, because it alters a value in a manuscript recorded as submitted. The CSV and an enriched summary carrying `p95` alongside `median`, `iqr` and `max` now live in `pipeline/outputs/complementarity/`; `numbers.json` carries `tda_native` populated; `results.tex` reads 3.416 m; the `sync_to_paper.py` check was inverted from forbidding 1.511 to forbidding 7.994. *Standing rule: never quote 7.994 m as a 95th percentile.* **Refreshed 10–11 Sep 2026 at 2.75 / 11.75 m:** median 1.456 m, p95 3.556 m, max 6.737 m (GUDHI recompute in the Paper A cascade).
+
+**R15 — 11 September 2026. Paper A cutoffs are cardinality inversions on SkillCorner, not the GPS/SecondSpectrum collage.** Evidence: `PAPERS/paper_A_JACT/pipeline/CUTOFF_PROTOCOL.md`, `pipeline/lib/cutoff_protocol.py`, and `pipeline/outputs/regime_summary.csv`. The estimator uses every complete 22-player frame of the ten Table S1 matches (436,648 frames), single linkage, $\delta \in [0.25, 40.0]$ m at $0.25$ m. Adopted metres: individual **2.75 m** (largest $\delta$ with pooled mean $H_0 \ge 19$); tactical **11.75 m** ($\delta$ minimising $|\mathrm{mean}\,H_0-5|$ among $P(k\ge 4)\ge 0.5$); team **23.0 m** (smallest $\delta$ with pooled mean $H_0 \le 2$). Quality metrics are diagnostics. All ten matches pass the named $H_0$ bands.
+
+This ruling supersedes the operational parts of R4, R5 and R12. R3 and R6 close as recorded above. The four-epoch / 58-window $0.80$ score, and the metres 1.39 / 2.98 / 6.87 / 12.0 / 16.31 / 30.0, are not current selectors.
+
+*Action.* Quote 2.75 / 11.75 / 23.0 m. Month-2 gate is inversion plus named bands (REV4 §4, 11 Sep 2026). Papers B and C are **not** synced on this date: Paper B still clusters at 12.0 m; Paper C does not copy football metres.
 
 ---
 
 ## 10. Sync obligations
 
-**A change to the statement of T1 or T2 is a change to a system.** Sweep in this order: this file §5 and §6; `02_Vision_and_Approach_REV3.md` §1 and §5; the R3 wording in §6; `T1_T2_Six_Registers.md`; `AdversarialTDA_Specification.md`; the toy-model figure filenames; `01_Summary.md`.
+**A change to the statement of T1 or T2 is a change to a system.** Sweep in this order: this file §5 and §6; `02_Vision_and_Approach_REV4.md` §1 and §5; the R3 wording in §6; `T1_T2_Six_Registers.md`; `AdversarialTDA_Specification.md`; the toy-model figure filenames; `01_Summary.md`.
 
-**A change to a number** goes into §2 or §4 of this file first, then `CANONICAL_NUMBERS.md`, then the V&A markdown and its LaTeX twin, then the paper pipelines' sync scripts.
+**A change to a number** goes into §2 or §4 of this file first, then `CANONICAL_NUMBERS.md`, then the V&A gate in `live/02_Vision_and_Approach_REV4.md` (metres stay out of the V&A body), then Paper A's `sync_to_paper.py`. Papers B and C are a later pass.
 
 **Adding a reference** triggers three actions: renumber to first-appearance order, sync `04_References.md`, and update the ledger column in §3.
 
 **24 Aug 2026 — Schenck (2022) inserted as [6].** Former [6]–[28] are now [7]–[29]. The methodology paper is [23]; the football-analytics paper is [29]. Chapter 8 of Schenck is the algebraic-foundations cite for multiparameter persistence, alongside Botnan & Lesnick [4] and Lesnick [5].
+
+**11 Sep 2026 — cardinality-inversion pivot (R15).** Paper A cutoffs re-derived on SkillCorner only. Grant lock files (`FOUNDATION.md`, `CANONICAL_NUMBERS.md`) and the REV4 Month-2 gate rewritten the same day. REV3 remains the archive of the 0.80 / collage-metre V&A. Papers B and C deferred.
 
 **Before accepting any V&A revision:** body word count measured, not inherited; mean sentence length at or below 18 words with none over 35; no bold label claiming more than its own body text; every number traceable to this file; every stratification divided out and checked; every "beyond X" has X named somewhere in the document.

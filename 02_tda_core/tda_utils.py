@@ -19,15 +19,15 @@ from collections import defaultdict
 # ---------------------------------------------------------------------------
 
 VALIDATED_CUTOFFS = {
-    'individual': 2.98,
-    'tactical': 12.0,
-    'team': 30.0,
+    'individual': 2.75,
+    'tactical': 11.75,
+    'team': 23.0,
 }
 
 EXPECTED_H0_RANGES = {
     'individual': (15, 22),
-    'tactical': (2, 12),
-    'team': (1, 3),
+    'tactical': (4, 10),
+    'team': (1, 2.5),
 }
 
 

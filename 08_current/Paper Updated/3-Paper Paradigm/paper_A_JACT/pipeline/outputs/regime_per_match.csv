@@ -1,0 +1,31 @@
+scale,match_id,adopted_cutoff_m,match_inverted_cutoff_m,mean_h0_at_adopted,acceptance_ok,selection_rule,acceptance_lo,acceptance_hi,n_frames
+individual,1886347,2.75,2.75,19.281075981407337,True,largest delta with mean H0 >= 19,15.0,22.0,43458
+tactical,1886347,11.75,11.75,4.975677665792259,True,argmin |mean H0 - 5| among P(k >= 4) >= 0.5,4.0,10.0,43458
+team,1886347,23.0,23.0,1.9869068986147544,True,smallest delta with mean H0 <= 2,1.0,2.5,43458
+individual,1899585,2.75,2.75,19.3621346574568,True,largest delta with mean H0 >= 19,15.0,22.0,40681
+tactical,1899585,11.75,12.0,5.1404095277893855,True,argmin |mean H0 - 5| among P(k >= 4) >= 0.5,4.0,10.0,40681
+team,1899585,23.0,23.25,2.0035888989946167,True,smallest delta with mean H0 <= 2,1.0,2.5,40681
+individual,1925299,2.75,3.0,19.444078261232324,True,largest delta with mean H0 >= 19,15.0,22.0,47942
+tactical,1925299,11.75,11.75,4.905594259730508,True,argmin |mean H0 - 5| among P(k >= 4) >= 0.5,4.0,10.0,47942
+team,1925299,23.0,22.25,1.9228651286971759,True,smallest delta with mean H0 <= 2,1.0,2.5,47942
+individual,1953632,2.75,3.0,19.462083257423938,True,largest delta with mean H0 >= 19,15.0,22.0,43912
+tactical,1953632,11.75,12.25,5.649093641829113,True,argmin |mean H0 - 5| among P(k >= 4) >= 0.5,4.0,10.0,43912
+team,1953632,23.0,21.75,1.8597649845144835,True,smallest delta with mean H0 <= 2,1.0,2.5,43912
+individual,1996435,2.75,2.75,19.383336013415725,True,largest delta with mean H0 >= 19,15.0,22.0,43531
+tactical,1996435,11.75,11.75,4.971330775768992,True,argmin |mean H0 - 5| among P(k >= 4) >= 0.5,4.0,10.0,43531
+team,1996435,23.0,22.5,1.9632675564540212,True,smallest delta with mean H0 <= 2,1.0,2.5,43531
+individual,2006229,2.75,3.0,19.46041520454597,True,largest delta with mean H0 >= 19,15.0,22.0,44171
+tactical,2006229,11.75,12.25,5.567815987865342,True,argmin |mean H0 - 5| among P(k >= 4) >= 0.5,4.0,10.0,44171
+team,2006229,23.0,22.75,1.9653392497339883,True,smallest delta with mean H0 <= 2,1.0,2.5,44171
+individual,2011166,2.75,2.5,18.830475458157117,True,largest delta with mean H0 >= 19,15.0,22.0,39015
+tactical,2011166,11.75,11.25,4.659746251441753,True,argmin |mean H0 - 5| among P(k >= 4) >= 0.5,4.0,10.0,39015
+team,2011166,23.0,24.25,2.07520184544406,True,smallest delta with mean H0 <= 2,1.0,2.5,39015
+individual,2013725,2.75,2.75,19.2379756401138,True,largest delta with mean H0 >= 19,15.0,22.0,44992
+tactical,2013725,11.75,11.75,4.924519914651493,True,argmin |mean H0 - 5| among P(k >= 4) >= 0.5,4.0,10.0,44992
+team,2013725,23.0,23.25,2.0141580725462305,True,smallest delta with mean H0 <= 2,1.0,2.5,44992
+individual,2015213,2.75,3.0,19.562131762185324,True,largest delta with mean H0 >= 19,15.0,22.0,48542
+tactical,2015213,11.75,12.0,5.13351324626097,True,argmin |mean H0 - 5| among P(k >= 4) >= 0.5,4.0,10.0,48542
+team,2015213,23.0,23.0,1.9995467842280912,True,smallest delta with mean H0 <= 2,1.0,2.5,48542
+individual,2017461,2.75,2.5,18.90812790812791,True,largest delta with mean H0 >= 19,15.0,22.0,40404
+tactical,2017461,11.75,11.25,4.6364716364716365,True,argmin |mean H0 - 5| among P(k >= 4) >= 0.5,4.0,10.0,40404
+team,2017461,23.0,23.75,2.0464805464805464,True,smallest delta with mean H0 <= 2,1.0,2.5,40404

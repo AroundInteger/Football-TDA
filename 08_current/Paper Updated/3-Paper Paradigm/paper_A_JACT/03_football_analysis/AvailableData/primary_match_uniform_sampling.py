@@ -122,7 +122,7 @@ def run_halftime_test(df: pd.DataFrame) -> dict:
 def run_sensitivity_cutoff(frames: list, cutoffs=None, n_frames: int = N_SAMPLE):
     """Tactical-scale sensitivity across cutoff range (same 150-frame sample)."""
     if cutoffs is None:
-        cutoffs = [6, 8, 10, 12, 14, 16, 17]
+        cutoffs = [6, 8, 10, 11.75, 12, 14, 16, 17]
     step = max(1, len(frames) // n_frames)
     sample = frames[::step][:n_frames]
 
@@ -150,8 +150,10 @@ def run_sensitivity_cutoff(frames: list, cutoffs=None, n_frames: int = N_SAMPLE)
     return pd.DataFrame(records)
 
 
-def run_sensitivity_percentile(frames: list, pcts=None, cutoff=12.0, n_frames=N_SAMPLE):
-    """Filtration percentile ablation at delta=12.0 m."""
+def run_sensitivity_percentile(frames: list, pcts=None, cutoff=None, n_frames=N_SAMPLE):
+    """Filtration percentile ablation at the adopted tactical cutoff."""
+    if cutoff is None:
+        cutoff = VALIDATED_CUTOFFS["tactical"]
     if pcts is None:
         pcts = [50, 60, 75, 90, 95]
     step = max(1, len(frames) // n_frames)

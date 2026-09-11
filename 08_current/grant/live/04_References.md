@@ -1,8 +1,8 @@
 # REFERENCES
 
-**Word limit:** 1,000. Numbering matches `02_Vision_and_Approach_REV3.md` (Vancouver: order of first citation, `unsrtnat` convention). **Do not reorder.** Paste this list into the JeS References box; numbered citations remain in the Vision & Approach text.
+**Word limit:** 1,000. Numbering matches `02_Vision_and_Approach_REV4.md` (Vancouver: order of first citation, `unsrtnat` convention; identical to REV3's 29-entry order). **Do not reorder.** Paste this list into the JeS References box; numbered citations remain in the Vision & Approach text.
 
-**Synced 24 August 2026** to REV3 plus Schenck (2022) as [6]. All 29 are cited; there are no orphans. Former [6]–[28] are now [7]–[29]. The ledger in `FOUNDATION.md` §3 carries the current number for each work. Adding a reference triggers three actions: renumber to first-appearance order, update this file, and update the ledger column in `FOUNDATION.md` §3.
+**Synced 24 August 2026** to REV3 plus Schenck (2022) as [6]. **11 September 2026:** citation order not reopened by the cardinality-inversion pivot. All 29 are cited; there are no orphans. Former [6]–[28] are now [7]–[29]. The ledger in `FOUNDATION.md` §3 carries the current number for each work. Adding a reference triggers three actions: renumber to first-appearance order, update this file, and update the ledger column in `FOUNDATION.md` §3.
 
 1. Carlsson, G. (2009). Topology and data. *Bulletin of the American Mathematical Society*, 46(2), 255–308.
 2. Zomorodian, A. & Carlsson, G. (2005). Computing persistent homology. *Discrete & Computational Geometry*, 33(2), 249–274.

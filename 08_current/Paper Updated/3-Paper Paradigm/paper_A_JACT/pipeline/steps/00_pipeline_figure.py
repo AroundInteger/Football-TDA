@@ -190,7 +190,7 @@ def _panel_clustering(
     ax.text(mid[0] + off[0], mid[1] + off[1], r"$<\delta$",
             fontsize=FONT_PT, ha="center", va="top", color=DELTA_COLOR)
 
-    ax.text(layout.label_pt[0], layout.label_pt[1], r"$P(t)$", fontsize=FONT_PT,
+    ax.text(layout.label_pt[0], layout.label_pt[1], r"$P(\tilde{t})$", fontsize=FONT_PT,
             ha="center", va="top", color=TEXT)
 
     for i, k in enumerate(np.unique(labels)):
@@ -205,7 +205,7 @@ def _panel_clustering(
             edgecolors="white", linewidths=0.6, zorder=5,
         )
 
-    ax.text(layout.label_pt_tilde[0], layout.label_pt_tilde[1], r"$\tilde{P}(t)$",
+    ax.text(layout.label_pt_tilde[0], layout.label_pt_tilde[1], r"$\tilde{P}(\tilde{t})$",
             fontsize=FONT_PT, ha="center", va="top", color=TEXT)
 
 
@@ -253,7 +253,7 @@ def _panel_filtration(
 
     ax.text(
         layout.label_pt_tilde_b[0], layout.label_pt_tilde_b[1],
-        r"$\tilde{P}(t)$", fontsize=FONT_PT, ha="center", va="top", color=TEXT,
+        r"$\tilde{P}(\tilde{t})$", fontsize=FONT_PT, ha="center", va="top", color=TEXT,
     )
     eps_pt = (
         np.asarray(layout.eps_label_pos, dtype=float) + shift

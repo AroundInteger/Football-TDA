@@ -88,8 +88,8 @@ FPS = 10.0   # SkillCorner broadcast tracking rate
 # ---------------------------------------------------------------------------
 #  Validated scale parameters (carry over from paper)
 # ---------------------------------------------------------------------------
-VALIDATED_CUTOFFS = {'individual': 2.98, 'tactical': 12.0, 'team': 30.0}
-EXPECTED_H0 = {'individual': (15, 22), 'tactical': (2, 12), 'team': (1, 3)}
+VALIDATED_CUTOFFS = {'individual': 2.75, 'tactical': 11.75, 'team': 23.0}
+EXPECTED_H0 = {'individual': (15, 22), 'tactical': (4, 10), 'team': (1, 2.5)}
 
 # ---------------------------------------------------------------------------
 #  Step 0: Download match assets if absent
