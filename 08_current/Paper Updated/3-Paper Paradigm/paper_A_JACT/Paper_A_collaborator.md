@@ -338,9 +338,9 @@ As a sanity check against measurement noise, we asked whether persistence moves 
 
 ### 4.1 Operating range
 
-The result that matters for use is the width of the operating range. $H_1$ detection holds across a band of cutoffs and across every truncation percentile tested (Section 3.4). A pipeline that works only at one finely tuned setting would not travel. This one does, once interaction lengths are re-derived on a new domain.
+$H_1$ detection is not confined to the adopted cutoff or to a single truncation percentile (Section 3.4). The operative setting therefore occupies a band, not an isolated optimum. Application to another bounded competitive system still requires the interaction lengths to be re-derived on that domain.
 
-The three $H_0$ regimes are the cardinality targets of Section 2.3, read from the pooled $H_0(\delta)$ curve on every complete frame of the ten matches (Figure 2). Their persistence across that band, rather than a spike at the adopted cutoffs, is what makes the regimes usable.
+The three $H_0$ regimes are the cardinality targets of Section 2.3, read from the pooled $H_0(\delta)$ curve on every complete frame of the ten matches (Figure 2). Those regimes likewise persist over a range of $\delta$ rather than appearing only at the adopted cutoffs.
 
 ### 4.2 Distinct structure at two levels
 
