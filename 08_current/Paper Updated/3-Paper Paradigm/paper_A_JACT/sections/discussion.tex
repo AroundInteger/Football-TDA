@@ -4,34 +4,26 @@
 \subsection{Operating range}
 
 The result that matters for use is the width of the operating range.
-$H_1$ detection holds across cutoffs from 6 to 14~m. It also holds
-across every truncation percentile from $P_{50}$ to $P_{95}$ tested
-(Section~\ref{sec:sensitivity}). A pipeline that works only at one
-finely tuned setting would not travel. This one does, once interaction
-lengths are re-derived on a new domain.
+$H_1$ detection holds across a band of cutoffs and across every
+truncation percentile tested (Section~\ref{sec:sensitivity}). A
+pipeline that works only at one finely tuned setting would not travel.
+This one does, once interaction lengths are re-derived on a new domain.
 
 The three $H_0$ regimes (individual, tactical, and team) are the
-cardinality targets of Section~\ref{sec:cutoffselection}. The metres
-that select them are read from the pooled
-\texorpdfstring{$H_0(\delta)$}{} curve on every complete frame of the
-ten matches (Figure~\ref{fig:cutoff}): $2.75$, $11.75$, and $23.0$~m.
-Quality metrics are a check. They are not the selector.
-Section~\ref{sec:sensitivity} shows that tactical $H_1$ is not a
-spike at $11.75$~m.
-
-$P_{75}$ in equation~\eqref{eq:adaptive} is a reporting convention.
-All tested percentiles return identical $H_1$ totals and presence
-rates.
+cardinality targets of Section~\ref{sec:cutoffselection}, read from the
+pooled \texorpdfstring{$H_0(\delta)$}{} curve on every complete frame
+of the ten matches (Figure~\ref{fig:cutoff}). Their persistence across
+that band, rather than a spike at the adopted cutoffs, is what makes
+the regimes usable.
 
 \subsection{Distinct structure at two levels}
 
-The weak correlation and the divergent presence rates in
-Section~\ref{sec:complementarity} support the same conclusion. The two
-levels are not measuring the same structure at different resolutions.
-If the tactical signal were a coarsened version of the individual
-signal, the two would co-occur far more consistently than
+The two levels are not measuring the same structure at different
+resolutions. If the tactical signal were a coarsened version of the
+individual signal, the two would co-occur far more consistently than
 Table~\ref{tab:fisher} shows. The bottleneck and landscape distances
-would also be small relative to each level's own persistence values.
+would also be small relative to each level's own persistence values
+(Section~\ref{sec:complementarity}).
 Clustering before persistent homology is therefore not a convenience
 for separating noise. It produces two informationally distinct
 objects.
@@ -79,14 +71,12 @@ persistence-landscape companion work.
 Section~\ref{sec:sensitivity} reports the operative tactical $H_1$
 range as an empirical property around the adopted $11.75$~m.
 
-The pipeline identifies three $H_0$ regimes but only two $H_1$
-regimes in the headline analysis. At $\delta=23.0$~m the cloud has
-mean $H_0=1.98$ and $k\le 2$ in 93.6\% of complete frames. A
-Vietoris--Rips complex on at most two points cannot carry a
-non-trivial 1-cycle. Residual frames with $k=3$ are few (6.4\%).
-Team-level loop structure on the typical envelope would require a
-different representation, such as spatial density fields or Delaunay
-triangulations.
+The pipeline identifies three $H_0$ regimes but only two $H_1$ regimes
+in the headline analysis: at the team level the reduced cloud almost
+never has enough centroids to close a loop (Remark~\ref{rem:teamnull}).
+Recovering team-level loop structure on the typical envelope would
+require a different representation, such as spatial density fields or
+Delaunay triangulations.
 
 All data analysed here are broadcast-derived tracking at 10~Hz.
 Broadcast tracking typically offers lower spatial precision than
@@ -100,8 +90,7 @@ data remains for future work.
 
 \subsection{Outlook}
 
-Two extensions are in progress. A third output sits alongside them
-rather than ahead of them. The ten-match evidence base is being scaled
+Two extensions are in progress. The ten-match evidence base is being scaled
 to a full season of Championship matches. That sample will
 characterise population-level distributions of $H_0$ and $H_1$
 counts, barcode lengths, and landscape norms, and will test
@@ -114,13 +103,3 @@ dynamics are being developed to treat each match as a path through
 landscape space. That is the setting in which the landscape-stability
 cutoff criterion can itself be evaluated. Its resampling unit is the
 match-level landscape, not the per-frame summary used here.
-
-A companion paper \citep{paperB} interprets the present ten-match
-findings for a football-analytics readership. Event correlation is a
-central result there rather than a brief validity check. That paper
-also compares the pipeline against standard geometric descriptors,
-examines bilateral home-and-away coupling, and tests predictive
-utility for phase-of-play classification. It depends methodologically
-on the pipeline validated here. It asks what these topological
-measures reveal about football specifically, rather than whether the
-pipeline itself is sound.

@@ -4,7 +4,9 @@
 \subsection{Connected components (\texorpdfstring{$H_0$}{})}
 \label{sec:scaleh0}
 
-Throughout, $H_0$ is the number of cluster centroids. Equivalently, it
+Addressing question~\ref{q:levels}, we recover the three
+organisational levels directly from the data. Throughout, $H_0$ is the
+number of cluster centroids. Equivalently, it
 is $\beta_0$ of the Vietoris--Rips complex on those centroids at
 filtration zero. Primary-match figures come from the uniform 150-frame
 sample of match 1996435 (Section~\ref{sec:data}). Ten-match aggregates
@@ -38,7 +40,9 @@ topological components rather than the two teams.
 \subsection{\texorpdfstring{$H_1$}{} loop detection}
 \label{sec:h1detection}
 
-On the primary match, the pipeline detects 403 $H_1$ loops across 150
+Addressing question~\ref{q:homology}, we test whether
+scale-attributable homology detects loop structure at those levels. On
+the primary match, the pipeline detects 403 $H_1$ loops across 150
 uniformly sampled frames (Table~\ref{tab:h1single}). Loops at the
 individual level are frequent and short-lived. They appear in 144 of
 150 frames (96.0\%), at a mean rate of 2.52 per frame, with low mean
@@ -114,9 +118,7 @@ frames, including those with no loop. The tactical entry is therefore
 lower than the primary-match mean in Table~\ref{tab:h1single}, which is
 taken only where loops appear.
 
-Remark~\ref{rem:teamnull} explains why $H_1$ vanishes when clustering
-leaves at most three centroids. The tactical level sits close to that
-floor. In the ten-match sample, 40.6\% of frames have four or fewer
+The tactical level sits close to that floor. In the ten-match sample, 40.6\% of frames have four or fewer
 tactical centroids, and none of them carries a loop. Presence rate
 alone cannot tell arrangement from cluster count. We separate the two
 with the matched null of Section~\ref{sec:stats}, which fixes centroid
@@ -208,49 +210,12 @@ same rule as the ten-match analysis).}
 \label{fig:cycles}
 \end{figure}
 
-\subsection{Complementarity of the two \texorpdfstring{$H_1$}{} levels}
-\label{sec:complementarity}
-
-The two $H_1$ levels carry related but largely distinct information.
-Over 1{,}500 uniformly sampled frames, total individual and tactical
-$H_1$ persistence correlate weakly (Spearman $\rho=0.234$, $p<0.001$;
-95\% bootstrap CI $[0.181, 0.276]$). The same holds for loop counts
-($\rho=0.205$, $p<0.001$). The finding does not depend on how
-persistence is summarised.
-
-Co-occurrence exceeds chance (Fisher odds ratio 6.12, $p=0.002$;
-bootstrap CI $[2.32, 16.33]$). Table~\ref{tab:fisher} shows the
-asymmetry: 1{,}167 frames carry individual loops without a tactical
-partner, and only two frames do the reverse. Weak rank correlation
-remains the main evidence for complementarity. Joint presence need not
-mean the two levels measure the same structure.
-
-\begin{table}[h]
-\centering
-\caption{Frame counts of \texorpdfstring{$H_1$}{} presence at the two levels (1{,}500 frames).}
-\label{tab:fisher}
-\begin{tabular}{@{}lcc@{}}
-\toprule
- & Tactical $H_1$ present & Tactical $H_1$ absent \\
-\midrule
-Individual $H_1$ present & 280 & 1{,}167 \\
-Individual $H_1$ absent  & 2   & 51 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-A TDA-native check agrees. Bottleneck distance between the two levels'
-diagrams has median 1.456~m and 95th-percentile tail 3.556~m. That is
-on the order of typical tactical loop size on the primary match
-(3.914~m mean persistence where loops appear;
-Table~\ref{tab:h1single}). Landscape $L^2$ distance has median 5.477.
-The levels differ by roughly as much as their features are large, not
-by a small perturbation of one shared pattern.
-
 \subsection{Sensitivity analysis}
 \label{sec:sensitivity}
 
-Tactical $H_1$ counts fall monotonically as the cutoff widens. On the
+Addressing the robustness part of question~\ref{q:homology}, we vary
+the cutoff and the truncation. Tactical $H_1$ counts fall monotonically
+as the cutoff widens. On the
 primary match's 150 frames, sweeping $\delta\in[6,16]$~m gives 275
 loops (87.3\% of frames) at $\delta=6$~m and none at $\delta=16$~m.
 The operative range is $[6,14]$~m (Table~\ref{tab:sensitivity}). The
@@ -299,10 +264,52 @@ $P_{95}$ & 25 & 15.3\% & 65.3 \\
 \end{tabular}
 \end{table}
 
+\subsection{Complementarity of the two \texorpdfstring{$H_1$}{} levels}
+\label{sec:complementarity}
+
+Addressing question~\ref{q:distinct}, we ask whether the two levels
+report the same structure. The two $H_1$ levels carry related but
+largely distinct information.
+Over 1{,}500 uniformly sampled frames, total individual and tactical
+$H_1$ persistence correlate weakly (Spearman $\rho=0.234$, $p<0.001$;
+95\% bootstrap CI $[0.181, 0.276]$). The same holds for loop counts
+($\rho=0.205$, $p<0.001$). The finding does not depend on how
+persistence is summarised.
+
+Co-occurrence exceeds chance (Fisher odds ratio 6.12, $p=0.002$;
+bootstrap CI $[2.32, 16.33]$). Table~\ref{tab:fisher} shows the
+asymmetry: 1{,}167 frames carry individual loops without a tactical
+partner, and only two frames do the reverse. Weak rank correlation
+remains the main evidence for complementarity. Joint presence need not
+mean the two levels measure the same structure.
+
+\begin{table}[h]
+\centering
+\caption{Frame counts of \texorpdfstring{$H_1$}{} presence at the two levels (1{,}500 frames).}
+\label{tab:fisher}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & Tactical $H_1$ present & Tactical $H_1$ absent \\
+\midrule
+Individual $H_1$ present & 280 & 1{,}167 \\
+Individual $H_1$ absent  & 2   & 51 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A TDA-native check agrees. Bottleneck distance between the two levels'
+diagrams has median 1.456~m and 95th-percentile tail 3.556~m. That is
+on the order of typical tactical loop size on the primary match
+(3.914~m mean persistence where loops appear;
+Table~\ref{tab:h1single}). Landscape $L^2$ distance has median 5.477.
+The levels differ by roughly as much as their features are large, not
+by a small perturbation of one shared pattern.
+
 \subsection{Event correlation}
 \label{sec:eventcorr}
 
-As a sanity check against measurement noise, we asked whether
+Addressing question~\ref{q:validity}, and as a sanity check against
+measurement noise, we asked whether
 persistence moves with real match events (SkillCorner annotations;
 103{,}856 event--topology pairs across ten matches). Events that
 disrupt shape (on-ball engagements, quick breaks) tend to precede

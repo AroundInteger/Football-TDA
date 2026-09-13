@@ -86,14 +86,10 @@ is the set of cluster centroids
 and persistent homology is computed on $\tilde{P}(\tilde{t})$ rather
 than on $P(\tilde{t})$.
 
-We use single-linkage throughout: clusters are chains of points
-connected by pairwise distances at most $\delta$. Complete-linkage and
-Ward's method are not used; their effect on $H_1$ counts is examined in
-Section~\ref{sec:limitations}.
+Complete-linkage and Ward's method are not used; their effect on $H_1$
+counts is examined in Section~\ref{sec:limitations}.
 
-Team identity is not used as an input. The pipeline can be run
-independently on a labelled subset of $P(\tilde{t})$; that decomposition is not
-performed here.
+Team identity is not used as an input.
 
 \subsection{Cutoff selection}
 \label{sec:cutoffselection}
@@ -103,12 +99,11 @@ sweep reads the metres from the pooled
 \texorpdfstring{$H_0(\delta)$}{} curve on this corpus. Quality metrics
 are shown as a check. They are not the selector.
 
-The inputs are fixed before the run. A complete frame has $n=22$
-agents. Clustering is single-linkage. Team labels are unused. The grid
-is $\delta\in[0.25, 40.0]$~m at $0.25$~m steps (160 points). Every
+A complete frame has $n=22$ agents. The grid is
+$\delta\in[0.25, 40.0]$~m at $0.25$~m steps (160 points), and every
 complete 22-player frame of the ten matches in
-Supplementary Table~\ref{tab:matches} is used (436{,}648 frames). There
-is no random window draw and no mixing of epoch lengths.
+Supplementary Table~\ref{tab:matches} is used (436{,}648 frames), with
+no random window draw and no mixing of epoch lengths.
 
 Let $\overline{H_0}(\delta)$ be the mean cluster count at cutoff
 $\delta$, pooled over those frames. Let $P(k\ge 4;\delta)$ be the
@@ -218,9 +213,9 @@ convention, not an optimisation.
 
 Persistence diagrams are computed with Ripser via Ripser.py
 \citep{bauer2021ripser}, with coefficients in $\mathbb{F}_2$. We report
-finite $H_1$ bars. At filtration value $0$, $H_0$ of $\tilde{P}(\tilde{t})$
-equals the number of centroids. The $H_0$ figures in
-Section~\ref{sec:scaleh0} are these counts. We cross-checked all
+finite $H_1$ bars. The $H_0$ counts reported in
+Section~\ref{sec:scaleh0} are read from these diagrams at filtration
+zero. We cross-checked all
 primary-match diagrams against GUDHI \citep{gudhi2014} and giotto-tda
 \citep{tauzin2021}. Birth--death pairs agreed to within numerical
 tolerance ($10^{-6}$~m). GUDHI is also used for the bottleneck-distance

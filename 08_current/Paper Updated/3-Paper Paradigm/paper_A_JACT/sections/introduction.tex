@@ -107,41 +107,40 @@ to a level or track that level through time.
 Section~\ref{sec:scaleconflation} leaves a concrete question: whether
 persistent homology can be made scale-attributable on a competitive
 collective system. This paper answers that question by changing the
-input rather than slicing bars of one diagram. The input is changed by
-a cutoff distance $\delta$: agents closer than $\delta$ are grouped,
-and each group is replaced by its centroid, so the reduced cloud
-represents one organisational level. The class names the level by
-cardinality. The cutoff that selects it is read from the
-\texorpdfstring{$H_0(\delta)$}{} curve on this corpus
-(Section~\ref{sec:cutoffselection}). Quality metrics are a check, not
-the selector.
-Vietoris--Rips homology is then computed on those centroids.
-Clustering stretches the cloud: inter-centroid distances are typically
-larger than $\delta$, so a filtration range fitted to one cutoff can
-return no $H_1$ at another. A maximum filtration distance is therefore
-taken from the pairwise distances of the reduced cloud itself, not from
-a global constant (Section~\ref{sec:adaptivefiltration}). The output is
-a persistence diagram whose points are those centroids, so each bar is
-a feature among the units of one organisational level. Each $H_1$ bar
-is realised as a closed loop of centroids whose edge lengths lie in
-that bar's birth--death interval, so the feature is a loop in space and
-not only a pair of numbers (Section~\ref{sec:cycles}). Neither
-clustering nor the truncation is algebraically new
+input rather than slicing bars of one diagram. A cutoff distance
+$\delta$ groups nearby agents and replaces each group by its centroid,
+so the reduced cloud represents one organisational level named by
+cardinality; Vietoris--Rips homology is then computed on those
+centroids, with a maximum filtration distance taken from the reduced
+cloud itself and each $H_1$ bar realised as a closed loop in space
+(Sections~\ref{sec:clustering}--\ref{sec:cycles}). Neither clustering
+nor the truncation is algebraically new
 \citep{carlsson2010clustering,schindler2023}; the content is that the
 combination survives a real, high-frequency, noisy point cloud.
 
-When we apply this methodology to football broadcast data, four
-findings follow. Broadcast tracking records the positions of all 22
-players at $10$~Hz from televised professional matches, as $(x,y)$
-coordinates in metres on a standard pitch model; the corpus is ten
+We test the pipeline on football broadcast tracking: the positions of
+all 22 players at $10$~Hz from televised professional matches, as
+$(x,y)$ coordinates in metres on a standard pitch model, for ten
 A-League matches from the SkillCorner open repository
-(Section~\ref{sec:data}). Cardinality inversion of the pooled
-\texorpdfstring{$H_0(\delta)$}{} curve on every complete frame of
-those matches returns three cutoffs, not a single demonstration case. $H_1$ is detected at two of the three
-organisational levels, with a geometric cycle representative for every
-feature in the primary-match analysis. The two $H_1$ levels carry
-complementary rather than redundant information. Event association is
-reported only as construct validity in Section~\ref{sec:eventcorr}.
+(Section~\ref{sec:data}). Four questions organise the results, and each
+is answered in turn:
+
+\begin{enumerate}
+\item\label{q:levels} Can the organisational levels be recovered from
+the data rather than assumed in metres (Section~\ref{sec:scaleh0})?
+\item\label{q:homology} Does scale-attributable persistent homology
+then detect \texorpdfstring{$H_1$}{} loop structure at those levels, is
+every feature realised as a loop in space, and is detection robust to
+the cutoff and truncation choices (Sections~\ref{sec:h1detection}
+and~\ref{sec:sensitivity})?
+\item\label{q:distinct} Where loops appear at more than one level, do
+those levels carry distinct rather than redundant information
+(Section~\ref{sec:complementarity})?
+\item\label{q:validity} Do the topological features track on-ball match
+events, as a construct-validity check only
+(Section~\ref{sec:eventcorr})?
+\end{enumerate}
+
 Spatial analysis of team sport, including pitch-control models and
 network metrics on passing and collective structure, is surveyed by
 \citet{gudmundsson2017} and by \citet{buldu2018} and \citet{grund2012};

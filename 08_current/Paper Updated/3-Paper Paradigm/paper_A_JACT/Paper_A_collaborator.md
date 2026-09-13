@@ -22,7 +22,7 @@
 
 **What it is not.** A football-analytics paper. Event interpretation, geometric baselines, bilateral (home/away) coupling, and predictive utility belong to a companion manuscript (Paper B, *Journal of Sports Sciences*, in preparation). Paper A treats event correlation only as a one-sentence construct-validity check (“not noise”).
 
-**Headline claim.** Hierarchical clustering at recovered interaction lengths, plus a truncation of the Vietoris–Rips parameter taken from the reduced cloud, resolves scale conflation in competitive collective systems. On ten professional matches the pipeline recovers three stable $H_0$ regimes and two $H_1$ regimes; the two $H_1$ levels carry distinct information; every examined $H_1$ feature has a geometric cycle representative.
+**Headline claim.** Hierarchical clustering at recovered interaction lengths, plus a truncation of the Vietoris–Rips parameter taken from the reduced cloud, resolves scale conflation in competitive collective systems. On ten professional matches, answering the four questions in turn: (Q1) three stable $H_0$ regimes are recovered from the data; (Q2) $H_1$ is detected at two of them, every feature realised as a loop in space and robust across a band of cutoffs and truncation percentiles; (Q3) the two $H_1$ levels carry distinct information; and (Q4) topological features track on-ball events, as construct validity only.
 
 **Locked cutoffs (metres).** Individual $2.75$; tactical $11.75$; team $23.0$. Cardinality inversion on all complete frames of the ten Table S1 matches (436{,}648 frames). Operative tactical $H_1$ range: re-centre on $11.75$ m after the H1 cascade.
 
@@ -103,9 +103,16 @@ The methods above leave that mixing in place: a bar records when a loop closes, 
 
 ### 1.3 Contributions
 
-Section 1.2 leaves a concrete question: whether persistent homology can be made scale-attributable on a competitive collective system. This paper answers that question by changing the input rather than slicing bars of one diagram. The input is changed by a cutoff distance $\delta$: agents closer than $\delta$ are grouped, and each group is replaced by its centroid, so the reduced cloud represents one organisational level. That cutoff is not taken from the class definition. It is recovered by sweeping candidate distances and keeping those at which the partition is stable under independent clustering-quality metrics (Section 2.3). Vietoris–Rips homology is then computed on those centroids. Clustering stretches the cloud: inter-centroid distances are typically larger than $\delta$, so a filtration range fitted to one cutoff can return no $H_1$ at another. A maximum filtration distance is therefore taken from the pairwise distances of the reduced cloud itself, not from a global constant (Section 2.4). The output is a persistence diagram whose points are those centroids, so each bar is a feature among the units of one organisational level. Each $H_1$ bar is realised as a closed loop of centroids whose edge lengths lie in that bar's birth–death interval, so the feature is a loop in space and not only a pair of numbers (Section 2.5). Neither clustering nor the truncation is algebraically new (Carlsson and Mémoli, 2010; Schindler and Barahona, 2023); the content is that the combination survives a real, high-frequency, noisy point cloud.
+Section 1.2 leaves a concrete question: whether persistent homology can be made scale-attributable on a competitive collective system. This paper answers that question by changing the input rather than slicing bars of one diagram. A cutoff distance $\delta$ groups nearby agents and replaces each group by its centroid, so the reduced cloud represents one organisational level named by cardinality; Vietoris–Rips homology is then computed on those centroids, with a maximum filtration distance taken from the reduced cloud itself and each $H_1$ bar realised as a closed loop in space (Sections 2.2–2.5). Neither clustering nor the truncation is algebraically new (Carlsson and Mémoli, 2010; Schindler and Barahona, 2023); the content is that the combination survives a real, high-frequency, noisy point cloud.
 
-When we apply this methodology to football broadcast data, four findings follow. Broadcast tracking records the positions of all 22 players at $10$ Hz from televised professional matches, as $(x,y)$ coordinates in metres on a standard pitch model; the corpus is ten A-League matches from the SkillCorner open repository (Section 2.1). Cardinality inversion of the pooled $H_0(\delta)$ curve on every complete frame of those matches returns three cutoffs, not a single demonstration case. $H_1$ is detected at two of the three organisational levels, with a geometric cycle representative for every feature in the primary-match analysis. The two $H_1$ levels carry complementary rather than redundant information. Event association is reported only as construct validity in Section 3.6. Spatial analysis of team sport, including pitch-control models and network metrics on passing and collective structure, is surveyed by Gudmundsson and Horton (2017) and by Buldú et al. (2019) and Grund (2012); those methods complement the present pipeline but do not quantify two-dimensional enclosure through persistent homology. To our knowledge, no prior work combines cutoff-selected organisational levels with persistent homology for a competitive collective system, or validates the resulting regimes on high-frequency tracking across multiple independent recordings.
+We test the pipeline on football broadcast tracking: the positions of all 22 players at $10$ Hz from televised professional matches, as $(x,y)$ coordinates in metres on a standard pitch model, for ten A-League matches from the SkillCorner open repository (Section 2.1). Four questions organise the results, and each is answered in turn:
+
+1. **(Q1)** Can the organisational levels be recovered from the data rather than assumed in metres (Section 3.1)?
+2. **(Q2)** Does scale-attributable persistent homology then detect $H_1$ loop structure at those levels, is every feature realised as a loop in space, and is detection robust to the cutoff and truncation choices (Sections 3.2 and 3.4)?
+3. **(Q3)** Where loops appear at more than one level, do those levels carry distinct rather than redundant information (Section 3.5)?
+4. **(Q4)** Do the topological features track on-ball match events, as a construct-validity check only (Section 3.6)?
+
+Spatial analysis of team sport, including pitch-control models and network metrics on passing and collective structure, is surveyed by Gudmundsson and Horton (2017) and by Buldú et al. (2019) and Grund (2012); those methods complement the present pipeline but do not quantify two-dimensional enclosure through persistent homology. To our knowledge, no prior work combines cutoff-selected organisational levels with persistent homology for a competitive collective system, or validates the resulting regimes on high-frequency tracking across multiple independent recordings.
 
 ---
 
@@ -137,9 +144,9 @@ $$
 
 and persistent homology is computed on $\tilde{P}(\tilde{t})$ rather than on $P(\tilde{t})$.
 
-We use single-linkage throughout: clusters are chains of points connected by pairwise distances at most $\delta$. Complete-linkage and Ward's method are not used; their effect on $H_1$ counts is examined in Section 4.3.
+Complete-linkage and Ward's method are not used; their effect on $H_1$ counts is examined in Section 4.3.
 
-Team identity is not used as an input. The pipeline can be run independently on a labelled subset of $P(\tilde{t})$; that decomposition is not performed here.
+Team identity is not used as an input.
 
 ### 2.3 Cutoff selection
 
@@ -149,7 +156,7 @@ Every complete 22-player frame of the ten Table S1 matches is used (436{,}648 fr
 
 Selector: individual, largest $\delta$ with mean $H_0 \ge 19$; tactical, $\delta$ nearest mean $H_0 = 5$ among $P(k \ge 4) \ge 0.5$; team, smallest $\delta$ with mean $H_0 \le 2$. Ties take the smaller $\delta$.
 
-On this corpus that returns $2.75$ m, $11.75$ m, and $23.0$ m. Per-match inversions are $2.80 \pm 0.20$ m, $11.80 \pm 0.35$ m, and $22.98 \pm 0.72$ m. All ten matches pass the acceptance bands. The curve is asymmetric: about $1.6$ clusters merge per metre from the individual to the tactical level, but only about $0.27$ per metre from the tactical to the team level, so the two envelopes persist over a wide band of $\delta$. Clustering-quality diagnostics (Calinski--Harabasz, silhouette, information-content) are reported in Supplementary Figure S2 and are not the selector. Figure 2 shows the estimator and its spatial realisation. Section 3.5 reports tactical $H_1$ sensitivity.
+On this corpus that returns $2.75$ m, $11.75$ m, and $23.0$ m. Per-match inversions are $2.80 \pm 0.20$ m, $11.80 \pm 0.35$ m, and $22.98 \pm 0.72$ m. All ten matches pass the acceptance bands. The curve is asymmetric: about $1.6$ clusters merge per metre from the individual to the tactical level, but only about $0.27$ per metre from the tactical to the team level, so the two envelopes persist over a wide band of $\delta$. Clustering-quality diagnostics (Calinski--Harabasz, silhouette, information-content) are reported in Supplementary Figure S2 and are not the selector. Figure 2 shows the estimator and its spatial realisation. Section 3.4 reports tactical $H_1$ sensitivity.
 
 > **Figure 2** (`figures/fig2_cutoff_sweep.pdf`). Cutoff selection by cardinality inversion, on all complete frames of the ten SkillCorner matches (436{,}648 frames); not $\tilde{T}$. **(a)** Pooled mean $\overline{H_0}(\delta)$ (black) with the ten per-match curves (grey); targets are roster statements $\overline{H_0} = 19$ (most agents resolved), $5$ (a few coordinating groups, loop-feasible), and $2$ (two spatial envelopes, not the two teams). Circles mark the inversion at $2.75$, $11.75$, $23.0$ m (top axis); inset zooms the individual rule. **(b)** Per-frame $H_0$ distribution (median, interquartile, 5th--95th bands); brackets are the acceptance intervals $[15,22]$, $[4,10]$, $[1,2.5]$; orange dots are the ten per-match means, all inside. **(c)** Feasibility: $k$ is the per-frame cluster count and $P(k \ge 4)$ the fraction with at least four; the adopted $11.75$ m sits at $P = 0.80$, inside the feasible region ($\delta \le 13.5$ m). **(d--f)** The same cutoffs on primary-match sample frame 95 ($H_0 = 20, 7, 2$; one frame, near the pooled targets $19, 5, 2$). Coloured hulls are multi-player clusters, grey are singletons; colours distinguish separate topological components in this frame, not player teams. Clustering-quality diagnostics are in Supplementary Figure S2 and are not the selector.
 
@@ -166,9 +173,9 @@ $$
 
 Here $P_{75}$ is the 75th percentile of pairwise inter-centroid distances on $\tilde{P}(\tilde{t})$. The first term tracks the geometry of the reduced cloud at the current cutoff. The second term is a floor. It prevents a degenerate filtration at small $\delta$. It also ensures the filtration reaches at least the inter-cluster distance regime.
 
-$P_{75}$ is a conventional upper-quartile summary. Section 3.5 reports an ablation across $P_{50}$ through $P_{95}$. Every tested percentile returns identical $H_1$ totals and frame-presence rates. The choice is therefore a reporting convention, not an optimisation.
+$P_{75}$ is a conventional upper-quartile summary. Section 3.4 reports an ablation across $P_{50}$ through $P_{95}$. Every tested percentile returns identical $H_1$ totals and frame-presence rates. The choice is therefore a reporting convention, not an optimisation.
 
-Persistence diagrams are computed with Ripser via Ripser.py (Bauer, 2021), with coefficients in $\mathbb{F}_2$. We report finite $H_1$ bars. At filtration value $0$, $H_0$ of $\tilde{P}(\tilde{t})$ equals the number of centroids. The $H_0$ figures in Section 3.1 are these counts. We cross-checked all primary-match diagrams against GUDHI (The GUDHI Project, 2024) and giotto-tda (Tauzin et al., 2021). Birth–death pairs agreed to within numerical tolerance ($10^{-6}$ m). GUDHI is also used for the bottleneck-distance and landscape computations reported in Section 3.4.
+Persistence diagrams are computed with Ripser via Ripser.py (Bauer, 2021), with coefficients in $\mathbb{F}_2$. We report finite $H_1$ bars. The $H_0$ counts reported in Section 3.1 are read from these diagrams at filtration zero. We cross-checked all primary-match diagrams against GUDHI (The GUDHI Project, 2024) and giotto-tda (Tauzin et al., 2021). Birth–death pairs agreed to within numerical tolerance ($10^{-6}$ m). GUDHI is also used for the bottleneck-distance and landscape computations reported in Section 3.5.
 
 ### 2.5 Closed cycle identification
 
@@ -178,7 +185,7 @@ Each $H_1$ feature corresponds to a 1-cycle in the Vietoris–Rips complex. To r
 
 To test whether $H_1$ detection reflects the arrangement of cluster centroids rather than merely their number, each frame is compared against a matched null. For a frame whose clustering yields $k$ centroids, the null draws $k$ points uniformly from the convex hull of those same centroids. The null therefore matches the frame on both cardinality and spatial envelope. It randomises only the arrangement. The truncation of equation (1) is recomputed on each null cloud. Nothing else differs between the two. We use $200$ null replicates per frame. We report the excess of observed over null $H_1$ presence, with $95\%$ confidence intervals from bootstrap resampling over matches.
 
-Complementarity of the two $H_1$ levels (Section 3.4) is assessed by two frame-level tests. The Spearman rank correlation is computed on total $H_1$ persistence: the sum of death minus birth over all finite $H_1$ bars in a frame. We also report it on loop counts as a robustness check. Fisher's exact test is computed on the binary co-occurrence of $H_1$ presence at the two levels. Both statistics carry $95\%$ confidence intervals obtained by bootstrap resampling over matches ($1{,}000$ resamples). The match is the resampling unit. Bottleneck and landscape distances between the two levels' persistence diagrams are computed using GUDHI, as described in Section 2.4.
+Complementarity of the two $H_1$ levels (Section 3.5) is assessed by two frame-level tests. The Spearman rank correlation is computed on total $H_1$ persistence: the sum of death minus birth over all finite $H_1$ bars in a frame. We also report it on loop counts as a robustness check. Fisher's exact test is computed on the binary co-occurrence of $H_1$ presence at the two levels. Both statistics carry $95\%$ confidence intervals obtained by bootstrap resampling over matches ($1{,}000$ resamples). The match is the resampling unit. Bottleneck and landscape distances between the two levels' persistence diagrams are computed using GUDHI, as described in Section 2.4.
 
 ### 2.7 Software and Reproducibility
 
@@ -230,7 +237,7 @@ The two-level $H_1$ pattern extends to all ten matches ($1{,}500$ uniformly samp
 
 Mean persistence in Table 2 averages over all sampled frames, including those with no loop. The tactical entry is therefore lower than the primary-match mean in Table 1, which is taken only where loops appear.
 
-The remark above explains why $H_1$ vanishes when clustering leaves at most three centroids. The tactical level sits close to that floor. In the ten-match sample, $40.6\%$ of frames have four or fewer tactical centroids, and none of them carries a loop. Presence rate alone cannot tell arrangement from cluster count. We separate the two with the matched null of Section 2.6, which fixes centroid number and spatial envelope and randomises only arrangement.
+The tactical level sits close to that floor. In the ten-match sample, $40.6\%$ of frames have four or fewer tactical centroids, and none of them carries a loop. Presence rate alone cannot tell arrangement from cluster count. We separate the two with the matched null of Section 2.6, which fixes centroid number and spatial envelope and randomises only arrangement.
 
 Table 3 summarises the result. Tactical observed presence is more than twice the null rate. Table 4 splits by centroid count $k$. Presence is zero at $k \le 4$, as expected. It then rises from $9.3\%$ at $k = 5$ to $67.0\%$ at $k = 8$, always above the null. At the individual level the null already exceeds $91\%$: twenty points in a bounded region almost always close a cycle. The observed excess is therefore modest ($+5.1$ pp). Tactical $H_1$ exceeds the null once $k \ge 5$. Individual presence is already high under the null.
 
@@ -266,24 +273,7 @@ All $403$ primary-match $H_1$ features receive a geometric realisation via close
 
 
 
-### 3.4 Complementarity of the two $H_1$ levels
-
-The two $H_1$ levels carry related but largely distinct information. Over $1{,}500$ uniformly sampled frames, total individual and tactical $H_1$ persistence correlate weakly (Spearman $\rho = 0.234$, $p < 0.001$; $95\%$ bootstrap CI $[0.181, 0.276]$). The same holds for loop counts ($\rho = 0.205$, $p < 0.001$). The finding does not depend on how persistence is summarised.
-
-Co-occurrence exceeds chance (Fisher odds ratio $6.12$, $p = 0.002$; bootstrap CI $[2.32, 16.33]$). Table 5 shows the asymmetry: $1{,}167$ frames carry individual loops without a tactical partner, and only two frames do the reverse. Weak rank correlation remains the main evidence for complementarity. Joint presence need not mean the two levels measure the same structure.
-
-**Table 5.** Frame counts of $H_1$ presence at the two levels ($1{,}500$ frames).
-
-
-|                          | Tactical $H_1$ present | Tactical $H_1$ absent |
-| ------------------------ | ---------------------- | --------------------- |
-| Individual $H_1$ present | $280$                  | $1{,}167$             |
-| Individual $H_1$ absent  | $2$                    | $51$                  |
-
-
-A TDA-native check agrees. Bottleneck distance between the two levels' diagrams has median $1.456$ m and $95$th-percentile tail $3.556$ m. That is on the order of typical tactical loop size on the primary match ($3.914$ m mean persistence where loops appear; Table 1). Landscape $L^2$ distance has median $5.477$. The levels differ by roughly as much as their features are large, not by a small perturbation of one shared pattern.
-
-### 3.5 Sensitivity analysis
+### 3.4 Sensitivity analysis
 
 Tactical $H_1$ counts fall monotonically as the cutoff widens. On the primary match's 150 frames, sweeping $\delta \in [6, 16]$ m gives $275$ loops ($87.3\%$ of frames) at $\delta = 6$ m and none at $\delta = 16$ m. The operative range is $[6, 14]$ m (Table 6). The adopted cutoff $\delta = 11.75$ m lies at the conservative end of that range ($15.3\%$ frame presence).
 
@@ -317,6 +307,23 @@ The truncation in equation (1) is likewise stable. At $\delta = 11.75$ m, every 
 
 
 
+### 3.5 Complementarity of the two $H_1$ levels
+
+The two $H_1$ levels carry related but largely distinct information. Over $1{,}500$ uniformly sampled frames, total individual and tactical $H_1$ persistence correlate weakly (Spearman $\rho = 0.234$, $p < 0.001$; $95\%$ bootstrap CI $[0.181, 0.276]$). The same holds for loop counts ($\rho = 0.205$, $p < 0.001$). The finding does not depend on how persistence is summarised.
+
+Co-occurrence exceeds chance (Fisher odds ratio $6.12$, $p = 0.002$; bootstrap CI $[2.32, 16.33]$). Table 5 shows the asymmetry: $1{,}167$ frames carry individual loops without a tactical partner, and only two frames do the reverse. Weak rank correlation remains the main evidence for complementarity. Joint presence need not mean the two levels measure the same structure.
+
+**Table 5.** Frame counts of $H_1$ presence at the two levels ($1{,}500$ frames).
+
+
+|                          | Tactical $H_1$ present | Tactical $H_1$ absent |
+| ------------------------ | ---------------------- | --------------------- |
+| Individual $H_1$ present | $280$                  | $1{,}167$             |
+| Individual $H_1$ absent  | $2$                    | $51$                  |
+
+
+A TDA-native check agrees. Bottleneck distance between the two levels' diagrams has median $1.456$ m and $95$th-percentile tail $3.556$ m. That is on the order of typical tactical loop size on the primary match ($3.914$ m mean persistence where loops appear; Table 1). Landscape $L^2$ distance has median $5.477$. The levels differ by roughly as much as their features are large, not by a small perturbation of one shared pattern.
+
 ### 3.6 Event correlation
 
 As a sanity check against measurement noise, we asked whether persistence moves with real match events (SkillCorner annotations; $103{,}856$ event–topology pairs across ten matches). Events that disrupt shape (on-ball engagements, quick breaks) tend to precede lower persistence. Sustained build-up tends to precede higher persistence (Mann–Whitney $U$ on pre-specified classes; several nominal $p < 0.001$ at both levels). We treat this as construct validity only. Multiple-testing control and football interpretation belong elsewhere.
@@ -331,15 +338,13 @@ As a sanity check against measurement noise, we asked whether persistence moves 
 
 ### 4.1 Operating range
 
-The result that matters for use is the width of the operating range. $H_1$ detection holds across cutoffs from $6$ to $14$ m. It also holds across every truncation percentile from $P_{50}$ to $P_{95}$ tested (Section 3.5). A pipeline that works only at one finely tuned setting would not travel. This one does, once interaction lengths are re-derived on a new domain.
+The result that matters for use is the width of the operating range. $H_1$ detection holds across a band of cutoffs and across every truncation percentile tested (Section 3.4). A pipeline that works only at one finely tuned setting would not travel. This one does, once interaction lengths are re-derived on a new domain.
 
-The three $H_0$ regimes are the cardinality targets of Section 2.3. The metres that select them are $2.75$, $11.75$, and $23.0$ m, read from every complete frame of the ten matches (Figure 2). Quality metrics (Supplementary Figure S2) are a check. They are not the selector.
-
-$P_{75}$ in equation (1) is a reporting convention. All tested percentiles return identical $H_1$ totals and presence rates.
+The three $H_0$ regimes are the cardinality targets of Section 2.3, read from the pooled $H_0(\delta)$ curve on every complete frame of the ten matches (Figure 2). Their persistence across that band, rather than a spike at the adopted cutoffs, is what makes the regimes usable.
 
 ### 4.2 Distinct structure at two levels
 
-The weak correlation and the divergent presence rates in Section 3.4 support the same conclusion. The two levels are not measuring the same structure at different resolutions. If the tactical signal were a coarsened version of the individual signal, the two would co-occur far more consistently than Table 5 shows. The bottleneck and landscape distances would also be small relative to each level's own persistence values. Clustering before persistent homology is therefore not a convenience for separating noise. It produces two informationally distinct objects.
+The two levels are not measuring the same structure at different resolutions. If the tactical signal were a coarsened version of the individual signal, the two would co-occur far more consistently than Table 5 shows. The bottleneck and landscape distances would also be small relative to each level's own persistence values (Section 3.5). Clustering before persistent homology is therefore not a convenience for separating noise. It produces two informationally distinct objects.
 
 ### 4.3 Limitations
 
@@ -349,15 +354,14 @@ A more principled selection criterion would come from the dynamical system itsel
 
 The tactical cutoff is the inversion of a named cardinality (mean $H_0$ nearest 5, with $k \ge 4$ still common; Figure 2c). On the 1 Hz diagnostic subset the only interior silhouette local maximum is at $7.0$ m, a small-group alternative that keeps rising into the two-envelope regime once $k=1$ frames are dropped (Supplementary Figure S2). Those features are characteristic separations, not adopted cutoffs. A landscape-path stability criterion remains a future estimator. We defer it to the persistence-landscape companion work.
 
-The pipeline identifies three $H_0$ regimes but only two $H_1$ regimes. At $\delta = 23.0$ m the cloud has mean $H_0 = 1.98$ and $k\le 2$ in 93.6\% of complete frames. Residual frames with $k=3$ are few (6.4\%). Detecting team-level loop structure would require a different representation, such as spatial density fields or Delaunay triangulations.
+The pipeline identifies three $H_0$ regimes but only two $H_1$ regimes: at the team level the reduced cloud almost never has enough centroids to close a loop (see the team-level Remark in Section 3.2). Recovering team-level loop structure on the typical envelope would require a different representation, such as spatial density fields or Delaunay triangulations.
 
 All data analysed here are broadcast-derived tracking at $10$ Hz. Broadcast tracking typically offers lower spatial precision than higher-frequency optical systems. That may affect the magnitude of persistence values reported. The structural findings (the three $H_0$ regimes, the $H_1$ presence rates, and the sensitivity profiles) depend on relative rather than absolute spatial precision. They are therefore expected to be robust across tracking technologies. A direct comparison of persistence magnitudes against optical tracking data remains for future work.
 
 ### 4.4 Outlook
 
-Two extensions are in progress. A third output sits alongside them rather than ahead of them. The ten-match evidence base is being scaled to a full season of Championship matches. That sample will characterise population-level distributions of $H_0$ and $H_1$ counts, barcode lengths, and landscape norms, and will test tactical-fingerprint classification at population scale. It is also the setting in which the linkage criterion proposed above becomes evaluable. Recovering a sparse governing equation for a persistence functional requires the population-sized sample of match sequences that a single season provides. Separately, persistence landscape dynamics are being developed to treat each match as a path through landscape space. That is the setting in which the landscape-stability cutoff criterion can itself be evaluated. Its resampling unit is the match-level landscape, not the per-frame summary used here.
+Two extensions are in progress. The ten-match evidence base is being scaled to a full season of Championship matches. That sample will characterise population-level distributions of $H_0$ and $H_1$ counts, barcode lengths, and landscape norms, and will test tactical-fingerprint classification at population scale. It is also the setting in which the linkage criterion proposed above becomes evaluable. Recovering a sparse governing equation for a persistence functional requires the population-sized sample of match sequences that a single season provides. Separately, persistence landscape dynamics are being developed to treat each match as a path through landscape space. That is the setting in which the landscape-stability cutoff criterion can itself be evaluated. Its resampling unit is the match-level landscape, not the per-frame summary used here.
 
-A companion paper (Brown, Powathil, and Kilduff, in preparation) interprets the present ten-match findings for a football-analytics readership. Event correlation is a central result there rather than a brief validity check. That paper also compares the pipeline against standard geometric descriptors, examines bilateral home-and-away coupling, and tests predictive utility for phase-of-play classification. It depends methodologically on the pipeline validated here. It asks what these topological measures reveal about football specifically, rather than whether the pipeline itself is sound.
 
 ---
 
