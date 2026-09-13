@@ -149,9 +149,9 @@ Every complete 22-player frame of the ten Table S1 matches is used (436{,}648 fr
 
 Selector: individual, largest $\delta$ with mean $H_0 \ge 19$; tactical, $\delta$ nearest mean $H_0 = 5$ among $P(k \ge 4) \ge 0.5$; team, smallest $\delta$ with mean $H_0 \le 2$. Ties take the smaller $\delta$.
 
-On this corpus that returns $2.75$ m, $11.75$ m, and $23.0$ m. Per-match inversions are $2.80 \pm 0.20$ m, $11.80 \pm 0.35$ m, and $22.98 \pm 0.72$ m. All ten matches pass the acceptance bands. Figure 2 shows the sweep. Section 3.5 reports tactical $H_1$ sensitivity.
+On this corpus that returns $2.75$ m, $11.75$ m, and $23.0$ m. Per-match inversions are $2.80 \pm 0.20$ m, $11.80 \pm 0.35$ m, and $22.98 \pm 0.72$ m. All ten matches pass the acceptance bands. The curve is asymmetric: about $1.6$ clusters merge per metre from the individual to the tactical level, but only about $0.27$ per metre from the tactical to the team level, so the two envelopes persist over a wide band of $\delta$. Clustering-quality diagnostics (Calinski--Harabasz, silhouette, information-content) are reported in Supplementary Figure S2 and are not the selector. Figure 2 shows the estimator and its spatial realisation. Section 3.5 reports tactical $H_1$ sensitivity.
 
-> **Figure 2** (`figures/fig2_cutoff_sweep.pdf`). Cutoff sweep on all complete frames of the ten SkillCorner matches (436{,}648 frames). This is not $\tilde{T}$. **(a)** Pooled mean $H_0$ versus $\delta$, with a $\pm 1$ s.d. ribbon across match-level means. Solid lines: adopted $2.75$, $11.75$, and $23.0$ m. **(b)** Diagnostic metrics on the 1 Hz subset, min-max scaled. Dotted lines: silhouette local maxima. Solid lines: adopted cutoffs. Quality metrics are not the selector.
+> **Figure 2** (`figures/fig2_cutoff_sweep.pdf`). Cutoff selection by cardinality inversion, on all complete frames of the ten SkillCorner matches (436{,}648 frames); not $\tilde{T}$. **(a)** Pooled mean $\overline{H_0}(\delta)$ (black) with the ten per-match curves (grey); targets are roster statements $\overline{H_0} = 19$ (most agents resolved), $5$ (a few coordinating groups, loop-feasible), and $2$ (two spatial envelopes, not the two teams). Circles mark the inversion at $2.75$, $11.75$, $23.0$ m (top axis); inset zooms the individual rule. **(b)** Per-frame $H_0$ distribution (median, interquartile, 5th--95th bands); brackets are the acceptance intervals $[15,22]$, $[4,10]$, $[1,2.5]$; orange dots are the ten per-match means, all inside. **(c)** Feasibility: $k$ is the per-frame cluster count and $P(k \ge 4)$ the fraction with at least four; the adopted $11.75$ m sits at $P = 0.80$, inside the feasible region ($\delta \le 13.5$ m). **(d--f)** The same cutoffs on primary-match sample frame 95 ($H_0 = 20, 7, 2$; one frame, near the pooled targets $19, 5, 2$). Coloured hulls are multi-player clusters, grey are singletons; colours distinguish separate topological components in this frame, not player teams. Clustering-quality diagnostics are in Supplementary Figure S2 and are not the selector.
 
 ### 2.4 Maximum filtration distance
 
@@ -198,7 +198,7 @@ Throughout, $H_0$ is the number of cluster centroids. Equivalently, it is $\beta
 
 At the individual level ($\delta = 2.75$ m), $H_0 = 19.32 \pm 2.34$ (mean $\pm$ s.d.; range 10--22). At the tactical level ($\delta = 11.75$ m), $H_0 = 5.04 \pm 1.69$ (range 2--10). At the team level ($\delta = 23.0$ m), the cloud usually collapses to one or two clusters: mean $1.96 \pm 0.36$. All 22 players lie in a single cluster in 8.7\% of frames, split across two in 86.7\%, and across three in 4.7\%.
 
-The same three-level pattern holds in all ten matches. Grand means are individual $H_0 = 19.31 \pm 0.31$, tactical $H_0 = 5.09 \pm 0.38$, and team cluster count $1.98 \pm 0.06$ (mean $\pm$ s.d. across matches). Every match stays within the validated $H_0$ bands of Section 2.3. Figure 2 records the sweep from which those cutoffs were taken.
+The same three-level pattern holds in all ten matches. Grand means are individual $H_0 = 19.31 \pm 0.31$, tactical $H_0 = 5.09 \pm 0.38$, and team cluster count $1.98 \pm 0.06$ (mean $\pm$ s.d. across matches). Every match stays within the validated $H_0$ bands of Section 2.3: the ten per-match means all fall inside the acceptance intervals $[15,22]$, $[4,10]$, $[1,2.5]$ (Figure 2b). Figure 2 records the sweep from which those cutoffs were taken. The pooled curve is asymmetric (about $1.6$ clusters merge per metre from the individual to the tactical level, but only $0.27$ per metre from the tactical to the team level), so the two envelopes persist over a wide band of $\delta$ (Figure 2a). The spatial realisation on one frame (Figure 2d--f) shows the same regimes: a near-atomic cloud at $2.75$ m, coordinating groups at $11.75$ m, and two spatial envelopes at $23.0$ m, which are topological components rather than the two teams.
 
 ### 3.2 $H_1$ loop detection
 
@@ -333,7 +333,7 @@ As a sanity check against measurement noise, we asked whether persistence moves 
 
 The result that matters for use is the width of the operating range. $H_1$ detection holds across cutoffs from $6$ to $14$ m. It also holds across every truncation percentile from $P_{50}$ to $P_{95}$ tested (Section 3.5). A pipeline that works only at one finely tuned setting would not travel. This one does, once interaction lengths are re-derived on a new domain.
 
-The three $H_0$ regimes are the cardinality targets of Section 2.3. The metres that select them are $2.75$, $11.75$, and $23.0$ m, read from every complete frame of the ten matches (Figure 2). Quality metrics are a check. They are not the selector.
+The three $H_0$ regimes are the cardinality targets of Section 2.3. The metres that select them are $2.75$, $11.75$, and $23.0$ m, read from every complete frame of the ten matches (Figure 2). Quality metrics (Supplementary Figure S2) are a check. They are not the selector.
 
 $P_{75}$ in equation (1) is a reporting convention. All tested percentiles return identical $H_1$ totals and presence rates.
 
@@ -347,7 +347,7 @@ Linkage selection is a substantive methodological choice. Across a $600$-frame, 
 
 A more principled selection criterion would come from the dynamical system itself, rather than from clustering-quality metrics alone. One candidate is the linkage under which a governing equation for a persistence functional admits the sparsest representation, in the sense of sparse identification of nonlinear dynamics. The functional would be the landscape $L^2$ norm or the tactical $H_1$ total-persistence sequence. Operationalising this would require three things. First, choose the dynamical state. Second, defend the sparsity of the recovered library against AIC, BIC, or cross-validation baselines. Third, confirm that the resulting persistence sequence is genuinely lower-dimensional under the selected linkage. We defer this to the forthcoming full-season work. A population-sized sample of match sequences is what makes the sparsity comparison meaningful.
 
-The tactical cutoff is the inversion of a named cardinality (mean $H_0$ nearest 5). Silhouette local maxima are characteristic separations, not adopted cutoffs. A landscape-path stability criterion remains a future estimator. We defer it to the persistence-landscape companion work.
+The tactical cutoff is the inversion of a named cardinality (mean $H_0$ nearest 5, with $k \ge 4$ still common; Figure 2c). On the 1 Hz diagnostic subset the only interior silhouette local maximum is at $7.0$ m, a small-group alternative that keeps rising into the two-envelope regime once $k=1$ frames are dropped (Supplementary Figure S2). Those features are characteristic separations, not adopted cutoffs. A landscape-path stability criterion remains a future estimator. We defer it to the persistence-landscape companion work.
 
 The pipeline identifies three $H_0$ regimes but only two $H_1$ regimes. At $\delta = 23.0$ m the cloud has mean $H_0 = 1.98$ and $k\le 2$ in 93.6\% of complete frames. Residual frames with $k=3$ are few (6.4\%). Detecting team-level loop structure would require a different representation, such as spatial density fields or Delaunay triangulations.
 
@@ -445,6 +445,10 @@ Ten A-League matches from the SkillCorner open repository. Home and away names a
 | $2013725$ | Western United | Sydney FC | multi-match |
 | $2015213$ | Western United | Auckland FC | multi-match |
 | $2017461$ | Melbourne V FC | Auckland FC | multi-match |
+
+### Clustering-quality diagnostics
+
+The cutoffs are fixed by cardinality inversion, not by a quality score. For completeness, Supplementary Figure S2 (`figures/figS2_cutoff_diagnostics.pdf`) records the Calinski--Harabasz index, mean silhouette, and information-content on the 1 Hz subset (each min-max scaled). Silhouette is undefined at $k=1$ and those frames are omitted, not coded as 0. The silhouette rise at large $\delta$ is an artefact of the shrinking $k \ge 2$ subsample; the only interior local maximum is at $7.0$ m, a small-group alternative we report but do not adopt. None of these curves selects the adopted cutoffs. Generate with `pipeline/steps/10_cutoff_sweep_figure.py`.
 
 ### Temporal autocorrelation
 

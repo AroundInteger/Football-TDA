@@ -132,35 +132,60 @@ $1.98$. Inverting each match separately gives
 $2.80\pm 0.20$~m, $11.80\pm 0.35$~m, and $22.98\pm 0.72$~m
 (mean $\pm$ s.d.\ across matches). Acceptance requires every match's
 mean $H_0$ at the pooled cutoff to lie in $[15, 22]$, $[4, 10]$, and
-$[1, 2.5]$ respectively. All ten matches pass.
+$[1, 2.5]$ respectively. All ten matches pass. The curve is
+asymmetric: micro-structure merges quickly (about $1.6$ clusters per
+metre from $\overline{H_0}=19$ to $5$), whereas the surviving
+macro-structure resists merging (about $0.27$ clusters per metre from
+$5$ to $2$), because the remaining gaps are the large between-group
+distances. This flattening is why the team cutoff sits far out at
+$23.0$~m yet still returns two envelopes, not two teams.
 
-Calinski--Harabasz, silhouette, and Shannon entropy of cluster sizes
-are recorded on a deterministic 1~Hz subset (every 10th complete
-frame). Silhouette is omitted when $k=1$; it is not coded as 0.
-Silhouette local maxima are reported as characteristic separations.
-They are alternatives, not adopted cutoffs.
-Figure~\ref{fig:cutoff} shows the sweep.
+Clustering-quality diagnostics (Calinski--Harabasz, silhouette, and
+Shannon entropy of cluster sizes) are recorded on a deterministic
+1~Hz subset (every 10th complete frame); silhouette is omitted when
+$k=1$ and is not coded as 0. They are alternatives, not adopted
+cutoffs, and are reported in Supplementary
+Figure~\ref{fig:diagnostics}. Figure~\ref{fig:cutoff} shows the
+estimator and its spatial realisation.
 Section~\ref{sec:sensitivity} reports the sensitivity of $H_1$
 detection to the tactical choice.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig2_cutoff_sweep}
-\caption{Cutoff sweep on all complete frames of the ten SkillCorner
-matches (436{,}648 frames). This is not the 150-frame sample
-\texorpdfstring{$\tilde{T}$}{} of Section~\ref{sec:data}.
-The grid is \texorpdfstring{$\delta\in[0.25, 40.0]$}{}~m at
-$0.25$~m. Adopted cutoffs are the cardinality inversion of
-Section~\ref{sec:cutoffselection}: $2.75$, $11.75$, and $23.0$~m.
-\textbf{(a)}~Pooled mean cluster count (\texorpdfstring{$H_0$}{})
-versus \texorpdfstring{$\delta$}{}, with a
-\texorpdfstring{$\pm 1$}{} s.d.\ ribbon across the ten match-level
-means. Solid vertical lines mark the adopted cutoffs.
-\textbf{(b)}~Calinski--Harabasz index, silhouette score, and
-information-content on the 1~Hz diagnostic subset, each min-max
-scaled to $[0,1]$ for display. The dotted line marks the interior
-silhouette local maximum ($7.0$~m). Solid lines repeat the adopted
-cutoffs. Quality metrics are not the selector.}
+\caption{Cutoff selection by cardinality inversion. Sweep on all
+complete frames of the ten SkillCorner matches (436{,}648 frames);
+not the 150-frame sample \texorpdfstring{$\tilde{T}$}{} of
+Section~\ref{sec:data}. Grid
+\texorpdfstring{$\delta\in[0.25, 40.0]$}{}~m at $0.25$~m.
+\textbf{(a)}~Pooled mean cluster count
+\texorpdfstring{$\overline{H_0}(\delta)$}{} (black) with the ten
+per-match curves (grey). Targets are roster statements:
+\texorpdfstring{$\overline{H_0}=n-3=19$}{} (most agents resolved),
+\texorpdfstring{$\overline{H_0}=5$}{} (a few coordinating groups,
+loop-feasible), and \texorpdfstring{$\overline{H_0}=2$}{} (two spatial
+envelopes, not the two teams, since team labels are unused). Circles
+mark the inversion at $2.75$, $11.75$, and $23.0$~m (top axis); the
+inset zooms the individual rule.
+\textbf{(b)}~Per-frame \texorpdfstring{$H_0$}{} distribution (median,
+interquartile band, and 5th--95th centile band). Vertical brackets are
+the acceptance intervals \texorpdfstring{$[15,22]$}{},
+\texorpdfstring{$[4,10]$}{}, and \texorpdfstring{$[1,2.5]$}{}; orange
+dots are the ten per-match means, all inside. Frame-to-frame variance
+is why the acceptance intervals, not a single per-frame count, define
+the test.
+\textbf{(c)}~Feasibility of the tactical rule.
+\texorpdfstring{$k$}{} is the number of clusters in a frame and
+\texorpdfstring{$P(k\ge 4)$}{} the fraction of frames with at least
+four; the adopted $11.75$~m sits at \texorpdfstring{$P=0.80$}{}, inside
+the feasible region (\texorpdfstring{$\delta\le 13.5$}{}~m).
+\textbf{(d--f)}~The same cutoffs on primary-match sample frame~95
+(\texorpdfstring{$H_0=20,7,2$}{}; one frame, near the pooled targets
+$19$, $5$, $2$). Coloured hulls are multi-player clusters, grey are
+singletons; colours distinguish separate topological components in this
+frame, not player teams. Each pitch carries a $10$~m scale bar.
+Clustering-quality diagnostics are in Supplementary
+Figure~\ref{fig:diagnostics} and are not the selector.}
 \label{fig:cutoff}
 \end{figure}
 

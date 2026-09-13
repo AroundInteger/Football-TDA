@@ -23,6 +23,47 @@ is the uniform-150 stride.}
 \label{fig:acf}
 }
 
+\section*{Supplementary note: clustering-quality diagnostics}
+\label{sec:diagnostics}
+
+The cutoffs in Figure~\ref{fig:cutoff} are fixed by cardinality
+inversion, not by a clustering-quality score. For completeness we
+record three standard diagnostics on a deterministic 1~Hz subset
+(every 10th complete frame): the Calinski--Harabasz index, the mean
+silhouette score, and the Shannon entropy of cluster sizes
+(information-content). Silhouette is undefined when a frame collapses
+to a single cluster ($k=1$); those frames are omitted rather than
+coded as 0. None of these curves selects the adopted cutoffs.
+
+The silhouette rises again beyond the tactical level. This is an
+artefact of the shrinking $k\ge 2$ subsample: as $\delta$ grows, only
+frames that still hold two or more widely separated envelopes
+contribute, and such configurations are trivially well separated. The
+only interior silhouette local maximum is at $7.0$~m, a small-group
+alternative that we report but do not adopt.
+
+\IfFileExists{figures/figS2_cutoff_diagnostics.pdf}{%
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.62\textwidth]{figures/figS2_cutoff_diagnostics}
+\caption{Clustering-quality diagnostics on the 1~Hz subset, each
+min-max scaled to \texorpdfstring{$[0,1]$}{} for display: the
+Calinski--Harabasz index, the mean silhouette score, and
+information-content. Solid vertical lines mark the adopted cutoffs
+($2.75$, $11.75$, $23.0$~m); the dotted line marks the interior
+silhouette local maximum ($7.0$~m). The silhouette rise at large
+\texorpdfstring{$\delta$}{} reflects the shrinking
+\texorpdfstring{$k\ge 2$}{} subsample, not a better partition. These
+quality metrics are diagnostics, not the selector.}
+\label{fig:diagnostics}
+\end{figure}
+}{%
+\par\textit{Supplementary Figure~S2 is not yet generated. Run
+\texttt{pipeline/steps/10\_cutoff\_sweep\_figure.py} once the
+diagnostics subset has been written.}
+\label{fig:diagnostics}
+}
+
 \section*{Supplementary Table S1. SkillCorner match identifiers}
 
 Ten A-League matches from the SkillCorner open repository. Home and
