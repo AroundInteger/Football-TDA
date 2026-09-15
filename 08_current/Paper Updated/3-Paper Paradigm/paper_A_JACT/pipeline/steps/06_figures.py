@@ -12,6 +12,7 @@ import numpy as np
 PIPELINE_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PIPELINE_DIR / "lib"))
 from common import FIGURES_DIR, OUTPUT_DIR, ensure_dirs, load_config, repo_root  # noqa: E402
+from figure_style import add_panel_letter, apply_rcparams, export_figure  # noqa: E402
 
 REPO = repo_root()
 sys.path.insert(0, str(REPO / "03_football_analysis" / "AvailableData"))
@@ -129,7 +130,7 @@ def player_mask_for_nodes(positions, cutoff, nodes):
 
 
 def plot_clustering_panel(
-    ax, positions, delta, title, vertices="players", highlight_nodes=None,
+    ax, positions, delta, letter, vertices="players", highlight_nodes=None,
     highlight_players=None, disk_radius="half",
 ):
     """Clustering panel. disk_radius 'half' = overlap test; 'full' = Fig 1(a)."""
@@ -187,7 +188,7 @@ def plot_clustering_panel(
         radius_frac=radius_frac, draw_links=draw_links,
     )
     draw_scale_bar(ax)
-    ax.set_title(title, fontsize=10, fontweight="bold")
+    add_panel_letter(ax, letter, loc="southeast")
 
 
 def _convex_hull(pts):
@@ -226,7 +227,7 @@ def draw_delta_disks_on(ax, pts, delta, lw=0.9, alpha=0.85):
 
 
 def plot_vertices_panel(
-    ax, positions, cutoff, title, highlight_nodes, draw_hulls=False,
+    ax, positions, cutoff, letter, highlight_nodes, draw_hulls=False,
 ):
     """Left column: vertices after δ. Disks only on cycle centroids."""
     draw_pitch(ax)
@@ -278,10 +279,10 @@ def plot_vertices_panel(
         draw_delta_disks_on(ax, pts[nodes], cutoff)
 
     draw_scale_bar(ax)
-    ax.set_title(title, fontsize=10, fontweight="bold")
+    add_panel_letter(ax, letter, loc="southeast")
 
 
-def plot_raw_panel(ax, positions, title):
+def plot_raw_panel(ax, positions, letter):
     """δ = 0: the 22 players only. No cycle (a different diagram)."""
     draw_pitch(ax)
     pos = np.asarray(positions)
@@ -290,11 +291,11 @@ def plot_raw_panel(ax, positions, title):
         edgecolors="#222222", linewidths=0.45, zorder=4,
     )
     draw_scale_bar(ax)
-    ax.set_title(title, fontsize=10, fontweight="bold")
+    add_panel_letter(ax, letter, loc="southeast")
 
 
 def plot_panel(
-    ax, positions, cutoff, title,
+    ax, positions, cutoff, letter,
     draw_delta_disks: bool = True, draw_cycle_players: bool = True,
 ):
     draw_pitch(ax)
@@ -304,7 +305,7 @@ def plot_panel(
     pts = np.asarray(cents)
     if pts.size == 0:
         draw_scale_bar(ax)
-        ax.set_title(title)
+        add_panel_letter(ax, letter, loc="southeast")
         return 0.0, 0
 
     unique = np.unique(labels)
@@ -386,7 +387,7 @@ def plot_panel(
         )
 
     draw_scale_bar(ax)
-    ax.set_title(title, fontsize=11, fontweight="bold")
+    add_panel_letter(ax, letter, loc="southeast")
     return max_p, n_cycle
 
 
@@ -398,7 +399,7 @@ def main() -> None:
         raise FileNotFoundError("Run step 01 first.")
 
     ensure_match_assets()
-    frames, home, away = load_tracking_data(require_complete=True)
+    frames, _, _ = load_tracking_data(require_complete=True)
     n_sample = cfg["sampling"]["uniform_150"]["n_frames"]
     step = max(1, len(frames) // n_sample)
     sample = frames[::step][:n_sample]
@@ -412,51 +413,30 @@ def main() -> None:
     _, _, ind_nodes = cycle_vertices(pos, d_ind)
     _, _, tac_nodes = cycle_vertices(pos, d_tac)
 
+    apply_rcparams()
     fig, axes = plt.subplots(2, 2, figsize=(9.0, 8.4))
     fig.subplots_adjust(
-        wspace=0.06, hspace=0.20, left=0.04, right=0.99, top=0.88, bottom=0.04,
+        wspace=0.06, hspace=0.08, left=0.04, right=0.99, top=0.98, bottom=0.04,
     )
-    fig.text(0.27, 0.935, r"Vertices  (cutoff $\delta$)", ha="center", fontsize=11)
-    fig.text(0.75, 0.935, r"Loop  (filtration $\varepsilon$)", ha="center", fontsize=11)
 
-    plot_vertices_panel(
-        axes[0, 0], pos, d_ind,
-        f"(a) Individual clustering  (δ = {d_ind} m)",
-        ind_nodes,
-    )
+    plot_vertices_panel(axes[0, 0], pos, d_ind, "a", ind_nodes)
     p_ind, n_ind = plot_panel(
-        axes[0, 1], pos, d_ind,
-        f"(b) Individual $H_1$  (δ = {d_ind} m)",
+        axes[0, 1], pos, d_ind, "b",
         draw_delta_disks=False,
         draw_cycle_players=True,
     )
     plot_vertices_panel(
-        axes[1, 0], pos, d_tac,
-        f"(c) Tactical clustering  (δ = {d_tac} m)",
-        tac_nodes,
-        draw_hulls=True,
+        axes[1, 0], pos, d_tac, "c", tac_nodes, draw_hulls=True,
     )
     p_tac, n_tac = plot_panel(
-        axes[1, 1], pos, d_tac,
-        f"(d) Tactical $H_1$  (δ = {d_tac} m)",
+        axes[1, 1], pos, d_tac, "d",
         draw_delta_disks=False,
         draw_cycle_players=False,
-    )
-    frame_note = (
-        f"Sample frame {ind_idx}"
-        if same_frame
-        else f"Sample frames {ind_idx} (a,b) and {tac_idx} (c,d)"
-    )
-    fig.suptitle(
-        f"{home} vs {away}  ·  {frame_note}",
-        fontsize=12, y=0.995,
     )
 
     out_pdf = FIGURES_DIR / "fig3_cycle_geometry.pdf"
     out_png = FIGURES_DIR / "fig3_cycle_geometry.png"
-    fig.savefig(out_pdf, dpi=180, bbox_inches="tight")
-    fig.savefig(out_png, dpi=180, bbox_inches="tight")
-    plt.close(fig)
+    export_figure(fig, out_pdf, out_png, bbox_inches="tight")
 
     meta = {
         "individual_frame_idx": ind_idx,
@@ -488,7 +468,7 @@ def render_3panel_preview() -> Path:
     ensure_dirs()
     cfg = load_config()
     ensure_match_assets()
-    frames, home, away = load_tracking_data(require_complete=True)
+    frames, _, _ = load_tracking_data(require_complete=True)
     n_sample = cfg["sampling"]["uniform_150"]["n_frames"]
     step = max(1, len(frames) // n_sample)
     sample = frames[::step][:n_sample]
@@ -497,56 +477,45 @@ def render_3panel_preview() -> Path:
     d_ind = VALIDATED_CUTOFFS["individual"]
     d_tac = VALIDATED_CUTOFFS["tactical"]
 
+    apply_rcparams()
     fig, axes = plt.subplots(3, 2, figsize=(8.8, 12.2))
     fig.subplots_adjust(
-        wspace=0.08, hspace=0.16, left=0.02, right=0.98, top=0.91, bottom=0.05,
+        wspace=0.08, hspace=0.10, left=0.02, right=0.98, top=0.98, bottom=0.05,
     )
 
     _, _, ind_nodes = cycle_vertices(pos, d_ind)
     _, _, tac_nodes = cycle_vertices(pos, d_tac)
     ind_players = player_mask_for_nodes(pos, d_ind, ind_nodes)
 
-    plot_raw_panel(
-        axes[0, 0], pos,
-        r"(a) Raw cloud  ($H_1$ not attributed)",
-    )
+    plot_raw_panel(axes[0, 0], pos, "a")
     plot_clustering_panel(
-        axes[0, 1], pos, d_ind,
-        r"(b) Merge preview  (disks at $\delta_1/2$)",
+        axes[0, 1], pos, d_ind, "b",
         vertices="players",
         disk_radius="half",
     )
     plot_clustering_panel(
-        axes[1, 0], pos, d_ind,
-        f"(c) Clustering  (δ = {d_ind} m; disks at δ)",
+        axes[1, 0], pos, d_ind, "c",
         vertices="centroids",
         highlight_nodes=ind_nodes,
         disk_radius="full",
     )
     plot_panel(
-        axes[1, 1], pos, d_ind,
-        f"(d) Individual $H_1$  (δ = {d_ind} m)",
+        axes[1, 1], pos, d_ind, "d",
         draw_delta_disks=False,
     )
     plot_clustering_panel(
-        axes[2, 0], pos, d_tac,
-        f"(e) Clustering  (δ = {d_tac} m; disks at δ)",
+        axes[2, 0], pos, d_tac, "e",
         vertices="centroids",
         highlight_nodes=tac_nodes,
         highlight_players=ind_players,
         disk_radius="full",
     )
     plot_panel(
-        axes[2, 1], pos, d_tac,
-        f"(f) Tactical $H_1$  (δ = {d_tac} m)",
+        axes[2, 1], pos, d_tac, "f",
         draw_delta_disks=False,
         draw_cycle_players=False,
     )
 
-    fig.suptitle(
-        f"{home} vs {away}  ·  Sample frame {idx}  ·  preview (not committed)",
-        fontsize=11,
-    )
     fig.text(
         0.5, 0.01,
         r"Each row reads left to right. (b) disks at $\delta_1/2$ (overlap $=$ merge). "
@@ -556,9 +525,7 @@ def render_3panel_preview() -> Path:
     )
     out_pdf = FIGURES_DIR / "fig3_cycle_geometry_3panel_preview.pdf"
     out_png = FIGURES_DIR / "fig3_cycle_geometry_3panel_preview.png"
-    fig.savefig(out_pdf, dpi=180, bbox_inches="tight")
-    fig.savefig(out_png, dpi=180, bbox_inches="tight")
-    plt.close(fig)
+    export_figure(fig, out_pdf, out_png, bbox_inches="tight")
     print(f"Wrote {out_pdf}")
     return out_pdf
 
@@ -568,7 +535,7 @@ def render_2x2_preview() -> Path:
     ensure_dirs()
     cfg = load_config()
     ensure_match_assets()
-    frames, home, away = load_tracking_data(require_complete=True)
+    frames, _, _ = load_tracking_data(require_complete=True)
     n_sample = cfg["sampling"]["uniform_150"]["n_frames"]
     step = max(1, len(frames) // n_sample)
     sample = frames[::step][:n_sample]
@@ -579,41 +546,27 @@ def render_2x2_preview() -> Path:
     _, _, ind_nodes = cycle_vertices(pos, d_ind)
     _, _, tac_nodes = cycle_vertices(pos, d_tac)
 
+    apply_rcparams()
     fig, axes = plt.subplots(2, 2, figsize=(9.0, 8.4))
     fig.subplots_adjust(
-        wspace=0.06, hspace=0.20, left=0.04, right=0.99, top=0.88, bottom=0.06,
+        wspace=0.06, hspace=0.08, left=0.04, right=0.99, top=0.98, bottom=0.06,
     )
-    fig.text(0.27, 0.935, r"Vertices  (cutoff $\delta$)", ha="center", fontsize=11)
-    fig.text(0.75, 0.935, r"Loop  (filtration $\varepsilon$)", ha="center", fontsize=11)
 
-    plot_vertices_panel(
-        axes[0, 0], pos, d_ind,
-        f"(a) Individual clustering  (δ = {d_ind} m)",
-        ind_nodes,
-    )
+    plot_vertices_panel(axes[0, 0], pos, d_ind, "a", ind_nodes)
     plot_panel(
-        axes[0, 1], pos, d_ind,
-        f"(b) Individual $H_1$  (δ = {d_ind} m)",
+        axes[0, 1], pos, d_ind, "b",
         draw_delta_disks=False,
         draw_cycle_players=True,
     )
     plot_vertices_panel(
-        axes[1, 0], pos, d_tac,
-        f"(c) Tactical clustering  (δ = {d_tac} m)",
-        tac_nodes,
-        draw_hulls=True,
+        axes[1, 0], pos, d_tac, "c", tac_nodes, draw_hulls=True,
     )
     plot_panel(
-        axes[1, 1], pos, d_tac,
-        f"(d) Tactical $H_1$  (δ = {d_tac} m)",
+        axes[1, 1], pos, d_tac, "d",
         draw_delta_disks=False,
         draw_cycle_players=False,
     )
 
-    fig.suptitle(
-        f"{home} vs {away}  ·  Sample frame {idx}  ·  2×2 preview (not committed)",
-        fontsize=11, y=0.995,
-    )
     fig.text(
         0.5, 0.012,
         r"Rows read left to right. Gold: players in this row's cycle clusters. "
@@ -624,9 +577,7 @@ def render_2x2_preview() -> Path:
     )
     out_pdf = FIGURES_DIR / "fig3_cycle_geometry_2x2_preview.pdf"
     out_png = FIGURES_DIR / "fig3_cycle_geometry_2x2_preview.png"
-    fig.savefig(out_pdf, dpi=180, bbox_inches="tight")
-    fig.savefig(out_png, dpi=180, bbox_inches="tight")
-    plt.close(fig)
+    export_figure(fig, out_pdf, out_png, bbox_inches="tight")
     print(f"Wrote {out_pdf}")
     return out_pdf
 

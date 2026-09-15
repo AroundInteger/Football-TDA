@@ -5,7 +5,8 @@ Computes frame-level H0 and total H1 persistence at 1 Hz (every 10th complete
 frame) and plots ACF against lag in seconds. This is a supplement: it supports
 the uniform_150 stride (~29 s) without becoming the operational sampling rule.
 
-Event association remains on the full-rate stream (step 05).
+Event association (step 05) also uses this 1 Hz stream, with five frames either
+side of each annotated event.
 """
 from __future__ import annotations
 
@@ -19,6 +20,7 @@ import numpy as np
 PIPELINE_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PIPELINE_DIR / "lib"))
 from common import FIGURES_DIR, OUTPUT_DIR, ensure_dirs, load_config, repo_root  # noqa: E402
+from figure_style import STYLE, apply_rcparams, export_figure  # noqa: E402
 
 REPO = repo_root()
 sys.path.insert(0, str(REPO / "03_football_analysis" / "AvailableData"))
@@ -72,7 +74,7 @@ def main() -> None:
 
     try:
         ensure_match_assets()
-        frames, home, away = load_tracking_data(require_complete=True)
+        frames, _, _ = load_tracking_data(require_complete=True)
     except (FileNotFoundError, RuntimeError) as exc:
         print(f"ACF supplement skipped (tracking data unavailable): {exc}")
         return
@@ -114,11 +116,12 @@ def main() -> None:
     # Three series for the panel: drop individual H0 (near-saturated, slow)
     plot_keys = ("h0_tactical", "h1_pers_individual", "h1_pers_tactical")
 
+    apply_rcparams()
     fig, ax = plt.subplots(figsize=(7.2, 4.2))
-    colours = ("#1565C0", "#E65100", "#6A1B9A")
+    colours = (STYLE.individual, STYLE.tactical, "#6A1B9A")
     for key, col in zip(plot_keys, colours):
         ax.plot(lags_s, series_acf[key], color=col, lw=1.6, label=labels[key])
-    ax.axhline(0.0, color="#9E9E9E", lw=0.8)
+    ax.axhline(0.0, color=STYLE.muted, lw=0.8)
     ax.axhline(0.1, color="#BDBDBD", lw=0.7, ls="--")
     ax.axvline(10, color="#757575", lw=0.8, ls=":")
     ax.axvline(20, color="#757575", lw=0.8, ls=":")
@@ -128,17 +131,14 @@ def main() -> None:
     ax.set_ylim(-0.15, 1.05)
     ax.set_xlabel("lag (s)")
     ax.set_ylabel("autocorrelation")
-    ax.set_title(f"Topological summaries, {home} vs {away} (1 Hz)")
-    ax.legend(frameon=False, fontsize=8)
+    ax.legend(frameon=False)
     fig.tight_layout()
 
     out_dir = OUTPUT_DIR / "acf_supplement"
     out_dir.mkdir(parents=True, exist_ok=True)
     pdf = FIGURES_DIR / "figS1_acf.pdf"
     png = FIGURES_DIR / "figS1_acf.png"
-    fig.savefig(pdf, bbox_inches="tight")
-    fig.savefig(png, dpi=200, bbox_inches="tight")
-    plt.close(fig)
+    export_figure(fig, pdf, png, bbox_inches="tight")
 
     summary = {
         "n_complete": len(frames),

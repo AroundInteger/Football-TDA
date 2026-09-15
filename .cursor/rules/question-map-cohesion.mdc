@@ -26,7 +26,7 @@ Build the map before rewriting Results or Discussion. A canvas is a good working
 1. **Order.** Discussion must not interpret Q(n+1) while Qn still has an open limb (detect, realise, robust). Close Qn first.
 2. **Every posed Q has a number.** Directional prose (“tends to”, “sanity check”) is not an answer. One pre-specified statistic is enough if the claim is labelled preliminary.
 3. **One job per quantity.** Do not hang two meanings on one word (e.g. frame presence and filtration lifetime both called “persistence”). Define the quantities in Methods; use only those names later. Do not use *persist* as a verb for an $H_0$ regime remaining across $\delta$, or *longest-lived* for the bar of largest $p$.
-4. **First citation order.** If a new figure supports Qi, first-cite it in the Results subsection that answers Qi, before the next figure.
+4. **First citation order.** If a new figure supports Qi, first-cite it in the Results subsection that answers Qi, before the next figure. Every table and figure in the manuscript must be cited in running text in the main body (see the float-citation rule); a caption is not a citation.
 5. **No extra questions in Discussion.** Outlook and limitations are not new Qs. They must not be readable as unanswered §1 items.
 
 ## Paper A pattern

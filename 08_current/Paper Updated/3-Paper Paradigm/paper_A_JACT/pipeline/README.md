@@ -23,7 +23,7 @@ are vendored under the paper folder (`../01_data`, `../02_tda_core`,
 | `acf_supplement` | 1 Hz on the primary match | Supplementary ACF panel only; does **not** choose the stride |
 | `cutoff_sweep` | Every complete frame, ten Table S1 matches (436{,}648 frames); grid 0.25–40.0 m | Cardinality inversion; Figure 2; `regime_summary.csv` |
 | `temporal_2min` | 2-min non-overlapping windows | Grant-only temporal analysis (not headline Paper A tables) |
-| native 10 Hz | complete frames | Event construct-validity (step 05) |
+| 1 Hz (every 10th complete frame) | complete frames | Event construct-validity (step 05); five frames either side of the event |
 
 Headline tables use the uniform 150-frame sample on the ten Table S1 matches. That is the operational rule in `config.yaml`.
 
@@ -80,6 +80,15 @@ Drag the coloured handles, then **Save YAML** (or press `s`). Positions are stor
 `config/fig1_layout.yaml`. **Export PDF** (or `e`) writes the full four-panel figure via
 `steps/00_pipeline_figure.py`. Subsequent non-interactive runs load the saved layout
 automatically.
+
+## Figure style
+
+Shared defaults live in `lib/figure_style.py`: no axes titles; panel letters
+inside the axes with no white patch; labels 12 pt; ticks 10 pt; annotations
+and legends 12 pt. Figure 1 is a two-row bounded-domain schematic (pitch
+clustering, three $\varepsilon$ snapshots on centroids, $H_1$ diagram,
+barcode, cycle). Dense schematic letters drop to 10 pt. Captions carry the
+narrative. Figure 4a–b are birth–death diagrams, matching Figure 1e.
 
 ## Outputs (committed)
 

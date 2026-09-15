@@ -1,0 +1,39 @@
+---
+description: Every table and figure in a paper must be cited in the main-text body
+globs: "08_current/**/*.md,08_current/**/*.tex,06_papers/**/*.md,06_papers/**/*.tex"
+alwaysApply: false
+---
+
+# Cite every table and figure in the main body
+
+A float that is only defined, captioned, or listed is not part of the argument. Every table and every figure in the manuscript (including numbered supplement items) must be cited in running text in the main body.
+
+## What counts as a citation
+
+- LaTeX: `\ref{...}` or `\Cref{...}` in a sentence of Methods, Results, or Discussion (or the Introduction, if the float is a pipeline schematic).
+- Markdown: `Figure n` or `Table n` in a body paragraph, not only in a caption block.
+- The caption of float A is not a citation of float A. A cross-reference inside another caption is not enough.
+
+## Order
+
+Number by first citation in the main body, not by the order floats were drawn or historically labelled.
+
+1. First-cite Figure $n$ before Figure $n+1$; first-cite Table $n$ before Table $n+1$.
+2. First-cite in the section that uses the float (the Results subsection that answers the question it supports, or Methods for a pipeline or selector figure).
+3. After a re-order of Results, renumber Markdown table headings to match reading order. LaTeX `\ref` follows appearance; hardcoded `Table 5` in prose must match.
+
+## Supplement
+
+Supplementary figures and tables still need one main-body pointer (`Supplementary Figure S1`, `Table S1`). Diagnostics that do not select a method belong in Methods or a Results aside, not only in the supplement file.
+
+## Failures this rule exists to catch
+
+BAD: `figure` environment in §3.3, with the first `\ref{fig:cycles}` only in a later caption.
+
+BAD: Fisher counts labelled **Table 5** after sensitivity **Table 6** and ablation **Table 7**.
+
+BAD: Supplementary Figure S2 generated and captioned, never named in Methods or Results.
+
+GOOD: `Figure~\ref{fig:cycles}` in the §3.3 paragraph on cycle geometry; the environment follows that paragraph.
+
+GOOD: The fifth table first-cited in the body is Table 5, even if an older draft called it Table 6.

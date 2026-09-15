@@ -18,22 +18,28 @@ PIPELINE_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PIPELINE_DIR / "lib"))
 from common import FIGURES_DIR, OUTPUT_DIR, ensure_dirs, load_config, repo_root  # noqa: E402
 from cutoff_protocol import silhouette_local_maxima  # noqa: E402
+from figure_style import (  # noqa: E402
+    STYLE,
+    TEXTWIDTH_IN,
+    add_panel_letter,
+    apply_rcparams,
+    export_figure,
+)
 
 REPO = repo_root()
 sys.path.insert(0, str(REPO / "03_football_analysis" / "AvailableData"))
 sys.path.insert(0, str(REPO / "02_tda_core"))
 
-TEXTWIDTH_IN = 16.0 / 2.54
-FONT_PT = 10
+FONT_PT = STYLE.fs_tick
 
-TEXT = "#222222"
-H0_LINE = "#222222"
+TEXT = STYLE.text
+H0_LINE = STYLE.text
 RIBBON = "#B0B0B0"
-CH_COL = "#0072B2"
-SIL_COL = "#D55E00"
-IC_COL = "#009E73"
-ADOPTED_COL = "#111111"
-PEAK_COL = "#D55E00"
+CH_COL = STYLE.individual
+SIL_COL = STYLE.tactical
+IC_COL = STYLE.team
+ADOPTED_COL = STYLE.mark
+PEAK_COL = STYLE.tactical
 
 
 def _minmax(x: np.ndarray) -> np.ndarray:
@@ -68,15 +74,7 @@ def render_diagnostics_si() -> Path:
     d_ind, d_tac, d_team = _adopted()
     adopted = (d_ind, d_tac, d_team)
 
-    plt.rcParams.update({
-        "font.size": FONT_PT,
-        "axes.labelsize": FONT_PT,
-        "xtick.labelsize": FONT_PT - 1,
-        "ytick.labelsize": FONT_PT - 1,
-        "legend.fontsize": FONT_PT - 1,
-        "axes.linewidth": 0.8,
-        "pdf.fonttype": 42,
-    })
+    apply_rcparams()
 
     fig, ax = plt.subplots(figsize=(TEXTWIDTH_IN * 0.62, 6.4 / 2.54))
     fig.subplots_adjust(bottom=0.16, left=0.13, right=0.97, top=0.94)
@@ -109,16 +107,15 @@ def render_diagnostics_si() -> Path:
     ax.set_ylim(-0.05, 1.08)
     ax.set_xlabel(r"Cutoff $\delta$ (m)")
     ax.set_ylabel("Metric (min-max scaled)")
-    ax.legend(loc="upper center", frameon=False, borderaxespad=0.15)
+    ax.legend(loc="upper center", frameon=False, borderaxespad=0.15,
+              fontsize=STYLE.fs_tick)
     ax.tick_params(color="#666666", labelcolor=TEXT)
     for spine in ax.spines.values():
         spine.set_color("#666666")
 
     out_pdf = FIGURES_DIR / "figS2_cutoff_diagnostics.pdf"
     out_png = FIGURES_DIR / "figS2_cutoff_diagnostics.png"
-    fig.savefig(out_pdf, dpi=300)
-    fig.savefig(out_png, dpi=300)
-    plt.close(fig)
+    export_figure(fig, out_pdf, out_png)
     print(f"Wrote {out_pdf}")
     return out_pdf
 
@@ -204,13 +201,10 @@ def plot_cluster_snapshot(ax, positions, cutoff, panel, level):
                        edgecolors="#222222", linewidths=0.35, zorder=3)
     ax.text(
         52.0, 31.0, f"$H_0 = {len(unique)}$", color=PITCH_LINE,
-        ha="right", va="top", fontsize=FONT_PT - 1, fontweight="bold",
+        ha="right", va="top", fontsize=FONT_PT, fontweight="bold",
         zorder=6,
     )
-    ax.set_title(
-        f"({panel}) {level}  ($\\delta = {cutoff:g}$ m)",
-        loc="left", fontsize=FONT_PT - 1, fontweight="bold", pad=3,
-    )
+    add_panel_letter(ax, panel, loc="southeast")
 
 
 def _pooled_h0_quantiles(qs=(5, 25, 50, 75, 95)):
@@ -251,19 +245,11 @@ def render_figure() -> Path:
     frame_idx = cfg["figures"]["individual_frame_idx"]
     snap_pos = frames[::fstep][:n_sample][frame_idx]["positions"]
 
-    plt.rcParams.update({
-        "font.size": FONT_PT,
-        "axes.labelsize": FONT_PT,
-        "xtick.labelsize": FONT_PT - 1,
-        "ytick.labelsize": FONT_PT - 1,
-        "legend.fontsize": FONT_PT - 2,
-        "axes.linewidth": 0.8,
-        "pdf.fonttype": 42,
-    })
+    apply_rcparams()
 
     fig, axes = plt.subplots(2, 3, figsize=(TEXTWIDTH_IN, 13.6 / 2.54))
-    fig.subplots_adjust(wspace=0.40, hspace=0.30, bottom=0.09, left=0.08,
-                        right=0.99, top=0.90)
+    fig.subplots_adjust(wspace=0.40, hspace=0.22, bottom=0.09, left=0.08,
+                        right=0.99, top=0.94)
 
     # (a) the estimator: target cardinalities intersect one curve
     ax = axes[0, 0]
@@ -271,13 +257,7 @@ def render_figure() -> Path:
         ax.plot(grp["delta"], grp["mean_h0"], color=RIBBON, lw=0.6, alpha=0.9,
                 zorder=1)
     ax.plot(delta, h0, color=H0_LINE, lw=1.7, zorder=3)
-    for level, target in TARGETS:
-        x = adopted[level]
-        ax.axhline(target, color=ADOPTED_COL, ls=(0, (4, 3)), lw=0.8, zorder=2)
-        ax.plot([x, x], [0, target], color=ADOPTED_COL, ls="-", lw=1.0, zorder=2)
-        ax.plot([x], [target], "o", ms=4.2, mfc="white", mec=ADOPTED_COL,
-                mew=1.3, zorder=5)
-    label_xy = {"individual": (22.0, 19.0), "tactical": (5.6, 5.0),
+    label_xy = {"individual": (10.0, 19.0), "tactical": (5.6, 5.0),
                 "team": (25.0, 2.0)}
     for level, target in TARGETS:
         x = adopted[level]
@@ -294,10 +274,8 @@ def render_figure() -> Path:
     ax.set_xlim(0.0, 40.5)
     ax.set_ylim(0, 23)
     ax.set_xticks([0, 10, 20, 30, 40])
-    ax.set_xlabel(r"Cutoff $\delta$ (m)")
     ax.set_ylabel(r"Mean cluster count ($H_0$)")
-    ax.set_title("(a) Inversion", loc="left", fontsize=FONT_PT,
-                 fontweight="bold", pad=16)
+    add_panel_letter(ax, "a", loc="northeast")
 
     top = ax.secondary_xaxis("top")
     top.set_xticks([d_ind, d_tac, d_team])
@@ -306,7 +284,11 @@ def render_figure() -> Path:
                     length=3)
     top.spines["top"].set_color("#666666")
 
-    inset = ax.inset_axes([0.45, 0.32, 0.50, 0.38])
+    # Sit the zoom between the H0 = 2 and H0 = 19 guides, raised into
+    # the open band on the right of the curve (top just below H0 = 19).
+    y_19 = 19.0 / 23.0
+    inset_h = 0.30
+    inset = ax.inset_axes([0.50, y_19 - 0.04 - inset_h, 0.46, inset_h])
     inset.plot(delta, h0, color=H0_LINE, lw=1.3)
     inset.axhline(19.0, color=ADOPTED_COL, ls=(0, (4, 3)), lw=0.8)
     inset.axvline(d_ind, color=ADOPTED_COL, lw=1.0)
@@ -340,8 +322,7 @@ def render_figure() -> Path:
     ax.set_xticks([0, 10, 20, 30, 40])
     ax.set_xlabel(r"Cutoff $\delta$ (m)")
     ax.set_ylabel(r"$H_0$ per frame")
-    ax.set_title("(b) Acceptance", loc="left", fontsize=FONT_PT,
-                 fontweight="bold", pad=4)
+    add_panel_letter(ax, "b", loc="northeast")
 
     # (c) the feasibility constraint on the tactical rule
     ax = axes[0, 2]
@@ -363,10 +344,8 @@ def render_figure() -> Path:
     ax.set_xlim(0.0, 40.5)
     ax.set_ylim(-0.04, 1.06)
     ax.set_xticks([0, 10, 20, 30, 40])
-    ax.set_xlabel(r"Cutoff $\delta$ (m)")
     ax.set_ylabel(r"$P(k \geq 4)$")
-    ax.set_title("(c) Feasibility", loc="left", fontsize=FONT_PT,
-                 fontweight="bold", pad=4)
+    add_panel_letter(ax, "c", loc="northeast")
 
     for a in axes[0]:
         a.tick_params(color="#666666", labelcolor=TEXT)
@@ -380,9 +359,7 @@ def render_figure() -> Path:
     print(f"Figure 2 built on {n_frames:,} complete frames")
     out_pdf = FIGURES_DIR / "fig2_cutoff_sweep.pdf"
     out_png = FIGURES_DIR / "fig2_cutoff_sweep.png"
-    fig.savefig(out_pdf, dpi=300)
-    fig.savefig(out_png, dpi=300)
-    plt.close(fig)
+    export_figure(fig, out_pdf, out_png)
     print(f"Wrote {out_pdf}")
     return out_pdf
 

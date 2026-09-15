@@ -4,18 +4,21 @@
 \subsection{Connected components (\texorpdfstring{$H_0$}{})}
 \label{sec:scaleh0}
 
-Addressing question~\ref{q:levels}, we recover the three
-organisational levels directly from the data. Throughout, $H_0$ is the
+Addressing question~\ref{q:levels}, the homology sample reproduces
+the three organisational levels inverted from the data in
+Section~\ref{sec:cutoffselection}. Those levels are individual
+($\delta = 2.75$~m), tactical ($\delta = 11.75$~m), and team
+($\delta = 23.0$~m). Throughout, $H_0$ is the
 number of cluster centroids. Equivalently, it
 is $\beta_0$ of the Vietoris--Rips complex on those centroids at
 filtration zero. Primary-match figures come from the uniform 150-frame
 sample of match 1996435 (Section~\ref{sec:data}). Ten-match aggregates
 use the same sampling scheme (1{,}500 frames in total).
 
-At the individual level ($\delta = 2.75$~m),
+At the individual level,
 $H_0 = 19.32 \pm 2.34$ (mean $\pm$ s.d.; range 10--22). At the tactical
-level ($\delta = 11.75$~m), $H_0 = 5.04 \pm 1.69$ (range 2--10). At the
-team level ($\delta = 23.0$~m), the cloud usually collapses to one or
+level, $H_0 = 5.04 \pm 1.69$ (range 2--10). At the
+team level, the cloud usually collapses to one or
 two clusters: mean $1.96 \pm 0.36$. All 22 players lie in a single
 cluster in 8.7\% of frames, split across two in 86.7\%, and across
 three in 4.7\%.
@@ -40,8 +43,8 @@ topological components rather than the two teams.
 \subsection{\texorpdfstring{$H_1$}{} loop detection}
 \label{sec:h1detection}
 
-Addressing question~\ref{q:homology}, we test whether
-scale-attributable homology detects loop structure at those levels. On
+Addressing question~\ref{q:homology}, scale-attributable homology
+detects loop structure at two of the three recovered levels. On
 the primary match, the pipeline detects 403 $H_1$ loops across 150
 uniformly sampled frames (Table~\ref{tab:h1single}). Loops at the
 individual level are frequent. They appear in 144 of 150 frames
@@ -51,10 +54,6 @@ rarer: 23 frames (15.3\%), mean rate 0.17 per frame, with longer
 filtration lifetime ($\bar{p}=3.778 \pm 2.723$~m, maximum 10.771~m).
 Loops at the team level never occur ($H_1 = 0$ across all 1{,}500
 frames in the ten-match sample).
-Figure~\ref{fig:cycles} realises the bar of largest $p$ on sample
-frame~95 as a loop in space.
-Figure~\ref{fig:h1bars} shows that bar on the persistence diagram,
-together with every finite $H_1$ bar on the primary match.
 
 Table~\ref{tab:h1single} collects these statistics in compact form.
 $F$ denotes presence: the fraction of frames with at least one loop;
@@ -194,8 +193,11 @@ At \texorpdfstring{$\delta=11.75$}{}~m the vertices are four groups,
 one of them a $14$-player single-linkage cluster, and the cycle edges
 are $21.1$--$28.8$~m (\texorpdfstring{$p=9.942$}{}~m).
 The two cycles are not the same bar at two resolutions.
-The persistence maxima in Table~1 are not used for the figure: the
-individual-level maximum (frame~141) is a near-collinear sliver.
+Figure~\ref{fig:h1bars} shows those bars on the persistence diagram,
+together with every finite $H_1$ bar on the primary match.
+The bars of largest $p$ in Table~\ref{tab:h1single} are not used for
+the figure: the individual-level bar of largest $p$ (frame~141) is a
+near-collinear sliver.
 
 \begin{figure}[tp]
 \centering
@@ -212,7 +214,8 @@ largest \texorpdfstring{$p$}{} on those vertices
 distances (\texorpdfstring{$17.8$--$19.2$}{}~m in (b);
 \texorpdfstring{$21.1$--$28.8$}{}~m in (d)), not the cutoff.
 Panel (d) draws centroids, not the absorbed players.
-Compact four-cycles at both levels, not the persistence maximum.
+Compact four-cycles at both levels, not the bar of largest
+\texorpdfstring{$p$}{} on the match.
 A 10~m scale bar is shown on each panel. Uniform sample,
 \texorpdfstring{$n=150$}{} frames, every 290th complete frame (the
 same rule as the ten-match analysis).}
@@ -237,17 +240,17 @@ these bar lengths (death minus birth, in metres of the Vietoris--Rips
 parameter \texorpdfstring{$\varepsilon$}{}, not seconds).
 The two levels are not superimposed: that would recreate the mixing of
 Section~\ref{sec:scaleconflation}.
-The individual-level maximum in Table~\ref{tab:h1single} (frame~141) is
-a near-collinear sliver and is not the cycle shown in
-Figure~\ref{fig:cycles}.}
+The individual-level bar of largest \texorpdfstring{$p$}{} in
+Table~\ref{tab:h1single} (frame~141) is a near-collinear sliver and is
+not the cycle shown in Figure~\ref{fig:cycles}.}
 \label{fig:h1bars}
 \end{figure}
 
 \subsection{Sensitivity analysis}
 \label{sec:sensitivity}
 
-Addressing the robustness part of question~\ref{q:homology}, we vary
-the cutoff and the truncation. Tactical $H_1$ counts fall monotonically
+Detection is not confined to the adopted cutoff or to a single
+truncation percentile. Tactical $H_1$ counts fall monotonically
 as the cutoff widens. On the
 primary match's 150 frames, sweeping $\delta\in[6,16]$~m gives 275
 loops (87.3\% of frames) at $\delta=6$~m and none at $\delta=16$~m.
@@ -300,9 +303,8 @@ $P_{95}$ & 25 & 15.3\% & 65.3 \\
 \subsection{Complementarity of the two \texorpdfstring{$H_1$}{} levels}
 \label{sec:complementarity}
 
-Addressing question~\ref{q:distinct}, we ask whether the two levels
-report the same structure. The two $H_1$ levels carry related but
-largely distinct information.
+The two $H_1$ levels carry
+related but largely distinct information.
 Over 1{,}500 uniformly sampled frames, total individual and tactical
 $H_1$ persistence correlate weakly (Spearman $\rho=0.234$, $p<0.001$;
 95\% bootstrap CI $[0.181, 0.276]$). The same holds for loop counts
@@ -341,10 +343,11 @@ by a small perturbation of one shared pattern.
 \subsection{Event correlation}
 \label{sec:eventcorr}
 
-Addressing question~\ref{q:validity}, and as a sanity check against
-measurement noise, we asked whether total persistence moves with real
-match events (SkillCorner annotations; 103{,}856 event--topology pairs
-across ten matches). Write $\Delta$ for the change in mean total
+Total persistence moves with
+on-ball match events. This is a construct-validity check against
+measurement noise, not a football analysis. The comparison uses
+SkillCorner annotations (103{,}856 event--topology pairs across ten
+matches). Write $\Delta$ for the change in mean total
 persistence from the five 1~Hz frames before the event to the five
 after it (Section~\ref{sec:stats}). On-ball engagements precede a drop
 at the individual level (mean $\Delta=-0.253$~m, $n=8{,}927$,

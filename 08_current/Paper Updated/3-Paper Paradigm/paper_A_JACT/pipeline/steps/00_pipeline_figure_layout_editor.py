@@ -293,6 +293,11 @@ def main() -> None:
         "font.size": FONT_PT,
         "mathtext.fontset": "dejavuserif",
     })
+    print(
+        "Note: published Figure 1 is the pitch schematic in "
+        "00_pipeline_figure.py. This editor still previews the retired "
+        "abstract slot layout; Export writes the pitch figure."
+    )
     Fig1LayoutEditor().run()
 
 

@@ -2,8 +2,10 @@
 """Step 11: scale-separated H1 birth–death display (Figure 4).
 
 Primary-match uniform 150-frame sample. Individual and tactical levels
-are never superimposed. Panel (c) is filtration lifetime p = death −
-birth, in metres, not clock time.
+are never superimposed. Panels (a) and (b) are birth–death diagrams
+(same diagonal convention as Figure 1e). Panel (c) is filtration
+lifetime p = death − birth, in metres of the Vietoris–Rips parameter,
+not clock time.
 """
 from __future__ import annotations
 
@@ -19,6 +21,12 @@ from matplotlib.gridspec import GridSpec
 PIPELINE_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PIPELINE_DIR / "lib"))
 from common import FIGURES_DIR, OUTPUT_DIR, ensure_dirs, load_config, repo_root  # noqa: E402
+from figure_style import (  # noqa: E402
+    STYLE,
+    add_panel_letter,
+    apply_rcparams,
+    export_figure,
+)
 
 REPO = repo_root()
 sys.path.insert(0, str(REPO / "03_football_analysis" / "AvailableData"))
@@ -31,11 +39,11 @@ from primary_match_skillcorner_analysis import (  # noqa: E402
     load_tracking_data,
 )
 
-TEXT = "#222222"
-IND_COL = "#0072B2"
-TAC_COL = "#D55E00"
-DIAG_COL = "#9E9E9E"
-MARK = "#111111"
+TEXT = STYLE.text
+IND_COL = STYLE.individual
+TAC_COL = STYLE.tactical
+DIAG_COL = STYLE.muted
+MARK = STYLE.mark
 
 
 def finite_pairs(h1: np.ndarray) -> np.ndarray:
@@ -75,12 +83,20 @@ def collect_bars(sample: list, cutoff: float) -> tuple[list[dict], list[np.ndarr
     return rows, per_frame
 
 
-def plot_diagram(ax, triples: np.ndarray, marked_p: float, colour: str, title: str) -> None:
-    ax.set_title(title, fontsize=10, fontweight="bold", color=TEXT, pad=6)
+def plot_diagram(
+    ax, triples: np.ndarray, marked_p: float, colour: str, letter: str,
+    loc: str = "northwest",
+    xy: tuple[float, float] | None = None,
+) -> None:
+    """Birth–death diagram. The diagonal is death = birth."""
+    ax.set_xlabel("Birth (m)")
+    ax.set_ylabel("Death (m)")
+    ax.tick_params(colors=TEXT)
+    for spine in ax.spines.values():
+        spine.set_color(TEXT)
     if len(triples) == 0:
         ax.text(0.5, 0.5, "no finite $H_1$", ha="center", va="center", transform=ax.transAxes)
-        ax.set_xlabel("Birth (m)")
-        ax.set_ylabel("Death (m)")
+        add_panel_letter(ax, letter, loc=loc, xy=xy)
         return
     births = triples[:, 0]
     deaths = triples[:, 1]
@@ -91,43 +107,32 @@ def plot_diagram(ax, triples: np.ndarray, marked_p: float, colour: str, title: s
     hi += pad
     ax.plot([lo, hi], [lo, hi], color=DIAG_COL, lw=0.9, zorder=1)
     ax.scatter(births, deaths, s=36, c=colour, edgecolors="white", linewidths=0.4, zorder=3)
-    if len(triples):
-        idx = int(np.argmax(triples[:, 2]))
-        ax.scatter(
-            [triples[idx, 0]],
-            [triples[idx, 1]],
-            s=90,
-            facecolors="none",
-            edgecolors=MARK,
-            linewidths=1.6,
-            zorder=4,
-        )
-        ax.annotate(
-            rf"$p={marked_p:.3f}$ m",
-            (triples[idx, 0], triples[idx, 1]),
-            textcoords="offset points",
-            xytext=(8, 8),
-            fontsize=8,
-            color=TEXT,
-        )
+    idx = int(np.argmax(triples[:, 2]))
+    ax.scatter(
+        [triples[idx, 0]],
+        [triples[idx, 1]],
+        s=90,
+        facecolors="none",
+        edgecolors=MARK,
+        linewidths=1.6,
+        zorder=4,
+    )
+    offset = (8, -14) if loc == "northeast" else (8, 8)
+    ax.annotate(
+        rf"$p={marked_p:.3f}$ m",
+        (triples[idx, 0], triples[idx, 1]),
+        textcoords="offset points",
+        xytext=offset,
+        fontsize=STYLE.fs_tick,
+        color=TEXT,
+    )
     ax.set_xlim(lo, hi)
     ax.set_ylim(lo, hi)
     ax.set_aspect("equal", adjustable="box")
-    ax.set_xlabel("Birth (m)")
-    ax.set_ylabel("Death (m)")
-    ax.tick_params(colors=TEXT)
-    for spine in ax.spines.values():
-        spine.set_color(TEXT)
+    add_panel_letter(ax, letter, loc=loc, xy=xy)
 
 
 def plot_lifetime_tracks(ax, ind_p: np.ndarray, tac_p: np.ndarray, mean_ind: float, mean_tac: float) -> None:
-    ax.set_title(
-        r"(c) All finite $H_1$ bars, primary match (filtration lifetime $p$)",
-        fontsize=10,
-        fontweight="bold",
-        color=TEXT,
-        pad=6,
-    )
     n_ind = len(ind_p)
     n_tac = len(tac_p)
     # Two tracks sharing the lifetime axis. Individual above, tactical below.
@@ -146,9 +151,8 @@ def plot_lifetime_tracks(ax, ind_p: np.ndarray, tac_p: np.ndarray, mean_ind: flo
         frameon=False,
         loc="center right",
         bbox_to_anchor=(0.99, 0.62),
-        fontsize=8,
     )
-    ymax = n_ind + 12
+    ymax = n_ind + 80
     ymin = float(y_tac.min() - 10)
     ax.set_ylim(ymin, ymax)
     ax.set_yticks(
@@ -163,13 +167,14 @@ def plot_lifetime_tracks(ax, ind_p: np.ndarray, tac_p: np.ndarray, mean_ind: flo
     ax.tick_params(colors=TEXT)
     for spine in ax.spines.values():
         spine.set_color(TEXT)
+    add_panel_letter(ax, "c")
 
 
 def main() -> None:
     ensure_dirs()
     cfg = load_config()
     ensure_match_assets()
-    frames, home, away = load_tracking_data(require_complete=True)
+    frames, _, _ = load_tracking_data(require_complete=True)
     n_sample = cfg["sampling"]["uniform_150"]["n_frames"]
     step = max(1, len(frames) // n_sample)
     sample = frames[::step][:n_sample]
@@ -201,48 +206,21 @@ def main() -> None:
     mark_ind = float(frame_ind[:, 2].max()) if len(frame_ind) else float("nan")
     mark_tac = float(frame_tac[:, 2].max()) if len(frame_tac) else float("nan")
 
-    plt.rcParams.update(
-        {
-            "font.size": 10,
-            "axes.edgecolor": TEXT,
-            "axes.labelcolor": TEXT,
-            "xtick.color": TEXT,
-            "ytick.color": TEXT,
-            "figure.facecolor": "white",
-            "axes.facecolor": "white",
-        }
-    )
+    apply_rcparams()
     fig = plt.figure(figsize=(10.2, 8.4))
-    gs = GridSpec(2, 2, figure=fig, height_ratios=[1.05, 1.25], hspace=0.38, wspace=0.28)
+    gs = GridSpec(2, 2, figure=fig, height_ratios=[1.05, 1.25], hspace=0.32, wspace=0.28)
     ax_a = fig.add_subplot(gs[0, 0])
     ax_b = fig.add_subplot(gs[0, 1])
     ax_c = fig.add_subplot(gs[1, :])
+    plot_diagram(ax_a, frame_ind, mark_ind, IND_COL, "a")
     plot_diagram(
-        ax_a,
-        frame_ind,
-        mark_ind,
-        IND_COL,
-        rf"(a) Individual diagram  ($\delta={d_ind:g}$ m, frame {frame_idx})",
-    )
-    plot_diagram(
-        ax_b,
-        frame_tac,
-        mark_tac,
-        TAC_COL,
-        rf"(b) Tactical diagram  ($\delta={d_tac:g}$ m, frame {frame_idx})",
+        ax_b, frame_tac, mark_tac, TAC_COL, "b",
+        loc="northeast", xy=(0.93, 0.86),
     )
     plot_lifetime_tracks(ax_c, ind_p, tac_p, mean_ind, mean_tac)
-    fig.suptitle(
-        f"{home} vs {away}  ·  finite $H_1$ bars, not mixed across levels",
-        fontsize=12,
-        color=TEXT,
-        y=0.995,
-    )
     out_pdf = FIGURES_DIR / "fig4_h1_diagrams.pdf"
     out_png = FIGURES_DIR / "fig4_h1_diagrams.png"
-    fig.savefig(out_pdf, dpi=180, bbox_inches="tight")
-    fig.savefig(out_png, dpi=180, bbox_inches="tight")
-    plt.close(fig)
+    export_figure(fig, out_pdf, out_png, bbox_inches="tight")
 
     meta = {
         "individual_frame_idx": frame_idx,

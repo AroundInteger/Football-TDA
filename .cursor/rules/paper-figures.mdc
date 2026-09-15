@@ -1,0 +1,28 @@
+---
+description: House style for Paper A (and later paper) figures
+globs: "08_current/**/pipeline/steps/*.py,08_current/**/pipeline/lib/figure_style.py,08_current/**/figures/**"
+alwaysApply: false
+---
+
+# Paper figures
+
+Use `pipeline/lib/figure_style.py`. Captions carry the narrative.
+
+## Starting point
+
+- No axes titles. No figure `suptitle`.
+- Panel letters inside the axes, form `(a)`, never outside and never as `ax.set_title`.
+- No white patch behind the letter unless the letter sits on a busy mark (`bbox=True`).
+- The northwest letter occupies `LETTER_PAD_NW` in `figure_style.py`. Do not put `$P(\tilde{t})$`, $H_0$ counts, cycle vertices, or $p=$ callouts in that pad. If the corner is already used, pass `loc` or `xy`.
+- After a rebuild, check every panel for overlapping annotations before stopping.
+- Axis labels 12 pt; tick labels 10 pt; annotations and legends 12 pt.
+- Export PDF and PNG at 300 dpi with Type 42 fonts.
+- Dense insets may drop a point or two. Do not invent a second house style.
+
+## Colour
+
+Individual `#0072B2`, tactical `#D55E00`, team `#009E73`, text `#222222`. Do not mix the two $H_1$ levels on one diagram.
+
+## Do not
+
+Do not put step names or match titles on the axes. If a schematic needs a short in-panel note beside the letter, pass it to `add_panel_letter(..., note=...)`.

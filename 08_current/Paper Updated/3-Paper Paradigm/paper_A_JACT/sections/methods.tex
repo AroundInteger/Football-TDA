@@ -6,35 +6,38 @@
 
 The primary single-match analysis uses SkillCorner open broadcast
 tracking data \citep{SkillCorner2024}, match ID 1996435 (Sydney FC
-versus Adelaide United, A-League 2024/25), at 10 frames per second. We
-retain only frames with complete 22-player coverage, yielding
-43{,}531 frames (approximately 72 minutes at this sampling rate).
-Positions are $(x, y)$ coordinates in metres on a standard football
-pitch model. The multi-match sample comprises that match and nine
-further A-League matches from the same repository, each with
-approximately 39{,}000--49{,}000 complete frames (436{,}648 frames
-in total). SkillCorner match IDs and fixtures are listed in
-Supplementary Table~\ref{tab:matches}.
+versus Adelaide United, A-League 2024/25). Positions are recorded at
+10 frames per second as $(x, y)$ coordinates in metres on a standard
+football pitch model. Only frames with complete 22-player coverage are
+retained, which yields 43{,}531 frames (approximately 72 minutes at
+this sampling rate). The multi-match sample comprises that match and
+nine further A-League matches from the same repository. Each match
+contributes approximately 39{,}000--49{,}000 complete frames, and the
+ten matches together give 436{,}648 frames. SkillCorner match IDs and
+fixtures are listed in Supplementary Table~\ref{tab:matches}.
 
-Consecutive complete frames share nearly the same configuration, so the
-full stream is not treated as a sequence of independent snapshots. For
-prevalence and organisational-level summaries we subsample. Write $t$
-for the time of a complete frame in the native stream. The operational
-rule is the same on every match: list complete 22-player frames, set
-the stride to $\lfloor N/150\rfloor$, and retain 150 frames. Write
-$\tilde{t}$ for a time retained by that rule, and $\tilde{T}$ for the
-set of such times on one match, so $|\tilde{T}|=150$. On the primary
-match $N = 43{,}531$, so the stride is 290 frames ($\approx 29$~s).
-Across ten matches the sampled times give 1{,}500 frames. The design
-limits temporal pseudo-replication. It does not treat the
-competitive-dependence inference problem named in
-Section~\ref{sec:background}, and it does not resolve formation or
+Consecutive complete frames share nearly the same configuration, so
+the full stream is not treated as a sequence of independent snapshots.
+Prevalence and organisational-level summaries are estimated on a
+uniform subsample instead. Write $t$ for the time of a complete frame
+in the native stream. The same operational rule is used on every
+match: list the complete 22-player frames, set the stride to
+$\lfloor N/150\rfloor$, and retain 150 frames. Write $\tilde{t}$ for a
+time retained by that rule, and $\tilde{T}$ for the set of such times
+on one match, so $|\tilde{T}|=150$. On the primary match
+$N = 43{,}531$, so the stride is 290 frames ($\approx 29$~s). Across
+ten matches the sampled times give 1{,}500 frames.
+
+This subsample limits temporal pseudo-replication. It does not treat
+the competitive-dependence inference problem named in
+Section~\ref{sec:background}, and it cannot resolve formation or
 dispersion of loops between samples. Event association is a
 construct-validity check, not a dynamical model, and it does not use
 $\tilde{T}$. Topology for that check is computed on every tenth
-complete frame (1~Hz). Supplementary Figure~\ref{fig:acf} is an
-autocorrelation diagnostic on the primary match at 1~Hz; it does not
-choose $\tilde{T}$.
+complete frame (1~Hz). Supplementary Figure~\ref{fig:acf} records the
+autocorrelation of those 1~Hz summaries on the primary match, as a
+diagnostic. The figure does not determine the subsample
+$\tilde{T}$.
 
 \subsection{Hierarchical clustering}
 \label{sec:clustering}
@@ -43,72 +46,73 @@ On this corpus the named organisational levels of
 Section~\ref{sec:scaleconflation} (individual, small group, envelope)
 are instantiated as individual, tactical, and team. The class names
 those levels by cardinality. The cutoffs $\delta$ that select them are
-read from the sweep in Section~\ref{sec:cutoffselection}. They are not
-assumed in metres.
+therefore read from the sweep in
+Section~\ref{sec:cutoffselection}, rather than assumed in metres.
 
 Figure~\ref{fig:pipeline} summarises the pipeline of
-Sections~\ref{sec:clustering}--\ref{sec:cycles}, applied at the
-sampled times $\tilde{t}\in\tilde{T}$ of Section~\ref{sec:data}. The
-input is the point cloud
+Sections~\ref{sec:clustering}--\ref{sec:cycles}. The pipeline is
+applied at the sampled times $\tilde{t}\in\tilde{T}$ of
+Section~\ref{sec:data}. The input is the point cloud
 $P(\tilde{t}) = \{p_1(\tilde{t}), \dots, p_{22}(\tilde{t})\}
 \subset \mathbb{R}^2$.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig1_pipeline_schematic}
-\caption{Analysis pipeline (schematic geometry; each panel shows the
-step and its output).
+\caption{Analysis pipeline on a bounded domain (schematic geometry on
+a football pitch; each panel shows the step and its output).
 \textbf{(a)}~Colour-coded local groups in
 \texorpdfstring{$P(\tilde{t})$}{}
-(left, 2\texorpdfstring{$\times$}{}2 layout) with dashed
-\texorpdfstring{$\delta$}{}-disks and a representative gap
-\texorpdfstring{$<\delta$}{}; centroids in
-\texorpdfstring{$\tilde{P}(\tilde{t})$}{} (right column) linked by
-colour-matched dashed lines (Section~2.2).
-\textbf{(b)}~Vietoris--Rips (VR) on
-\texorpdfstring{$\tilde{P}(\tilde{t})$}{}
-truncated at \texorpdfstring{$\varepsilon_{\max}$}{}
+with dashed \texorpdfstring{$\delta$}{}-disks and a representative
+gap \texorpdfstring{$<\delta$}{} (Section~2.2).
+\textbf{(b)}--\textbf{(d)}~Vietoris--Rips (VR) on the cluster centroids
+\texorpdfstring{$\tilde{P}(\tilde{t})$}{} at three increasing
+\texorpdfstring{$\varepsilon$}{}, truncated at
+\texorpdfstring{$\varepsilon_{\max}$}{}
 (equation~\eqref{eq:adaptive}; Section~2.4).
-\textbf{(c)}~Finite \texorpdfstring{$H_1$}{} birth--death pairs.
-\textbf{(d)}~Graph-cycle proxy for an \texorpdfstring{$H_1$}{} pair
+\textbf{(e)}~Finite \texorpdfstring{$H_1$}{} birth--death pairs.
+\textbf{(f)}~The same pairs as a barcode.
+\textbf{(g)}~Graph-cycle proxy for an \texorpdfstring{$H_1$}{} pair
 (Section~2.5). Figure~\ref{fig:cycles} shows the cycle step on real
 tracking data.}
 \label{fig:pipeline}
 \end{figure}
 
-For a cutoff distance $\delta > 0$, single-linkage hierarchical
-clustering partitions $P(\tilde{t})$ into clusters $C_1, \dots, C_k$
-such that every pair of points within a cluster is connected by a chain
-of pairwise distances not exceeding $\delta$. The reduced point cloud
-is the set of cluster centroids
+Single-linkage hierarchical clustering is applied at a cutoff
+distance $\delta > 0$. It partitions $P(\tilde{t})$ into clusters
+$C_1, \dots, C_k$ in which every pair of points is connected by a
+chain of pairwise distances not exceeding $\delta$. Each cluster is
+replaced by its centroid, giving the reduced point cloud
 \[
 \tilde{P}(\tilde{t})=\left\{\bar{c}_j : \bar{c}_j=\frac{1}{|C_j|}\sum_{p\in C_j} p,\ j=1,\dots,k\right\},
 \]
-and persistent homology is computed on $\tilde{P}(\tilde{t})$ rather
-than on $P(\tilde{t})$.
+and persistent homology is then computed on $\tilde{P}(\tilde{t})$
+rather than on $P(\tilde{t})$.
 
-Complete-linkage and Ward's method are not used; their effect on $H_1$
-counts is examined in Section~\ref{sec:limitations}.
-
-Team identity is not used as an input.
+Complete-linkage and Ward's method are not used for the headline
+analysis. Their effect on $H_1$ counts is examined in
+Section~\ref{sec:limitations}. Team identity is withheld as an input,
+so the partitions are spatial rather than labelled by side.
 
 \subsection{Cutoff selection}
 \label{sec:cutoffselection}
 
 The class names the three organisational levels by cardinality. The
-sweep reads the metres from the pooled
-\texorpdfstring{$H_0(\delta)$}{} curve on this corpus. Quality metrics
-are shown as a check. They are not the selector.
+selector therefore inverts a named cluster count rather than assuming
+a length in metres. The inversion is read from the pooled mean
+cluster-count curve on this corpus.
 
-A complete frame has $n=22$ agents. The grid is
-$\delta\in[0.25, 40.0]$~m at $0.25$~m steps (160 points), and every
-complete 22-player frame of the ten matches in
-Supplementary Table~\ref{tab:matches} is used (436{,}648 frames), with
-no random window draw and no mixing of epoch lengths.
+A complete frame has $n=22$ agents. The sweep uses every complete
+22-player frame of the ten matches in Supplementary
+Table~\ref{tab:matches} (436{,}648 frames). The grid is
+$\delta\in[0.25, 40.0]$~m at $0.25$~m steps (160 points). No random
+window is drawn, and epoch lengths are not mixed. Clustering is
+single-linkage, and team labels are unused.
 
 Let $\overline{H_0}(\delta)$ be the mean cluster count at cutoff
 $\delta$, pooled over those frames. Let $P(k\ge 4;\delta)$ be the
-fraction of frames with at least four clusters. The selector is then:
+fraction of frames with at least four clusters. The three inversion
+rules are then as follows:
 
 \begin{itemize}
 \item individual: largest $\delta$ with $\overline{H_0}(\delta)\ge n-3=19$;
@@ -117,10 +121,11 @@ $|\overline{H_0}(\delta)-5|$, among candidates with
 $P(k\ge 4;\delta)\ge 0.5$;
 \item team: smallest $\delta$ with $\overline{H_0}(\delta)\le 2$.
 \end{itemize}
-Ties take the smaller $\delta$. Those three targets are roster
-statements. ``Mostly resolved agents'' is $n-3$. ``A handful of
-coordinating groups, loop-feasible'' is 5, with $k\ge 4$. ``At most two
-envelopes'' is 2.
+Ties take the smaller $\delta$. The three targets are roster
+statements. The individual target $n-3=19$ is a mostly resolved set of
+agents. The tactical target $5$, with $k\ge 4$ still common, is a
+handful of coordinating groups that remain loop-feasible. The team
+target $2$ is at most two spatial envelopes.
 
 On this corpus the inversion returns $2.75$~m, $11.75$~m, and
 $23.0$~m. Pooled mean $H_0$ at those cutoffs is $19.31$, $5.06$, and
@@ -128,23 +133,24 @@ $1.98$. Inverting each match separately gives
 $2.80\pm 0.20$~m, $11.80\pm 0.35$~m, and $22.98\pm 0.72$~m
 (mean $\pm$ s.d.\ across matches). Acceptance requires every match's
 mean $H_0$ at the pooled cutoff to lie in $[15, 22]$, $[4, 10]$, and
-$[1, 2.5]$ respectively. All ten matches pass. The curve is
-asymmetric: micro-structure merges quickly (about $1.6$ clusters per
-metre from $\overline{H_0}=19$ to $5$), whereas the surviving
-macro-structure resists merging (about $0.27$ clusters per metre from
-$5$ to $2$), because the remaining gaps are the large between-group
-distances. This flattening is why the team cutoff sits far out at
-$23.0$~m yet still returns two envelopes, not two teams.
+$[1, 2.5]$ respectively. All ten matches lie inside those bands.
+
+The curve is asymmetric. Micro-structure merges quickly, at about
+$1.6$ clusters per metre from $\overline{H_0}=19$ to $5$.
+Macro-structure then resists merging, at about $0.27$ clusters per
+metre from $5$ to $2$. The remaining gaps are the large between-group
+distances. That flattening is why the team cutoff sits far out at
+$23.0$~m and still returns two envelopes, not two teams.
 
 Clustering-quality diagnostics (Calinski--Harabasz, silhouette, and
 Shannon entropy of cluster sizes) are recorded on a deterministic
-1~Hz subset (every 10th complete frame); silhouette is omitted when
-$k=1$ and is not coded as 0. They are alternatives, not adopted
-cutoffs, and are reported in Supplementary
+1~Hz subset (every 10th complete frame). Silhouette is omitted when
+$k=1$; it is not coded as 0. Those curves are alternatives, not
+adopted cutoffs, and are reported in Supplementary
 Figure~\ref{fig:diagnostics}. Figure~\ref{fig:cutoff} shows the
 estimator and its spatial realisation.
-Section~\ref{sec:sensitivity} reports the sensitivity of $H_1$
-detection to the tactical choice.
+Section~\ref{sec:sensitivity} reports how tactical $H_1$ detection
+responds to the cutoff choice.
 
 \begin{figure}[t]
 \centering
@@ -194,17 +200,17 @@ larger than $\delta$. A maximum filtration distance
 $\varepsilon_{\max}$ fitted to one cutoff can then return no $H_1$ at
 another.
 
-We do not modify the Vietoris--Rips complex. We truncate its parameter
-at
+The Vietoris--Rips complex itself is not modified. Its parameter is
+truncated at
 \begin{equation}
 \varepsilon_{\max} = \max\Big(P_{75}\{d(\bar c_i,\bar c_j) : i<j\},\; \max(5.0,\,2\delta)\Big).
 \label{eq:adaptive}
 \end{equation}
 Here $P_{75}$ is the 75th percentile of pairwise inter-centroid
 distances on $\tilde{P}(\tilde{t})$. The first term tracks the geometry of the
-reduced cloud at the current cutoff. The second term is a floor. It
-prevents a degenerate filtration at small $\delta$. It also ensures the
-filtration reaches at least the inter-cluster distance regime.
+reduced cloud at the current cutoff. The second term is a floor that
+prevents a degenerate filtration at small $\delta$. The same floor
+keeps the filtration in the inter-cluster distance regime.
 
 $P_{75}$ is a conventional upper-quartile summary.
 Section~\ref{sec:sensitivity} reports an ablation across $P_{50}$
@@ -214,12 +220,12 @@ convention, not an optimisation.
 
 Persistence diagrams are computed with Ripser via Ripser.py
 \citep{bauer2021ripser}, with coefficients in $\mathbb{F}_2$. We report
-finite $H_1$ bars. Three summaries of those bars appear in the results
-and must not be read as clock time. \emph{Presence} is the fraction of
+finite $H_1$ bars. The Results use three summaries of those bars. None
+of them is a duration in seconds. \emph{Presence} is the fraction of
 frames with at least one finite $H_1$ bar. \emph{Filtration lifetime}
 $p$ is death minus birth, in metres on the Vietoris--Rips parameter:
 the length of a bar, not a duration in seconds. \emph{Total
-persistence} is the sum of $p$ over the finite bars in a frame; it is
+persistence} is the sum of $p$ over the finite bars in a frame. It is
 the Spearman input in Section~\ref{sec:complementarity}. The 150-frame
 subsample of Section~\ref{sec:data} does not measure how long a loop
 lasts on the clock. The $H_0$ counts reported in
@@ -235,64 +241,66 @@ Section~\ref{sec:complementarity}.
 \label{sec:cycles}
 
 Each $H_1$ feature corresponds to a 1-cycle in the Vietoris--Rips
-complex. To recover a geometric realisation, we build the adjacency
-graph of edges whose distances fall within the feature's persistence
-interval $[\text{birth},\text{death}]$. We then enumerate closed cycles
-of length at least 3 by breadth-first search from each vertex. If that
-graph yields no cycle, we fall back to edges with length in
-$[\tfrac{1}{2}\text{birth},\,\text{death}]$. Breadth-first search is
-used in preference to depth-first search because it prioritises shorter
-cycles. Those cycles correspond to minimal enclosing arrangements.
-Among the enumerated cycles, the one whose edge distances lie closest
-to the midpoint of the persistence interval is selected as the
-geometric representative. This is a geometric proxy for the persistence
-pair, not a homology generator extracted from the matrix reduction.
+complex. A geometric realisation is recovered from the adjacency graph
+of edges whose distances fall within the feature's persistence
+interval $[\text{birth},\text{death}]$. Closed cycles of length at
+least 3 are then enumerated by breadth-first search from each vertex.
+If that graph yields no cycle, the search falls back to edges with
+length in $[\tfrac{1}{2}\text{birth},\,\text{death}]$. Breadth-first
+search is used in preference to depth-first search because it
+prioritises shorter cycles. Those shorter cycles correspond to minimal
+enclosing arrangements. Among the enumerated cycles, the
+representative is the one whose edge distances lie closest to the
+midpoint of the persistence interval. This representative is a
+geometric proxy for the persistence pair, not a homology generator
+extracted from the matrix reduction.
 
 \subsection{Statistical tests}
 \label{sec:stats}
 
-To test whether $H_1$ detection reflects the arrangement of cluster
-centroids rather than merely their number, each frame is compared
-against a matched null. For a frame whose clustering yields $k$
-centroids, the null draws $k$ points uniformly from the convex hull of
-those same centroids. The null therefore matches the frame on both
-cardinality and spatial envelope. It randomises only the arrangement.
-The truncation of equation~\eqref{eq:adaptive} is recomputed on each
-null cloud. Nothing else differs between the two. We use 200 null
-replicates per frame. We report the excess of observed over null $H_1$
-presence, with 95\% confidence intervals from bootstrap resampling over
-matches.
+$H_1$ detection could reflect the number of centroids rather than
+their arrangement. Each frame is therefore compared against a matched
+null. For a frame whose clustering yields $k$ centroids, the null
+draws $k$ points uniformly from the convex hull of those same
+centroids. Cardinality and spatial envelope are thus held fixed. Only
+the arrangement is randomised. The truncation of
+equation~\eqref{eq:adaptive} is recomputed on each null cloud.
+Nothing else differs between the observed cloud and the null. We use
+200 null replicates per frame. The reported statistic is the excess of
+observed over null $H_1$ presence, with 95\% confidence intervals from
+bootstrap resampling over matches.
 
 Complementarity of the two $H_1$ levels
 (Section~\ref{sec:complementarity}) is assessed by two frame-level
 tests. The Spearman rank correlation is computed on total $H_1$
 persistence: the sum of death minus birth over all finite $H_1$ bars in
-a frame. We also report it on loop counts as a robustness check.
-Fisher's exact test is computed on the binary co-occurrence of $H_1$
-presence at the two levels. Both statistics carry 95\% confidence
-intervals obtained by bootstrap resampling over matches (1{,}000
-resamples). The match is the resampling unit. Bottleneck and landscape
-distances between the two levels' persistence diagrams are computed
-using GUDHI, as described in Section~\ref{sec:adaptivefiltration}.
+a frame. The same correlation is also reported on loop counts, as a
+robustness check. Fisher's exact test is computed on the binary
+co-occurrence of $H_1$ presence at the two levels. Both statistics
+carry 95\% confidence intervals obtained by bootstrap resampling over
+matches (1{,}000 resamples), with the match as the resampling unit.
+Bottleneck and landscape distances between the two levels' persistence
+diagrams are computed using GUDHI, as described in
+Section~\ref{sec:adaptivefiltration}.
 
 The construct-validity check in Section~\ref{sec:eventcorr} uses a
 Mann--Whitney test of $\Delta$ against zero.
 Topology is evaluated on every tenth complete frame (1~Hz), not on
 $\tilde{T}$. For each annotated event, $\Delta$ is the change in mean
 total persistence from the five 1~Hz frames immediately before the
-event to the five immediately after it (five seconds either side; the
-event frame itself is excluded).
-Event classes are pre-specified. The $p$-values are nominal.
+event to the five immediately after it. That window is five seconds
+either side of the event; the event frame itself is excluded.
+Event classes are pre-specified, and the $p$-values are nominal.
 
 \subsection{Software and reproducibility}
 
 All analyses were performed in Python~3.11. Persistence diagrams are
-computed with Ripser.py~0.6.12 \citep{bauer2021ripser,tralie2018};
-bottleneck distances and landscape representations use
-GUDHI~3.11.0 \citep{gudhi2014}; giotto-tda~0.6.0 \citep{tauzin2021}
+computed with Ripser.py~0.6.12 \citep{bauer2021ripser,tralie2018}.
+Bottleneck distances and landscape representations use
+GUDHI~3.11.0 \citep{gudhi2014}. giotto-tda~0.6.0 \citep{tauzin2021}
 provided independent cross-checks. Supporting scientific Python packages
 match the pinned \texttt{requirements.txt} accompanying the manuscript:
 NumPy~2.0.2, SciPy~1.13.1, pandas~2.3.2, scikit-learn~1.6.1. Analysis
 code, pipeline configuration, and pinned dependencies are included with
-the manuscript materials and will be released in a public repository at
-arXiv posting (see Data Availability Statement).
+the manuscript materials. They will be released in a public repository
+at arXiv posting (see Data Availability Statement).
