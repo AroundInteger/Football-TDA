@@ -30,7 +30,7 @@ inside the acceptance intervals $[15,22]$, $[4,10]$, and $[1,2.5]$
 from which those cutoffs were taken. The pooled curve is asymmetric:
 about $1.6$ clusters merge per metre from the individual to the
 tactical level, but only about $0.27$ per metre from the tactical to
-the team level, so the two surviving envelopes persist over a wide band
+the team level, so the two surviving envelopes remain over a wide band
 of $\delta$ (Figure~\ref{fig:cutoff}a). The spatial realisation on a
 single frame (Figure~\ref{fig:cutoff}d--f) shows the same three
 regimes: a near-atomic cloud at $2.75$~m, a handful of coordinating
@@ -44,29 +44,36 @@ Addressing question~\ref{q:homology}, we test whether
 scale-attributable homology detects loop structure at those levels. On
 the primary match, the pipeline detects 403 $H_1$ loops across 150
 uniformly sampled frames (Table~\ref{tab:h1single}). Loops at the
-individual level are frequent and short-lived. They appear in 144 of
-150 frames (96.0\%), at a mean rate of 2.52 per frame, with low mean
-persistence ($1.974 \pm 1.118$~m). Loops at the tactical level are
-rarer but last longer: 23 frames (15.3\%), mean rate 0.17 per frame,
-mean persistence $3.914 \pm 2.745$~m, maximum 10.771~m. Loops at the
-team level never occur ($H_1 = 0$ across all 1{,}500 frames in the
-ten-match sample).
+individual level are frequent. They appear in 144 of 150 frames
+(96.0\%), at a mean rate of 2.52 per frame, with short filtration
+lifetime ($\bar{p}=1.931 \pm 1.735$~m). Loops at the tactical level are
+rarer: 23 frames (15.3\%), mean rate 0.17 per frame, with longer
+filtration lifetime ($\bar{p}=3.778 \pm 2.723$~m, maximum 10.771~m).
+Loops at the team level never occur ($H_1 = 0$ across all 1{,}500
+frames in the ten-match sample).
+Figure~\ref{fig:cycles} realises the bar of largest $p$ on sample
+frame~95 as a loop in space.
+Figure~\ref{fig:h1bars} shows that bar on the persistence diagram,
+together with every finite $H_1$ bar on the primary match.
 
 Table~\ref{tab:h1single} collects these statistics in compact form.
-$F$ denotes the fraction of frames with at least one loop; L/f, the
-mean loop count per frame; $\bar{p}$, mean persistence (death minus
-birth, in metres); and $p_{\max}$, maximum persistence.
+$F$ denotes presence: the fraction of frames with at least one loop;
+L/f, the mean loop count per frame; $\bar{p}$, mean filtration
+lifetime (death minus birth over loops, in metres); and $p_{\max}$,
+maximum filtration lifetime.
 
 \begin{table}[h]
 \centering
-\caption{Single-match \texorpdfstring{$H_1$}{} statistics (primary match, 150 frames).}
+\caption{Single-match \texorpdfstring{$H_1$}{} statistics (primary match, 150 frames).
+$\bar{p}$ is the mean of death minus birth over loops, in metres on the
+Vietoris--Rips parameter, not a duration in time.}
 \label{tab:h1single}
 \begin{tabular}{@{}lccccr@{}}
 \toprule
 Level & Total & $F$ (\%) & L/f & $\bar{p}$ (m) & $p_{\max}$ (m) \\
 \midrule
-Individual (2.75~m) & 378 & 144/150 (96.0\%) & 2.52 & $1.974\pm1.118$ & 12.991 \\
-Tactical (11.75~m)  & 25  & 23/150 (15.3\%)  & 0.17 & $3.914\pm2.745$ & 10.771 \\
+Individual (2.75~m) & 378 & 144/150 (96.0\%) & 2.52 & $1.931\pm1.735$ & 12.991 \\
+Tactical (11.75~m)  & 25  & 23/150 (15.3\%)  & 0.17 & $3.778\pm2.723$ & 10.771 \\
 Team (23.0~m)       & 0   & 0/150 (0\%)      & N/A  & N/A             & N/A \\
 \bottomrule
 \end{tabular}
@@ -94,31 +101,32 @@ CI $15.2$--$22.7\%$), ranging from 11.3\% to 31.3\% across matches. The
 primary match (15.3\% tactical) sits within one standard deviation of
 the ten-match mean. That match was chosen for broadcast quality and
 event annotation, not for its tactical $H_1$ rate.
-
-Table~\ref{tab:h1multi} reports the same quantities across ten matches;
-s.d.\ denotes the standard deviation of each quantity across matches.
+Conditional mean filtration lifetime on the ten-match sample is
+$1.886$~m at the individual level and $3.411$~m at the tactical level,
+the same ordering as Table~\ref{tab:h1single}.
 
 \begin{table}[h]
 \centering
-\caption{Multi-match \texorpdfstring{$H_1$}{} statistics (10 matches). Presence = mean \texorpdfstring{$\pm$}{} s.d.\ across matches; 95\% bootstrap CIs from 1{,}000 resamples over matches.}
+\caption{Multi-match \texorpdfstring{$H_1$}{} statistics (10 matches).
+Presence = mean \texorpdfstring{$\pm$}{} s.d.\ across matches; 95\%
+bootstrap CIs from 1{,}000 resamples over matches.
+$\bar{p}$ is mean filtration lifetime over loops
+(\texorpdfstring{$\sum p / \sum H_1$}{}), not the per-frame average
+that includes zeros. The s.d.\ column is the standard deviation of the
+ten per-match conditional means.}
 \label{tab:h1multi}
 \begin{tabular}{@{}lccccr@{}}
 \toprule
 Level & Total & Presence (\%) & 95\% CI & $\bar{p}$ (m) & s.d. \\
 \midrule
-Individual & 4{,}039 & $96.5\%\pm1.5\%$ & $95.6$--$97.3\%$ & 1.885 & 0.149 \\
-Tactical   & 306     & $18.8\%\pm6.5\%$ & $15.2$--$22.7\%$ & 0.647 & 0.229 \\
+Individual & 4{,}039 & $96.5\%\pm1.5\%$ & $95.6$--$97.3\%$ & 1.886 & 0.145 \\
+Tactical   & 306     & $18.8\%\pm6.5\%$ & $15.2$--$22.7\%$ & 3.411 & 0.419 \\
 Team       & 0       & $0.0\%\pm0.0\%$  & N/A              & N/A   & N/A \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Mean $\bar{p}$ in Table~\ref{tab:h1multi} averages over all sampled
-frames, including those with no loop. The tactical entry is therefore
-lower than the primary-match mean in Table~\ref{tab:h1single}, which is
-taken only where loops appear.
-
-The tactical level sits close to that floor. In the ten-match sample, 40.6\% of frames have four or fewer
+The tactical level sits close to a cardinality floor. In the ten-match sample, 40.6\% of frames have four or fewer
 tactical centroids, and none of them carries a loop. Presence rate
 alone cannot tell arrangement from cluster count. We separate the two
 with the matched null of Section~\ref{sec:stats}, which fixes centroid
@@ -166,6 +174,7 @@ $\ge 9$ & 52 & $84.6\%$ & $49.0\%$ & $+35.6$ \\
 \end{table}
 
 \subsection{Closed cycle structures}
+\label{sec:cyclegeometry}
 
 All 403 primary-match $H_1$ features receive a geometric realisation
 via closed-cycle identification. The representative is the graph-cycle
@@ -173,11 +182,11 @@ proxy of Section~\ref{sec:cycles}, not a generator from the reduction
 matrix. Cycles at the individual level form short rings of centroids
 (typically three to six nodes in the examples we inspected). Tactical
 cycles are similarly small (often four or five nodes) but span larger
-gaps and persist longer. Figure~\ref{fig:cycles} shows the same sample
+gaps and have larger filtration lifetime. Figure~\ref{fig:cycles} shows the same sample
 frame at both levels, with the cutoff and the filtration drawn as
 separate panels (sample frame~95). The left column is the vertex set
-after clustering. The right column is the longest-lived
-\texorpdfstring{$H_1$}{} cycle on that set.
+after clustering. The right column is the
+\texorpdfstring{$H_1$}{} cycle of largest $p$ on that set.
 At \texorpdfstring{$\delta=2.75$}{}~m the vertices are four nearby
 players and the cycle edges are $17.8$--$19.2$~m
 (\texorpdfstring{$p=6.540$}{}~m).
@@ -196,8 +205,8 @@ match 1996435 (sample frame~95). Left: vertex set after clustering at
 \texorpdfstring{$\delta$}{}. Gold markers belong to this row's cycle
 clusters; the hull in (c) is the 14-player single-linkage cluster;
 dashed circles have radius \texorpdfstring{$\delta$}{} on the cycle
-vertices only. Right: longest-lived \texorpdfstring{$H_1$}{}
-representative on those vertices
+vertices only. Right: \texorpdfstring{$H_1$}{} representative of
+largest \texorpdfstring{$p$}{} on those vertices
 (\texorpdfstring{$p=6.540$}{}~m and
 \texorpdfstring{$p=9.942$}{}~m). Cycle edges are filtration
 distances (\texorpdfstring{$17.8$--$19.2$}{}~m in (b);
@@ -208,6 +217,30 @@ A 10~m scale bar is shown on each panel. Uniform sample,
 \texorpdfstring{$n=150$}{} frames, every 290th complete frame (the
 same rule as the ten-match analysis).}
 \label{fig:cycles}
+\end{figure}
+
+\begin{figure}[tp]
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{figures/fig4_h1_diagrams}
+\caption{Scale-separated finite \texorpdfstring{$H_1$}{} bars on the
+primary match (uniform 150-frame sample).
+\textbf{(a)}~Individual and \textbf{(b)}~tactical persistence diagrams
+for sample frame~95, the same frame as Figure~\ref{fig:cycles}.
+The marked pair is the bar of largest \texorpdfstring{$p$}{} on that frame
+(\texorpdfstring{$p=6.540$}{}~m and
+\texorpdfstring{$p=9.942$}{}~m), whose geometric representative appears
+in Figure~\ref{fig:cycles}.
+\textbf{(c)}~Every finite bar on the primary match, one track per
+organisational level (378 individual, 25 tactical).
+The dashed ticks are Table~\ref{tab:h1single}'s $\bar{p}$: the mean of
+these bar lengths (death minus birth, in metres of the Vietoris--Rips
+parameter \texorpdfstring{$\varepsilon$}{}, not seconds).
+The two levels are not superimposed: that would recreate the mixing of
+Section~\ref{sec:scaleconflation}.
+The individual-level maximum in Table~\ref{tab:h1single} (frame~141) is
+a near-collinear sliver and is not the cycle shown in
+Figure~\ref{fig:cycles}.}
+\label{fig:h1bars}
 \end{figure}
 
 \subsection{Sensitivity analysis}
@@ -273,8 +306,8 @@ largely distinct information.
 Over 1{,}500 uniformly sampled frames, total individual and tactical
 $H_1$ persistence correlate weakly (Spearman $\rho=0.234$, $p<0.001$;
 95\% bootstrap CI $[0.181, 0.276]$). The same holds for loop counts
-($\rho=0.205$, $p<0.001$). The finding does not depend on how
-persistence is summarised.
+($\rho=0.205$, $p<0.001$). The finding does not depend on whether the
+comparison uses total persistence or loop counts.
 
 Co-occurrence exceeds chance (Fisher odds ratio 6.12, $p=0.002$;
 bootstrap CI $[2.32, 16.33]$). Table~\ref{tab:fisher} shows the
@@ -300,7 +333,7 @@ Individual $H_1$ absent  & 2   & 51 \\
 A TDA-native check agrees. Bottleneck distance between the two levels'
 diagrams has median 1.456~m and 95th-percentile tail 3.556~m. That is
 on the order of typical tactical loop size on the primary match
-(3.914~m mean persistence where loops appear;
+(3.778~m mean filtration lifetime where loops appear;
 Table~\ref{tab:h1single}). Landscape $L^2$ distance has median 5.477.
 The levels differ by roughly as much as their features are large, not
 by a small perturbation of one shared pattern.
@@ -309,12 +342,15 @@ by a small perturbation of one shared pattern.
 \label{sec:eventcorr}
 
 Addressing question~\ref{q:validity}, and as a sanity check against
-measurement noise, we asked whether
-persistence moves with real match events (SkillCorner annotations;
-103{,}856 event--topology pairs across ten matches). Events that
-disrupt shape (on-ball engagements, quick breaks) tend to precede
-lower persistence. Sustained build-up tends to precede higher
-persistence (Mann--Whitney $U$ on pre-specified classes; several
-nominal $p<0.001$ at both levels). We treat this as construct validity
-only. Multiple-testing control and football interpretation belong
-elsewhere.
+measurement noise, we asked whether total persistence moves with real
+match events (SkillCorner annotations; 103{,}856 event--topology pairs
+across ten matches). Write $\Delta$ for the change in mean total
+persistence from the five 1~Hz frames before the event to the five
+after it (Section~\ref{sec:stats}). On-ball engagements precede a drop
+at the individual level (mean $\Delta=-0.253$~m, $n=8{,}927$,
+Mann--Whitney $p<10^{-13}$). Build-up precedes a rise (mean
+$\Delta=+0.700$~m, $n=618$, $p<10^{-6}$). Both classes move in the same
+direction at the tactical level. These are nominal tests on
+pre-specified classes. We treat the result as a preliminary
+construct-validity check only. Multiple-testing control and football
+interpretation belong elsewhere.

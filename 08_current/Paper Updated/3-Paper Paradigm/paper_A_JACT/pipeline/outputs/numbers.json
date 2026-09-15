@@ -562,6 +562,36 @@
       1
     ]
   },
+  "figure_h1_diagrams": {
+    "individual_frame_idx": 95,
+    "n_frames": 150,
+    "sampling_step": 290,
+    "n_individual_bars": 378,
+    "n_tactical_bars": 25,
+    "mean_p_individual": 1.931,
+    "mean_p_tactical": 3.778,
+    "frame95_p_individual": 6.54,
+    "frame95_p_tactical": 9.942,
+    "max_p_individual": 12.991,
+    "max_p_tactical": 10.771
+  },
+  "conditional_lifetime": {
+    "individual": {
+      "mean_p_over_loops": 1.886,
+      "sd_across_matches": 0.145,
+      "n_loops": 4039
+    },
+    "tactical": {
+      "mean_p_over_loops": 3.411,
+      "sd_across_matches": 0.419,
+      "n_loops": 306
+    },
+    "team": {
+      "mean_p_over_loops": null,
+      "sd_across_matches": null,
+      "n_loops": 0
+    }
+  },
   "headline": {
     "primary_h1_individual_total": 378,
     "primary_h1_individual_presence_pct": 96.0,
@@ -575,6 +605,14 @@
     "cutoff_tactical": 11.75,
     "cutoff_team": 23.0,
     "event_topology_pairs": 103856,
+    "event_delta_engagement": -0.253,
+    "event_n_engagement": 8927,
+    "event_delta_buildup": 0.7,
+    "event_n_buildup": 618,
+    "multi_p_individual": 1.886,
+    "multi_p_tactical": 3.411,
+    "primary_p_individual": 1.931,
+    "primary_p_tactical": 3.778,
     "linkage_tactical_h1_single": 106,
     "linkage_tactical_h1_complete": 802,
     "linkage_tactical_h1_ward": 822

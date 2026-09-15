@@ -36,6 +36,7 @@ python3 "$PIPELINE_DIR/steps/04_complementarity.py"
 python3 "$PIPELINE_DIR/steps/07_cardinality_null.py"
 python3 "$PIPELINE_DIR/steps/08_linkage_comparison.py"
 python3 "$PIPELINE_DIR/steps/06_figures.py"
+python3 "$PIPELINE_DIR/steps/11_h1_diagrams.py"
 python3 "$PIPELINE_DIR/steps/09_acf_supplement.py"
 python3 "$PIPELINE_DIR/lib/build_numbers.py"
 
@@ -45,7 +46,7 @@ python3 -c "
 import sys
 sys.path.insert(0, '$PIPELINE_DIR/lib')
 from common import write_manifest
-write_manifest({'steps_completed': ['00','01','02','10','03','04','05','06','07','08','09','build_numbers']})
+write_manifest({'steps_completed': ['00','01','02','10','03','04','05','06','07','08','09','11','build_numbers']})
 "
 
 echo "=== Paper A pipeline complete ==="

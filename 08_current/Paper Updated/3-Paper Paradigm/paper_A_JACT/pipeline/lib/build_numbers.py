@@ -30,7 +30,19 @@ def main() -> None:
     boot = load_json(OUTPUT_DIR / "complementarity" / "bootstrap_multi_match_ci.json")
     event = load_json(OUTPUT_DIR / "event_correlation_summary.json")
     event_pairs = event.get("n_events_total")
+    tests_ind = (event.get("statistical_tests") or {}).get("individual") or {}
+    eng = tests_ind.get("on_ball_engagement") or {}
+    buildup = tests_ind.get("build_up") or {}
+    event_delta_engagement = (
+        round(float(eng["mean_delta"]), 3) if eng.get("mean_delta") is not None else None
+    )
+    event_n_engagement = eng.get("n_events")
+    event_delta_buildup = (
+        round(float(buildup["mean_delta"]), 3) if buildup.get("mean_delta") is not None else None
+    )
+    event_n_buildup = buildup.get("n_events")
     fig_meta = load_json(OUTPUT_DIR / "figure_cycle_geometry.json")
+    fig_h1 = load_json(OUTPUT_DIR / "figure_h1_diagrams.json")
 
     regimes = {}
     regime_path = OUTPUT_DIR / "regime_summary.csv"
@@ -69,6 +81,28 @@ def main() -> None:
             regimes[row["scale"]] = entry
 
     h1_primary = uniform.get("h1", {})
+
+    per_frame_path = OUTPUT_DIR / "multi_match" / "per_frame_results.csv"
+    cond_p = {}
+    if per_frame_path.exists():
+        df = pd.read_csv(per_frame_path)
+        for scale in ("individual", "tactical", "team"):
+            sub = df[df["scale"] == scale]
+            n_loops = float(sub["h1"].sum())
+            total_p = float(sub["h1_total_persistence"].sum())
+            pooled = (total_p / n_loops) if n_loops else None
+            per_match = []
+            for _, g in sub.groupby("match_id"):
+                n = float(g["h1"].sum())
+                if n:
+                    per_match.append(float(g["h1_total_persistence"].sum()) / n)
+            sd = float(pd.Series(per_match).std(ddof=1)) if per_match else None
+            cond_p[scale] = {
+                "mean_p_over_loops": None if pooled is None else round(pooled, 3),
+                "sd_across_matches": None if sd is None else round(sd, 3),
+                "n_loops": int(n_loops),
+            }
+
     numbers = {
         "primary_match_id": cfg["primary_match_id"],
         "sampling_uniform": uniform.get("sampling"),
@@ -92,6 +126,8 @@ def main() -> None:
         )),
         "event_pairs": event_pairs,
         "figure_cycle_geometry": fig_meta,
+        "figure_h1_diagrams": fig_h1,
+        "conditional_lifetime": cond_p,
     }
 
     # Flatten headline scalars for sync
@@ -116,6 +152,14 @@ def main() -> None:
         "cutoff_tactical": regimes.get("tactical", {}).get("adopted_cutoff_m"),
         "cutoff_team": regimes.get("team", {}).get("adopted_cutoff_m"),
         "event_topology_pairs": event_pairs,
+        "event_delta_engagement": event_delta_engagement,
+        "event_n_engagement": event_n_engagement,
+        "event_delta_buildup": event_delta_buildup,
+        "event_n_buildup": event_n_buildup,
+        "multi_p_individual": (cond_p.get("individual") or {}).get("mean_p_over_loops"),
+        "multi_p_tactical": (cond_p.get("tactical") or {}).get("mean_p_over_loops"),
+        "primary_p_individual": fig_h1.get("mean_p_individual"),
+        "primary_p_tactical": fig_h1.get("mean_p_tactical"),
     }
     if linkage.get("tactical_h1_total"):
         th = linkage["tactical_h1_total"]

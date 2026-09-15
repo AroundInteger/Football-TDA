@@ -1,0 +1,38 @@
+---
+description: Map introduction questions to results and discussion to assess paper cohesion
+globs: "08_current/**/*.md,08_current/**/*.tex,06_papers/**/*.md,06_papers/**/*.tex"
+alwaysApply: false
+---
+
+# Question map (paper cohesion)
+
+If the introduction poses numbered questions, they are a contract. Results report what was found, in that order. Discussion interprets, in that order. A posed question without an answer is a cohesion failure.
+
+## The map
+
+For each question Q1, Q2, … record four cells:
+
+| Cell | Job |
+|---|---|
+| **Ask** | The §1 wording, verbatim enough to match |
+| **Results home** | Section that answers it |
+| **Finding** | A statistic, table, or figure. Preliminary is allowed; “see later” is not |
+| **Discussion home** | Section that interprets that finding, after the result is on the page |
+
+Build the map before rewriting Results or Discussion. A canvas is a good working copy.
+
+## Checks
+
+1. **Order.** Discussion must not interpret Q(n+1) while Qn still has an open limb (detect, realise, robust). Close Qn first.
+2. **Every posed Q has a number.** Directional prose (“tends to”, “sanity check”) is not an answer. One pre-specified statistic is enough if the claim is labelled preliminary.
+3. **One job per quantity.** Do not hang two meanings on one word (e.g. frame presence and filtration lifetime both called “persistence”). Define the quantities in Methods; use only those names later. Do not use *persist* as a verb for an $H_0$ regime remaining across $\delta$, or *longest-lived* for the bar of largest $p$.
+4. **First citation order.** If a new figure supports Qi, first-cite it in the Results subsection that answers Qi, before the next figure.
+5. **No extra questions in Discussion.** Outlook and limitations are not new Qs. They must not be readable as unanswered §1 items.
+
+## Paper A pattern
+
+Q1 levels → §3.1 / §4.1. Q2 detect, realise, robust → §3.2–3.4 / §4.2. Q3 distinct → §3.5 / §4.3. Q4 construct validity → §3.6 / §4.4 (preliminary Δ on 1 Hz, five frames either side of the event; Paper B owns interpretation).
+
+## Failures this rule exists to catch
+
+BAD: Abstract glosses “more persistent” with a presence rate. BAD: §4.2 answers Q3 before Q2’s cycle-realisation and team-level vanishing are discussed. BAD: Q4 is posed in §1.3 and Discussion only says the question is out of scope.

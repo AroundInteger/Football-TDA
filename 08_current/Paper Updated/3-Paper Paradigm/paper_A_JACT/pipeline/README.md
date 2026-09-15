@@ -62,6 +62,7 @@ python3 steps/04_complementarity.py
 python3 steps/07_cardinality_null.py
 python3 steps/08_linkage_comparison.py
 python3 steps/06_figures.py
+python3 steps/11_h1_diagrams.py
 python3 steps/09_acf_supplement.py
 python3 lib/build_numbers.py
 python3 sync_to_paper.py
@@ -92,4 +93,5 @@ automatically.
 - `../figures/fig1_pipeline_schematic.pdf`
 - `../figures/fig2_cutoff_sweep.pdf`
 - `../figures/fig3_cycle_geometry.pdf`
+- `../figures/fig4_h1_diagrams.pdf` (after step 11)
 - `../figures/figS1_acf.pdf` (after step 09)

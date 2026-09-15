@@ -1,0 +1,13 @@
+{
+  "individual_frame_idx": 95,
+  "n_frames": 150,
+  "sampling_step": 290,
+  "n_individual_bars": 378,
+  "n_tactical_bars": 25,
+  "mean_p_individual": 1.931,
+  "mean_p_tactical": 3.778,
+  "frame95_p_individual": 6.54,
+  "frame95_p_tactical": 9.942,
+  "max_p_individual": 12.991,
+  "max_p_tactical": 10.771
+}

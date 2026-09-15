@@ -29,9 +29,10 @@ Across ten matches the sampled times give 1{,}500 frames. The design
 limits temporal pseudo-replication. It does not treat the
 competitive-dependence inference problem named in
 Section~\ref{sec:background}, and it does not resolve formation or
-dispersion of loops between samples. Event association uses the
-native-rate stream $t$ and is a construct-validity check, not a
-dynamical model. Supplementary Figure~\ref{fig:acf} is an
+dispersion of loops between samples. Event association is a
+construct-validity check, not a dynamical model, and it does not use
+$\tilde{T}$. Topology for that check is computed on every tenth
+complete frame (1~Hz). Supplementary Figure~\ref{fig:acf} is an
 autocorrelation diagnostic on the primary match at 1~Hz; it does not
 choose $\tilde{T}$.
 
@@ -213,7 +214,15 @@ convention, not an optimisation.
 
 Persistence diagrams are computed with Ripser via Ripser.py
 \citep{bauer2021ripser}, with coefficients in $\mathbb{F}_2$. We report
-finite $H_1$ bars. The $H_0$ counts reported in
+finite $H_1$ bars. Three summaries of those bars appear in the results
+and must not be read as clock time. \emph{Presence} is the fraction of
+frames with at least one finite $H_1$ bar. \emph{Filtration lifetime}
+$p$ is death minus birth, in metres on the Vietoris--Rips parameter:
+the length of a bar, not a duration in seconds. \emph{Total
+persistence} is the sum of $p$ over the finite bars in a frame; it is
+the Spearman input in Section~\ref{sec:complementarity}. The 150-frame
+subsample of Section~\ref{sec:data} does not measure how long a loop
+lasts on the clock. The $H_0$ counts reported in
 Section~\ref{sec:scaleh0} are read from these diagrams at filtration
 zero. We cross-checked all
 primary-match diagrams against GUDHI \citep{gudhi2014} and giotto-tda
@@ -265,6 +274,15 @@ intervals obtained by bootstrap resampling over matches (1{,}000
 resamples). The match is the resampling unit. Bottleneck and landscape
 distances between the two levels' persistence diagrams are computed
 using GUDHI, as described in Section~\ref{sec:adaptivefiltration}.
+
+The construct-validity check in Section~\ref{sec:eventcorr} uses a
+Mann--Whitney test of $\Delta$ against zero.
+Topology is evaluated on every tenth complete frame (1~Hz), not on
+$\tilde{T}$. For each annotated event, $\Delta$ is the change in mean
+total persistence from the five 1~Hz frames immediately before the
+event to the five immediately after it (five seconds either side; the
+event frame itself is excluded).
+Event classes are pre-specified. The $p$-values are nominal.
 
 \subsection{Software and reproducibility}
 

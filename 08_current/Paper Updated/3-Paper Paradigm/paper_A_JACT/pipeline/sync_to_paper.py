@@ -101,6 +101,27 @@ def main() -> None:
             event_n,
             re.escape(latex_int(event_n)) if event_n is not None else None,
         ),
+        (
+            "event_delta_engagement",
+            h.get("event_delta_engagement"),
+            r"-0\.253"
+            if h.get("event_delta_engagement") is not None
+            else None,
+        ),
+        (
+            "event_delta_buildup",
+            h.get("event_delta_buildup"),
+            r"\+0\.700"
+            if h.get("event_delta_buildup") is not None
+            else None,
+        ),
+        (
+            "event_n_engagement",
+            h.get("event_n_engagement"),
+            r"8\{,\}927"
+            if h.get("event_n_engagement") is not None
+            else None,
+        ),
         ("ripser_version", "0.6.12", r"Ripser\.py~0\.6\.12"),
         ("numpy_version", "2.0.2", r"NumPy~2\.0\.2"),
         ("scipy_version", "1.13.1", r"SciPy~1\.13\.1"),
@@ -150,6 +171,40 @@ def main() -> None:
             if linkage.get("ward") is not None
             else None,
         ),
+        (
+            "multi_p_individual",
+            h.get("multi_p_individual"),
+            rf"{h.get('multi_p_individual')}"
+            if h.get("multi_p_individual") is not None
+            else None,
+        ),
+        (
+            "multi_p_tactical",
+            h.get("multi_p_tactical"),
+            rf"{h.get('multi_p_tactical')}"
+            if h.get("multi_p_tactical") is not None
+            else None,
+        ),
+        (
+            "primary_p_individual",
+            h.get("primary_p_individual"),
+            rf"{h.get('primary_p_individual')}"
+            if h.get("primary_p_individual") is not None
+            else None,
+        ),
+        (
+            "primary_p_tactical",
+            h.get("primary_p_tactical"),
+            rf"{h.get('primary_p_tactical')}"
+            if h.get("primary_p_tactical") is not None
+            else None,
+        ),
+        ("fig4_h1_diagrams", True, r"fig4_h1_diagrams"),
+        (
+            "event_delta_window",
+            True,
+            r"five 1~Hz frames immediately before the",
+        ),
     ]
     for name, expected, pattern in checks:
         if expected is None or pattern is None:
@@ -180,6 +235,15 @@ def main() -> None:
         ("no_carried_over", r"carried over"),
         ("no_old_individual_cutoff", r"(?<![0-9])2\.98~m"),
         ("no_old_team_cutoff", r"30\.0~m"),
+        ("no_unconditional_tactical_pbar", r"& 0\.647 &"),
+        ("no_transient_presence_gloss", r"transient \(\$96\.5"),
+        ("no_more_persistent_presence_gloss", r"more persistent \(\$18\.8"),
+        ("no_stale_mean_of_means_ind", r"1\.974"),
+        ("no_stale_mean_of_means_tac", r"3\.914"),
+        ("no_native_rate_event_stream", r"native-rate stream"),
+        ("no_short_window_delta", r"short window before"),
+        ("no_longest_lived", r"longest-lived"),
+        ("no_h0_persist_over", r"persist over a (range|wide)"),
     ]
     for name, pattern in forbidden:
         if re.search(pattern, tex):
@@ -194,6 +258,8 @@ def main() -> None:
         ("abstract_no_stale_rho", r"\\rho=0\.254", True),
         ("abstract_no_stale_persistence", r"2\.693", True),
         ("abstract_1500_frames", r"1\{,\}500 sampled frames", False),
+        ("abstract_filtration_lifetime", r"filtration lifetime", False),
+        ("abstract_no_transient_paren", r"transient \(\$96\.5", True),
     ]
     for name, pattern, is_forbidden in abstract_checks:
         if not abstract:

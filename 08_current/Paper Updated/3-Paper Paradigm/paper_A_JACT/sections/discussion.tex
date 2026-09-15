@@ -1,32 +1,77 @@
 % =======================================================================
 \section{Discussion}
 
-\subsection{Operating range}
+\subsection{Recovered organisational levels}
+\label{sec:disc-levels}
 
-$H_1$ detection is not confined to the adopted cutoff or to a single
-truncation percentile (Section~\ref{sec:sensitivity}). The operative
-setting therefore occupies a band, not an isolated optimum. Application
-to another bounded competitive system still requires the interaction
-lengths to be re-derived on that domain.
+Addressing question~\ref{q:levels}, the three $H_0$ regimes
+(individual, tactical, and team) are the cardinality targets of
+Section~\ref{sec:cutoffselection}, read from the pooled
+\texorpdfstring{$H_0(\delta)$}{} curve on every complete frame of the
+ten matches (Figure~\ref{fig:cutoff}). Those regimes remain over a
+range of $\delta$ rather than appearing only at the adopted cutoffs.
+Application to another bounded competitive system still requires the
+interaction lengths to be re-derived on that domain.
 
-The three $H_0$ regimes (individual, tactical, and team) are the
-cardinality targets of Section~\ref{sec:cutoffselection}, read from the
-pooled \texorpdfstring{$H_0(\delta)$}{} curve on every complete frame
-of the ten matches (Figure~\ref{fig:cutoff}). Those regimes likewise
-persist over a range of $\delta$ rather than appearing only at the
-adopted cutoffs.
+The tactical cutoff is the inversion of a named cardinality (mean
+$H_0$ nearest 5, with $k\ge 4$ still common; Figure~\ref{fig:cutoff}c).
+On the 1~Hz diagnostic subset the only interior silhouette local
+maximum is at $7.0$~m, a small-group alternative that keeps rising into
+the two-envelope regime once frames that collapse to $k=1$ are dropped
+(Supplementary Figure~\ref{fig:diagnostics}). Those features are
+reported, not adopted.
+
+\subsection{Two \texorpdfstring{$H_1$}{} regimes}
+\label{sec:disc-homology}
+
+Addressing question~\ref{q:homology}, scale-attributable homology
+detects loops at two of the three recovered levels. Individual-level
+loops are frequent; tactical-level loops are rarer and have longer
+filtration lifetime (Tables~\ref{tab:h1single}--\ref{tab:h1multi};
+Figure~\ref{fig:h1bars}). Filtration lifetime is the bar length
+(death minus birth, in metres). It is not how long a loop lasts on the
+clock. The 150-frame subsample does not resolve formation or
+dispersion of loops between samples (Section~\ref{sec:data}).
+
+Every examined $H_1$ feature is realised as a loop in space
+(Figure~\ref{fig:cycles}). Detection is not confined to the adopted
+cutoff or to a single truncation percentile
+(Section~\ref{sec:sensitivity}). The operative tactical setting
+occupies the band $[6,14]$~m, not an isolated optimum.
+
+The pipeline therefore reports three $H_0$ regimes and two $H_1$
+regimes. At the team level the reduced cloud almost never has enough
+centroids to close a loop (Remark~\ref{rem:teamnull}). Recovering
+team-level loop structure on the typical envelope would require a
+different representation, such as spatial density fields or Delaunay
+triangulations. Linkage choice changes tactical $H_1$ counts by nearly
+an order of magnitude; that caveat is taken up in
+Section~\ref{sec:limitations}.
 
 \subsection{Distinct structure at two levels}
+\label{sec:disc-distinct}
 
-The two levels are not measuring the same structure at different
-resolutions. If the tactical signal were a coarsened version of the
-individual signal, the two would co-occur far more consistently than
-Table~\ref{tab:fisher} shows. The bottleneck and landscape distances
-would also be small relative to each level's own persistence values
+Addressing question~\ref{q:distinct}, the two levels are not measuring
+the same structure at different resolutions. If the tactical signal
+were a coarsened version of the individual signal, the two would
+co-occur far more consistently than Table~\ref{tab:fisher} shows. The
+bottleneck and landscape distances would also be small relative to each
+level's own filtration lifetimes
 (Section~\ref{sec:complementarity}).
 Clustering before persistent homology is therefore not a convenience
 for separating noise. It produces two informationally distinct
 objects.
+
+\subsection{Construct validity}
+\label{sec:disc-validity}
+
+Addressing question~\ref{q:validity}, the preliminary answer is yes:
+total persistence is not independent of on-ball events.
+At the individual level, mean $\Delta$ is $-0.253$~m after on-ball
+engagements and $+0.700$~m after build-up
+(Section~\ref{sec:eventcorr}).
+That is a construct-validity check only. Multiple-testing control and
+football interpretation belong to a companion manuscript (Paper~B).
 
 \subsection{Limitations}
 \label{sec:limitations}
@@ -56,36 +101,22 @@ genuinely lower-dimensional under the selected linkage. We defer this
 to the forthcoming full-season work. A population-sized sample of
 match sequences is what makes the sparsity comparison meaningful.
 
-The tactical cutoff is the inversion of a named cardinality (mean
-$H_0$ nearest 5, with $k\ge 4$ still common; Figure~\ref{fig:cutoff}c).
-On the 1~Hz diagnostic subset the only interior silhouette local
-maximum is at $7.0$~m, a small-group alternative that keeps rising into
-the two-envelope regime once frames collapse to $k=1$ are dropped
-(Supplementary Figure~\ref{fig:diagnostics}). Those features are
-alternatives, not adopted cutoffs. A
-landscape-path stability criterion (minimise variation of the
+A landscape-path stability criterion (minimise variation of the
 persistence landscape under small perturbations of $\delta$) remains a
-future estimator. It is computable with the landscape infrastructure of
-Section~\ref{sec:complementarity}. We defer it to the
-persistence-landscape companion work.
+future estimator of the tactical cutoff. It is computable with the
+landscape infrastructure of Section~\ref{sec:complementarity}. We
+defer it to the persistence-landscape companion work.
 Section~\ref{sec:sensitivity} reports the operative tactical $H_1$
 range as an empirical property around the adopted $11.75$~m.
-
-The pipeline identifies three $H_0$ regimes but only two $H_1$ regimes
-in the headline analysis: at the team level the reduced cloud almost
-never has enough centroids to close a loop (Remark~\ref{rem:teamnull}).
-Recovering team-level loop structure on the typical envelope would
-require a different representation, such as spatial density fields or
-Delaunay triangulations.
 
 All data analysed here are broadcast-derived tracking at 10~Hz.
 Broadcast tracking typically offers lower spatial precision than
 higher-frequency optical systems. That may affect the magnitude of
-persistence values reported. The structural findings (the three $H_0$
-regimes, the $H_1$ presence rates, and the sensitivity profiles)
+filtration lifetimes reported. The structural findings (the three
+$H_0$ regimes, the $H_1$ presence rates, and the sensitivity profiles)
 depend on relative rather than absolute spatial precision. They are
 therefore expected to be robust across tracking technologies. A
-direct comparison of persistence magnitudes against optical tracking
+direct comparison of filtration lifetimes against optical tracking
 data remains for future work.
 
 \subsection{Outlook}
