@@ -30,14 +30,17 @@
      +4 lines pushes the figure to page 3 and the document to 4 pages.
      Treat ~35 words as the margin before the figure. Re-measure in the
      JeS/Word template before submission.
-     NEXT CUTS if the template is tighter (in order): §7 Team institute
-     sentence (~14 w); §2 "generalises to any bounded competitive system"
-     (~15 w); §3 National importance first sentence (~11 w); Figure 1 to
-     12 cm wide (~1 line).
+     EC PASS 17 Sep 2026: body 1,600 words, 111 sentences, mean 14.4 w.
+     Calibri 11 pt / A4 / 2 cm / 3 pt after / Figure 1 13 cm: 3 pages,
+     figure at the foot of page 2, page 3 opens at §5. Next cut if the
+     JeS template is tighter: Figure 1 to 12 cm wide (~1 line). The §7
+     institute sentence, §2 generalises clause, and §3 UK-lead sentence
+     were used in this pass.
 
-     COSTED LOCK (TIMELINE.md): PI 0.10 FTE; Co-I Villamizar 0.05 FTE;
-     RA 1.0 FTE Months 5-10; Months 1-4 PI-led so the Month-2 gate and a
-     runnable pipeline exist before the RA arrives.
+     COSTED LOCK (TIMELINE.md): PL 0.10 FTE; PcL Villamizar 0.05 FTE;
+     RA 1.0 FTE Months 5-10; Months 1-4 PL-led so the Month-2 gate and a
+     runnable pipeline exist before the RA arrives. UKRI titles (EC 16 Sep
+     2026): Project Lead (PL), Project co-lead (PcL).
 
      CUT ORDER APPLIED (see plan): A compress §5 T1/T2/Pipeline;
      C dedupe team/roles (§4 O2, §7 Team); D dedupe §1 opener against
@@ -47,8 +50,8 @@
      dependence" (locked terminology); §4 covariate/stratification ->
      opposition as covariate, venue x opposition strength (CANONICAL_NUMBERS.md);
      colon after bold leads in O1 and
-     R1-R3 bullets (no em dashes); acronyms defined at first use (PI, FTE,
-     Co-I, RA, BH-FDR, CUSUM, OSF; CI and TDA written out); Figure 1
+     R1-R3 bullets (no em dashes); acronyms defined at first use (PL, FTE,
+     PcL, RA, BH-FDR, CUSUM, OSF; CI and TDA written out); Figure 1
      caption moved into the image alt text (pandoc was emitting two
      captions) and width fixed at 13 cm; §1 Importance/Scale, §1
      Mathematical contribution/T1 and §7 Team/Resources merged into single
@@ -61,7 +64,7 @@
      Not cut: 1 Hz timing and the 10 Hz -> 1 Hz Month-2 check; geometric
      baselines [21,22]; OSF at Month 2; six-cell arithmetic and
      32 / 0.025 / 0.065; detection threshold vs localisation bound;
-     R3 limit-law disclaimer; Months 1-4 PI-led sentence; all 29 citations.
+     R3 limit-law disclaimer; Months 1-4 PL-led sentence; all 29 citations.
 
      HISTORY: REV2 -> REV3 changelog, the OLD -> NEW reference renumbering
      map, and the toy-model ruling (FOUNDATION.md R8) are in the REV3 header.
@@ -75,7 +78,7 @@
 
 ### 1. Research Problem and Mathematical Contribution
 
-When two groups of agents compete inside a bounded space, each shapes the other's organisation at every scale at once, and no statistical theory yet describes that record. Such competitive collective systems comprise two or more groups of agents that share a bounded domain, each coordinating internally while responding to the opposing group. Statistical topology cannot yet describe how such organisation forms, changes and breaks down; this project seeks that theory, averaging configurations at population scale and locating change with a proven error bound. The grant is a proof of principle on a fully tracked platform (professional football, §2) and the evidence base for a follow-on Standard Grant.
+When two or more groups of agents compete inside a bounded space, each shapes the other's organisation at every scale at once. Such competitive collective systems share a bounded domain, each group coordinating internally while responding to the opponent. Statistical topology cannot yet describe how such organisation forms, changes and breaks down. This project seeks that theory, averaging configurations at population scale and locating change with a proven error bound. The grant is a proof of principle on professional football as a fully tracked platform (§2) and the evidence base for a follow-on Standard Grant.
 
 **Importance.** Two obstacles limit existing approaches. *Scale.* Organisation exists at several spatial scales at once, from small interaction groups to enclosed coverage regions. A single persistent-homology filtration over the full agent set does not separate these levels: their features interleave in one diagram [1–3]. Multiparameter persistence [4–6] is principled but computationally impractical at these data rates.
 
@@ -91,15 +94,17 @@ Established topological results assume cooperative or slowly evolving organisati
 
 **Timeliness.** Multi-scale topology and statistical comparison tools have matured [4,6–8,19], scalable computation supports rigorous analysis at population scale, and fully labelled competitive tracking data exist at that scale.
 
-**Need and opportunity.** No validated statistical-topology workflow exists for continuously competing systems. Professional football is the platform: all agents are tracked within strict boundaries and domain experts can verify results. The framework generalises to any bounded competitive system once interaction lengths are re-derived.
+**Need.** No validated statistical-topology workflow exists for continuously competing systems. Current methods assume cooperation, slow evolution or exchangeability, so they cannot average or localise change under competitive dependence.
+
+**Opportunity.** Professional football is the platform: all agents are tracked within strict boundaries and domain experts can verify results. That window lets T1 and T2 be proved before transfer.
 
 ### 3. Impact, National Importance and Beneficiaries
 
-**Mathematical impact.** The primary contribution is new statistical-topology theory extending current foundations [7,8] to competitive dependence. Beneficiaries are researchers in topology, statistics and complex systems, who gain the foundations and an open-source library.
+**Mathematical impact.** The primary contribution is new statistical-topology theory extending current foundations [7,8] to competitive dependence. Beneficiaries are researchers in topology, statistics and complex systems, who gain foundations for averaging and change-point inference under competitive dependence, plus an open-source library.
 
-**National importance.** UK groups lead internationally in statistical topology and stochastic geometry. This project develops UK capability at that frontier: sequential inference for function-space-valued topological summaries under competitive dependence.
+**National importance.** This project develops UK capability in sequential inference for function-space-valued topological summaries under competitive dependence.
 
-**Economic and industry impact.** Co-developed with Swansea City AFC (SCAFC), the project delivers practitioner outputs unavailable from the geometric measures benchmarked in O1, for sports analytics researchers and practitioners.
+**Economic and industry impact.** Co-developed with Swansea City AFC (SCAFC), the project delivers practitioner outputs unavailable from the geometric measures benchmarked in O1, so analysts can quantify pressing, formation gaps and defensive-line organisation at named scales.
 
 **Standard Grant pathway.** The T1 and T2 foundations prepare a follow-on Standard Grant transferring the guarantees to two further bounded competitive systems: spatial predator–prey dynamics (including tumour–immune competition with mathematical-oncology collaborators) and competitive logistics with autonomous-fleet coordination.
 
@@ -107,17 +112,17 @@ Established topological results assume cooperative or slowly evolving organisati
 
 ### 4. Research Design and Objectives
 
-**Project structure.** The Principal Investigator (PI; 0.10 full-time equivalent, FTE) leads the framework, analysis and publication. Co-Investigator (Co-I) Dr Nelly Villamizar (Mathematics, 0.05 FTE) supplies algebraic and topological guidance for O2. A Research Associate (RA; 1.0 FTE, Months 5–10) implements season-scale compute and the landscape library on SCAFC tracking data and tactical labels. Months 1–4 are PI-led so the Month-2 gate and a runnable pipeline exist before the RA arrives. The post is structured postdoctoral training in statistical topology and sequential inference.
+**Project structure.** The Project Lead (PL; 0.10 full-time equivalent, FTE) leads design, gates, theorems and publication; 0.10 FTE is not season-scale compute. Project co-lead (PcL) Dr Nelly Villamizar (Mathematics, 0.05 FTE) supplies algebraic guidance for O2, not implementation. A Research Associate (RA; 1.0 FTE, Months 5–10) implements season-scale compute and the landscape library on SCAFC tracking data and tactical labels. Months 1–4 are PL-led so the RA inherits a gated, specified pipeline rather than designing the stack. Months 11–12 remain PL-owned after the RA handover. The post is structured postdoctoral training in statistical topology and sequential inference.
 
 **Sample-size rationale.** A full Championship season supplies the replication the pilot cannot: 552 fixtures, about 540 after pre-registered exclusions (R2). The unit is the fixture (one focal team, opposition as covariate), so the two dependent teams are not double-counted. Venue × opposition strength gives six cells of about 90 matches, each above the 32 needed for a 95% confidence-interval half-width of 0.025 on the tactical-scale loop-presence rate (pilot across-match s.d. 0.065 [23]). Phase of play is a within-match stratum and does not partition matches. For formation comparison, 180 matches per class detect Cohen's d ≥ 0.30 at 80% power (α = 0.05, Benjamini–Hochberg false-discovery-rate control, BH-FDR); 540 matches cover the three most common formations, the pre-registered comparison set. The replication target is a borderline within-match pilot effect (stratified permutation p = 0.051).
 
-**O1: Population-scale geometry (PI Months 1–9; RA Months 5–9).** O1 tests whether scale-specific summaries are stable enough to average at population scale and whether their distances distinguish organisational states (in football, tactical formations). A 20-match validation batch in Months 1–2 tests whether the pilot interaction lengths transfer to Championship data, and whether 1 Hz sampling preserves the features validated at 10 Hz.
+**O1: Population-scale geometry (PL Months 1–9; RA Months 5–9).** O1 tests whether scale-specific summaries are stable enough to average at population scale and whether their distances distinguish organisational states (in football, tactical formations). A 20-match validation batch in Months 1–2 tests whether the pilot interaction lengths transfer to Championship data, and whether 1 Hz sampling preserves the features validated at 10 Hz.
 
 - **Cutoff acceptance** (gate, Month 2): invert the cardinality rules of [23] on the validation batch; a match outside a named connected-component band triggers re-derivation.
 - **Dependence diagnostic** (gate, Month 9): empirical autocovariance decay consistent with the summable-mixing condition T1 and T2 assume, with the eigengap for T2's projected form recorded alongside.
 - **Discriminability** (gate, Month 9): separation of at least three organisational states (p < 0.05, BH-corrected), benchmarked against team length, width and convex-hull area [21,22].
 
-**O2: Inference for dependent topological processes (PI Months 4–10; RA and Co-I Months 5–10).** The Month-2 gate licenses O2; the Month-9 criteria are the hypotheses under which T1 and T2 are to be proved (§5). O2 succeeds if both theorems hold under the O1 conditions and detected change-points recover at least 70% of held-out annotated transitions within ±10 s at a calibrated 5% false-alarm rate (permutation p < 0.05).
+**O2: Inference for dependent topological processes (PL Months 4–10; RA and PcL Months 5–10).** The Month-2 gate licenses O2; the Month-9 criteria are the hypotheses under which T1 and T2 are to be proved (§5). O2 succeeds if both theorems hold under the O1 conditions and detected change-points recover at least 70% of held-out annotated transitions within ±10 s at a calibrated 5% false-alarm rate (permutation p < 0.05).
 
 ![**Figure 1.** Twelve-month workplan: decision gates (diamonds) and dated outputs (triangles).](grant_figure_gantt.png){width=13cm}
 
@@ -135,7 +140,7 @@ where Δ is the change in the mean landscape, σ² is T1's long-run variance and
 
 ### 6. Feasibility and Risk Management
 
-The project is feasible in twelve months: the method is pilot-validated (§2), data access is secured through the SCAFC agreement, and the computational budget is modest (§7). Three risks remain.
+The award is feasible in twelve months (RA Months 5–10; Months 11–12 PL-owned). The method is pilot-validated (§2), data access is secured through the SCAFC agreement, and the computational budget is modest (§7). Three risks remain.
 
 - **(R1) Scale transferability**: medium likelihood, high impact. Without transferable interaction lengths averaging is not meaningful; the Month-2 cutoff gate mitigates this.
 - **(R2) Label uncertainty**: medium likelihood, low impact. Dual-source verification, Cohen's κ and Open Science Framework (OSF) pre-registered exclusions mitigate this. Labels affect the interpretation of O1, not the theorems.
@@ -145,7 +150,7 @@ The project is feasible in twelve months: the method is pilot-validated (§2), d
 
 **Publications and software.** The methodology paper [23] is submitted. The dated deliverables in Figure 1 are a season-results paper, a football-analytics paper [29], a Zenodo library DOI and SCAFC practitioner outputs. The analysis plan is pre-registered on OSF at Month 2. These form the Month-12 evidence pack for the Standard Grant (§3).
 
-**Team.** The project is based at Swansea University's Zienkiewicz Institute for Modelling, Data and AI. It brings together statistical topology for competitive systems (PI, Biomedical Engineering), applied algebraic geometry and topological methods (Co-I Villamizar, Mathematics) and SCAFC as industry co-development partner. This new cross-school and industry collaboration fits the scheme's remit. **Resources.** Full-season processing uses the PI's Supercomputing Wales allocation: approximately 1,600 of 5,000 available CPU-hours.
+**Team.** The team brings together statistical topology for competitive systems (PL, Biomedical Engineering), applied algebraic geometry and topological methods (PcL Villamizar, Mathematics) and SCAFC as industry co-development partner. This cross-school and industry collaboration fits the scheme's remit. **Resources.** Full-season processing uses the PL's Supercomputing Wales allocation: approximately 1,600 of 5,000 available CPU-hours.
 
 ## References
 
