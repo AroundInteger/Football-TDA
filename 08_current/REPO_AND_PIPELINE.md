@@ -14,11 +14,12 @@ Football monorepo, and (ii) closing out the old **iCloud** copies under
 | Role | Path | Remote |
 |------|------|--------|
 | **Football (canonical)** | `~/TDA/Football` | `https://github.com/AroundInteger/Football-TDA.git` |
-| **Conflict / UKRI work** | `~/TDA/Conflict` | separate repo (check `git remote -v`) |
+| **Conflict / UKRI work** | `~/TDA/Conflict` | `https://github.com/AroundInteger/Conflict-TDA.git` |
 | **Deprecated (iCloud)** | `~/Documents/GitHub/Football-TDA` | same remote; delete after GitHub sync |
 
-`~/TDA/` is a **plain folder**, not a git repo. It holds independent projects side
-by side, outside iCloud Desktop & Documents sync.
+`~/TDA/` is a **plain folder**, not a git repo. It holds TDA-related projects side
+by side, outside iCloud Desktop & Documents sync. Non-TDA AroundInteger repos
+(e.g. p-adic sports) live **outside** `~/TDA/` — see §4.5.
 
 **Cursor / IDE:** open `~/TDA/Football`, not the Documents copy.
 
@@ -236,6 +237,42 @@ gitignored; download per `Data/README.md`. Manuscript data-availability links
 point at Conflict-TDA, not Football-TDA.
 
 **TackleTEK** (`TackleTEK/TackleTEK`) is a separate rugby project — not this repo.
+
+### 4.5 p-adic sports framework (done 25 Aug 2026)
+
+Dedicated repository: **[AroundInteger/padic-sports-framework](https://github.com/AroundInteger/padic-sports-framework)**
+
+This is a **standalone AroundInteger repo** — not nested in Football-TDA and not
+part of the `~/TDA/` local cluster (unlike Conflict-TDA, which remains TDA work).
+
+Canonical working copy (outside `~/TDA/`):
+
+```
+~/GitHub/padic-sports-framework/
+```
+
+MATLAB framework for hierarchical sports analytics using p-adic distance metrics
+and ultrametric clustering. Entry points:
+
+```matlab
+run_framework          % synthetic seven-step baseline (silhouette > 0.9)
+run_with_real_data     % bundled football + rugby example CSVs
+```
+
+Requires **MATLAB R2019b+** and the **Statistics and Machine Learning Toolbox**.
+Example data ships in `data/examples/`; drop league CSVs into `data/raw/` per
+`data/README.md`.
+
+The exploratory Python p-adic scripts under `05_physics_analogies/` in
+Football-TDA remain historical; new p-adic work belongs in this repo.
+
+Clone once:
+
+```bash
+mkdir -p ~/GitHub
+cd ~/GitHub
+git clone https://github.com/AroundInteger/padic-sports-framework.git
+```
 
 ---
 
