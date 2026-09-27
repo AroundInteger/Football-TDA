@@ -4,41 +4,41 @@
 \subsection{Connected components (\texorpdfstring{$H_0$}{})}
 \label{sec:scaleh0}
 
-Addressing question~\ref{q:levels}, the homology sample reproduces
-the three organisational levels inverted from the data in
+Addressing question~\ref{q:levels}, the homology sample confirms the
+three organisational levels read from the group-count curve in
 Section~\ref{sec:cutoffselection}. Those levels are individual
 ($\delta = 2.75$~m), tactical ($\delta = 11.75$~m), and team
-($\delta = 23.0$~m). Throughout, $H_0$ is the
-number of cluster centroids. Equivalently, it
-is $\beta_0$ of the Vietoris--Rips complex on those centroids at
-filtration zero. Primary-match figures come from the uniform 150-frame
-sample of match 1996435 (Section~\ref{sec:data}). Ten-match aggregates
-use the same sampling scheme (1{,}500 frames in total).
+($\delta = 23.0$~m). Throughout, $H_0$ is the group count: the number
+of centroids after clustering. Equivalently, it is $\beta_0$ of the
+Vietoris--Rips complex on those centroids at filtration zero.
+Primary-match figures come from the uniform 150-frame sample of match
+1996435 (Section~\ref{sec:data}). Ten-match aggregates use the same
+sampling scheme (1{,}500 frames in total).
 
 At the individual level,
 $H_0 = 19.32 \pm 2.34$ (mean $\pm$ s.d.; range 10--22). At the tactical
 level, $H_0 = 5.04 \pm 1.69$ (range 2--10). At the
 team level, the cloud usually collapses to one or
-two clusters: mean $1.96 \pm 0.36$. All 22 players lie in a single
-cluster in 8.7\% of frames, split across two in 86.7\%, and across
+two groups: mean $1.96 \pm 0.36$. All 22 players lie in a single
+group in 8.7\% of frames, split across two in 86.7\%, and across
 three in 4.7\%.
 
 The same three-level pattern holds in all ten matches. Grand means are
 individual $H_0 = 19.31 \pm 0.31$, tactical $H_0 = 5.09 \pm 0.38$, and
-team cluster count $1.98 \pm 0.06$ (mean $\pm$ s.d.\ across matches).
-Every match stays within the validated $H_0$ bands of
+team $H_0 = 1.98 \pm 0.06$ (mean $\pm$ s.d.\ across matches).
+Every match stays within the acceptance intervals of
 Section~\ref{sec:cutoffselection}: the ten per-match means all fall
-inside the acceptance intervals $[15,22]$, $[4,10]$, and $[1,2.5]$
+inside $[15,22]$, $[4,10]$, and $[1,2.5]$
 (Figure~\ref{fig:cutoff}b). Figure~\ref{fig:cutoff} records the sweep
 from which those cutoffs were taken. The pooled curve is asymmetric:
-about $1.6$ clusters merge per metre from the individual to the
+about $1.6$ groups merge per metre from the individual to the
 tactical level, but only about $0.27$ per metre from the tactical to
-the team level, so the two surviving envelopes remain over a wide band
+the team level, so the two envelopes remain over a wide band
 of $\delta$ (Figure~\ref{fig:cutoff}a). The spatial realisation on a
 single frame (Figure~\ref{fig:cutoff}d--f) shows the same three
-regimes: a near-atomic cloud at $2.75$~m, a handful of coordinating
-groups at $11.75$~m, and two spatial envelopes at $23.0$~m, which are
-topological components rather than the two teams.
+regimes: a mostly resolved set of agents at $2.75$~m, a handful of
+coordinating groups at $11.75$~m, and two spatial envelopes at
+$23.0$~m, which are topological components rather than the two teams.
 
 \subsection{\texorpdfstring{$H_1$}{} loop detection}
 \label{sec:h1detection}
@@ -125,15 +125,15 @@ Team       & 0       & $0.0\%\pm0.0\%$  & N/A              & N/A   & N/A \\
 \end{tabular}
 \end{table}
 
-The tactical level sits close to a cardinality floor. In the ten-match sample, 40.6\% of frames have four or fewer
-tactical centroids, and none of them carries a loop. Presence rate
-alone cannot tell arrangement from cluster count. We separate the two
-with the matched null of Section~\ref{sec:stats}, which fixes centroid
-number and spatial envelope and randomises only arrangement.
+The tactical level sits close to a group-count floor. In the ten-match sample, 40.6\% of frames have four or fewer
+tactical groups, and none of them carries a loop. Presence rate
+alone cannot tell arrangement from group count. We separate the two
+with the matched null of Section~\ref{sec:stats}, which fixes group
+count and spatial envelope and randomises only arrangement.
 
 Table~\ref{tab:null} summarises the result. Tactical observed presence
 is more than twice the null rate. Table~\ref{tab:nullk} splits by
-centroid count $k$. Presence is zero at $k\le 4$, as expected. It then
+group count $k$. Presence is zero at $k\le 4$, as expected. It then
 rises from 9.3\% at $k=5$ to 67.0\% at $k=8$, always above the null.
 At the individual level the null already exceeds 91\%: twenty points
 in a bounded region almost always close a cycle. The observed excess is
@@ -142,7 +142,7 @@ $k \ge 5$. Individual presence is already high under the null.
 
 \begin{table}[h]
 \centering
-\caption{\texorpdfstring{$H_1$}{} presence against a cardinality- and envelope-matched null (10 matches, 1{,}500 frames, 200 null replicates per frame). Excess is in percentage points, with 95\% bootstrap CIs over matches.}
+\caption{\texorpdfstring{$H_1$}{} presence against a group-count- and envelope-matched null (10 matches, 1{,}500 frames, 200 null replicates per frame). Excess is in percentage points, with 95\% bootstrap CIs over matches.}
 \label{tab:null}
 \begin{tabular}{@{}lcccc@{}}
 \toprule
@@ -156,7 +156,7 @@ Tactical   & 18.8\% & 9.1\%  & $+9.7$ & $[+7.3, +12.2]$ \\
 
 \begin{table}[h]
 \centering
-\caption{Tactical-level \texorpdfstring{$H_1$}{} presence by centroid count \texorpdfstring{$k$}{}, against the matched null of Table~\ref{tab:null} (10 matches, 1{,}500 frames).}
+\caption{Tactical-level \texorpdfstring{$H_1$}{} presence by group count \texorpdfstring{$k$}{}, against the matched null of Table~\ref{tab:null} (10 matches, 1{,}500 frames).}
 \label{tab:nullk}
 \begin{tabular}{@{}rcccc@{}}
 \toprule
@@ -179,8 +179,8 @@ All 403 primary-match $H_1$ features receive a geometric realisation
 via closed-cycle identification. The representative is the graph-cycle
 proxy of Section~\ref{sec:cycles}, not a generator from the reduction
 matrix. Cycles at the individual level form short rings of centroids
-(typically three to six nodes in the examples we inspected). Tactical
-cycles are similarly small (often four or five nodes) but span larger
+(typically three to six vertices in the examples we inspected). Tactical
+cycles are similarly small (often four or five vertices) but span larger
 gaps and have larger filtration lifetime. Figure~\ref{fig:cycles} shows the same sample
 frame at both levels, with the cutoff and the filtration drawn as
 separate panels (sample frame~95). The left column is the vertex set
@@ -225,8 +225,8 @@ same rule as the ten-match analysis).}
 \begin{figure}[tp]
 \centering
 \includegraphics[width=\textwidth,keepaspectratio]{figures/fig4_h1_diagrams}
-\caption{Scale-separated finite \texorpdfstring{$H_1$}{} bars on the
-primary match (uniform 150-frame sample).
+\caption{Finite \texorpdfstring{$H_1$}{} bars at two organisational
+levels on the primary match (uniform 150-frame sample).
 \textbf{(a)}~Individual and \textbf{(b)}~tactical persistence diagrams
 for sample frame~95, the same frame as Figure~\ref{fig:cycles}.
 The marked pair is the bar of largest \texorpdfstring{$p$}{} on that frame
@@ -303,8 +303,8 @@ $P_{95}$ & 25 & 15.3\% & 65.3 \\
 \subsection{Complementarity of the two \texorpdfstring{$H_1$}{} levels}
 \label{sec:complementarity}
 
-The two $H_1$ levels carry
-related but largely distinct information.
+The two $H_1$ levels carry distinct rather than redundant
+information.
 Over 1{,}500 uniformly sampled frames, total individual and tactical
 $H_1$ persistence correlate weakly (Spearman $\rho=0.234$, $p<0.001$;
 95\% bootstrap CI $[0.181, 0.276]$). The same holds for loop counts
@@ -332,10 +332,10 @@ Individual $H_1$ absent  & 2   & 51 \\
 \end{tabular}
 \end{table}
 
-A TDA-native check agrees. Bottleneck distance between the two levels'
+Bottleneck distance between the two levels'
 diagrams has median 1.456~m and 95th-percentile tail 3.556~m. That is
-on the order of typical tactical loop size on the primary match
-(3.778~m mean filtration lifetime where loops appear;
+on the order of typical tactical filtration lifetime on the primary
+match (3.778~m mean bar length where loops appear;
 Table~\ref{tab:h1single}). Landscape $L^2$ distance has median 5.477.
 The levels differ by roughly as much as their features are large, not
 by a small perturbation of one shared pattern.

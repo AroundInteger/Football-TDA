@@ -18,8 +18,8 @@ fixtures are listed in Supplementary Table~\ref{tab:matches}.
 
 Consecutive complete frames share nearly the same configuration, so
 the full stream is not treated as a sequence of independent snapshots.
-Prevalence and organisational-level summaries are estimated on a
-uniform subsample instead. Write $t$ for the time of a complete frame
+Connected-component and loop summaries are estimated on a uniform
+subsample instead. Write $t$ for the time of a complete frame
 in the native stream. The same operational rule is used on every
 match: list the complete 22-player frames, set the stride to
 $\lfloor N/150\rfloor$, and retain 150 frames. Write $\tilde{t}$ for a
@@ -44,10 +44,10 @@ $\tilde{T}$.
 
 On this corpus the named organisational levels of
 Section~\ref{sec:scaleconflation} (individual, small group, envelope)
-are instantiated as individual, tactical, and team. The class names
-those levels by cardinality. The cutoffs $\delta$ that select them are
-therefore read from the sweep in
-Section~\ref{sec:cutoffselection}, rather than assumed in metres.
+are instantiated as individual, tactical, and team. Each level is
+named by how many groups it contains. The cutoff $\delta$ that
+selects it is read from the group-count curve in
+Section~\ref{sec:cutoffselection}.
 
 Figure~\ref{fig:pipeline} summarises the pipeline of
 Sections~\ref{sec:clustering}--\ref{sec:cycles}. The pipeline is
@@ -65,7 +65,7 @@ a football pitch; each panel shows the step and its output).
 \texorpdfstring{$P(\tilde{t})$}{}
 with dashed \texorpdfstring{$\delta$}{}-disks and a representative
 gap \texorpdfstring{$<\delta$}{} (Section~2.2).
-\textbf{(b)}--\textbf{(d)}~Vietoris--Rips (VR) on the cluster centroids
+\textbf{(b)}--\textbf{(d)}~Vietoris--Rips on the cluster centroids
 \texorpdfstring{$\tilde{P}(\tilde{t})$}{} at three increasing
 \texorpdfstring{$\varepsilon$}{}, truncated at
 \texorpdfstring{$\varepsilon_{\max}$}{}
@@ -97,10 +97,9 @@ so the partitions are spatial rather than labelled by side.
 \subsection{Cutoff selection}
 \label{sec:cutoffselection}
 
-The class names the three organisational levels by cardinality. The
-selector therefore inverts a named cluster count rather than assuming
-a length in metres. The inversion is read from the pooled mean
-cluster-count curve on this corpus.
+The selector inverts a named group count rather than assuming a
+length. The inversion is read from the pooled mean group-count curve
+on this corpus.
 
 A complete frame has $n=22$ agents. The sweep uses every complete
 22-player frame of the ten matches in Supplementary
@@ -109,10 +108,10 @@ $\delta\in[0.25, 40.0]$~m at $0.25$~m steps (160 points). No random
 window is drawn, and epoch lengths are not mixed. Clustering is
 single-linkage, and team labels are unused.
 
-Let $\overline{H_0}(\delta)$ be the mean cluster count at cutoff
-$\delta$, pooled over those frames. Let $P(k\ge 4;\delta)$ be the
-fraction of frames with at least four clusters. The three inversion
-rules are then as follows:
+Let $\overline{H_0}(\delta)$ denote that curve: the mean group count
+at cutoff $\delta$, pooled over those frames. Let $P(k\ge 4;\delta)$
+be the fraction of frames with at least four groups. The three
+inversion rules are then as follows:
 
 \begin{itemize}
 \item individual: largest $\delta$ with $\overline{H_0}(\delta)\ge n-3=19$;
@@ -124,23 +123,24 @@ $P(k\ge 4;\delta)\ge 0.5$;
 Ties take the smaller $\delta$. The three targets are roster
 statements. The individual target $n-3=19$ is a mostly resolved set of
 agents. The tactical target $5$, with $k\ge 4$ still common, is a
-handful of coordinating groups that remain loop-feasible. The team
-target $2$ is at most two spatial envelopes.
+handful of coordinating groups, enough that a loop remains possible.
+The team target $2$ is at most two spatial envelopes.
 
 On this corpus the inversion returns $2.75$~m, $11.75$~m, and
-$23.0$~m. Pooled mean $H_0$ at those cutoffs is $19.31$, $5.06$, and
-$1.98$. Inverting each match separately gives
+$23.0$~m. Pooled mean group count at those cutoffs is $19.31$,
+$5.06$, and $1.98$. Inverting each match separately gives
 $2.80\pm 0.20$~m, $11.80\pm 0.35$~m, and $22.98\pm 0.72$~m
 (mean $\pm$ s.d.\ across matches). Acceptance requires every match's
-mean $H_0$ at the pooled cutoff to lie in $[15, 22]$, $[4, 10]$, and
-$[1, 2.5]$ respectively. All ten matches lie inside those bands.
+mean $\overline{H_0}$ at the pooled cutoff to lie in $[15, 22]$,
+$[4, 10]$, and $[1, 2.5]$ respectively. All ten matches lie inside
+those bands.
 
-The curve is asymmetric. Micro-structure merges quickly, at about
-$1.6$ clusters per metre from $\overline{H_0}=19$ to $5$.
-Macro-structure then resists merging, at about $0.27$ clusters per
-metre from $5$ to $2$. The remaining gaps are the large between-group
-distances. That flattening is why the team cutoff sits far out at
-$23.0$~m and still returns two envelopes, not two teams.
+The curve is asymmetric. Nearby agents merge quickly, at about
+$1.6$ groups per metre from $\overline{H_0}=19$ to $5$. Larger gaps
+then resist merging, at about $0.27$ groups per metre from $5$ to
+$2$. The remaining gaps are the large between-group distances. That
+flattening is why the team cutoff sits far out at $23.0$~m and still
+returns two envelopes, not two teams.
 
 Clustering-quality diagnostics (Calinski--Harabasz, silhouette, and
 Shannon entropy of cluster sizes) are recorded on a deterministic
@@ -155,17 +155,18 @@ responds to the cutoff choice.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig2_cutoff_sweep}
-\caption{Cutoff selection by cardinality inversion. Sweep on all
+\caption{Cutoff selection from the group-count curve. Sweep on all
 complete frames of the ten SkillCorner matches (436{,}648 frames);
 not the 150-frame sample \texorpdfstring{$\tilde{T}$}{} of
 Section~\ref{sec:data}. Grid
 \texorpdfstring{$\delta\in[0.25, 40.0]$}{}~m at $0.25$~m.
-\textbf{(a)}~Pooled mean cluster count
+\textbf{(a)}~Pooled mean group-count curve
 \texorpdfstring{$\overline{H_0}(\delta)$}{} (black) with the ten
 per-match curves (grey). Targets are roster statements:
 \texorpdfstring{$\overline{H_0}=n-3=19$}{} (most agents resolved),
 \texorpdfstring{$\overline{H_0}=5$}{} (a few coordinating groups,
-loop-feasible), and \texorpdfstring{$\overline{H_0}=2$}{} (two spatial
+enough that a loop remains possible), and
+\texorpdfstring{$\overline{H_0}=2$}{} (two spatial
 envelopes, not the two teams, since team labels are unused). Circles
 mark the inversion at $2.75$, $11.75$, and $23.0$~m (top axis); the
 inset zooms the individual rule.
@@ -177,7 +178,7 @@ dots are the ten per-match means, all inside. Frame-to-frame variance
 is why the acceptance intervals, not a single per-frame count, define
 the test.
 \textbf{(c)}~Feasibility of the tactical rule.
-\texorpdfstring{$k$}{} is the number of clusters in a frame and
+\texorpdfstring{$k$}{} is the number of groups in a frame and
 \texorpdfstring{$P(k\ge 4)$}{} the fraction of frames with at least
 four; the adopted $11.75$~m sits at \texorpdfstring{$P=0.80$}{}, inside
 the feasible region (\texorpdfstring{$\delta\le 13.5$}{}~m).
@@ -215,20 +216,21 @@ keeps the filtration in the inter-cluster distance regime.
 $P_{75}$ is a conventional upper-quartile summary.
 Section~\ref{sec:sensitivity} reports an ablation across $P_{50}$
 through $P_{95}$. Every tested percentile returns identical $H_1$
-totals and frame-presence rates. The choice is therefore a reporting
-convention, not an optimisation.
+totals and the same fraction of frames with a loop. The choice is
+therefore a reporting convention, not an optimisation.
 
 Persistence diagrams are computed with Ripser via Ripser.py
 \citep{bauer2021ripser}, with coefficients in $\mathbb{F}_2$. We report
-finite $H_1$ bars. The Results use three summaries of those bars. None
-of them is a duration in seconds. \emph{Presence} is the fraction of
-frames with at least one finite $H_1$ bar. \emph{Filtration lifetime}
-$p$ is death minus birth, in metres on the Vietoris--Rips parameter:
-the length of a bar, not a duration in seconds. \emph{Total
-persistence} is the sum of $p$ over the finite bars in a frame. It is
-the Spearman input in Section~\ref{sec:complementarity}. The 150-frame
-subsample of Section~\ref{sec:data} does not measure how long a loop
-lasts on the clock. The $H_0$ counts reported in
+finite $H_1$ bars. The Results use three summaries of those bars.
+\emph{Presence} is the fraction of frames with at least one finite
+$H_1$ bar. \emph{Filtration lifetime} $p$ is death minus birth: the
+length of a bar, in metres on the Vietoris--Rips parameter.
+\emph{Total persistence} is the sum of $p$ over the finite bars in a
+frame. It is the Spearman input in
+Section~\ref{sec:complementarity}. None of these summaries is a
+duration in seconds, and the 150-frame subsample of
+Section~\ref{sec:data} does not measure how long a loop lasts on the
+clock. The $H_0$ counts reported in
 Section~\ref{sec:scaleh0} are read from these diagrams at filtration
 zero. We cross-checked all
 primary-match diagrams against GUDHI \citep{gudhi2014} and giotto-tda
@@ -243,13 +245,14 @@ Section~\ref{sec:complementarity}.
 Each $H_1$ feature corresponds to a 1-cycle in the Vietoris--Rips
 complex. A geometric realisation is recovered from the adjacency graph
 of edges whose distances fall within the feature's persistence
-interval $[\text{birth},\text{death}]$. Closed cycles of length at
-least 3 are then enumerated by breadth-first search from each vertex.
-If that graph yields no cycle, the search falls back to edges with
-length in $[\tfrac{1}{2}\text{birth},\,\text{death}]$. Breadth-first
+interval $[\text{birth},\text{death}]$. Closed cycles of at least
+three vertices are then enumerated by breadth-first search from each
+vertex. If that graph yields no cycle, the search falls back to edges
+whose distances lie in
+$[\tfrac{1}{2}\text{birth},\,\text{death}]$. Breadth-first
 search is used in preference to depth-first search because it
-prioritises shorter cycles. Those shorter cycles correspond to minimal
-enclosing arrangements. Among the enumerated cycles, the
+prioritises cycles with fewer vertices. Those cycles correspond to
+minimal enclosing arrangements. Among the enumerated cycles, the
 representative is the one whose edge distances lie closest to the
 midpoint of the persistence interval. This representative is a
 geometric proxy for the persistence pair, not a homology generator
@@ -262,7 +265,7 @@ $H_1$ detection could reflect the number of centroids rather than
 their arrangement. Each frame is therefore compared against a matched
 null. For a frame whose clustering yields $k$ centroids, the null
 draws $k$ points uniformly from the convex hull of those same
-centroids. Cardinality and spatial envelope are thus held fixed. Only
+centroids. Group count and spatial envelope are thus held fixed. Only
 the arrangement is randomised. The truncation of
 equation~\eqref{eq:adaptive} is recomputed on each null cloud.
 Nothing else differs between the observed cloud and the null. We use

@@ -5,15 +5,15 @@
 \label{sec:disc-levels}
 
 The three $H_0$ regimes
-(individual, tactical, and team) are the cardinality targets of
-Section~\ref{sec:cutoffselection}, read from the pooled
-\texorpdfstring{$H_0(\delta)$}{} curve on every complete frame of the
+(individual, tactical, and team) are the named group-count targets of
+Section~\ref{sec:cutoffselection}, read from the pooled group-count
+curve on every complete frame of the
 ten matches (Figure~\ref{fig:cutoff}). Those regimes remain over a
 range of $\delta$ rather than appearing only at the adopted cutoffs.
-Application to another bounded competitive system still requires the
-interaction lengths to be re-derived on that domain.
+The metre values are specific to this corpus. Another domain still
+requires the interaction lengths to be re-derived.
 
-The tactical cutoff is the inversion of a named cardinality (mean
+The tactical cutoff is the inversion of a named group count (mean
 $H_0$ nearest 5, with $k\ge 4$ still common; Figure~\ref{fig:cutoff}c).
 On the 1~Hz diagnostic subset the only interior silhouette local
 maximum is at $7.0$~m, a small-group alternative that keeps rising into
@@ -36,12 +36,12 @@ dispersion of loops between samples (Section~\ref{sec:data}).
 Every examined $H_1$ feature is realised as a loop in space
 (Figure~\ref{fig:cycles}). Detection is not confined to the adopted
 cutoff or to a single truncation percentile
-(Section~\ref{sec:sensitivity}). The operative tactical setting
-occupies the band $[6,14]$~m, not an isolated optimum.
+(Section~\ref{sec:sensitivity}). Tactical $H_1$ is detected on the
+band $[6,14]$~m, not only at an isolated optimum.
 
 The pipeline therefore reports three $H_0$ regimes and two $H_1$
 regimes. At the team level the reduced cloud almost never has enough
-centroids to close a loop (Remark~\ref{rem:teamnull}). Recovering
+groups to close a loop (Remark~\ref{rem:teamnull}). Recovering
 team-level loop structure on the typical envelope would require a
 different representation, such as spatial density fields or Delaunay
 triangulations. Linkage choice changes tactical $H_1$ counts by nearly
@@ -51,12 +51,12 @@ Section~\ref{sec:limitations}.
 \subsection{Distinct structure at two levels}
 \label{sec:disc-distinct}
 
-The two levels are not measuring
-the same structure at different resolutions. If the tactical signal
-were a coarsened version of the individual signal, the two would
-co-occur far more consistently than Table~\ref{tab:fisher} shows. The
-bottleneck and landscape distances would also be small relative to each
-level's own filtration lifetimes
+The two $H_1$ levels carry distinct rather than redundant
+information. They are not measuring the same structure at different
+resolutions. If the tactical signal were a coarsened version of the
+individual signal, the two would co-occur far more consistently than
+Table~\ref{tab:fisher} shows. The bottleneck and landscape distances
+would also be small relative to each level's own filtration lifetimes
 (Section~\ref{sec:complementarity}).
 Clustering before persistent homology is therefore not a convenience
 for separating noise. It produces two informationally distinct
@@ -65,13 +65,13 @@ objects.
 \subsection{Construct validity}
 \label{sec:disc-validity}
 
-The preliminary answer is yes:
-total persistence is not independent of on-ball events.
+Total persistence is not independent of on-ball events, as a
+preliminary construct-validity check.
 At the individual level, mean $\Delta$ is $-0.253$~m after on-ball
 engagements and $+0.700$~m after build-up
 (Section~\ref{sec:eventcorr}).
-That is a construct-validity check only. Multiple-testing control and
-football interpretation belong to a companion manuscript (Paper~B).
+Multiple-testing control and football interpretation belong to a
+companion manuscript (Paper~B).
 
 \subsection{Limitations}
 \label{sec:limitations}
@@ -95,7 +95,8 @@ sense of sparse identification of nonlinear dynamics. The functional
 would be the landscape $L^2$ norm or the tactical $H_1$
 total-persistence sequence. Operationalising this would require three
 things. First, choose the dynamical state. Second, defend the sparsity
-of the recovered library against AIC, BIC, or cross-validation
+of the recovered library against the Akaike information criterion
+(AIC), the Bayesian information criterion (BIC), or cross-validation
 baselines. Third, confirm that the resulting persistence sequence is
 genuinely lower-dimensional under the selected linkage. We defer this
 to the forthcoming full-season work. A population-sized sample of
@@ -106,8 +107,8 @@ persistence landscape under small perturbations of $\delta$) remains a
 future estimator of the tactical cutoff. It is computable with the
 landscape infrastructure of Section~\ref{sec:complementarity}. We
 defer it to the persistence-landscape companion work.
-Section~\ref{sec:sensitivity} reports the operative tactical $H_1$
-range as an empirical property around the adopted $11.75$~m.
+Section~\ref{sec:sensitivity} reports the $[6,14]$~m tactical
+$H_1$ band as an empirical property around the adopted $11.75$~m.
 
 All data analysed here are broadcast-derived tracking at 10~Hz.
 Broadcast tracking typically offers lower spatial precision than
@@ -125,7 +126,8 @@ Two extensions are in progress. The ten-match evidence base is being scaled
 to a full season of Championship matches. That sample will
 characterise population-level distributions of $H_0$ and $H_1$
 counts, filtration lifetimes, and landscape norms, and will test
-tactical-fingerprint classification at population scale. It is also
+whether matches carry a stable tactical signature at population
+scale. It is also
 the setting in which the linkage criterion proposed above becomes
 evaluable. Recovering a sparse governing equation for a persistence
 functional requires the population-sized sample of match sequences
