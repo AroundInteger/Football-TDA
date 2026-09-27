@@ -30,7 +30,7 @@
 - [ ] **Finance:** confirm JeS lines = PI 0.10 + NV 0.05 + RA **Months 5–10** (6 months G7 SP30); not Jul–Dec example unless you deliberately retarget milestones
 - [ ] **Finance:** obtain final fEC / 80% figures and paste into `06_Resources_and_Costs.md`
 - [ ] **NV:** written agreement to be Co-I (0.05 FTE); ORCID / JeS profile ready; short CV if required
-- [ ] **SCAFC letter of support:** final signed PDF; wording matches data route + in-kind (no cash)
+- [ ] **SCAFC project-partner record:** signed partner statement (commitment; value to them; value they bring; in-kind, no cash). No generic letters of support; UKRI Project Partner section only. Hudl only if they have agreed the same three statements; otherwise do not name them.
 - [ ] **Start date:** lock project months (e.g. Jan–Dec 2027) so Months 5–10 map to calendar dates for JeS
 - [ ] **JeS application shell:** create/open proposal; add PI + Co-I; upload partner letter when ready
 - [ ] **Research Office:** notify of **Thursday submit**; ask cut-off time and any institutional approval steps
