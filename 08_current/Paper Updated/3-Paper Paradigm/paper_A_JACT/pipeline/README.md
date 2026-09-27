@@ -102,5 +102,6 @@ narrative. Figure 4a–b are birth–death diagrams, matching Figure 1e.
 - `../figures/fig1_pipeline_schematic.pdf`
 - `../figures/fig2_cutoff_sweep.pdf`
 - `../figures/fig3_cycle_geometry.pdf`
+- `../figures/hudl_shape_briefing.pdf` (industry outreach; also copied to `08_current/grant/live/figures/`)
 - `../figures/fig4_h1_diagrams.pdf` (after step 11)
 - `../figures/figS1_acf.pdf` (after step 09)

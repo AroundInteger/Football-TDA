@@ -12,7 +12,7 @@ import numpy as np
 PIPELINE_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PIPELINE_DIR / "lib"))
 from common import FIGURES_DIR, OUTPUT_DIR, ensure_dirs, load_config, repo_root  # noqa: E402
-from figure_style import add_panel_letter, apply_rcparams, export_figure  # noqa: E402
+from figure_style import STYLE, add_panel_letter, apply_rcparams, export_figure  # noqa: E402
 
 REPO = repo_root()
 sys.path.insert(0, str(REPO / "03_football_analysis" / "AvailableData"))
@@ -530,6 +530,144 @@ def render_3panel_preview() -> Path:
     return out_pdf
 
 
+def plot_hudl_loop_panel(ax, positions, cutoff, cycle_edge_rgb):
+    """Single-scale loop for industry briefing: no δ disks, no edge labels."""
+    draw_pitch(ax)
+    pos = np.asarray(positions)
+    _, labels = cutoff_cluster(pos, cutoff)
+    _, h1_d, cents, _ = h1_at_cutoff(pos, cutoff)
+    pts = np.asarray(cents)
+    if pts.size == 0 or len(h1_d) == 0:
+        ax.scatter(
+            pos[:, 0], pos[:, 1], s=22, c=[PLAYER],
+            edgecolors="#222222", linewidths=0.4, zorder=4,
+        )
+        draw_scale_bar(ax)
+        return
+
+    unique = np.unique(labels)
+    pers = h1_d[:, 1] - h1_d[:, 0]
+    idx = int(np.argmax(pers))
+    cycles = find_closed_cycles(
+        pts, float(h1_d[idx, 0]), float(h1_d[idx, 1]),
+        min_length=3, max_length=6,
+    )
+    cycle_nodes = list(cycles[0].nodes) if cycles else []
+    in_cycle = (
+        np.isin(labels, unique[cycle_nodes]) if cycle_nodes else np.zeros(len(pos), bool)
+    )
+
+    if cycle_nodes:
+        cx = pts[cycle_nodes, 0]
+        cy = pts[cycle_nodes, 1]
+        ax.fill(cx, cy, color=cycle_edge_rgb, alpha=0.12, zorder=2)
+        n = len(cx)
+        for k in range(n):
+            k2 = (k + 1) % n
+            ax.plot(
+                [cx[k], cx[k2]], [cy[k], cy[k2]],
+                color=cycle_edge_rgb, lw=2.6, zorder=3,
+            )
+
+    ax.scatter(
+        pos[~in_cycle, 0], pos[~in_cycle, 1], s=22, c=[PLAYER],
+        edgecolors="#222222", linewidths=0.4, zorder=4,
+    )
+    if in_cycle.any():
+        ax.scatter(
+            pos[in_cycle, 0], pos[in_cycle, 1], s=36, c=[PLAYER_CYCLE],
+            edgecolors="#222222", linewidths=0.45, zorder=5,
+        )
+    non_cycle_pts = np.delete(pts, cycle_nodes, axis=0) if cycle_nodes else pts
+    if len(non_cycle_pts):
+        ax.scatter(
+            non_cycle_pts[:, 0], non_cycle_pts[:, 1], s=28, c=[NON_CYCLE],
+            edgecolors="w", linewidths=0.5, zorder=6,
+        )
+    if cycle_nodes:
+        ax.scatter(
+            pts[cycle_nodes, 0], pts[cycle_nodes, 1], s=90,
+            facecolors="none", edgecolors=CENTROID_COL, linewidths=1.6, zorder=7,
+        )
+    draw_scale_bar(ax)
+
+
+def render_hudl_briefing() -> Path:
+    """1×3 industry briefing figure for grant / Hudl outreach (not Paper A)."""
+    ensure_dirs()
+    cfg = load_config()
+    ensure_match_assets()
+    frames, home_name, away_name = load_tracking_data(require_complete=True)
+    n_sample = cfg["sampling"]["uniform_150"]["n_frames"]
+    step = max(1, len(frames) // n_sample)
+    sample = frames[::step][:n_sample]
+    idx = cfg["figures"]["individual_frame_idx"]
+    pos = sample[idx]["positions"]
+    d_ind = VALIDATED_CUTOFFS["individual"]
+    d_tac = VALIDATED_CUTOFFS["tactical"]
+
+    apply_rcparams()
+    fig, axes = plt.subplots(1, 3, figsize=(12.0, 4.0))
+    fig.subplots_adjust(
+        wspace=0.05, left=0.02, right=0.98, top=0.88, bottom=0.20,
+    )
+
+    draw_pitch(axes[0])
+    raw = np.asarray(pos)
+    axes[0].scatter(
+        raw[:, 0], raw[:, 1], s=24, c=[PLAYER],
+        edgecolors="#222222", linewidths=0.4, zorder=4,
+    )
+    draw_scale_bar(axes[0])
+
+    plot_hudl_loop_panel(axes[1], pos, d_ind, cycle_edge_rgb=STYLE.individual)
+    plot_hudl_loop_panel(axes[2], pos, d_tac, cycle_edge_rgb=STYLE.tactical)
+
+    subtitles = (
+        "All player positions",
+        "Individual scale (~3 m): local gap enclosed",
+        "Tactical scale (~12 m): unit-level gap enclosed",
+    )
+    subtitle_colours = (STYLE.text, STYLE.individual, STYLE.tactical)
+    for ax, subtitle, colour in zip(axes, subtitles, subtitle_colours):
+        bbox = ax.get_position()
+        fig.text(
+            bbox.x0 + bbox.width / 2,
+            bbox.y0 - 0.06,
+            subtitle,
+            ha="center",
+            va="top",
+            fontsize=11,
+            color=colour,
+            fontweight="bold" if colour != STYLE.text else "normal",
+        )
+
+    match_label = f"{home_name} vs {away_name} · "
+    fig.text(
+        0.5, 0.96,
+        f"{match_label}Broadcast tracking · one sample frame",
+        ha="center",
+        va="bottom",
+        fontsize=12,
+        color=STYLE.text,
+    )
+
+    grant_fig_dir = repo_root().parents[2] / "grant" / "live" / "figures"
+    grant_fig_dir.mkdir(parents=True, exist_ok=True)
+    targets = [
+        (grant_fig_dir / "hudl_shape_briefing.pdf", grant_fig_dir / "hudl_shape_briefing.png"),
+        (FIGURES_DIR / "hudl_shape_briefing.pdf", FIGURES_DIR / "hudl_shape_briefing.png"),
+    ]
+    for pdf_path, png_path in targets:
+        pdf_path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(pdf_path, dpi=STYLE.dpi, bbox_inches="tight")
+        fig.savefig(png_path, dpi=STYLE.dpi, bbox_inches="tight")
+    plt.close(fig)
+
+    print(f"Wrote {targets[0][0]}")
+    return targets[0][0]
+
+
 def render_2x2_preview() -> Path:
     """2×2 preview only. Does not replace fig3_cycle_geometry."""
     ensure_dirs()
@@ -587,5 +725,7 @@ if __name__ == "__main__":
         render_3panel_preview()
     elif "--preview-2x2" in sys.argv:
         render_2x2_preview()
+    elif "--hudl-briefing" in sys.argv:
+        render_hudl_briefing()
     else:
         main()

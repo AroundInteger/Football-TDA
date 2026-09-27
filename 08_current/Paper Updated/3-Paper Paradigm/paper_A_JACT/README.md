@@ -1,8 +1,8 @@
 # Multi-Scale Persistent Homology for Competitive Collective Systems
 
-Manuscript (target: *Journal of Applied and Computational Topology*) plus a
-self-contained analysis pipeline. The `article` class source is suitable for
-arXiv as-is.
+Manuscript for an arXiv preprint (`arxiv.sty`), plus a self-contained
+analysis pipeline. Journal refinement targets *Journal of Quantitative
+Analysis in Sports* (JQAS; De Gruyter).
 
 ## Layout
 
@@ -26,6 +26,7 @@ arXiv posting. The DOI will be inserted once the deposit exists.
 ```bash
 tectonic main.tex
 # or: pdflatex + bibtex + pdflatex ×2 with local TeX Live
+# Requires arxiv.sty in this directory (do not also load geometry).
 ```
 
 ## Reproduce results

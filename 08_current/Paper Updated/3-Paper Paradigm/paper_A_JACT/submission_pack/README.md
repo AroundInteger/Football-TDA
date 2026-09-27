@@ -1,8 +1,7 @@
-# Paper A (JACT) — arXiv / Zenodo pack
+# Paper A — arXiv / Zenodo pack
 
-- `PaperA_JACT_manuscript.pdf` — compiled manuscript
-- `PaperA_JACT_arxiv_source.zip` — TeX sources and figure for arXiv
-- `PaperA_JACT_zenodo.zip` — full paper folder for a Zenodo deposit
+- `../arXiv_Paper_A.zip` — TeX sources, figures, `arxiv.sty`, and compiled `main.pdf`
+- Unpacked copy: `../arXiv_Paper_A/`
 
 ## Zenodo
 
@@ -20,9 +19,9 @@ described in `01_data/README.md`.
 | Title | Multi-Scale Persistent Homology for Competitive Collective Systems |
 | Author | Rowan Brown |
 | Primary category | math.AT |
-| Cross-list | cs.CG |
+| Cross-list | stat.AP, cs.CG |
 | License | CC-BY 4.0 (match Zenodo) |
-| Comments | 12 pages. Code and pipeline outputs will be archived on Zenodo. |
+| Comments | Preprint. Journal version in preparation for JQAS. Code and pipeline outputs will be archived on Zenodo. |
 
 Compile the source zip with `tectonic main.tex` or pdflatex + bibtex + pdflatex ×2.
 
