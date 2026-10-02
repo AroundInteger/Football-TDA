@@ -1,6 +1,6 @@
 # RESOURCES AND COSTS
 
-Pound figures follow institutional Finance export **`Costs/Budget 26 08 26 INF799 v3.xlsx`** (sheet **PI 0.1 FTE + NV**), entered on JeS and confirmed October 2026. **Month numbers follow `TIMELINE.md`.** UKRI titles: Project Lead (PL) and Project co-lead (PcL).
+Pound figures follow institutional Finance export **`Costs/Budget 02 10 26 IPA 799 v2.xlsx`** (October 2026; superseded August INF799 v3). Reconcile with JeS before submit (`Costs/extract_jes_totals.py`). **Month numbers follow `TIMELINE.md`.** UKRI titles: Project Lead (PL) and Project co-lead (PcL).
 
 **Total fEC:** **£95,188** (EPSRC 80% **£76,150**; within the £100k fEC / £80k EPSRC Small Grant envelope). Headroom **~£4,812** fEC before the cap.
 
@@ -12,7 +12,7 @@ Pound figures follow institutional Finance export **`Costs/Budget 26 08 26 INF79
 | PL, Dr Rowan Brown | **0.10 FTE** (~4 h/week) | Months 1–12 | £17,664 |
 | PcL, Dr Nelly Villamizar (Mathematics) | **0.05 FTE** (~2 h/week) | Months 1–12; peak O2 Months 5–10 | £7,862 |
 
-**Swansea total (v3):** £95,188 at 100% fEC; £76,150 at 80%. Estates, infrastructure technicians and indirects are included in the staff subtotals above as costed by Finance.
+**Swansea total (IPA 799 v2):** £95,188 at 100% fEC; £76,150 at 80% *(update from spreadsheet if Finance revised line items)*. Estates, infrastructure technicians and indirects are included in the staff subtotals above as costed by Finance.
 
 Open-access publication costs: UKRI block grant; not requested on this award. No equipment line: Supercomputing Wales and 100 TB storage are in-kind (§7). Kilduff and Powathil are **not** costed on this award.
 

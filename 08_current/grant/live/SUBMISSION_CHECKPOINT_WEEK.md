@@ -4,7 +4,7 @@
 1. **Submit EPSRC Mathematical Sciences Small Grant on Thursday 10 September.**
 2. **Issue Paper A (JACT) to collaborators for feedback** (parallel track; do not block grant Thursday).
 
-**Locked costing (do not reopen):** PI 0.10 FTE · Co-I Villamizar 0.05 FTE · RA Months **5–10** · no LK/GP · ~£95.2k fEC (`Costs` v3).
+**Locked costing (do not reopen):** PI 0.10 FTE · PcL Villamizar 0.05 FTE · RA Months **5–10** · no LK/GP · fEC from `live/Costs/Budget 02 10 26 IPA 799 v2.xlsx`.
 
 **Masters:** `live/TIMELINE.md` · `live/02_Vision_and_Approach_REV4.md` · `Paper_A_collaborator.md` / `sections/*.tex`.
 
