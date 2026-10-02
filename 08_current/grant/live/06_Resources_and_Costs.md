@@ -1,6 +1,6 @@
 # RESOURCES AND COSTS
 
-Pound figures follow institutional Finance export **`Costs/Budget 02 10 26 IPA 799 v2.xlsx`** (2 October 2026). **Project dates:** 1 March 2027–29 February 2028. **Month numbers and calendar mapping:** `TIMELINE.md`. UKRI titles: Project Lead (PL) and Project co-lead (PcL).
+Pound figures follow **final Finance lock** `Costs/IPA_799_v2_final_lock.md` and workbook **`Costs/Budget 02 10 26 IPA 799 v2.xlsx`** (2 October 2026). **Project dates:** 1 March 2027–29 February 2028. **Month numbers and calendar mapping:** `TIMELINE.md`. UKRI titles: Project Lead (PL) and Project co-lead (PcL).
 
 **Total fEC:** **£95,188** (EPSRC 80% **£76,150**; within the £100k fEC / £80k EPSRC Small Grant envelope). Headroom **£4,812** fEC before the cap.
 

@@ -40,6 +40,7 @@ output/
 
 # Data files
 *.xlsx
+!08_current/grant/live/Costs/*.xlsx
 *.xls
 *.json
 *.jsonl

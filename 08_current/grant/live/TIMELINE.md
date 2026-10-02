@@ -6,7 +6,7 @@ Duration: **12 months**. Do not change month numbers in 01–08 without updating
 
 **17 Sep 2026.** UKRI titles: Project Lead (PL) and Project co-lead (PcL). Effort lock unchanged.
 
-**2 Oct 2026 (Finance IPA 799 v2).** Project dates **1 March 2027–29 February 2028**. **£95,188 fEC** (£76,150 at 80%). Kilduff and Powathil are **not** on the award.
+**2 Oct 2026 (Finance IPA 799 v2, final).** Project dates **1 March 2027–29 February 2028**. **£95,188 fEC** (£76,150 at 80%). Detail: `Costs/IPA_799_v2_final_lock.md`. Kilduff and Powathil are **not** on the award.
 
 Section numbers below follow the reconstructed 7-section V&A (Vision §1–§3; Approach §4–§7).
 
