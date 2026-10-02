@@ -1,18 +1,18 @@
 # RESOURCES AND COSTS
 
-Pound figures follow institutional Finance export **`Costs/Budget 02 10 26 IPA 799 v2.xlsx`** (October 2026; superseded August INF799 v3). Reconcile with JeS before submit (`Costs/extract_jes_totals.py`). **Month numbers follow `TIMELINE.md`.** UKRI titles: Project Lead (PL) and Project co-lead (PcL).
+Pound figures follow institutional Finance export **`Costs/Budget 02 10 26 IPA 799 v2.xlsx`** (2 October 2026). **Project dates:** 1 March 2027–29 February 2028. **Month numbers and calendar mapping:** `TIMELINE.md`. UKRI titles: Project Lead (PL) and Project co-lead (PcL).
 
-**Total fEC:** **£95,188** (EPSRC 80% **£76,150**; within the £100k fEC / £80k EPSRC Small Grant envelope). Headroom **~£4,812** fEC before the cap.
+**Total fEC:** **£95,188** (EPSRC 80% **£76,150**; within the £100k fEC / £80k EPSRC Small Grant envelope). Headroom **£4,812** fEC before the cap.
 
 ## Staff
 
-| Role | Effort | Window | Draft cost (100% fEC) |
-|---|---|---|---|
-| Research Associate (Grade 7, SP30) | 1.0 FTE | Months **5–10** (6 months) | £69,662 |
-| PL, Dr Rowan Brown | **0.10 FTE** (~4 h/week) | Months 1–12 | £17,664 |
-| PcL, Dr Nelly Villamizar (Mathematics) | **0.05 FTE** (~2 h/week) | Months 1–12; peak O2 Months 5–10 | £7,862 |
+| Role | Effort | Project window | JeS dates (IPA 799 v2) | 100% fEC |
+|---|---|---|---|---|
+| PL, Dr Rowan Brown | **0.10 FTE** (~4 h/week) | Months 1–12 | 1 Mar 2027–29 Feb 2028 | £17,664 |
+| Research Associate (Grade 7, SP30) | 1.0 FTE | Months **5–10** (6 months) | 1 Jul 2027–31 Dec 2027 | £69,662 |
+| PcL, Dr Nelly Villamizar (Mathematics) | **0.05 FTE** (~2 h/week) | Months 1–12; peak O2 Months 5–10 | 1 Mar 2027–29 Feb 2028 | £7,862 |
 
-**Swansea total (IPA 799 v2):** £95,188 at 100% fEC; £76,150 at 80% *(update from spreadsheet if Finance revised line items)*. Estates, infrastructure technicians and indirects are included in the staff subtotals above as costed by Finance.
+**Swansea total (IPA 799 v2):** £95,188 at 100% fEC; £76,150 at 80%. Salary, estates, infrastructure technicians and indirects are in the Finance subtotals above (not repeated here).
 
 Open-access publication costs: UKRI block grant; not requested on this award. No equipment line: Supercomputing Wales and 100 TB storage are in-kind (§7). Kilduff and Powathil are **not** costed on this award.
 

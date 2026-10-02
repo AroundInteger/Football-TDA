@@ -6,16 +6,31 @@ Duration: **12 months**. Do not change month numbers in 01–08 without updating
 
 **17 Sep 2026.** UKRI titles: Project Lead (PL) and Project co-lead (PcL). Effort lock unchanged.
 
-**Costed team lock (`Costs/Budget 02 10 26 IPA 799 v2.xlsx`, Oct 2026):** PL 0.10 FTE + PcL Villamizar 0.05 FTE + Research Associate 1.0 FTE for **six months (Months 5–10)**; **£95,188 fEC** (£76,150 at 80%; sync from spreadsheet). Kilduff and Powathil are **not** on the award.
+**2 Oct 2026 (Finance IPA 799 v2).** Project dates **1 March 2027–29 February 2028**. **£95,188 fEC** (£76,150 at 80%). Kilduff and Powathil are **not** on the award.
 
 Section numbers below follow the reconstructed 7-section V&A (Vision §1–§3; Approach §4–§7).
 
-| Who | Effort |
+| Project month | Calendar (inclusive) |
 |---|---|
-| PL (Dr Rowan Brown) | **0.10 FTE**, Months 1–12 |
-| PcL (Dr Nelly Villamizar, Mathematics) | **0.05 FTE**, Months 1–12; peak O2 Months 5–10 |
-| Research Associate | 1.0 FTE, **Months 5–10** |
-| Data | Swansea City AFC–StatsBomb (secured) |
+| 1 | March 2027 |
+| 2 | April 2027 |
+| 3 | May 2027 |
+| 4 | June 2027 |
+| 5 | July 2027 |
+| 6 | August 2027 |
+| 7 | September 2027 |
+| 8 | October 2027 |
+| 9 | November 2027 |
+| 10 | December 2027 |
+| 11 | January 2028 |
+| 12 | February 2028 |
+
+| Who | Effort | Finance window (IPA 799 v2) | 100% fEC |
+|---|---|---|---|
+| PL (Dr Rowan Brown) | **0.10 FTE**, Months 1–12 | 1 Mar 2027–29 Feb 2028 | £17,664 |
+| Research Associate (Grade 7, SP30) | 1.0 FTE, **Months 5–10** | 1 Jul 2027–31 Dec 2027 | £69,662 |
+| PcL (Dr Nelly Villamizar, Mathematics) | **0.05 FTE**, Months 1–12; peak O2 Months 5–10 | 1 Mar 2027–29 Feb 2028 | £7,862 |
+| Data | Swansea City AFC–StatsBomb (secured) | — | — |
 
 | Objective | Who | Window | Milestones |
 |---|---|---|---|

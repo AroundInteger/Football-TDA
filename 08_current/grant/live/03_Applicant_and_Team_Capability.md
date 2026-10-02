@@ -26,7 +26,7 @@ The Project Lead (PL), Dr Rowan Brown, is Senior Lecturer in Biomedical Engineer
 
 **Equality, diversity and inclusion:** RA recruitment follows Swansea EDI practice (anonymised shortlisting, diverse panel, outreach via Piscopia, BWM, London Mathematical Society (LMS)).
 
-**Resources and delivery (JeS):** Finance totals £95,188 fEC (£76,150 at 80%): PL 0.10 FTE, PcL Villamizar 0.05 FTE, RA 1.0 FTE for six months (Months 5–10). Months 1–4 are PL-led so RA spend scales a gated pipeline (D1–D3). Supercomputing Wales and SCAFC–StatsBomb data are in-kind; no equipment (Resources and Costs).
+**Resources and delivery (JeS):** IPA 799 v2 totals £95,188 fEC (£76,150 at 80%), 1 Mar 2027–29 Feb 2028: PL 0.10 FTE and PcL Villamizar 0.05 FTE (12 months); RA 1.0 FTE Months 5–10 (1 Jul–31 Dec 2027). Months 1–4 are PL-led; RA spend scales a gated pipeline (D1–D3). Supercomputing Wales and SCAFC–StatsBomb data are in-kind; no equipment (Resources and Costs).
 
 **Collaborative research:** Championship club partnerships (UK), Genius Sports (UK), Borussia Dortmund (Germany, alumni pathway). Mathematical-oncology collaborators enter on the follow-on Standard Grant, not this award.
 
@@ -34,12 +34,12 @@ The Project Lead (PL), Dr Rowan Brown, is Senior Lecturer in Biomedical Engineer
 
 **Academic and open science:** Methodological publications, SIAM and applied-topology dissemination, and open-source TDA software. Supervised work includes peer-reviewed rugby analytics (*Journal of Science and Medicine in Sport* and *International Journal of Sports Physiology and Performance*, 2023).
 
-**Innovation partnerships:** Swansea City AFC, UKSI, Sport Wales (Welsh Institute of Performance Science (WIPS)), Team INEOS, and the hetero-swarm programme evidence multi-agent work beyond football.
+**Innovation partnerships:** Swansea City AFC, UKSI, Sport Wales (WIPS), Team INEOS, and the hetero-swarm programme evidence multi-agent work beyond football.
 
 **Cross-domain relevance:** The lens transfers to other bounded competitive systems with validated scales; follow-on targets include tumour–immune competition and competitive logistics with autonomous fleets. Public engagement uses topology visualisations through sport.
 
 ## Contributions to Broader Research or Innovation Users and Towards Wider Societal Benefit
 
-**Mathematical sciences:** Validated multi-scale workflows, efficient season-scale computation, and teaching materials. The project sits in the Zienkiewicz Institute for Modelling, Data and AI with Supercomputing Wales and secure storage.
+**Mathematical sciences:** Validated multi-scale workflows, efficient season-scale computation, and teaching materials. Hosted in the Zienkiewicz Institute with Supercomputing Wales and secure storage.
 
 **Broader users and societal benefit:** Wider users include organisations seeking coordination metrics in multi-agent settings (robotics, logistics, crowd safety). Societal benefits include safer crowded-space management, sports-analytics economic value, and public inspiration through accessible mathematics. The PL previously translated incipient-clot fractal dimension into a clinically interpretable venous thromboembolism biomarker. That translation is direct precedent for practitioner-facing topological summaries on this award, co-developed with Swansea City AFC and StatsBomb.
