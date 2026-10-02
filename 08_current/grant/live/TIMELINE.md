@@ -6,7 +6,7 @@ Duration: **12 months**. Do not change month numbers in 01–08 without updating
 
 **17 Sep 2026.** UKRI titles: Project Lead (PL) and Project co-lead (PcL). Effort lock unchanged.
 
-**Costed team lock (Costs v3 / JeS):** PL 0.10 FTE + PcL Villamizar 0.05 FTE + Research Associate 1.0 FTE for **six months (Months 5–10)**. Kilduff and Powathil are **not** on the award.
+**Costed team lock (Finance / JeS, Oct 2026):** PL 0.10 FTE + PcL Villamizar 0.05 FTE + Research Associate 1.0 FTE for **six months (Months 5–10)**; **£95,188 fEC** (£76,150 at 80%). Kilduff and Powathil are **not** on the award.
 
 Section numbers below follow the reconstructed 7-section V&A (Vision §1–§3; Approach §4–§7).
 

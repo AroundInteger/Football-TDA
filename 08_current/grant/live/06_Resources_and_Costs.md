@@ -1,8 +1,8 @@
 # RESOURCES AND COSTS
 
-Pound figures follow institutional draft `Costs/Budget 26 08 26 INF799 v3.xlsx` (sheet **PI 0.1 FTE + NV**) and remain subject to JeS costing. **Month numbers follow `TIMELINE.md`.** UKRI titles on this award: Project Lead (PL) and Project co-lead (PcL); the spreadsheet sheet name is unchanged.
+Pound figures follow institutional Finance export **`Costs/Budget 26 08 26 INF799 v3.xlsx`** (sheet **PI 0.1 FTE + NV**), entered on JeS and confirmed October 2026. **Month numbers follow `TIMELINE.md`.** UKRI titles: Project Lead (PL) and Project co-lead (PcL).
 
-**Total fEC:** ~£95,200 (EPSRC 80% ~£76,150; within the £100k fEC / £80k EPSRC Small Grant envelope). Headroom ~£4.8k for travel or contingency if required.
+**Total fEC:** **£95,188** (EPSRC 80% **£76,150**; within the £100k fEC / £80k EPSRC Small Grant envelope). Headroom **~£4,812** fEC before the cap.
 
 ## Staff
 

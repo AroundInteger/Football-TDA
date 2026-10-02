@@ -26,6 +26,8 @@ The Project Lead (PL), Dr Rowan Brown, is Senior Lecturer in Biomedical Engineer
 
 **Equality, diversity and inclusion:** RA recruitment follows Swansea EDI practice (anonymised shortlisting, diverse panel, outreach via Piscopia, BWM, London Mathematical Society (LMS)).
 
+**Resources and delivery (JeS):** Finance totals £95,188 fEC (£76,150 at 80%): PL 0.10 FTE, PcL Villamizar 0.05 FTE, RA 1.0 FTE for six months (Months 5–10). Months 1–4 are PL-led so RA spend scales a gated pipeline (D1–D3). Supercomputing Wales and SCAFC–StatsBomb data are in-kind; no equipment (Resources and Costs).
+
 **Collaborative research:** Championship club partnerships (UK), Genius Sports (UK), Borussia Dortmund (Germany, alumni pathway). Mathematical-oncology collaborators enter on the follow-on Standard Grant, not this award.
 
 ## Contributions to the Wider Research and Innovation Community
@@ -40,4 +42,4 @@ The Project Lead (PL), Dr Rowan Brown, is Senior Lecturer in Biomedical Engineer
 
 **Mathematical sciences:** Validated multi-scale workflows, efficient season-scale computation, and teaching materials. The project sits in the Zienkiewicz Institute for Modelling, Data and AI with Supercomputing Wales and secure storage.
 
-**Broader users and societal benefit:** Wider users include organisations seeking coordination metrics in multi-agent settings (robotics, logistics, crowd safety). Societal benefits include safer crowded-space management, sports-analytics economic value, and public inspiration through accessible mathematics. The PL previously translated incipient-clot fractal dimension into a clinically interpretable venous thromboembolism biomarker: direct precedent for turning topological summaries into practitioner-facing tools for Swansea City AFC and StatsBomb co-development on this award.
+**Broader users and societal benefit:** Wider users include organisations seeking coordination metrics in multi-agent settings (robotics, logistics, crowd safety). Societal benefits include safer crowded-space management, sports-analytics economic value, and public inspiration through accessible mathematics. The PL previously translated incipient-clot fractal dimension into a clinically interpretable venous thromboembolism biomarker. That translation is direct precedent for practitioner-facing topological summaries on this award, co-developed with Swansea City AFC and StatsBomb.
