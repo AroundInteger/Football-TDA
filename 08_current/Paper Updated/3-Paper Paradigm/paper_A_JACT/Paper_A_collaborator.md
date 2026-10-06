@@ -162,7 +162,7 @@ Complete-linkage and Ward's method are not used for the headline analysis. Their
 
 ### 2.3 Cutoff selection
 
-The selector inverts a named group count rather than assuming a length. The inversion is read from the pooled mean group-count curve on this corpus.
+As the cutoff lengthens, nearby agents merge and the mean number of groups falls. Each organisational level takes its distance from the point on that curve where the group count named in Section 2.2 is reached.
 
 A complete frame has $n=22$ agents. The sweep uses every complete 22-player frame of the ten matches in Supplementary Table S1 ($436{,}648$ frames). The grid is $\delta \in [0.25, 40.0]$ m at $0.25$ m steps (160 points). No random window is drawn, and epoch lengths are not mixed. Clustering is single-linkage, and team labels are unused.
 
@@ -259,9 +259,13 @@ The two-level $H_1$ pattern extends to all ten matches ($1{,}500$ uniformly samp
 | Team       | $0$         | $0.0 \pm 0.0\%$  | N/A           | N/A              | N/A              |
 
 
-The tactical level sits close to a group-count floor. In the ten-match sample, $40.6\%$ of frames have four or fewer tactical groups, and none of them carries a loop. Presence rate alone cannot tell arrangement from group count. We separate the two with the matched null of Section 2.6, which fixes group count and spatial envelope and randomises only arrangement.
+The tactical level sits close to a group-count floor. In the ten-match sample, $40.6\%$ of frames have four or fewer tactical groups. None of those frames carries a loop.
 
-Table 3 summarises the result. Tactical observed presence is more than twice the null rate. Table 4 splits by group count $k$. Presence is zero at $k \le 4$, as expected. It then rises from $9.3\%$ at $k = 5$ to $67.0\%$ at $k = 8$, always above the null. At the individual level the null already exceeds $91\%$: twenty points in a bounded region almost always close a cycle. The observed excess is therefore modest ($+5.1$ pp). Tactical $H_1$ exceeds the null once $k \ge 5$. Individual presence is already high under the null.
+Presence alone cannot separate arrangement from group count. The matched null of Section 2.6 holds the group count and the spatial envelope fixed, and randomises only the arrangement inside that envelope.
+
+Table 3 gives the comparison. Tactical presence is $18.8\%$, against a null rate of $9.1\%$, an excess of $+9.7$ percentage points. Table 4 splits the same comparison by group count. Presence is zero for $k \le 4$. It then rises from $9.3\%$ at $k = 5$ to $67.0\%$ at $k = 8$, and remains above the null at every such $k$.
+
+At the individual level the null rate is already $91.4\%$. Twenty points in a bounded region almost always close a cycle, so the observed excess is modest ($+5.1$ percentage points).
 
 **Table 3.** $H_1$ presence against a group-count- and envelope-matched null ($10$ matches, $1{,}500$ frames, $200$ null replicates per frame). Excess is in percentage points, with $95\%$ bootstrap CIs over matches.
 
@@ -350,7 +354,11 @@ Bottleneck distance between the two levels' diagrams has median $1.456$ m and $9
 
 ### 3.6 Event correlation
 
-Total persistence moves with on-ball match events. This is a construct-validity check against measurement noise, not a football analysis. The comparison uses SkillCorner annotations ($103{,}856$ event–topology pairs across ten matches). Write $\Delta$ for the change in mean total persistence from the five $1$ Hz frames before the event to the five after it (Section 2.6). On-ball engagements precede a drop at the individual level (mean $\Delta=-0.253$ m, $n=8{,}927$, Mann–Whitney $p<10^{-13}$). Build-up precedes a rise (mean $\Delta=+0.700$ m, $n=618$, $p<10^{-6}$). Both classes move in the same direction at the tactical level. These are nominal tests on pre-specified classes. We treat the result as a preliminary construct-validity check only. Multiple-testing control and football interpretation belong elsewhere.
+Addressing question Q4, total persistence moves with on-ball events. The comparison is a construct-validity check against measurement noise. It uses $103{,}856$ SkillCorner event–topology pairs from the ten matches.
+
+For each event, $\Delta$ is the change in mean total persistence from the five $1$ Hz frames before the event to the five after it (Section 2.6). At the individual level, an on-ball engagement is followed by a drop. The mean change is $\Delta=-0.253$ m ($n=8{,}927$, Mann–Whitney $p<10^{-13}$). Build-up is followed by a rise. The mean change is $\Delta=+0.700$ m ($n=618$, $p<10^{-6}$). At the tactical level, engagements are again followed by a drop and build-up by a rise.
+
+The event classes were specified in advance, and the $p$-values are nominal. Multiple-testing control and a football reading of these shifts belong to a companion manuscript.
 
 ---
 
@@ -364,7 +372,7 @@ Total persistence moves with on-ball match events. This is a construct-validity 
 
 The three $H_0$ regimes (individual, tactical, and team) are the named group-count targets of Section 2.3, read from the pooled group-count curve on every complete frame of the ten matches (Figure 2). Those regimes remain over a range of $\delta$ rather than appearing only at the adopted cutoffs. The metre values are specific to this corpus. Another domain still requires the interaction lengths to be re-derived.
 
-The tactical cutoff is the inversion of a named group count (mean $H_0$ nearest 5, with $k \ge 4$ still common; Figure 2c). On the 1 Hz diagnostic subset the only interior silhouette local maximum is at $7.0$ m, a small-group alternative that keeps rising into the two-envelope regime once frames that collapse to $k=1$ are dropped (Supplementary Figure S2). Those features are reported, not adopted.
+The tactical distance is the point on that curve where the mean group count lies nearest five, and where frames with at least four groups are still common (Figure 2c). On the 1 Hz diagnostic subset, the silhouette score has one interior local maximum, at $7.0$ m. That distance is a small-group alternative. Once frames that have collapsed to a single group are omitted, the score rises again through the two-envelope regime (Supplementary Figure S2). We record that curve and keep the group-count cutoff.
 
 ### 4.2 Two $H_1$ regimes
 
@@ -380,7 +388,7 @@ The two $H_1$ levels carry distinct rather than redundant information. They are 
 
 ### 4.4 Construct validity
 
-Total persistence is not independent of on-ball events, as a preliminary construct-validity check. At the individual level, mean $\Delta$ is $-0.253$ m after on-ball engagements and $+0.700$ m after build-up (Section 3.6). Multiple-testing control and football interpretation belong to a companion manuscript (Paper B).
+Total persistence moves with on-ball events (Section 3.6). At the individual level, an engagement is followed by a mean drop of $0.253$ m, and build-up by a mean rise of $0.700$ m. At the tactical level the two classes move in the same direction. That movement is the construct-validity check against measurement noise. Multiple-testing control and a football reading of the shifts belong to a companion manuscript (Paper B).
 
 ### 4.5 Limitations
 

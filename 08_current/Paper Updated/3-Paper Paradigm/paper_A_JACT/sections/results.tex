@@ -125,20 +125,25 @@ Team       & 0       & $0.0\%\pm0.0\%$  & N/A              & N/A   & N/A \\
 \end{tabular}
 \end{table}
 
-The tactical level sits close to a group-count floor. In the ten-match sample, 40.6\% of frames have four or fewer
-tactical groups, and none of them carries a loop. Presence rate
-alone cannot tell arrangement from group count. We separate the two
-with the matched null of Section~\ref{sec:stats}, which fixes group
-count and spatial envelope and randomises only arrangement.
+The tactical level sits close to a group-count floor. In the
+ten-match sample, 40.6\% of frames have four or fewer tactical groups.
+None of those frames carries a loop.
 
-Table~\ref{tab:null} summarises the result. Tactical observed presence
-is more than twice the null rate. Table~\ref{tab:nullk} splits by
-group count $k$. Presence is zero at $k\le 4$, as expected. It then
-rises from 9.3\% at $k=5$ to 67.0\% at $k=8$, always above the null.
-At the individual level the null already exceeds 91\%: twenty points
-in a bounded region almost always close a cycle. The observed excess is
-therefore modest ($+5.1$~pp). Tactical $H_1$ exceeds the null once
-$k \ge 5$. Individual presence is already high under the null.
+Presence alone cannot separate arrangement from group count. The
+matched null of Section~\ref{sec:stats} holds the group count and the
+spatial envelope fixed, and randomises only the arrangement inside
+that envelope.
+
+Table~\ref{tab:null} gives the comparison. Tactical presence is
+18.8\%, against a null rate of 9.1\%, an excess of $+9.7$ percentage
+points. Table~\ref{tab:nullk} splits the same comparison by group
+count. Presence is zero for $k\le 4$. It then rises from 9.3\% at
+$k=5$ to 67.0\% at $k=8$, and remains above the null at every such
+$k$.
+
+At the individual level the null rate is already 91.4\%. Twenty points
+in a bounded region almost always close a cycle, so the observed
+excess is modest ($+5.1$ percentage points).
 
 \begin{table}[h]
 \centering
@@ -343,17 +348,20 @@ by a small perturbation of one shared pattern.
 \subsection{Event correlation}
 \label{sec:eventcorr}
 
-Total persistence moves with
-on-ball match events. This is a construct-validity check against
-measurement noise, not a football analysis. The comparison uses
-SkillCorner annotations (103{,}856 event--topology pairs across ten
-matches). Write $\Delta$ for the change in mean total
-persistence from the five 1~Hz frames before the event to the five
-after it (Section~\ref{sec:stats}). On-ball engagements precede a drop
-at the individual level (mean $\Delta=-0.253$~m, $n=8{,}927$,
-Mann--Whitney $p<10^{-13}$). Build-up precedes a rise (mean
-$\Delta=+0.700$~m, $n=618$, $p<10^{-6}$). Both classes move in the same
-direction at the tactical level. These are nominal tests on
-pre-specified classes. We treat the result as a preliminary
-construct-validity check only. Multiple-testing control and football
-interpretation belong elsewhere.
+Addressing question~\ref{q:validity}, total persistence moves with
+on-ball events. The comparison is a construct-validity check against
+measurement noise. It uses 103{,}856 SkillCorner event--topology pairs
+from the ten matches.
+
+For each event, $\Delta$ is the change in mean total persistence from
+the five 1~Hz frames before the event to the five after it
+(Section~\ref{sec:stats}). At the individual level, an on-ball
+engagement is followed by a drop. The mean change is
+$\Delta=-0.253$~m ($n=8{,}927$, Mann--Whitney $p<10^{-13}$).
+Build-up is followed by a rise. The mean change is
+$\Delta=+0.700$~m ($n=618$, $p<10^{-6}$). At the tactical level,
+engagements are again followed by a drop and build-up by a rise.
+
+The event classes were specified in advance, and the $p$-values are
+nominal. Multiple-testing control and a football reading of these
+shifts belong to a companion manuscript.

@@ -97,9 +97,10 @@ so the partitions are spatial rather than labelled by side.
 \subsection{Cutoff selection}
 \label{sec:cutoffselection}
 
-The selector inverts a named group count rather than assuming a
-length. The inversion is read from the pooled mean group-count curve
-on this corpus.
+As the cutoff lengthens, nearby agents merge and the mean number of
+groups falls. Each organisational level takes its distance from the
+point on that curve where the group count named in
+Section~\ref{sec:clustering} is reached.
 
 A complete frame has $n=22$ agents. The sweep uses every complete
 22-player frame of the ten matches in Supplementary
