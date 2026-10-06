@@ -1,28 +1,32 @@
 # ETHICS AND RESPONSIBLE INNOVATION
 
-Aligned to `VA_230826_reconstructed.docx` §6 (risk) and §7 (host data-governance). Data are anonymised professional tracking records, not a new collection from human participants.
+<!-- Paste from "Identification". Dates and team match TIMELINE.md and 02_Vision_and_Approach_REV4.md.
+     2 Oct 2026. Sole project partner: Swansea City AFC.
+     StatsBomb is the data supplier under the club's commercial agreement. -->
+
+Aligned to the Vision and Approach sections on risk and on team and resources. The data are anonymised professional tracking records. The project does not collect new data from human participants.
 
 ## Identification
 
-1. **Privacy and commercial data.** Championship tracking and tactical labels are provided under the Swansea City AFC–StatsBomb agreement. Raw positions are not ours to release.
-2. **Open science versus contract.** Methods, code and aggregated topological summaries can be open; raw tracks cannot.
-3. **Dual use.** Individual-player surveillance, re-identification, and physical-performance attribution to named players are out of scope (§9). Released analyses are squad-level aggregates.
-4. **Independence.** Club partnership must not determine which organisational states are reported.
+1. **Privacy and commercial data.** Championship tracking and tactical labels are provided by Swansea City Association Football Club (Swansea City AFC), the sole project partner, under the club's commercial agreement with StatsBomb. Raw positions stay with the supplier under that agreement.
+2. **Open science and the contract.** Methods, code and aggregated topological summaries can be made open. Raw tracks stay under the club agreement.
+3. **Dual use.** The work is organisational. Released analyses are squad-level aggregates. Named-player surveillance, re-identification, and physical-performance attribution to named players are outside the project.
+4. **Independence.** The scientific report of organisational states is fixed in the Month-2 Open Science Framework (OSF) pre-registration. Club co-development checks that the summaries name real states.
 
 ## Management
 
-**Anonymisation.** Provider feeds replace person identifiers with generic labels. Publications use squad-level summaries. Team names appear only with partner permission; otherwise “Team A/B”.
+**Anonymisation.** Provider feeds replace person identifiers with generic labels. Publications use squad-level summaries. Team names appear only with partner permission. Otherwise the reports use "Team A" and "Team B".
 
-**Legal basis.** Processing of anonymised positional data for scientific research (UK GDPR / DPA 2018). No direct recruitment; no new personal data collected by the project.
+**Legal basis.** Processing is of anonymised positional data for scientific research, under the UK General Data Protection Regulation and the Data Protection Act 2018. The project does not recruit participants and does not collect new personal data.
 
-**Security.** Swansea University GDPR-compliant storage; access limited to the named team; processing on institutional HPC. Retention: project duration plus institutional research-data period, then secure deletion of restricted files.
+**Security.** Storage is on Swansea University infrastructure that meets those duties. Access is limited to the named team. Processing is on institutional high-performance computing. Raw tracks are kept for the award plus the institutional retention period for restricted research data, then securely deleted. Code, the pre-registration and permitted aggregates are kept for at least ten years.
 
-**Open outputs.** Containerised pipeline with DOI (Zenodo, Month 12); OSF pre-registration (Month 2); aggregated barcodes/landscapes without recoverable player identity. MIT (or equivalent) licence on software.
+**Open outputs.** The containerised pipeline is released with a digital object identifier (DOI) on Zenodo at Month 12, with a working release at Month 10. The analysis plan is pre-registered on OSF at Month 2. Aggregated barcodes and landscapes are released only where player identity cannot be recovered, with the full-season paper at Month 12. Software is released under the MIT licence, or an equivalent open licence.
 
-**Dual use (V&A §9).** The pipeline will not be developed or documented as a named-player monitoring tool. Change-point and fingerprint outputs are organisational (formation, pressing structure, coverage), not individual. Any later commercial use is assessed against this restriction.
+**Dual use in practice.** The pipeline is documented as a tool for organisational structure: formation, pressing structure and coverage. Change-point outputs are organisational. Any later commercial use is assessed against that scope.
 
-**Environment.** Compute is ~1,600 CPU-hours on existing Supercomputing Wales allocation; no new hardware.
+**Environment.** Compute is about 1,600 CPU-hours on the Project Lead's existing Supercomputing Wales allocation. No new hardware is purchased.
 
 ## Oversight
 
-Ethics review via Swansea University before data processing beyond the existing pilot. Fast-track is appropriate: anonymised secondary data, no participant contact. The Project Lead (PL) is accountable; Project co-lead (PcL) Villamizar and the Research Office provide compliance support. Quarterly check that outputs remain squad-level.
+Ethics review is through Swansea University before data processing beyond the existing pilot. A fast-track review fits anonymised secondary data with no participant contact. The Project Lead (PL) is accountable. Project co-lead (PcL) Dr Nelly Villamizar and the Research Office provide compliance support. Each quarter the PL checks that released outputs remain squad-level.

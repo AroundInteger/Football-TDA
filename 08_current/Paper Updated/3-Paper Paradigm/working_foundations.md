@@ -624,7 +624,7 @@ That bound is loose enough at the tactical cutoff to be uninformative, so the co
 would lie in a scale-restricted version, plus a gap condition to handle the fact that
 single-linkage clustering is discontinuous where a merge occurs. **This is Paper C or
 Standard Grant material.** Paper A gets at most one sentence in Limitations. Do not open
-it in a paper whose claims do not depend on it.
+it in a paper whose claims do not depend on it. Collaborator comments of 5 October 2026, including the decisions that sharpen this question without replacing it, are in `COLLABORATOR_COMMENTS_OCT2026.md`.
 
 **Question 2 (empirical, and Paper A's problem).** Is $H_1$ detection driven by the
 *number* of centroids rather than their *arrangement*? This is a different worry and a

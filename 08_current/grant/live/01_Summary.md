@@ -1,9 +1,11 @@
-# SUMMARY (JeS public summary) adervisorial
+# SUMMARY (JeS public summary)
 
+<!-- Paste the four sections below, including the headings. Do not paste this header.
+     2 Oct 2026. Sole project partner is Swansea City AFC.
+     StatsBomb is the data supplier under the club agreement and is not named here.
+     Word count includes the four headings. Limit 550. -->
 
-**Word limit: 550.** Paste the four sections below, including the headings (540 body words + 10 heading words = 550). Do not paste this header block. **Current:** 540 body / 550 with headings.
-
-**Source:** `../LaySummary.docx`. Plain English for expert assignment; this text is made publicly available.
+**Word limit: 550.** Paste the four sections below, including the headings. Do not paste this header block. **Current:** 545 words, including the four headings.
 
 ## Context
 
@@ -21,7 +23,7 @@ The second is dependence. Most statistical tools assume consecutive observations
 
 ## Aims and Objectives
 
-The project builds the mathematical foundations for shape-based analysis of competitive collective systems. These are groups of agents that share a bounded domain, each coordinating internally while responding to an opponent. A ten-match pilot recovers distinct organisational levels that respond to real match events. This grant scales that work across a Championship season (540 matches).
+The project builds the mathematical foundations for shape-based analysis of competitive collective systems. These are groups of agents that share a bounded domain, each coordinating internally while responding to an opponent. A ten-match pilot recovers distinct organisational levels that respond to real match events. This grant scales that work across a Championship season (about 540 matches).
 
 First, establish whether the multi-level measurements are stable enough to compare across matches at population scale, and show they capture information unavailable from team length, width and hull area.
 
@@ -29,6 +31,6 @@ Second, prove mathematical guarantees that the method can detect when collective
 
 ## Potential Applications and Benefits
 
-This project will deliver football-validated theory and software: a scale-separated analysis that accounts for competitive dependence (successive observations are not independent). The primary output is a documented open-source package that computes multi-scale shape summaries from tracking data, released with a digital object identifier (DOI). Swansea City Association Football Club and StatsBomb co-develop the work. The club receives checkable structural measures of pressing, formation gaps and defensive-line organisation. StatsBomb receives features beyond conventional geometry.
+This project will deliver football-validated theory and software: a scale-separated analysis that accounts for competitive dependence (successive observations are not independent). The primary output is a documented open-source package that computes multi-scale shape summaries from tracking data, released with a digital object identifier (DOI). Swansea City Association Football Club is the sole project partner. The club receives checkable structural measures of pressing, formation gaps and defensive-line organisation, developed on its tracking data.
 
-The same organisational problem, competing groups inside a bounded domain, appears in spatial predator–prey dynamics, including competition between tumour cells and immune cells. A second later target is competitive logistics with autonomous-fleet coordination. Neither is a deliverable of this award: transfer is a later step, once interaction lengths are re-derived. Full-season results and theory form an evidence pack for a follow-on Standard Grant, through mathematical-oncology collaborations specific to that programme.
+The same organisational problem, competing groups inside a bounded domain, appears in spatial predator–prey dynamics, including competition between tumour cells and immune cells. A second later target is competitive logistics with autonomous-fleet coordination. Transfer is a later step, once interaction lengths are re-derived. Full-season results and theory form an evidence pack for a follow-on Standard Grant, through mathematical-oncology collaborations specific to that programme.

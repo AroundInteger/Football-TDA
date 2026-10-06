@@ -70,8 +70,10 @@
      map, and the toy-model ruling (FOUNDATION.md R8) are in the REV3 header.
      References: unsrtnat order of first appearance, 29 entries, all cited.
      Open actions carried from REV3: 04_References.md numbering (unchanged
-     29 entries); Figure 1 relabel ("methods paper [23]", Month-2 cutoff
-     gate and Month-9 O1 gate as separate diamonds, OSF M2).
+     29 entries). Figure 1 row labels updated 2 Oct 2026 from PI / Co-I to
+     PL (0.10 FTE) and PcL NV (0.05). Diamonds are unchanged: OSF and the
+     cutoff gate remain one Month-2 mark; T1/T2 and O1 geometry remain one
+     Month-9 mark.
      CANONICAL_NUMBERS.md synced 11 Sep 2026 to R15. -->
 
 ## Vision

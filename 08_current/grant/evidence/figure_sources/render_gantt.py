@@ -63,8 +63,8 @@ ax.plot([CR, CR], [grid_bottom, 25.85], color=GRID, lw=0.4)
 y_pi = 24.15
 y_co = y_pi - PITCH
 y_ra = y_co - PITCH
-row("PI (0.10 FTE)", y_pi, 1, 12, DARK, 0.18, DARK)
-row("Co-I NV (0.05)", y_co, 1, 12, PURPLE, 0.22, PURPLE)
+row("PL (0.10 FTE)", y_pi, 1, 12, DARK, 0.18, DARK)
+row("PcL NV (0.05)", y_co, 1, 12, PURPLE, 0.22, PURPLE)
 row("Res. Associate", y_ra, 5, 10, BLUE, 0.85)
 section("Team", y_ra, y_pi + BH)
 
@@ -123,5 +123,8 @@ ax.text(3.5, 2.85, "[23] (M2)   RA handover (M10)   season paper (M11)   evidenc
         ha="left", va="center", fontsize=7, color=PURPLE)
 
 fig.subplots_adjust(left=0.02, right=0.995, top=0.99, bottom=0.02)
+LIVE = Path(__file__).resolve().parents[2] / "live" / "grant_figure_gantt.png"
 fig.savefig(OUT, dpi=300, facecolor="white")
+fig.savefig(LIVE, dpi=300, facecolor="white")
 print(f"wrote {OUT} ({OUT.stat().st_size} bytes)")
+print(f"wrote {LIVE} ({LIVE.stat().st_size} bytes)")

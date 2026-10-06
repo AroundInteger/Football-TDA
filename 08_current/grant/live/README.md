@@ -1,4 +1,6 @@
-# Short-form full application (JeS pack)
+# Short-form full application (UKRI Funding Service)
+
+**APP98322.** Opened 2 October 2026. Opportunity: EPSRC Mathematical Sciences Small Grants. Agreed title: **Multi-scale persistent homology for competitive collective systems: a professional-football testbed**. Vision and Approach PDF: `APP98322 Vision and Approach`. Project-partner PDF: `APP98322 Project partner`.
 
 Self-contained **01–08** pack aligned to:
 
@@ -33,3 +35,5 @@ Self-contained **01–08** pack aligned to:
 | `08_Data_Management_Plan.md` | Data management | — |
 
 UK English. Citation numbers in `02` follow first-citation Vancouver order (see `vancouver-referencing.mdc`). Recompile LaTeX before changing `[n]`.
+
+Collaborator comments of 5 October 2026, including the decision not to rewrite the Vision and Approach for them, are in `../../Paper Updated/3-Paper Paradigm/COLLABORATOR_COMMENTS_OCT2026.md`.

@@ -1,35 +1,40 @@
 # DATA MANAGEMENT PLAN
 
-Aligned to `VA_230826_reconstructed.docx` §5 and §7. Sharing dates follow `TIMELINE.md`.
+<!-- Paste from "Data types and volumes". Dates follow TIMELINE.md.
+     Sharing rules match 07_Ethics_and_Responsible_Innovation.md.
+     2 Oct 2026. Sole project partner: Swansea City AFC.
+     StatsBomb supplies data under the club's commercial agreement. -->
+
+Sharing dates follow the locked timeline. Restricted files and permitted deposits follow the ethics statement.
 
 ## Data types and volumes
 
-**Input (restricted).** Championship broadcast tracking and tactical labels for ~540 matches, via the Swansea City AFC–StatsBomb agreement. CSV/JSON positional coordinates. Raw volume ~50–100 GB.
+**Input (restricted).** Championship broadcast tracking and tactical labels for about 540 matches, supplied by Swansea City Association Football Club (Swansea City AFC) under the club's commercial agreement with StatsBomb. Files are positional coordinates, stored as comma-separated values (CSV) or JavaScript Object Notation (JSON). Raw volume is about 50–100 GB. StatsBomb is the data supplier. Swansea City AFC is the sole project partner.
 
-**Generated (project).** At 1 Hz the pipeline writes barcodes, persistence landscapes and vectorised summaries per scale (§8). Season-scale processing is ~1,600 CPU-hours of the 5,000-hour Supercomputing Wales allocation. Per-match archives (compressed), not one JSON file per historical 150-frame subsample. Derived volume ~20–40 GB plus figures.
+**Generated.** At one frame per second the pipeline writes barcodes, persistence landscapes and vectorised summaries at each accepted scale. Season-scale processing is about 1,600 CPU-hours of the Project Lead's 5,000-hour Supercomputing Wales allocation. Archives are stored per match, compressed. Derived volume is about 20–40 GB, plus figures.
 
-**Code.** Containerised Python (Ripser, GUDHI, giotto-tda); version-controlled.
+**Code.** A containerised Python pipeline (Ripser, GUDHI and giotto-tda), held under version control.
 
 ## Storage and backup
 
-During the award: institutional research storage (daily backup), encrypted working copies, Git for code. Long-term: institutional repository (10+ years); Zenodo DOI for software and permitted aggregates; GitHub for the public codebase.
+During the award, working data sit on institutional research storage with daily backup. Working copies are encrypted. Code is in Git. Raw tracks are kept for the award plus the institutional retention period for restricted research data, then securely deleted. Code, the pre-registration and permitted aggregates are deposited for at least ten years, in the institutional repository and, where the agreement allows, on Zenodo.
 
 ## What can be shared
 
 | Asset | Access | Date |
 |---|---|---|
-| OSF pre-registration (O1/O2 plan) | Public | **Month 2** |
-| Containerised pipeline (Apptainer/Docker) | Public, DOI | **Month 10** working release; **Month 12** archival DOI (Zenodo) |
-| Aggregated topological summaries (no recoverable player identity) | Public, subject to partner agreement | **Month 12**, with the full-season paper |
-| Methodology documentation | Public | With papers (methodology Months 1–2; results Month 11) |
-| Raw tracking and named-match feeds | Restricted to the project team under the SCAFC–StatsBomb agreement | Not for public release |
+| Open Science Framework (OSF) pre-registration of both objectives | Public | Month 2 |
+| Containerised pipeline (Apptainer or Docker) | Public, with a digital object identifier (DOI) | Month 10 working release; Month 12 archival DOI on Zenodo |
+| Aggregated topological summaries, with no recoverable player identity | Public, subject to the partner agreement | Month 12, with the full-season paper |
+| Methodology documentation | Public | With the papers (methodology in Months 1–2; results in Month 11) |
+| Raw tracking and named-match feeds | Project team only, under the Swansea City AFC agreement | Not for public release |
 
-A synthetic 22-agent exemplar with known loop structure ships with the container so the method can be run without proprietary tracks.
+A synthetic 22-agent example with a known loop structure ships with the container, so the method can be run without proprietary tracks.
 
 ## FAIR
 
-Findable (DOIs, metadata); accessible (open software and aggregates); interoperable (CSV/JSON, documented schemas); reusable (licence, pinned dependencies, pass/fail exemplar). Raw tracks remain non-open by contract; the DMP does not promise their release.
+Deposits are findable through DOIs and metadata, and accessible as open software and permitted aggregates. They are interoperable as CSV or JSON with documented schemas. They are reusable under a stated licence, with pinned dependencies and a pass-or-fail example. Raw tracks remain closed by contract. This plan does not promise their release.
 
 ## Stewardship
 
-The Project Lead (PL) is data steward. RA (Months 5–10) maintains hashes and the barcode/landscape store (D1–D2). At Month 10 the store and container pass to the PL with the evidence-pack handover.
+The Project Lead (PL) is the data steward. The Research Associate (Months 5–10) maintains provenance hashes and the barcode and landscape store. At Month 10 that store and the container pass to the PL with the evidence-pack handover.
