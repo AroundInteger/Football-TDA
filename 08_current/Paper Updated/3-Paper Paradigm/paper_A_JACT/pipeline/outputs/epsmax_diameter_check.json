@@ -1,0 +1,19 @@
+{
+  "decision": "drop_adaptive_epsmax",
+  "any_extra_finite_h1_at_diameter": false,
+  "primary_match": {
+    "label": "uniform_150_primary",
+    "frames_checked": 150,
+    "frames_with_extra_h1": 0,
+    "max_extra_bars_in_frame": 0,
+    "examples": []
+  },
+  "ten_match_aggregate": {
+    "label": "uniform_150_ten_match",
+    "frames_checked": 1500,
+    "frames_with_extra_h1": 0,
+    "max_extra_bars_in_frame": 0,
+    "examples": []
+  },
+  "interpretation": "No additional finite H1 bar appears when extending filtration from adaptive eps_max to centroid diameter; collaborator C2 supports removing adaptive truncation from Paper A."
+}

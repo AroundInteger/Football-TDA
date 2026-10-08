@@ -3,7 +3,7 @@
 Associated with `adversarial_tda.m`, `atda_core.py`, and `AdversarialTDA_Specification.md`.  
 August 2026. UK English. Markdown is the source of truth.
 
-This note does two jobs: (i) maps the toy figures onto the locked claims of Paper A (JACT) and Paper B (JSS); (ii) assesses the claim that the toy is mathematically honest, and records how it should be **tested and extended on other competitive systems** to underpin the follow-on Standard Grant. Paper C is the synthetic methods manuscript (ecology lead, robotics second); it is **not** a third football paper and is developed **after A and B are submitted**. Home: `08_current/Paper Updated/3-Paper Paradigm/paper_C_methods/`.
+This note does two jobs: (i) maps the toy figures onto the locked claims of Paper A (JACT) and Paper B (JSS); (ii) assesses the claim that the toy is mathematically honest, and records how it should be **tested and extended on other competitive systems** to underpin the follow-on Standard Grant. Paper C is the synthetic methods manuscript (ecology lead, robotics second); it is **not** a third football paper. Papers B and C can be worked on in parallel, because their questions and datasets are independent. Home: `08_current/Paper Updated/3-Paper Paradigm/paper_C_methods/`.
 
 **Rule.** The toy explains *mechanisms under known ground truth*. It does not reproduce SkillCorner numbers. Do not copy 12.66, 76.13, or $\hat T=54$ into `results.tex` of either paper.
 
@@ -136,7 +136,7 @@ The prediction worth writing into a Standard Grant is: **the workflow transfers,
 
 ### 5.3 Domain order (aligned with the V&A)
 
-The methods note (`paper_C_methods/` in the three-paper paradigm) inverts the *publication* order relative to the V&A's named follow-on: **ecology first (synthetic)**, robotics second, oncology Outlook only. That is for panel confidence (complementary fields on one object) and because Vipond (2021) plus the 2025 synthetic vineyard paper make a general “TDA of tumour–immune” paper crowded. The Standard Grant observational order can still put tumour–immune (Powathil) first once serial imaging is in hand. **Paper C is developed after Papers A and B are submitted.**
+The methods note (`paper_C_methods/` in the three-paper paradigm) inverts the *publication* order relative to the V&A's named follow-on: **ecology first (synthetic)**, robotics second, oncology Outlook only. That is for panel confidence (complementary fields on one object) and because Vipond (2021) plus the 2025 synthetic vineyard paper make a general “TDA of tumour–immune” paper crowded. The Standard Grant observational order can still put tumour–immune (Powathil) first once serial imaging is in hand. **Papers B and C can be worked on in parallel**, because their questions and datasets are independent.
 
 | Priority | System | Status (August 2026) |
 |----------|--------|----------------------|
@@ -179,7 +179,7 @@ Not: Gunner et al. (2026) as this methods note’s dataset (individual steps/tur
 
 ### 5.7 Methods note vs observational pack
 
-Locked: simulation only in this manuscript; **Paper C is written after A and B submit.** Panel evidence of complementary fields. Contribution split: Tier 1 cite, Tier 2 T1-lite/T2-lite (`paper_C_methods/lemmas.md`), Tier 3 conjecture under tug-of-war. T2-lite is on $W_1(D_t,D_{\mathrm{ref}})$, not consecutive-frame $W_1$. Draft and figures: `08_current/Paper Updated/3-Paper Paradigm/paper_C_methods/`. Still open: whether Wilson / Börger / Lurgi join the author line. Month-12 observational pack: simultaneous pack/herd GPS; serial MIBI is not claimed done. Movebank is **not** Domain 1 of this note.
+Locked: simulation only in this manuscript. **Papers B and C can be worked on in parallel**, because their questions and datasets are independent. Panel evidence of complementary fields. Contribution split: Tier 1 cite, Tier 2 T1-lite/T2-lite (`paper_C_methods/lemmas.md`), Tier 3 conjecture under tug-of-war. T2-lite is on $W_1(D_t,D_{\mathrm{ref}})$, not consecutive-frame $W_1$. Draft and figures: `08_current/Paper Updated/3-Paper Paradigm/paper_C_methods/`. Still open: whether Wilson / Börger / Lurgi join the author line. Month-12 observational pack: simultaneous pack/herd GPS; serial MIBI is not claimed done. Movebank is **not** Domain 1 of this note.
 
 ---
 
@@ -201,5 +201,5 @@ Locked: simulation only in this manuscript; **Paper C is written after A and B s
 | `adversarial_tda.m` | Figures 1–9 |
 | `atda_core.py` / `verify_atda.py` | Independent numerics |
 | `gtppf_switching.py` | Figure 10 (possession / role reversal preview) |
-| `../../Paper Updated/3-Paper Paradigm/paper_C_methods/` | Paper C: ecology-led methods note (after A and B submit) |
+| `../../Paper Updated/3-Paper Paradigm/paper_C_methods/` | Paper C: ecology-led methods note (parallel with Paper B) |
 | This file | Mapping to Papers A/B; Standard Grant transfer plan for the toy |

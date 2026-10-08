@@ -43,15 +43,27 @@ the **raw** hierarchical cloud; it does **not** cluster. Proposed independent mo
 Do **not** conflate with Fig 6 (scale conflation at fixed point set) or with
 Paper C's T1-lite / T2-lite programme.
 
+## Experiments
+
+The five synthetic checks (scale-restricted bottleneck, merge crossing,
+competitive coupling at the merge, tightness of the factor of two, and
+sampling three cutoffs) are written under WP1 in
+`08_current/grant/standard/AIMS_MAP.md`. This stub keeps the question and
+the four-step module. Those checks are Standard Grant Aim 1. They are not
+a Paper C theorem.
+
 ## Deliverables (when pursued)
 
-- Synthetic figures + optional short methods note section (Paper C appendix or
-  Standard Grant WP), **after** Papers A and B submit.
+- Synthetic figures and the tight-versus-vacuous note: Standard Grant WP1
+  in `08_current/grant/standard/AIMS_MAP.md`. The toy half can start before
+  the Small Grant is awarded. Paper C stays the mean-path and change-point
+  note.
 - No new claims in Paper A beyond the existing Limitations sentence.
 
 ## Start a new chat with
 
-- This file and `working_foundations.md` §12.
+- This file, `working_foundations.md` §12, and
+  `08_current/grant/standard/AIMS_MAP.md` (Aim 1, WP1).
 - `TOY_MODEL_PAPERS.md` §2 (cluster-then-PH gap).
-- Question: “Extend adversarial toy with centroid projection; test decomposition
-  error bounds at known gap scales.”
+- Question: “Extend the toy with centroid projection; test the five
+  decomposition-error experiments in AIMS_MAP.md at known gap scales.”

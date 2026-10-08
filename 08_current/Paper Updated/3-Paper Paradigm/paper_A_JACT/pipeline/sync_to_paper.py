@@ -253,13 +253,14 @@ def main() -> None:
             print(f"  OK {name}")
 
     print("--- abstract checks ---")
+    # Abstract omits Spearman rho and frame-count detail (Results/body only).
     abstract_checks = [
-        ("abstract_spearman_rho", rf"\\rho={pct_pattern(rho)}", False),
         ("abstract_no_stale_rho", r"\\rho=0\.254", True),
         ("abstract_no_stale_persistence", r"2\.693", True),
-        ("abstract_1500_frames", r"1\{,\}500 sampled frames", False),
         ("abstract_filtration_lifetime", r"filtration lifetime", False),
         ("abstract_no_transient_paren", r"transient \(\$96\.5", True),
+        ("abstract_no_short_bar_placeholder", r"short bar length", True),
+        ("abstract_no_longer_bar_placeholder", r"longer bar length", True),
     ]
     for name, pattern, is_forbidden in abstract_checks:
         if not abstract:

@@ -1,6 +1,6 @@
 # Hierarchical adversarial point processes: a diagram analogue of mean-path and change-point inference
 
-**Working draft (Paper C):** methods note, UK English. Developed **after Papers A and B are submitted.** Not for JACT or JSS. Cite Paper A for observational football; do not re-analyse SkillCorner. Numbers from `numbers.json`. Proofs of the tractable cases: `lemmas.md`.
+**Working draft (Paper C):** methods note, UK English. Papers B and C can be worked on in parallel, because their questions and datasets are independent. Not for JACT or JSS. Cite Paper A for observational football; do not re-analyse SkillCorner. Paper A does not cite this note. Numbers from `numbers.json`. Proofs of the tractable cases: `lemmas.md`.
 
 **Intended venues (in order):** *Journal of the Royal Society Interface*; *SIAM Journal on Mathematics of Data Science* or *Foundations of Data Science* if the Tier-2 lemmas carry the paper; *Methods in Ecology and Evolution* only if the editor accepts a simulation-first note. Not JACT (Paper A).
 

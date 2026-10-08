@@ -1,6 +1,6 @@
 # Methods note — moved
 
-The methods manuscript is **Paper C** of the three-paper paradigm. It is developed **after Papers A and B are submitted**.
+The methods manuscript is **Paper C** of the three-paper paradigm. Papers B and C can be worked on in parallel, because their questions and datasets are independent.
 
 Canonical home:
 

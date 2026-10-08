@@ -19,7 +19,7 @@ The model has four primary purposes:
 3. Domain-generalisation illustration: the same framework operating across football, tumour–immune competition, predator–prey ecology, and autonomous systems
 4. Starting point for a MATLAB interactive application and future theoretical extensions
 
-**Implementation files:** `adversarial_tda.m` (figures 1–9); `gtppf_switching.py` (figure 10). This markdown file is the source of truth; `AdversarialTDA_Specification.docx` is generated from it. Relation to Papers A/B/C and Standard Grant transfer of the toy: `TOY_MODEL_PAPERS.md`. Paper C (methods note) lives at `08_current/Paper Updated/3-Paper Paradigm/paper_C_methods/` and is developed after A and B submit.
+**Implementation files:** `adversarial_tda.m` (figures 1–9); `gtppf_switching.py` (figure 10). This markdown file is the source of truth; `AdversarialTDA_Specification.docx` is generated from it. Relation to Papers A/B/C and Standard Grant transfer of the toy: `TOY_MODEL_PAPERS.md`. Paper C (methods note) lives at `08_current/Paper Updated/3-Paper Paradigm/paper_C_methods/`. Papers B and C can be worked on in parallel, because their questions and datasets are independent.
 
 ---
 

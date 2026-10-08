@@ -122,30 +122,21 @@ def adaptive_filtration(
     scale_factor: float = 2.0,
 ) -> float:
     """
-    Compute adaptive max filtration for the Vietoris-Rips complex.
+    Maximum Vietoris-Rips filtration for a reduced centroid cloud.
 
-    Formula: max(P_percentile(inter-centroid distances), max(floor, scale_factor * cutoff))
-
-    Args:
-        centroids: (k, 2) cluster centroid positions.
-        cutoff: The clustering cutoff distance used.
-        percentile: Percentile of pairwise distances (default 75).
-        floor: Minimum absolute filtration value (default 5.0 m).
-        scale_factor: Multiplier on cutoff for minimum (default 2.0).
-
-    Returns:
-        Maximum filtration value (float).
+    Paper A (Oct 2026): persistence to cloud diameter (C2 check). The
+    percentile/floor arguments are retained for API compatibility but
+    ignored when computing the extent.
     """
+    del percentile, floor, scale_factor, cutoff
     if centroids is None or len(centroids) <= 1:
-        return max(floor, scale_factor * cutoff)
+        return 0.0
 
     dists = pdist(centroids)
     if len(dists) == 0:
-        return max(floor, scale_factor * cutoff)
+        return 0.0
 
-    data_driven = np.percentile(dists, percentile)
-    scale_minimum = max(floor, scale_factor * cutoff)
-    return max(data_driven, scale_minimum)
+    return float(np.max(dists)) + 1e-9
 
 
 def compute_persistence(

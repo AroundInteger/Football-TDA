@@ -2,11 +2,13 @@
 
 Multi-Scale Persistent Homology for Competitive Collective Systems.
 
-Compile from this directory:
+Compile from this directory. **`figures/`** is a symlink to `../paper_A_JACT/figures` (7 Oct 2026).
 
 ```bash
-tectonic main.tex
+tectonic -X compile main.tex
 ```
+
+Keep `sections/` aligned with `paper_A_JACT/sections/` after edits.
 
 Or `pdflatex` + `bibtex` + `pdflatex` ×2. Do not load `geometry` in addition to `arxiv.sty`.
 

@@ -122,30 +122,21 @@ def adaptive_filtration(
     scale_factor: float = 2.0,
 ) -> float:
     """
-    Compute adaptive max filtration for the Vietoris-Rips complex.
+    Maximum Vietoris-Rips filtration for a reduced centroid cloud.
 
-    Formula: max(P_percentile(inter-centroid distances), max(floor, scale_factor * cutoff))
-
-    Args:
-        centroids: (k, 2) cluster centroid positions.
-        cutoff: The clustering cutoff distance used.
-        percentile: Percentile of pairwise distances (default 75).
-        floor: Minimum absolute filtration value (default 5.0 m).
-        scale_factor: Multiplier on cutoff for minimum (default 2.0).
-
-    Returns:
-        Maximum filtration value (float).
+    Paper A (Oct 2026): persistence to cloud diameter (C2 check). The
+    percentile/floor arguments are retained for API compatibility but
+    ignored when computing the extent.
     """
+    del percentile, floor, scale_factor, cutoff
     if centroids is None or len(centroids) <= 1:
-        return max(floor, scale_factor * cutoff)
+        return 0.0
 
     dists = pdist(centroids)
     if len(dists) == 0:
-        return max(floor, scale_factor * cutoff)
+        return 0.0
 
-    data_driven = np.percentile(dists, percentile)
-    scale_minimum = max(floor, scale_factor * cutoff)
-    return max(data_driven, scale_minimum)
+    return float(np.max(dists)) + 1e-9
 
 
 def compute_persistence(
@@ -282,10 +273,8 @@ def find_closed_cycles(
     """
     Find closed cycles representing H1 loops in the Vietoris-Rips complex.
 
-    Tries edges with distances in [birth, death] first. If that graph is too
-    sparse to yield a cycle, falls back to edges with length in
-    [birth/2, death]. Candidate cycles are scored by proximity of edge
-    lengths to the midpoint of [birth, death].
+    Constructs the adjacency graph of edges with distances in [birth, death]
+    and enumerates simple cycles via BFS.
 
     Args:
         point_cloud: (n, 2) point positions.
@@ -303,40 +292,34 @@ def find_closed_cycles(
 
     dist_matrix = squareform(pdist(point_cloud))
     max_len = min(max_length, n)
+
+    adjacency = defaultdict(list)
+    for i in range(n):
+        for j in range(i + 1, n):
+            d = dist_matrix[i, j]
+            if birth <= d <= death:
+                adjacency[i].append(j)
+                adjacency[j].append(i)
+
+    raw_cycles = _bfs_cycles(adjacency, n, min_length, max_len)
+
     mid = (birth + death) / 2.0
+    scored = []
+    for cycle_nodes in raw_cycles:
+        edge_dists = [
+            dist_matrix[cycle_nodes[i], cycle_nodes[(i + 1) % len(cycle_nodes)]]
+            for i in range(len(cycle_nodes))
+        ]
+        avg_dev = np.mean([abs(d - mid) for d in edge_dists])
+        score = 1.0 / (1.0 + avg_dev)
 
-    edge_filters = [
-        lambda d: birth <= d <= death,
-        lambda d: (0.5 * birth) <= d <= death,
-    ]
-
-    scored: List[Cycle] = []
-    for edge_ok in edge_filters:
-        adjacency = defaultdict(list)
-        for i in range(n):
-            for j in range(i + 1, n):
-                d = dist_matrix[i, j]
-                if edge_ok(d):
-                    adjacency[i].append(j)
-                    adjacency[j].append(i)
-
-        raw_cycles = _bfs_cycles(adjacency, n, min_length, max_len)
-        for cycle_nodes in raw_cycles:
-            edge_dists = [
-                dist_matrix[cycle_nodes[i], cycle_nodes[(i + 1) % len(cycle_nodes)]]
-                for i in range(len(cycle_nodes))
-            ]
-            avg_dev = np.mean([abs(d - mid) for d in edge_dists])
-            score = 1.0 / (1.0 + avg_dev)
-            scored.append(Cycle(
-                nodes=cycle_nodes,
-                score=score,
-                edge_distances=edge_dists,
-                birth=birth,
-                death=death,
-            ))
-        if scored:
-            break
+        scored.append(Cycle(
+            nodes=cycle_nodes,
+            score=score,
+            edge_distances=edge_dists,
+            birth=birth,
+            death=death,
+        ))
 
     scored.sort(key=lambda c: c.score, reverse=True)
     return scored

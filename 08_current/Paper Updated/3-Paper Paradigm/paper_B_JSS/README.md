@@ -8,6 +8,12 @@ analysis pipeline.
 See [`SUBMISSION_CHECKLIST.md`](SUBMISSION_CHECKLIST.md). Compiled PDF:
 `main.pdf`. Packaged materials: `submission_pack.zip`.
 
+## Effectively complete
+
+The scientific question is closed. The paper asks what persistent-homology measures of team shape add for football analysis, beyond the geometric descriptors already in use. The four study aims are answered in the Results, including the null prediction result. Notation matches Paper A: \(H_0\) names the homology group, and the number of connected components is the count, cited to the companion paper.
+
+The remaining items are external gates on the submission checklist. They are the Paper A arXiv identifier, the Zenodo DOI, the co-author biographies, and the ScholarOne upload. No further analysis is in scope.
+
 ## Layout
 
 | Path | Contents |

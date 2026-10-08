@@ -35,7 +35,7 @@ python experiments.py --verify
 - **Noise-free $W_1$ (hunt, ring)** prints as $55.87$ and is not in `numbers.json` or the draft. Harmless extra; do not promote it to a claim on this pass.
 - **Integer diameter $187$** in the draft is hypot$(180,50)=186.82$ rounded. Left as display rounding.
 - Optional `tex/` skeleton not added.
-- Sequence lock unchanged: develop after A/B submit; do not cite C from A; do not copy these generator numbers into JeS or A/B `results.tex`.
+- Sequence lock unchanged on this pass: develop after A/B submit; do not cite C from A; do not copy these generator numbers into JeS or A/B `results.tex`. Superseded 7 October 2026: Papers B and C can be worked on in parallel, because their questions and datasets are independent. Paper A still does not cite Paper C. See the README sequence lock.
 
 ---
 

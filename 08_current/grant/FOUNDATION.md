@@ -59,7 +59,7 @@ Every quantity in this project is one of five objects, produced in this order. T
 |---|---|---|
 | 1 | Point cloud $P(t) \subset \Omega$ | Tracking, complete-coverage frames only |
 | 2 | Reduced cloud $\tilde P_\delta(t)$ | Single-linkage clustering at interaction length $\delta$, then centroids |
-| 3 | Diagram $D_\delta(t)$ | Vietoris–Rips persistent homology on $\tilde P_\delta(t)$, adaptive $\varepsilon_{\max}$ |
+| 3 | Diagram $D_\delta(t)$ | Vietoris–Rips persistent homology on $\tilde P_\delta(t)$ to centroid-cloud diameter |
 | 4 | Landscape $\lambda_\delta(t) \in L^2$ | Bubenik transform of $D_\delta(t)$ |
 | 5 | Inference | Mean path, long-run covariance, functional CUSUM |
 
@@ -93,7 +93,7 @@ Status codes: **M** measured from data; **C** chosen by convention with a stated
 
 ### 2.2 Interaction lengths
 
-The class names three organisational levels by cardinality. The sweep reads the metres from the pooled $H_0(\delta)$ curve. Clustering-quality metrics are diagnostics; they do not pick $\delta$. Protocol: `PAPERS/paper_A_JACT/pipeline/CUTOFF_PROTOCOL.md`. Ruling R15.
+The class names three organisational levels by cardinality. The sweep reads the metres from the pooled mean cluster-count curve $\overline{k}(\delta)$. Clustering-quality metrics are diagnostics; they do not pick $\delta$. Protocol: `PAPERS/paper_A_JACT/pipeline/CUTOFF_PROTOCOL.md`. Ruling R15.
 
 | Scale | Adopted $\delta$ | Status | Why this value | Action |
 |---|---|---|---|---|
@@ -135,7 +135,7 @@ Every gate here is a point at which the project can be told it is wrong. That is
 | Frame-level homology | Under 2 s, embarrassingly parallel | This is what licenses 1 Hz; do not delete the timing when compressing text |
 | Allocation | $\approx 1{,}600$ of 5{,}000 CPU-hours, Supercomputing Wales | Report both numbers; the headroom is the feasibility argument |
 | Stack | Python 3.11, Ripser.py 0.6.12, GUDHI 3.11.0, giotto-tda 0.6.0, NumPy 2.0.2, SciPy 1.13.1, pandas 2.3.2, scikit-learn 1.6.1 | Pin exactly. Diagrams were cross-checked across all three TDA libraries to $10^{-6}$ m |
-| Adaptive filtration | $\varepsilon_{\max} = \max\bigl(P_{75}\{d(\bar c_i, \bar c_j)\},\ \max(5.0,\, 2\delta)\bigr)$ | Inter-centroid distances exceed $\delta$, so a fixed $\varepsilon_{\max}$ fails across scales. The floor prevents degenerate filtration at small $\delta$ |
+| Filtration extent | Maximum pairwise inter-centroid distance on $\tilde P_\delta(t)$ (at most 22 points) | C2 diameter check (Oct 2026): no additional finite $H_1$ bar beyond this extent on the pilot corpus; every reported bar is finite |
 
 ---
 
@@ -232,7 +232,7 @@ Reference values: $W_1(\text{A\_WIDE}, \text{A\_NARROW}) = 76.13$ by exact optim
 
 **Why it is currently unanswerable.** Two obstacles, and each maps to one theorem.
 
-*Scale.* Organisation exists at several interaction lengths simultaneously. Persistent homology is multi-scale in its filtration parameter, but a single filtration over the full agent set does not separate organisational levels: features from different levels interleave in one diagram and cannot be attributed to a level. Multiparameter persistence is the principled alternative and is impractical at these data rates. Our answer is to name the levels by cardinality and read the metres from $H_0(\delta)$ *before* computing homology, which is what makes the summaries scale-attributable.
+*Scale.* Organisation exists at several interaction lengths simultaneously. Persistent homology is multi-scale in its filtration parameter, but a single filtration over the full agent set does not separate organisational levels: features from different levels interleave in one diagram and cannot be attributed to a level. Multiparameter persistence is the principled alternative and is impractical at these data rates. Our answer is to name the levels by cardinality and read the metres from $\overline{k}(\delta)$ *before* computing homology, which is what makes the summaries scale-attributable.
 
 *Dependence.* Each agent adapts continuously to its opponents, so observations are neither independent nor exchangeable. Existing statistical topology assumes otherwise, and inference built on that assumption understates uncertainty.
 
@@ -316,7 +316,7 @@ The acceptance test for this document. If §§1–7 are right, an RA can execute
 2. Pull SkillCorner match 1996435. Retain only complete 22-player frames. Pass condition: **43,531** frames.
 3. Subsample every 290th complete frame. Pass condition: **150** frames.
 4. Cluster with single linkage at $\delta = 2.75$, $11.75$ and $23.0$ m and reduce to centroids. Invert from `PAPERS/paper_A_JACT/pipeline/outputs/regime_summary.csv`; do not read a Calinski–Harabasz column as a cutoff (§2.2, ruling R15). Pass condition: $H_0$ means $19.32$, $5.04$ (cluster counts; team $1.96$).
-5. Compute Vietoris–Rips $H_1$ with the adaptive $\varepsilon_{\max}$ of §2.5. Pass condition: **378** individual loops in 144/150 frames; **25** tactical loops in 23/150 frames; **0** team loops.
+5. Compute Vietoris–Rips $H_1$ to the centroid-cloud diameter (§2.5). Pass condition: **378** individual loops in 144/150 frames; **25** tactical loops in 23/150 frames; **0** team loops.
 6. Cross-check one match's diagrams against GUDHI and giotto-tda. Pass condition: agreement to $10^{-6}$ m.
 
 *If step 5 fails,* the fault is almost always the filtration floor or the linkage method. Single linkage, and the floor is $\max(5.0, 2\delta)$.

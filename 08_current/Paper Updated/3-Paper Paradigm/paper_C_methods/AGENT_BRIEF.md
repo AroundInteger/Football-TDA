@@ -4,11 +4,11 @@ UK English. One background job. Stop when the Definition of Done is met. Do not 
 
 ## Goal of this run
 
-Make the staging tree internally consistent so a human can pick it up after Papers A and B are submitted. This is **not** authorship, venue submission, or a third football paper.
+Make the staging tree internally consistent so a human can continue the manuscript in parallel with Paper B. This is **not** authorship, venue submission, or a third football paper.
 
 ## Sequence lock
 
-Paper C is developed **after A and B submit**. Do not delay JACT or JSS. Do not cite C from A. Do not put ecology or robotics numbers into JeS or into `results.tex` of A/B.
+Papers B and C can be worked on in parallel, because their questions and datasets are independent. Do not delay JACT or JSS. Do not cite C from A. Do not put ecology or robotics numbers into JeS or into `results.tex` of A/B.
 
 ## Allowed to read
 

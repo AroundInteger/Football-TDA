@@ -1,6 +1,6 @@
 # Three-paper paradigm
 
-Split by audience. **Papers A and B are the active submissions.** Paper C is staged here and written only after A and B are submitted.
+Split by audience. **Papers A and B are the active submissions.** Papers B and C can be worked on in parallel, because their questions and datasets are independent. Paper A does not cite Paper C.
 
 | Paper | Folder | Venue | Role |
 |-------|--------|-------|------|

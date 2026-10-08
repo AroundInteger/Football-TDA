@@ -20,13 +20,13 @@ Generic review skills plus project-specific annexes for split-publication workfl
 |---|---|---|
 | Paper A | `08_current/Paper Updated/3-Paper Paradigm/paper_A_JACT/` | JACT |
 | Paper B | `08_current/Paper Updated/3-Paper Paradigm/paper_B_JSS/` | JSS |
-| Paper C | `08_current/Paper Updated/3-Paper Paradigm/paper_C_methods/` | Interface / SIAM MDS (after A and B submit) |
+| Paper C | `08_current/Paper Updated/3-Paper Paradigm/paper_C_methods/` | Interface / SIAM MDS (parallel with Paper B) |
 
 **Reference docs:** `3-Paper Paradigm/working_foundations.md`, `grant/CANONICAL_NUMBERS.md`
 
 **Abstract guides:** `abstract-structure-guide-tda.md` (Paper A & B)
 
-**Recommended sequence:** Paper A Mode A → pipeline run + `sync_to_paper.py` → Paper A Mode B (section passes) → grant Format B alignment → Mode D joint check → Paper B Mode A → Paper B pipeline + sync → **Paper C only after A and B are submitted**
+**Recommended sequence:** Paper A Mode A → pipeline run + `sync_to_paper.py` → Paper A Mode B (section passes) → grant Format B alignment → Mode D joint check → Paper B and Paper C in parallel. Their questions and datasets are independent. Paper A does not cite Paper C.
 
 ## Review log
 

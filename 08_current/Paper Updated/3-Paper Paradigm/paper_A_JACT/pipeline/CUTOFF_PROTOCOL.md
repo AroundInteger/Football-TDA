@@ -7,7 +7,7 @@ no second rule in comments.
 ## Job
 
 The class names three organisational levels by cardinality. The sweep
-reads the metres that select those levels from the pooled \(H_0(\delta)\)
+reads the metres that select those levels from the pooled \(\overline{k}(\delta)\)
 curve on this corpus. Clustering-quality metrics are diagnostics. They
 do not pick \(\delta\).
 
@@ -26,15 +26,15 @@ All ten SkillCorner matches in Supplementary Table S1. Every complete
 
 ## Estimator (pooled over every complete frame)
 
-Let \(\overline{H_0}(\delta)\) be the mean cluster count at cutoff
+Let \(\overline{k}(\delta)\) be the mean cluster count at cutoff
 \(\delta\), pooled over all complete frames of all ten matches. Let
 \(P(k \ge 4;\delta)\) be the fraction of those frames with at least
 four clusters.
 
-- **Individual:** largest \(\delta\) with \(\overline{H_0}(\delta) \ge n-3 = 19\).
-- **Tactical:** \(\delta\) minimising \(|\overline{H_0}(\delta) - 5|\), among
+- **Individual:** largest \(\delta\) with \(\overline{k}(\delta) \ge n-3 = 19\).
+- **Tactical:** \(\delta\) minimising \(|\overline{k}(\delta) - 5|\), among
   candidates with \(P(k \ge 4;\delta) \ge 0.5\).
-- **Team:** smallest \(\delta\) with \(\overline{H_0}(\delta) \le 2\).
+- **Team:** smallest \(\delta\) with \(\overline{k}(\delta) \le 2\).
 
 Ties: take the smaller \(\delta\). That is the whole selector.
 

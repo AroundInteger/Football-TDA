@@ -31,10 +31,11 @@ first grouped by proximity at a validated threshold distance, reducing
 the 22-player cloud to a smaller set of cluster centroids representing
 organisational units at a specific spatial scale. A Vietoris--Rips
 filtration is then computed on these centroids, producing a persistence
-diagram that records the birth and death of two types of feature:
-connected components ($H_0$, counting distinct spatial groups) and
-loops ($H_1$, detecting ring-like gaps). $H_1$ total persistence, the
-sum of loop lifespans in the diagram, provides a continuous scalar
+diagram that records the birth and death of two types of feature.
+$H_0$ is the homology group of connected components. The number of
+connected components is the count defined in the companion paper
+\cite{paperA}. Loops ($H_1$) detect ring-like gaps. $H_1$ total
+persistence, the sum of loop lifespans in the diagram, provides a continuous scalar
 measure of ring-like structure at that scale and moment.
 
 The pipeline is run at two spatial scales, validated in the companion

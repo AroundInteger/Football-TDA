@@ -67,9 +67,8 @@ with dashed \texorpdfstring{$\delta$}{}-disks and a representative
 gap \texorpdfstring{$<\delta$}{} (Section~2.2).
 \textbf{(b)}--\textbf{(d)}~Vietoris--Rips on the cluster centroids
 \texorpdfstring{$\tilde{P}(\tilde{t})$}{} at three increasing
-\texorpdfstring{$\varepsilon$}{}, truncated at
-\texorpdfstring{$\varepsilon_{\max}$}{}
-(equation~\eqref{eq:adaptive}; Section~2.4).
+\texorpdfstring{$\varepsilon$}{} up to the diameter of
+\texorpdfstring{$\tilde{P}(\tilde{t})$}{} (Section~2.4).
 \textbf{(e)}~Finite \texorpdfstring{$H_1$}{} birth--death pairs.
 \textbf{(f)}~The same pairs as a barcode.
 \textbf{(g)}~Graph-cycle proxy for an \texorpdfstring{$H_1$}{} pair
@@ -87,7 +86,9 @@ replaced by its centroid, giving the reduced point cloud
 \tilde{P}(\tilde{t})=\left\{\bar{c}_j : \bar{c}_j=\frac{1}{|C_j|}\sum_{p\in C_j} p,\ j=1,\dots,k\right\},
 \]
 and persistent homology is then computed on $\tilde{P}(\tilde{t})$
-rather than on $P(\tilde{t})$.
+rather than on $P(\tilde{t})$. Write $k$ for the number of connected
+components (clusters) after that step; at filtration zero on the
+centroid cloud, $k=\beta_0=\dim H_0$.
 
 Complete-linkage and Ward's method are not used for the headline
 analysis. Their effect on $H_1$ counts is examined in
@@ -109,17 +110,17 @@ $\delta\in[0.25, 40.0]$~m at $0.25$~m steps (160 points). No random
 window is drawn, and epoch lengths are not mixed. Clustering is
 single-linkage, and team labels are unused.
 
-Let $\overline{H_0}(\delta)$ denote that curve: the mean group count
+Let $\overline{k}(\delta)$ denote that curve: the mean group count
 at cutoff $\delta$, pooled over those frames. Let $P(k\ge 4;\delta)$
 be the fraction of frames with at least four groups. The three
 inversion rules are then as follows:
 
 \begin{itemize}
-\item individual: largest $\delta$ with $\overline{H_0}(\delta)\ge n-3=19$;
+\item individual: largest $\delta$ with $\overline{k}(\delta)\ge n-3=19$;
 \item tactical: $\delta$ minimising
-$|\overline{H_0}(\delta)-5|$, among candidates with
+$|\overline{k}(\delta)-5|$, among candidates with
 $P(k\ge 4;\delta)\ge 0.5$;
-\item team: smallest $\delta$ with $\overline{H_0}(\delta)\le 2$.
+\item team: smallest $\delta$ with $\overline{k}(\delta)\le 2$.
 \end{itemize}
 Ties take the smaller $\delta$. The three targets are roster
 statements. The individual target $n-3=19$ is a mostly resolved set of
@@ -132,12 +133,12 @@ $23.0$~m. Pooled mean group count at those cutoffs is $19.31$,
 $5.06$, and $1.98$. Inverting each match separately gives
 $2.80\pm 0.20$~m, $11.80\pm 0.35$~m, and $22.98\pm 0.72$~m
 (mean $\pm$ s.d.\ across matches). Acceptance requires every match's
-mean $\overline{H_0}$ at the pooled cutoff to lie in $[15, 22]$,
+mean $\overline{k}$ at the pooled cutoff to lie in $[15, 22]$,
 $[4, 10]$, and $[1, 2.5]$ respectively. All ten matches lie inside
 those bands.
 
 The curve is asymmetric. Nearby agents merge quickly, at about
-$1.6$ groups per metre from $\overline{H_0}=19$ to $5$. Larger gaps
+$1.6$ groups per metre from $\overline{k}=19$ to $5$. Larger gaps
 then resist merging, at about $0.27$ groups per metre from $5$ to
 $2$. The remaining gaps are the large between-group distances. That
 flattening is why the team cutoff sits far out at $23.0$~m and still
@@ -162,16 +163,16 @@ not the 150-frame sample \texorpdfstring{$\tilde{T}$}{} of
 Section~\ref{sec:data}. Grid
 \texorpdfstring{$\delta\in[0.25, 40.0]$}{}~m at $0.25$~m.
 \textbf{(a)}~Pooled mean group-count curve
-\texorpdfstring{$\overline{H_0}(\delta)$}{} (black) with the ten
+\texorpdfstring{$\overline{k}(\delta)$}{} (black) with the ten
 per-match curves (grey). Targets are roster statements:
-\texorpdfstring{$\overline{H_0}=n-3=19$}{} (most agents resolved),
-\texorpdfstring{$\overline{H_0}=5$}{} (a few coordinating groups,
+\texorpdfstring{$\overline{k}=n-3=19$}{} (most agents resolved),
+\texorpdfstring{$\overline{k}=5$}{} (a few coordinating groups,
 enough that a loop remains possible), and
-\texorpdfstring{$\overline{H_0}=2$}{} (two spatial
+\texorpdfstring{$\overline{k}=2$}{} (two spatial
 envelopes, not the two teams, since team labels are unused). Circles
 mark the inversion at $2.75$, $11.75$, and $23.0$~m (top axis); the
 inset zooms the individual rule.
-\textbf{(b)}~Per-frame \texorpdfstring{$H_0$}{} distribution (median,
+\textbf{(b)}~Per-frame group-count \texorpdfstring{$k$}{} distribution (median,
 interquartile band, and 5th--95th centile band). Vertical brackets are
 the acceptance intervals \texorpdfstring{$[15,22]$}{},
 \texorpdfstring{$[4,10]$}{}, and \texorpdfstring{$[1,2.5]$}{}; orange
@@ -184,7 +185,7 @@ the test.
 four; the adopted $11.75$~m sits at \texorpdfstring{$P=0.80$}{}, inside
 the feasible region (\texorpdfstring{$\delta\le 13.5$}{}~m).
 \textbf{(d--f)}~The same cutoffs on primary-match sample frame~95
-(\texorpdfstring{$H_0=20,7,2$}{}; one frame, near the pooled targets
+(\texorpdfstring{$k=20,7,2$}{}; one frame, near the pooled targets
 $19$, $5$, $2$). Coloured hulls are multi-player clusters, grey are
 singletons; colours distinguish separate topological components in this
 frame, not player teams. Each pitch carries a $10$~m scale bar.
@@ -193,32 +194,17 @@ Figure~\ref{fig:diagnostics} and are not the selector.}
 \label{fig:cutoff}
 \end{figure}
 
-\subsection{Maximum filtration distance}
-\label{sec:adaptivefiltration}
+\subsection{Filtration extent on reduced clouds}
+\label{sec:filtrationextent}
 
-Clustering at cutoff $\delta$ produces a reduced point cloud
-$\tilde{P}(\tilde{t})$. Inter-centroid distances on that cloud are typically
-larger than $\delta$. A maximum filtration distance
-$\varepsilon_{\max}$ fitted to one cutoff can then return no $H_1$ at
-another.
-
-The Vietoris--Rips complex itself is not modified. Its parameter is
-truncated at
-\begin{equation}
-\varepsilon_{\max} = \max\Big(P_{75}\{d(\bar c_i,\bar c_j) : i<j\},\; \max(5.0,\,2\delta)\Big).
-\label{eq:adaptive}
-\end{equation}
-Here $P_{75}$ is the 75th percentile of pairwise inter-centroid
-distances on $\tilde{P}(\tilde{t})$. The first term tracks the geometry of the
-reduced cloud at the current cutoff. The second term is a floor that
-prevents a degenerate filtration at small $\delta$. The same floor
-keeps the filtration in the inter-cluster distance regime.
-
-$P_{75}$ is a conventional upper-quartile summary.
-Section~\ref{sec:sensitivity} reports an ablation across $P_{50}$
-through $P_{95}$. Every tested percentile returns identical $H_1$
-totals and the same fraction of frames with a loop. The choice is
-therefore a reporting convention, not an optimisation.
+The Vietoris--Rips complex is computed in the usual way on
+$\tilde{P}(\tilde{t})$. Each reduced cloud has at most 22 centroid
+points, so pairwise inter-centroid distances are bounded. The
+filtration therefore runs to the diameter of the cloud: the maximum
+pairwise distance between centroids. At that extent the complex is a
+full simplex and every $H_1$ class on this corpus is finite; no
+additional finite bar appears beyond that diameter on the
+150-frame primary sample or the ten-match aggregate analysed here.
 
 Persistence diagrams are computed with Ripser via Ripser.py
 \citep{bauer2021ripser}, with coefficients in $\mathbb{F}_2$. We report
@@ -267,8 +253,7 @@ their arrangement. Each frame is therefore compared against a matched
 null. For a frame whose clustering yields $k$ centroids, the null
 draws $k$ points uniformly from the convex hull of those same
 centroids. Group count and spatial envelope are thus held fixed. Only
-the arrangement is randomised. The truncation of
-equation~\eqref{eq:adaptive} is recomputed on each null cloud.
+the arrangement is randomised. The same filtration extent (cloud diameter) is used on each null cloud.
 Nothing else differs between the observed cloud and the null. We use
 200 null replicates per frame. The reported statistic is the excess of
 observed over null $H_1$ presence, with 95\% confidence intervals from
@@ -285,7 +270,7 @@ carry 95\% confidence intervals obtained by bootstrap resampling over
 matches (1{,}000 resamples), with the match as the resampling unit.
 Bottleneck and landscape distances between the two levels' persistence
 diagrams are computed using GUDHI, as described in
-Section~\ref{sec:adaptivefiltration}.
+Section~\ref{sec:filtrationextent}.
 
 The construct-validity check in Section~\ref{sec:eventcorr} uses a
 Mann--Whitney test of $\Delta$ against zero.

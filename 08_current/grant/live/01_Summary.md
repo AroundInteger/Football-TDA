@@ -5,7 +5,7 @@
      StatsBomb is the data supplier under the club agreement and is not named here.
      Word count includes the four headings. Limit 550. -->
 
-**Word limit: 550.** Paste the four sections below, including the headings. Do not paste this header block. **Current:** 545 words, including the four headings.
+**Word limit: 550.** Paste the four sections below, including the headings. Do not paste this header block. **Current:** 546 words, including the four headings (7 Oct 2026 recount).
 
 ## Context
 

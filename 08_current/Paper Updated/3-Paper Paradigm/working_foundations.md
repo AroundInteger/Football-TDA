@@ -24,8 +24,9 @@ restores that forcing function.
   of adaptation to other sports. No mandatory fee.
 - **Paper C — methods note (Interface / SIAM MDS / FoDS).** Diagram $W_1/W_2$ analogue
   of mean-path and change-point inference on *synthetic* adversarial clouds (ecology
-  lead, robotics second). Not a third football paper. Not JACT (Paper A). **Developed
-  only after Papers A and B are submitted.** Staging files: `paper_C_methods/`.
+  lead, robotics second). Not a third football paper. Not JACT (Paper A). **Papers B
+  and C can be worked on in parallel**, because their questions and datasets are
+  independent. Paper A does not cite Paper C. Staging files: `paper_C_methods/`.
 - **Ruled out:** Scientific Reports. Fully gold OA, mandatory APC currently
   £2,290/$2,850/€2,490 — reopens the same fee problem that already motivated moving off
   PLOS ONE, unless institutional funding changes that.
@@ -71,7 +72,7 @@ construct-validity check only ("not noise"); Paper B owns the full interpretive 
 Neither paragraph required new analysis — both are fully supported by results already
 in `results.tex`. This is a writing/selection task from here, not a research task.
 
-**Paper C (methods; after A and B submit).** Hierarchical adversarial point processes:
+**Paper C (methods; parallel with Paper B).** Hierarchical adversarial point processes:
 the diagram analogue of a mean path ($W_2$ Fréchet mean of birth-zero $H_0$ diagrams)
 and of change-point detection (Page CUSUM on diagram $W_1$), with interaction lengths
 re-derived on a simulated territorial predator–prey generator and a corridor
@@ -84,7 +85,7 @@ movement-grammar citation, not this paper's point clouds.
 
 **Non-overlap with A/B (locked).** Paper C does not re-analyse SkillCorner, does not
 copy football metre values into its results, and is not submitted to JACT or JSS.
-Papers A and B do not depend on Paper C; A is submitted first and must not cite C.
+Papers A and B do not depend on Paper C. Papers B and C can be worked on in parallel, because their questions and datasets are independent. Paper A must not cite C.
 
 ---
 
@@ -218,7 +219,7 @@ permitted **only** in the Outlook subsection of Discussion. Every other mention 
 "companion paper", "forthcoming analysis", or similar in Paper A must be rephrased to
 "forthcoming work" or "deferred to future analysis" without a citation. The Methods and
 Results sections of Paper A must not depend on or forward-reference Paper B in any way.
-Paper C is written after A and B are submitted; Paper A must not cite Paper C.
+Papers B and C can be worked on in parallel, because their questions and datasets are independent. Paper A must not cite Paper C.
 
 ### Paper B tactical concepts link (locked)
 Ring-like H1 features detected by the framework must be explicitly linked to three
@@ -602,7 +603,7 @@ The grant's publication-adjacent pipeline is:
 - Full-season results paper = planned under this grant (future)
 - Paper C = synthetic methods note (ecology + robotics generators; diagram T1/T2 analogue).
   Supports the Standard Grant *panel* story (complementary fields). Not a JeS deliverable
-  that quotes ecology $\hat T$ as landscape T2. Developed after A and B submit.
+  that quotes ecology $\hat T$ as landscape T2. Papers B and C can be worked on in parallel.
 
 **Paper B is intentionally absent from the EPSRC grant**, which is correctly positioned
 as mathematical sciences with football as a testbed. Paper B is the sports-science

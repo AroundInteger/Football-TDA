@@ -37,8 +37,7 @@ dispersion of loops between samples (Section~\ref{sec:data}).
 
 Every examined $H_1$ feature is realised as a loop in space
 (Figure~\ref{fig:cycles}). Detection is not confined to the adopted
-cutoff or to a single truncation percentile
-(Section~\ref{sec:sensitivity}). Tactical $H_1$ is detected on the
+cutoff (Section~\ref{sec:sensitivity}). Tactical $H_1$ is detected on the
 band $[6,14]$~m, not only at an isolated optimum.
 
 The pipeline therefore reports three $H_0$ regimes and two $H_1$
@@ -78,16 +77,17 @@ the shifts belong to a companion manuscript (Paper~B).
 \subsection{Limitations}
 \label{sec:limitations}
 
-Linkage selection is a substantive methodological choice. Across a
-600-frame, four-match comparison sample, single-linkage detects 106
-tactical-level $H_1$ loops. Complete-linkage detects 802. Ward's
-method detects 822. That is a difference of almost an order of
-magnitude. The gap is large enough to change which scientific picture
+Linkage selection is a substantive methodological choice for the
+composed map (cluster at $\delta$, then Vietoris--Rips on centroids).
+Across a 600-frame, four-match comparison sample, single-linkage
+detects 106 tactical-level $H_1$ loops. Complete-linkage detects 802.
+Ward's method detects 822. That is a difference of almost an order of
+magnitude. Point-cloud stability theorems do not bound this map when
+single-linkage jumps at merge events; characterising diagram stability
+under clustering is an open problem we defer to follow-on work. The gap is large enough to change which scientific picture
 the data support, not merely the precision of one estimate. We retain
 single-linkage because its definition is the most natural reading of
-spatial proximity. It is also robust against over-partitioning
-artefacts. We treat the gap with the other two methods as an open
-question.
+spatial proximity. It is also robust against over-partitioning artefacts.
 
 A more principled selection criterion would come from the dynamical
 system itself, rather than from clustering-quality metrics alone. One

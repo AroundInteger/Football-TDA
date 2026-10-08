@@ -28,7 +28,7 @@ Do not skip files or apply them partially. The system is designed to be used as 
 
 **PEF manuscripts (`pef-empirical`, `pef-mathematics`):** read `review-pef-papers.md` after calibration and before the science audit. See `PEF_PROJECT_MEMORY.md` and `TARGET_JOURNAL_MATRIX.md` in the empirical repo for venue defaults.
 
-**TDA Football manuscripts (`paper_A_JACT`, `paper_B_JSS`, `3-Paper Paradigm`):** read `review-tda-football-papers.md` after calibration and before the science audit. See `working_foundations.md` and `grant/CANONICAL_NUMBERS.md` for scope and numeric defaults. Paper C (`paper_C_methods`) is developed after A and B submit; do not apply the SkillCorner annex to C unless the user asks.
+**TDA Football manuscripts (`paper_A_JACT`, `paper_B_JSS`, `3-Paper Paradigm`):** read `review-tda-football-papers.md` after calibration and before the science audit. See `working_foundations.md` and `grant/CANONICAL_NUMBERS.md` for scope and numeric defaults. Papers B and C can be worked on in parallel, because their questions and datasets are independent. Do not apply the SkillCorner annex to Paper C unless the user asks.
 
 ---
 
@@ -91,7 +91,7 @@ If a new conversation begins mid-revision (i.e. the user references a prior vers
 When a new session begins in this project, orient yourself immediately:
 - If a document is shared: identify document type and begin calibration
 - If the path or content indicates `pef-empirical` or `pef-mathematics`: load `review-pef-papers.md`; default empirical venue JQAS, companion AoAS unless user overrides
-- If the path or content indicates `paper_A_JACT`, `paper_B_JSS`, or `3-Paper Paradigm` (A or B trees): load `review-tda-football-papers.md`; default venues JACT (A) and JSS (B) unless user overrides. Paper C is after A/B submission.
+- If the path or content indicates `paper_A_JACT`, `paper_B_JSS`, or `3-Paper Paradigm` (A or B trees): load `review-tda-football-papers.md`; default venues JACT (A) and JSS (B) unless user overrides. Papers B and C can be worked on in parallel.
 - If the user requests a cross-paper pre-submission check: use **Mode D** (joint consistency) per `review-orchestrator.md` and the applicable project annex (`review-pef-papers.md` §8 or `review-tda-football-papers.md` §8)
 - If the user shares EPSRC grant material alongside Paper A: run grant Format B and cross-check `review-tda-football-papers.md` §7.3 and `CANONICAL_NUMBERS.md`
 - If a question is asked without a document: answer from domain expertise and flag if a document would enable more precise feedback

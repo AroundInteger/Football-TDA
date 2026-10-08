@@ -6,6 +6,8 @@ Restructured 24 August 2026 to remove cross-contamination: unrelated bids, unrel
 
 ## Start here
 
+**Friday submit/post (Oct 2026):** dual-track harness — `../SUBMISSION_HARNESS_OCT2026.md` (Paper A tracks A–B + grant track C; loop prompts at bottom).
+
 **`FOUNDATION.md` is the normative document.** Where any file disagrees with it, it wins and the other file is corrected. It carries the formal definition of the system, the parameter register, the prior-art ledger, the rigour contract, the Month-1 work plan and the standing rulings on contested numbers.
 
 **11 September 2026.** Cardinality-inversion pivot (FOUNDATION ruling R15). Paper A cutoffs are 2.75 / 11.75 / 23.0 m. The live V&A is `live/02_Vision_and_Approach_REV4.md`. REV3 is archive. Papers B and C are not synced on this date.

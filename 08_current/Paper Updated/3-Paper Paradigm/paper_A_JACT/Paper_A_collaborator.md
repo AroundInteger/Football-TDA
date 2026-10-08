@@ -77,7 +77,7 @@ Competitive collective systems, including sports teams contesting a pitch, organ
 
 Positions are recorded in metres on a standard football pitch. The levels are named by how many groups they contain, not by an assumed length. A cutoff sweep then recovers those distances from the group-count curve. Hierarchical clustering at those recovered lengths decomposes the cloud, and persistent homology is computed on the resulting centroids.
 
-On ten professional matches (broadcast tracking at 10 Hz), three $H_0$ regimes appear: individual (2.75 m), tactical (11.75 m), and team (23.0 m). Loops appear at the first two levels, not the third. Individual-level loops appear in $96.5\pm 1.5\%$ of frames (short bar length in metres); tactical-level loops appear in $18.8\pm 6.5\%$ (longer bar length). Every examined loop is realised in space, and the two levels carry distinct information. The same pipeline applies to other bounded competitive systems once interaction lengths are re-derived.
+On ten professional matches (broadcast tracking at 10 Hz), three $H_0$ regimes appear: individual (2.75 m), tactical (11.75 m), and team (23.0 m). Loops appear at the first two levels, not the third. Individual-level loops appear in $96.5\pm 1.5\%$ of frames (mean filtration lifetime 1.886 m); tactical-level loops appear in $18.8\pm 6.5\%$ (mean filtration lifetime 3.411 m). Every examined loop is realised in space, and the two levels carry distinct information. The same pipeline applies to other bounded competitive systems once interaction lengths are re-derived.
 
 **Keywords:** Vietoris–Rips filtration, topological data analysis, spatial tracking, hierarchical clustering, team sports
 
