@@ -88,12 +88,17 @@ This sharpens, and does not replace, §12 Question 1 in `working_foundations.md`
 | Paper B | Inherit single-linkage by citation. Do not discuss linkage sensitivity. |
 | Paper C | When drafted, keep \((\beta_0, \beta_1)\) and do not add a linkage experiment on SkillCorner (non-overlap with A and B). A synthetic illustration of a merge discontinuity is allowed only if it serves C's existing generators, and is marked as motivation for the Standard Grant, not as a C theorem. |
 | Small Grant (current) | `02_Vision_and_Approach_REV4.md` stays as written. It is at the page ceiling, and the two theorem targets (T1, averaging under competitive dependence; T2, localising transitions) already assume a fixed diagram. Do not add a linkage theorem or the 106 / 802 / 822 counts to the Vision. If a revision window opens before submission, the only permitted insertion is one clause on the Month-2 cutoff gate: the validation batch also records whether linkage and a small spatial perturbation preserve the diagrams that will be averaged. That clause requires an equal cut elsewhere. The default is no insertion. |
-| Standard Grant (future) | No Standard Grant file is created from this note. The strand, when that case is drafted, is the stability of the centroid persistence diagram under linkage, cutoff, and perturbation of the cloud. It is distinct from T1 and from T2. It is positioned against Cohen–Steiner, and against Schindler and Barahona (persistent homology of clusterings; Small Grant reference [20]), who study a different map: persistent homology applied to the clustering, not persistent homology of the centroid cloud after clustering. Algebraic ownership sits with the mathematics co-lead. |
+| Standard Grant (future) | The aims sketch is `08_current/grant/standard/AIMS_MAP.md` (October 2026). Aim 2 is the stability of the centroid persistence diagram under linkage, cutoff, and perturbation of the cloud. It is distinct from T1 and from T2. It is positioned against Cohen–Steiner, and against Schindler and Barahona (persistent homology of clusterings; Small Grant reference [20]), who study a different map: persistent homology applied to the clustering, not persistent homology of the centroid cloud after clustering. Algebraic ownership sits with the mathematics co-lead. `AIMS_MAP.md` does not amend the live Small Grant Vision and Approach. |
 
 ---
 
-## What this pass does not change
+## Sync, 8 October 2026
 
-- Paper A, B, and C source (`.tex`, `.md` drafts, pipeline protocol).
-- `08_current/grant/FOUNDATION.md`.
-- `08_current/grant/live/02_Vision_and_Approach_REV4.md` and the rest of the live 01–08 pack, apart from a pointer in `README.md`.
+- Restored local drafts of `03_Applicant_and_Team_Capability.md`, `06_Resources_and_Costs.md`, and `TIMELINE.md` to the IPA 799 v2 final lock on `main` (they had reintroduced placeholder cost wording).
+- Aligned this note's Standard Grant row with `grant/standard/AIMS_MAP.md`.
+- Aligned `grant/FOUNDATION.md` Paper C status with `working_foundations.md`: Papers B and C may proceed in parallel; Paper A is first and does not cite C.
+
+## What the October comment pass did not change
+
+- Live Small Grant Vision and Approach (`02_Vision_and_Approach_REV4.md`), apart from later JeS paste readiness work on `main`.
+- Paper B and Paper C manuscript bodies beyond the parallel-sequencing rule.
