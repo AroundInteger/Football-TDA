@@ -6,7 +6,7 @@ Revision history and page-fit notes: `archive/REV4_revision_header_oct2026.md`.
 
 ### 1. Research Problem and Mathematical Contribution
 
-When two or more groups of agents compete inside a bounded space, each shapes the other's organisation at every scale at once. Such competitive collective systems share a bounded domain, each group coordinating internally while responding to the opponent. Statistical topology cannot yet describe how such organisation forms, changes and breaks down. This project seeks that theory, averaging configurations at population scale and locating change with a proven error bound. The grant is a proof of principle on professional football as a fully tracked platform (§2) and the evidence base for a follow-on Standard Grant.
+When two or more groups of agents compete inside a bounded space, mutual adaptation can couple their organisation across several scales at once. Such competitive collective systems combine internal coordination with continuous response to an opponent. Yet statistical topology cannot yet describe how that organisation forms, changes and breaks down under competition. This project seeks that theory, averaging configurations at population scale and locating change with a proven error bound. The grant is a proof of principle: it tests the framework at population scale on a fully tracked platform (professional football, §2) and supplies the evidence base for a follow-on Standard Grant.
 
 **Importance.** Two obstacles limit existing approaches. *Scale.* Organisation exists at several spatial scales at once, from small interaction groups to enclosed coverage regions. A single persistent-homology filtration over the full agent set does not separate these levels: their features interleave in one diagram [1–3]. Multiparameter persistence [4–6] is principled but computationally impractical at these data rates.
 
@@ -28,13 +28,13 @@ Established topological results assume cooperative or slowly evolving organisati
 
 ### 3. Impact, National Importance and Beneficiaries
 
-**Mathematical impact.** The primary contribution is new statistical-topology theory extending current foundations [7,8] to competitive dependence. Beneficiaries are researchers in topology, statistics and complex systems, who gain foundations for averaging and change-point inference under competitive dependence, plus an open-source library.
+**Mathematical impact.** The primary contribution is new statistical-topology theory extending current foundations [7,8] to competitive dependence. Beneficiaries are researchers in topology, statistics and complex systems, who gain foundations for averaging and change-point inference, plus an open-source library.
 
 **National importance.** This project develops UK capability in sequential inference for function-space-valued topological summaries under competitive dependence.
 
 **Economic and industry impact.** Co-developed with Swansea City AFC (SCAFC), the project delivers practitioner outputs unavailable from the geometric measures benchmarked in O1, so analysts can quantify pressing, formation gaps and defensive-line organisation at named scales.
 
-**Standard Grant pathway.** The T1 and T2 foundations prepare a follow-on Standard Grant transferring the guarantees to two further bounded competitive systems: spatial predator–prey dynamics (including tumour–immune competition with mathematical-oncology collaborators) and competitive logistics with autonomous-fleet coordination.
+**Standard Grant pathway.** T1 and T2 treat each persistence diagram as given. Centroid replacement, the grouping rule and the interaction length can each create or remove features. A follow-on Standard Grant asks when the diagram is stable to these choices, and repeats the test on one further bounded competitive system with re-derived interaction lengths.
 
 ## Approach
 
@@ -42,7 +42,7 @@ Established topological results assume cooperative or slowly evolving organisati
 
 **Project structure.** The Project Lead (PL; 0.10 full-time equivalent, FTE) leads design, gates, theorems and publication; 0.10 FTE is not season-scale compute. Project co-lead (PcL) Dr Nelly Villamizar (Mathematics, 0.05 FTE) supplies algebraic guidance for O2, not implementation. A Research Associate (RA; 1.0 FTE, Months 5–10) implements season-scale compute and the landscape library on SCAFC tracking data and tactical labels. Months 1–4 are PL-led so the RA inherits a gated, specified pipeline rather than designing the stack. Months 11–12 remain PL-owned after the RA handover. The post is structured postdoctoral training in statistical topology and sequential inference.
 
-**Sample-size rationale.** A full Championship season supplies the replication the pilot cannot: 552 fixtures, about 540 after pre-registered exclusions (R2). The unit is the fixture (one focal team, opposition as covariate), so the two dependent teams are not double-counted. Venue × opposition strength gives six cells of about 90 matches, each above the 32 needed for a 95% confidence-interval half-width of 0.025 on the tactical-scale loop-presence rate (pilot across-match s.d. 0.065 [23]). Phase of play is a within-match stratum and does not partition matches. For formation comparison, 180 matches per class detect Cohen's d ≥ 0.30 at 80% power (α = 0.05, Benjamini–Hochberg false-discovery-rate control, BH-FDR); 540 matches cover the three most common formations, the pre-registered comparison set. The replication target is a borderline within-match pilot effect (stratified permutation p = 0.051).
+**Sample-size rationale.** A full Championship season supplies the replication the pilot cannot: 552 fixtures, about 540 after pre-registered exclusions (R2). The unit is the fixture (one focal team, opposition as covariate), so the two dependent teams are not double-counted. Venue × opposition strength gives six cells of about 90 matches. Each exceeds the 32 needed for a 95% confidence-interval half-width of 0.025 on the tactical-scale loop-presence rate (pilot across-match s.d. 0.065 [23]). Phase of play is a within-match stratum and does not partition matches. For formation comparison, 180 matches per class detect Cohen's d ≥ 0.30 at 80% power (α = 0.05, Benjamini–Hochberg false-discovery-rate control, BH-FDR). The 540 matches cover the three most common formations, the pre-registered comparison set. The replication target is a borderline within-match pilot effect (stratified permutation p = 0.051).
 
 **O1: Population-scale geometry (PL Months 1–9; RA Months 5–9).** O1 tests whether scale-specific summaries are stable enough to average at population scale and whether their distances distinguish organisational states (in football, tactical formations). A 20-match validation batch in Months 1–2 tests whether the pilot interaction lengths transfer to Championship data, and whether 1 Hz sampling preserves the features validated at 10 Hz.
 
@@ -50,7 +50,7 @@ Established topological results assume cooperative or slowly evolving organisati
 - **Dependence diagnostic** (gate, Month 9): empirical autocovariance decay consistent with the summable-mixing condition T1 and T2 assume, with the eigengap for T2's projected form recorded alongside.
 - **Discriminability** (gate, Month 9): separation of at least three organisational states (p < 0.05, BH-corrected), benchmarked against team length, width and convex-hull area [21,22].
 
-**O2: Inference for dependent topological processes (PL Months 4–10; RA and PcL Months 5–10).** The Month-2 gate licenses O2; the Month-9 criteria are the hypotheses under which T1 and T2 are to be proved (§5). O2 succeeds if both theorems hold under the O1 conditions and detected change-points recover at least 70% of held-out annotated transitions within ±10 s at a calibrated 5% false-alarm rate (permutation p < 0.05).
+**O2: Inference for dependent topological processes (PL Months 4–10; RA and PcL Months 5–10).** The Month-2 gate opens O2; the Month-9 criteria are the hypotheses under which T1 and T2 are to be proved (§5). O2 succeeds if both theorems hold under the O1 conditions and detected change-points recover at least 70% of held-out annotated transitions within ±10 s at a calibrated 5% false-alarm rate (permutation p < 0.05).
 
 ![**Figure 1.** Twelve-month workplan: decision gates (diamonds) and dated outputs (triangles).](grant_figure_gantt.png){width=13cm}
 
@@ -58,13 +58,13 @@ Established topological results assume cooperative or slowly evolving organisati
 
 **Pipeline.** A containerised Python pipeline processes each match frame as a point cloud. Agents are partitioned using the empirically derived interaction lengths (§2; Month-2 gate). Persistent homology at each accepted scale is computed with Ripser [24], GUDHI [25] and giotto-tda [26] and summarised as persistence landscapes. Frame-level homology takes under two seconds and is embarrassingly parallel, so production runs at 1 Hz. For O1, landscape distributions are compared across organisational states and covariate cells by the landscape L² distance (permutation tests, BH-FDR).
 
-**T1.** On a bounded domain with a fixed agent count, landscapes are uniformly bounded in L² [8], so the mean path is well defined and unique, unlike diagram-valued means [27]. For a strictly stationary, α-mixing landscape series with summable coefficients, the empirical mean path is √n-consistent with a Gaussian limit whose covariance is the long-run, not the marginal, covariance [9,10]. That licenses functional principal component analysis (FPCA) [28] on landscape trajectories and block-bootstrap calibration.
+**T1.** On a bounded domain with a fixed agent count, landscapes are uniformly bounded in L² [8], so the mean path is well defined and unique, unlike diagram-valued means [27]. For a strictly stationary, α-mixing landscape series with summable coefficients (the dependence condition O1 checks), the empirical mean path is √n-consistent with a Gaussian limit. That limit carries the long-run covariance, not the marginal covariance [9,10]. This limit justifies functional principal component analysis (FPCA) [28] on landscape trajectories and block-bootstrap calibration.
 
-**T2.** The landscape map is 1-Lipschitz from diagrams under the bottleneck distance into the sup-norm [8], and on a bounded domain into L² with a constant C explicit in agent count and domain diameter [14]. For a functional cumulative-sum (CUSUM) statistic [12,13] on the landscape series, T2 bounds the localisation error by
+**T2.** The landscape map is 1-Lipschitz from diagrams under the bottleneck distance into the sup-norm [8]. On a bounded domain it also maps into L², with a constant C that is explicit in the agent count and the domain diameter [14]. For a functional cumulative-sum (CUSUM) statistic [12,13] on the landscape series, T2 bounds the localisation error by
 
 |τ̂ − τ| = O_P( σ² / (Δ − 2Cε)² ),  for Δ > 2Cε,
 
-where Δ is the change in the mean landscape, σ² is T1's long-run variance and ε is the worst-case diagram perturbation. The threshold Δ > 2Cε is the substantive content: a transition is locatable only once it exceeds twice the measurement-induced perturbation. Block-bootstrap calibration sets the detection threshold at a fixed false-alarm rate; the bound sets the localisation window reported with each detection. T2 is stated on the landscape series; its projected form on FPCA scores also needs the eigengap condition recorded in O1.
+where Δ is the size of the change in the mean landscape, σ² is T1's long-run variance and ε is the largest perturbation of an input diagram. The condition Δ > 2Cε is the key result: a transition can be located only once it exceeds the distortion that measurement error alone can cause. To decide when a change is real, we set a detection threshold with a block bootstrap. This resamples runs of consecutive frames, so the dependence between them is preserved and the rate of false alarms stays fixed. When a change passes the threshold, the bound supplies a time window around it, showing how precisely it has been located. For speed, the test can run on the first few FPCA scores, a low-dimensional summary, rather than the full landscape series. That shortcut is reliable only when the leading components are well separated, the eigengap recorded in O1.
 
 ### 6. Feasibility and Risk Management
 
@@ -76,9 +76,9 @@ The award is feasible in twelve months (RA Months 5–10; Months 11–12 PL-owne
 
 ### 7. Outcomes, Team and Resources
 
-**Publications and software.** The methodology paper [23] is submitted. The dated deliverables in Figure 1 are a season-results paper, a football-analytics paper [29], a Zenodo library DOI and SCAFC practitioner outputs. The analysis plan is pre-registered on OSF at Month 2. These form the Month-12 evidence pack for the Standard Grant (§3).
+**Publications and software.** The methodology paper [23] is submitted. The dated deliverables in Figure 1 are a season-results paper, a football-analytics paper [29], a Zenodo library DOI and SCAFC practitioner outputs. The analysis plan is pre-registered on OSF at Month 2. The PL presents the methods at Algebraic Topology: Methods, Computation and Science (ATMCS 13), KTH Stockholm, 28 June–2 July 2027 (Months 4–5). These form the Month-12 evidence pack for the Standard Grant (§3).
 
-**Team.** The team brings together statistical topology for competitive systems (PL, Biomedical Engineering), applied algebraic geometry and topological methods (PcL Villamizar, Mathematics) and SCAFC as industry co-development partner. This cross-school and industry collaboration fits the scheme's remit. **Resources.** Full-season processing uses the PL's Supercomputing Wales allocation: approximately 1,600 of 5,000 available CPU-hours.
+**Team.** The team brings together statistical topology for competitive systems (PL, Biomedical Engineering), applied algebraic geometry and topological methods (PcL Villamizar, Mathematics) and SCAFC as industry co-development partner. This cross-school and industry collaboration fits the scheme's remit. **Resources.** Full-season processing uses the PL's Supercomputing Wales allocation: approximately 1,600 of 5,000 available CPU-hours. Directly Incurred travel funds the ATMCS 13 presentation within the remaining Small Grant headroom.
 
 ## References
 

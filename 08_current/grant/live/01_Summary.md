@@ -5,7 +5,7 @@
      StatsBomb is the data supplier under the club agreement and is not named here.
      Word count includes the four headings. Limit 550. -->
 
-**Word limit: 550.** Paste the four sections below, including the headings. Do not paste this header block. **Current:** 546 words, including the four headings (7 Oct 2026 recount).
+**Word limit: 550.** Paste the four sections below, including the headings. Do not paste this header block. **Current:** 550 words, including the four headings (16 Oct 2026 recount).
 
 ## Context
 
@@ -33,4 +33,4 @@ Second, prove mathematical guarantees that the method can detect when collective
 
 This project will deliver football-validated theory and software: a scale-separated analysis that accounts for competitive dependence (successive observations are not independent). The primary output is a documented open-source package that computes multi-scale shape summaries from tracking data, released with a digital object identifier (DOI). Swansea City Association Football Club is the sole project partner. The club receives checkable structural measures of pressing, formation gaps and defensive-line organisation, developed on its tracking data.
 
-The same organisational problem, competing groups inside a bounded domain, appears in spatial predator–prey dynamics, including competition between tumour cells and immune cells. A second later target is competitive logistics with autonomous-fleet coordination. Transfer is a later step, once interaction lengths are re-derived. Full-season results and theory form an evidence pack for a follow-on Standard Grant, through mathematical-oncology collaborations specific to that programme.
+Full-season results lay the foundation for a larger project. Replacing a group by its centre can invent or hide structure, as can a different grouping or a change in the distance used. The larger project asks when the shape is real, not an artefact of them. These questions are asked in a second setting, with its own distances, so the tools are not limited to one environment.

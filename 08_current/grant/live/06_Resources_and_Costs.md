@@ -1,42 +1,85 @@
 # RESOURCES AND COSTS
 
-Pound figures follow **final Finance lock** `Costs/IPA_799_v2_final_lock.md` and workbook **`Costs/Budget 02 10 26 IPA 799 v2.xlsx`** (2 October 2026). **Project dates:** 1 March 2027–29 February 2028. **Month numbers and calendar mapping:** `TIMELINE.md`. UKRI titles: Project Lead (PL) and Project co-lead (PcL).
+<!-- Paste from ## Overview through ## Impact and value (inclusive headings).
+     Do not paste this header, the lock table, or the "must not say" list.
+     Figures: Costs/IPA_799_16Oct_lock.md and Budget 16 10 26 IPA 799.xlsx
+     (16 Oct 2026). Project dates 1 Mar 2027–29 Feb 2028. Month map: TIMELINE.md.
+     UKRI titles: Project Lead (PL), Project co-lead (PcL).
+     Tone: EPSRC cost justification (staff; facilities; travel; consumables; Exceptions). -->
 
-**Total fEC:** **£95,188** (EPSRC 80% **£76,150**; within the £100k fEC / £80k EPSRC Small Grant envelope). Headroom **£4,812** fEC before the cap.
+Pound figures follow **Finance lock** `Costs/IPA_799_16Oct_lock.md` and workbook **`Costs/Budget 16 10 26 IPA 799.xlsx`**. **Staff total fEC:** **£96,918** (EPSRC 80% **£77,534**). **Travel:** **£1,800** (PL only, ATMCS 13). **Project total with travel:** **£98,718**. Unused headroom under the £100k fEC cap: **£1,282**.
 
-## Staff
-
-| Role | Effort | Project window | JeS dates (IPA 799 v2) | 100% fEC |
+| Role | Effort | Project window | JeS dates | 100% fEC |
 |---|---|---|---|---|
 | PL, Dr Rowan Brown | **0.10 FTE** (~4 h/week) | Months 1–12 | 1 Mar 2027–29 Feb 2028 | £17,664 |
-| Research Associate (Grade 7, SP30) | 1.0 FTE | Months **5–10** (6 months) | 1 Jul 2027–31 Dec 2027 | £69,662 |
+| Research Associate (Grade 7, SP30) | 1.0 FTE | Months **5–10** (6 months) | 1 Jul 2027–31 Dec 2027 | £71,392 |
 | PcL, Dr Nelly Villamizar (Mathematics) | **0.05 FTE** (~2 h/week) | Months 1–12; peak O2 Months 5–10 | 1 Mar 2027–29 Feb 2028 | £7,862 |
+| Travel (Directly Incurred) | ATMCS 13, KTH Stockholm (**PL only**) | Months 4–5 | 28 Jun–2 Jul 2027 | **£1,800** |
 
-**Swansea total (IPA 799 v2):** £95,188 at 100% fEC; £76,150 at 80%. Salary, estates, infrastructure technicians and indirects are in the Finance subtotals above (not repeated here).
+Kilduff and Powathil are **not** costed. No equipment line. Open-access publication costs: UKRI block grant.
 
-Open-access publication costs: UKRI block grant; not requested on this award. No equipment line: Supercomputing Wales and 100 TB storage are in-kind (§7). Kilduff and Powathil are **not** costed on this award.
+---
 
-## Justification (timeline)
+## Overview and resourcing strategy
 
-**Research Associate (Months 5–10).** Specialist computational post for O1 scale-up and O2 implementation. Six months at 100% FTE is the delivery maximum under the £100k cap with PL 0.10 and PcL 0.05.
+This application asks for the minimum staff needed to analyse a full Championship football season over 12 months (1 March 2027–29 February 2028), plus one Directly Incurred conference trip for the Project Lead. Staff total £96,918 Full Economic Cost (fEC; EPSRC 80% £77,534). Travel is £1,800, bringing the project total to £98,718, with £1,282 unused under the £100k fEC cap. There is no equipment line, no exceptional consumables, and no costs under Exceptions. Supercomputing Wales, secure storage and meeting space are already available and are not charged to the award. Open-source software removes licence fees. Partnership data from Swansea City Association Football Club (SCAFC) are supplied in kind.
 
-- **Months 1–4 (PL):** runnable containerised pipeline; Month-2 cutoff gate and Open Science Framework (OSF) pre-registration; O2 landscape/cumulative-sum (CUSUM) specification so the RA inherits a gated stack rather than designing it.
-- **O1 (RA Months 5–9):** concurrent pipeline on Supercomputing Wales; full-season barcode database at Month 7 (D1). Comparison-geometry *results* (Month 9) are PL-led; the RA maintains the library they use.
-- **O2 (RA Months 5–10):** landscape module at Month 8 (D2); support for T1/T2 statements and calibrated change-point outputs at Month 9; results finalised for the season paper at Month 10 (D3 handover).
-- **Evidence pack:** RA handover at Month 10. Standard Grant *drafting* begins Months 9–10 with RA input (career development). Months 11–12 (papers and the Standard Grant pack) are PL-owned.
+## Project staff
 
-**PL (0.10 FTE, Months 1–12; about four hours per week).** This is design lead, not compute. The load is front-loaded in Months 1–4 (pipeline, Month-2 gate, O2 specification) and again in Months 9–12 (results, papers, evidence pack). Season-scale processing is the RA's 1.0 FTE. Four hours per week is enough because the methods, code and cutoff rules already exist in the ten-match pilot; the PL specifies, gates, proves and writes. Remaining duties: Month-10 handover; publications (methodology Months 1–2; full-season results Month 11; football-analytics paper Month 12); partnership management; PDRA recruitment, supervision and training.
+Staff are the main cost, and each role is sized to a clear job.
 
-**PcL Villamizar (0.05 FTE; about two hours per week).** Advisory algebraic and topological guidance for landscapes, Fréchet means and the O2 well-posedness/stability targets, peaked in Months 5–10, not implementation. Two hours per week is seminar-plus-review load; structured input to RA training in algebraic/topological methods and co-supervision of Month-9 inference outputs.
+**Research Associate (RA; 1.0 FTE, Months 5–10; 1 July–31 December 2027; £71,392 at 100% fEC).** This is the main cost. A full Championship season is about 540 matches. Running and documenting that analysis is a specialist programming job: Python, parallel processing, and topological data analysis (TDA) libraries. A six-month, full-time post is the least that can deliver the season once the method is ready, and fits the £100k fEC envelope with the PL, PcL and travel lines. Months 1–4 are led by the Project Lead (PL), so the RA joins a ready, checked pipeline rather than designing it. The RA runs the season-scale computation, builds the analysis library, and hands over documented code and figures at Month 10. After that, Months 11–12 are PL-owned. Hiring this skill in-house avoids external contractors.
 
-**Compute.** ~1,600 CPU-hours of the PL's 5,000-hour Supercomputing Wales allocation; 1 Hz barcodes/landscapes; embarrassingly parallel by match. No additional HPC purchase.
+**Project Lead, Dr Rowan Brown (0.10 FTE, Months 1–12; about four hours per week; £17,664 at 100% fEC).** The PL designs the study, checks quality gates, proves the mathematical results, writes the papers, and manages the club partnership. This is leadership and integration, not day-to-day season processing. Four hours per week is enough because a ten-match pilot already supplies the methods, code and decision rules. The heavier periods are Months 1–4 (prepare and check the pipeline before the RA starts) and Months 9–12 (results, papers, and the evidence pack for a follow-on Standard Grant). The PL also recruits, supervises and trains the RA.
+
+**Project co-lead, Dr Nelly Villamizar, Mathematics (0.05 FTE, Months 1–12; about two hours per week; £7,862 at 100% fEC).** The PcL gives algebraic and mathematical advice on the harder theoretical claims, mainly while the RA is in post (Months 5–10). This is review and guidance, not coding. Two hours per week is enough for that advice and for structured input to the RA's training. No other co-leads are costed.
+
+## Facilities and infrastructure
+
+No facilities or infrastructure are purchased on this award. Season-scale runs use about 1,600 of the PL's existing 5,000 Supercomputing Wales CPU-hours. Secure storage (about 100 TB) and estates meeting space are institutional and in-kind. Technician support for cluster setup is covered through standard estates and infrastructure charging on the staff lines, not as a separate purchase. There are no new computers, no software licences, and no paid external cluster time.
+
+## Other cost categories
+
+**Travel.** One Directly Incurred conference trip is costed at **£1,800** for the **Project Lead only**: Algebraic Topology: Methods, Computation and Science (ATMCS 13), KTH Stockholm, 28 June–2 July 2027 (project Months 4–5). ATMCS is the leading applied-topology meeting for the methods in this award. The RA is not costed to attend: the post starts 1 July mid-meeting, and a delayed start would leave an orphan registration. The line-item audit budget is in `Costs/ATMCS_13_travel_budget.md` (codes REG-PL / FLT-PL / HOT-PL / SUB-PL / TRN / CON). Summary at planning rates (HMRC Stockholm Overseas Scale Rates; SEK 1 = £0.073 on 16 Oct 2026):
+
+| Code | Item | Basis | £ |
+|---|---|---|---:|
+| REG-PL | Conference registration | £280 (ATMCS 11 early USD 300 precedent + uplift) | 280 |
+| FLT-PL | Economy return UK–Arlanda | £250 | 250 |
+| HOT-PL | Hotel, 5 nights | £142/night (HMRC room SEK 1,939.50) | 710 |
+| SUB-PL | Subsistence / food, 5 days | £67/day (HMRC residual SEK 917.50) | 335 |
+| TRN | Ground transfers | UK airport rail + Arlanda link | 60 |
+| CON | Contingency / FX | Fare or fee rises | 165 |
+| | **Trip total** | | **1,800** |
+
+Claims keep invoices, boarding passes and the HMRC table against those codes (Swansea Travel and Expenses Policy). Unused headroom under the £100k fEC cap is **£1,282**. There is no fieldwork and no other conference travel. Regular local travel between Swansea collaborators is not claimed.
+
+**Consumables.** None beyond ordinary office and computing use. No exceptional quantities.
+
+**Exceptions.** None.
+
+## Delivery plan
+
+**Months 1–4 (PL).** Prepare and check the analysis pipeline; register the analysis plan; specify the RA's work so that scale-up starts from a known baseline. Present the methodology at ATMCS 13 at the Month 4–5 boundary.
+
+**Months 5–10 (RA full-time; PL oversight; PcL advice).** Process the season, build the analysis software, and deliver a documented handover at Month 10. Drafting for a follow-on Standard Grant begins in Months 9–10 with RA input.
+
+**Months 11–12 (PL).** Complete papers, release open code with a digital object identifier (DOI), deliver club-facing outputs, and finish the Month-12 evidence pack.
+
+This plan puts the expensive compute work inside the RA appointment, keeps leadership and writing with the PL, and reduces risk by checking the pipeline before the RA starts.
+
+## Impact and value
+
+The award buys specialist staff time, one dissemination trip, and uses facilities the university already has. Outputs are a checked analysis method, open code, full-season results, club-usable summaries, and conference presentation to the applied-topology community. In-kind high-performance computing, storage and SCAFC data avoid capital and data-purchase costs. RA involvement in writing, conference presentation and Standard Grant drafting supports career development. Together, these resources give the largest publishable return within the Small Grant envelope and prepare a follow-on Standard Grant.
 
 ## What this costing must not say
 
-- RA Months 2–10 / 9 months (superseded; lock is **Months 5–10**, 6 months).
-- PL 0.2 FTE (superseded; lock is **0.10 FTE**).
-- Co-Is Kilduff and/or Powathil on JeS staff lines (superseded; not costed).
-- Co-Is 0.1 FTE combined as Kilduff + Powathil (superseded; sole PcL is **Villamizar 0.05 FTE**).
+- RA Months 2–10 / 9 months / Months 4–9 (lock is **Months 5–10**, 6 months).
+- PL / PI 0.2 FTE or 165 hours as a separate claim (lock is **0.10 FTE**).
+- Co-Is Kilduff and/or Powathil on JeS staff lines.
+- Two Co-Is at 33 hours each (lock is sole PcL **Villamizar 0.05 FTE**).
+- Total staff fEC £95,188 or £95,233 (current lock is **£96,918**; RA salary **£24,829**).
 - MATLAB licences, paid cluster time, or a 10–15 match compute budget.
 - T1/T2 statements Month 9 and calibration Month 10 as separate gates (both at Month 9).
 - RA ownership of the Month-12 Standard Grant pack.
+- "No conference travel" (superseded: ATMCS headroom line).

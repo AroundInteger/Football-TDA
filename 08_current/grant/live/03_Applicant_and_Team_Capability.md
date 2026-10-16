@@ -26,17 +26,17 @@ The Project Lead (PL), Dr Rowan Brown, is Senior Lecturer in Biomedical Engineer
 
 **Equality, diversity and inclusion:** RA recruitment follows Swansea EDI practice (anonymised shortlisting, diverse panel, outreach via Piscopia, BWM, London Mathematical Society (LMS)).
 
-**Resources and delivery (JeS):** IPA 799 v2 totals £95,188 fEC (£76,150 at 80%), 1 Mar 2027–29 Feb 2028: PL 0.10 FTE and PcL Villamizar 0.05 FTE (12 months); RA 1.0 FTE Months 5–10 (1 Jul–31 Dec 2027). Months 1–4 are PL-led; RA spend scales a gated pipeline (D1–D3). Supercomputing Wales and SCAFC–StatsBomb data are in-kind; no equipment.
+**Resources and delivery (JeS):** IPA 799 (16 Oct 2026) staff total £96,918 fEC (£77,534 at 80%), 1 Mar 2027–29 Feb 2028: PL 0.10 FTE and PcL Villamizar 0.05 FTE (12 months); RA 1.0 FTE Months 5–10 (1 Jul–31 Dec 2027). Directly Incurred conference travel for the PL to ATMCS 13 (Stockholm) is costed at £1,800; £1,282 headroom under the £100k fEC cap is unused. Months 1–4 are PL-led; RA spend scales a gated pipeline (D1–D3). Supercomputing Wales and SCAFC–StatsBomb data are in-kind; no equipment.
 
-**Collaborative research:** Championship club partnerships (UK), Genius Sports (UK), Borussia Dortmund (Germany, alumni pathway). Mathematical-oncology collaborators enter on the follow-on Standard Grant, not this award.
+**Collaborative research:** Championship club partnerships (UK), Hudl (UK; owns StatsBomb), Borussia Dortmund (Germany, alumni pathway). Collaborators for the follow-on Standard Grant (stability of the shape summary to grouping choices, and one transfer test on a second bounded competitive system) enter on that award, not this one.
 
 ## Contributions to the Wider Research and Innovation Community
 
-**Academic and open science:** Methodological publications, SIAM and applied-topology dissemination, and open-source TDA software. Supervised work includes peer-reviewed rugby analytics (*Journal of Science and Medicine in Sport* and *International Journal of Sports Physiology and Performance*, 2023).
+**Academic and open science:** Methodological publications, presentation at ATMCS 13 (KTH Stockholm, June–July 2027), and open-source TDA software. Supervised work includes peer-reviewed rugby analytics (*Journal of Science and Medicine in Sport* and *International Journal of Sports Physiology and Performance*, 2023).
 
 **Innovation partnerships:** Swansea City AFC, UKSI, Sport Wales (WIPS), Team INEOS, and the hetero-swarm programme evidence multi-agent work beyond football.
 
-**Cross-domain relevance:** The lens transfers to other bounded competitive systems with validated scales; follow-on targets include tumour–immune competition and competitive logistics with autonomous fleets. Public engagement uses topology visualisations through sport.
+**Cross-domain relevance:** The lens transfers to other bounded competitive systems once interaction lengths are re-derived. The follow-on Standard Grant tests whether the measured shape survives grouping and distance choices, then repeats those checks in one further setting. Public engagement uses topology visualisations through sport.
 
 ## Contributions to Broader Research or Innovation Users and Towards Wider Societal Benefit
 
