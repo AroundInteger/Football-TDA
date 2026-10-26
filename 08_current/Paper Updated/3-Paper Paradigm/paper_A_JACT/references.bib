@@ -1,11 +1,11 @@
 % =====================================================================
-% references.bib — Paper A (arXiv preprint; JQAS refinement)
+% references.bib — Paper A (arXiv preprint; JACT refinement)
 %
 % Keys match every \cite{} call in sections/*.tex and main.tex.
 % All entries verified against published sources (August 2026).
 %
 % Citation style: Vancouver numbers via natbib [numbers,sort&compress]
-%   + \bibliographystyle{unsrtnat} (first-citation order). Matches JQAS.
+%   + \bibliographystyle{unsrtnat} (first-citation order).
 %
 % Key / year notes (resolved; keys retained for stable \cite{} calls):
 %   buldu2018     — key says 2018; publication year is 2019 (Sci Rep).
@@ -17,6 +17,8 @@
 % ---------------------------------------------------------------
 % Surveys and application exemplars (cited in §§1.1--1.2)
 % ---------------------------------------------------------------
+
+@preamble{ "\providecommand{\noopsort}[1]{} " }
 
 @article{carlsson2009,
   author    = {Carlsson, Gunnar},
@@ -245,6 +247,7 @@
   title     = {An introduction to multiparameter persistence},
   booktitle = {Representations of Algebras and Related Structures},
   publisher = {EMS Press},
+  address   = {Berlin},
   year      = {2023},
   pages     = {77--150},
   note      = {arXiv:2203.14289}
@@ -304,7 +307,7 @@
 }
 
 @article{buldu2018,
-  author    = {Buld{\'u}, Javier M. and Busquets, Javier
+  author    = {{\noopsort{Buldu}}Buld{\'u}, Javier M. and Busquets, Javier
                and Echegoyen, Ignacio and Seirul{\`o}, Franc},
   title     = {Defining a historic football team: using network
                science to analyse {Guardiola's FC Barcelona}},

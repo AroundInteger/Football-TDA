@@ -1,0 +1,40 @@
+{
+  "n_sample_frames": 150,
+  "stride": 290,
+  "n_stored_bars": 403,
+  "n_matched_bars": 403,
+  "n_unmatched_bars": 0,
+  "max_birth_death_residual_m": 3.0535441695178633e-06,
+  "n_present_at_birth": 403,
+  "n_longest_edge_is_birth": 403,
+  "n_at_least_four_vertices": 403,
+  "n_simple_cycles": 403,
+  "vertex_count_histogram": {
+    "4": 201,
+    "5": 92,
+    "6": 59,
+    "7": 19,
+    "8": 14,
+    "9": 10,
+    "10": 3,
+    "11": 3,
+    "12": 1,
+    "13": 1
+  },
+  "vertex_count_min": 4,
+  "vertex_count_max": 13,
+  "by_level": {
+    "individual": {
+      "n_matched": 378,
+      "n_unmatched": 0,
+      "max_birth_death_residual_m": 1.849278596921522e-06
+    },
+    "tactical": {
+      "n_matched": 25,
+      "n_unmatched": 0,
+      "max_birth_death_residual_m": 3.0535441695178633e-06
+    }
+  },
+  "birth_tolerance_m": 1e-06,
+  "match_tolerance_m": 0.001
+}

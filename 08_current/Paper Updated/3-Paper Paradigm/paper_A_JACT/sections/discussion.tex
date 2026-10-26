@@ -28,21 +28,22 @@ group-count cutoff.
 
 Scale-attributable homology
 detects loops at two of the three recovered levels. Individual-level
-loops are frequent; tactical-level loops are rarer and have longer
+loops are frequent, and tactical-level loops are rarer, with longer
 filtration lifetime (Tables~\ref{tab:h1single}--\ref{tab:h1multi};
-Figure~\ref{fig:h1bars}). Filtration lifetime is the bar length
-(death minus birth, in metres). It is not how long a loop lasts on the
-clock. The 150-frame subsample does not resolve formation or
-dispersion of loops between samples (Section~\ref{sec:data}).
+Figure~\ref{fig:h1bars}). The 150-frame subsample does not resolve
+formation or dispersion of loops between samples
+(Section~\ref{sec:data}).
 
-Every examined $H_1$ feature is realised as a loop in space
+On the primary match, every finite $H_1$ bar has a simple-cycle
+representative, present at birth by construction
 (Figure~\ref{fig:cycles}). Detection is not confined to the adopted
 cutoff (Section~\ref{sec:sensitivity}). Tactical $H_1$ is detected on the
 band $[6,14]$~m, not only at an isolated optimum.
 
 The pipeline therefore reports three $H_0$ regimes and two $H_1$
-regimes. At the team level the reduced cloud almost never has enough
-groups to close a loop (Remark~\ref{rem:teamnull}). Recovering
+regimes. A team-level loop needs four centroids. Four centroids occur in
+141 of 436{,}648 frames, and none of those frames has a loop
+(Remark~\ref{rem:teamnull}). Recovering
 team-level loop structure on the typical envelope would require a
 different representation, such as spatial density fields or Delaunay
 triangulations. Linkage choice changes tactical $H_1$ counts by nearly
@@ -53,15 +54,11 @@ Section~\ref{sec:limitations}.
 \label{sec:disc-distinct}
 
 The two $H_1$ levels carry distinct rather than redundant
-information. They are not measuring the same structure at different
-resolutions. If the tactical signal were a coarsened version of the
-individual signal, the two would co-occur far more consistently than
-Table~\ref{tab:fisher} shows. The bottleneck and landscape distances
-would also be small relative to each level's own filtration lifetimes
-(Section~\ref{sec:complementarity}).
-Clustering before persistent homology is therefore not a convenience
-for separating noise. It produces two informationally distinct
-objects.
+information (Section~\ref{sec:complementarity}): Spearman
+$\rho=0.234$ on total persistence, one-sided co-occurrence
+(Table~\ref{tab:fisher}), and bottleneck distance on the order of
+the tactical mean bar. These statistics do not test whether the
+tactical diagram is a coarsening of the individual diagram.
 
 \subsection{Construct validity}
 \label{sec:disc-validity}
@@ -69,10 +66,10 @@ objects.
 Total persistence moves with on-ball events
 (Section~\ref{sec:eventcorr}). At the individual level, an engagement
 is followed by a mean drop of $0.253$~m, and build-up by a mean rise
-of $0.700$~m. At the tactical level the two classes move in the same
-direction. That movement is the construct-validity check against
-measurement noise. Multiple-testing control and a football reading of
-the shifts belong to a companion manuscript (Paper~B).
+of $0.700$~m. At the tactical level, both classes move in the same
+directions as at the individual level. This is a construct-validity check against measurement
+noise. Multiple-testing control and a football reading of the shifts
+belong to a companion manuscript.
 
 \subsection{Limitations}
 \label{sec:limitations}
@@ -81,13 +78,14 @@ Linkage selection is a substantive methodological choice for the
 composed map (cluster at $\delta$, then Vietoris--Rips on centroids).
 Across a 600-frame, four-match comparison sample, single-linkage
 detects 106 tactical-level $H_1$ loops. Complete-linkage detects 802.
-Ward's method detects 822. That is a difference of almost an order of
+Ward's method detects 822. The difference is almost an order of
 magnitude. Point-cloud stability theorems do not bound this map when
 single-linkage jumps at merge events; characterising diagram stability
 under clustering is an open problem we defer to follow-on work. The gap is large enough to change which scientific picture
 the data support, not merely the precision of one estimate. We retain
-single-linkage because its definition is the most natural reading of
-spatial proximity. It is also robust against over-partitioning artefacts.
+single linkage because its definition is the most direct reading of
+spatial proximity. Its tendency to chain is one source of the gap
+with complete linkage and Ward's method, which we leave open.
 
 A more principled selection criterion would come from the dynamical
 system itself, rather than from clustering-quality metrics alone. One
@@ -95,12 +93,11 @@ candidate is the linkage under which a governing equation for a
 persistence functional admits the sparsest representation, in the
 sense of sparse identification of nonlinear dynamics. The functional
 would be the landscape $L^2$ norm or the tactical $H_1$
-total-persistence sequence. Operationalising this would require three
-things. First, choose the dynamical state. Second, defend the sparsity
-of the recovered library against the Akaike information criterion
-(AIC), the Bayesian information criterion (BIC), or cross-validation
-baselines. Third, confirm that the resulting persistence sequence is
-genuinely lower-dimensional under the selected linkage. We defer this
+total-persistence sequence. Operationalising this would require a
+choice of dynamical state, a defence of the recovered library against
+the Akaike information criterion (AIC), the Bayesian information
+criterion (BIC), or cross-validation, and a check that the persistence
+sequence is lower-dimensional under the selected linkage. We defer this
 to the forthcoming full-season work. A population-sized sample of
 match sequences is what makes the sparsity comparison meaningful.
 
@@ -117,24 +114,22 @@ Broadcast tracking typically offers lower spatial precision than
 higher-frequency optical systems. That may affect the magnitude of
 filtration lifetimes reported. The structural findings (the three
 $H_0$ regimes, the $H_1$ presence rates, and the sensitivity profiles)
-depend on relative rather than absolute spatial precision. They are
-therefore expected to be robust across tracking technologies. A
-direct comparison of filtration lifetimes against optical tracking
+depend on relative rather than absolute spatial precision. We expect,
+but have not tested, that they are robust across tracking technologies.
+A direct comparison of filtration lifetimes against optical tracking
 data remains for future work.
 
 \subsection{Outlook}
 
 Two extensions are in progress. The ten-match evidence base is being scaled
-to a full season of Championship matches. That sample will
-characterise population-level distributions of $H_0$ and $H_1$
-counts, filtration lifetimes, and landscape norms, and will test
-whether matches carry a stable tactical signature at population
-scale. It is also
-the setting in which the linkage criterion proposed above becomes
-evaluable. Recovering a sparse governing equation for a persistence
-functional requires the population-sized sample of match sequences
-that a single season provides. Separately, persistence landscape
-dynamics are being developed to treat each match as a path through
-landscape space. That is the setting in which the landscape-stability
-cutoff criterion can itself be evaluated. Its resampling unit is the
-match-level landscape, not the per-frame summary used here.
+to a full season of Championship matches. The season will characterise
+population-level distributions of $H_0$ and $H_1$ counts, filtration
+lifetimes, and landscape norms, and will test whether matches carry a
+stable tactical signature at population scale. It is also the sample
+on which the linkage criterion above can be evaluated, because a sparse
+governing equation for a persistence functional needs a population of
+match sequences. Separately, persistence landscape dynamics are being
+developed so that each match is a path through landscape space. The
+path is the sample on which the landscape-stability cutoff can be
+evaluated. Its resampling unit is the match-level landscape, not the
+per-frame summary used here.

@@ -267,13 +267,20 @@ def cutoff_cluster(positions: np.ndarray, cutoff: float, method: str = 'single')
 
 
 def adaptive_max_filtration(centroids: np.ndarray, cutoff: float, pct: int = 75) -> float:
-    """εmax = max(P_pct(pairwise distances), max(5.0, 2*cutoff))."""
-    if len(centroids) <= 1:
-        return max(5.0, 2.0 * cutoff)
+    """Filtration extent: diameter of the centroid cloud.
+
+    Paper A runs Vietoris--Rips to the diameter. The percentile and cutoff
+    arguments are retained so older callers still import, and they are not
+    used. A stored check found no extra finite H1 bar between the old
+    percentile threshold and this diameter.
+    """
+    del cutoff, pct
+    if centroids is None or len(centroids) <= 1:
+        return 0.0
     dists = pdist(centroids)
-    data_driven = float(np.percentile(dists, pct))
-    scale_min   = max(5.0, 2.0 * cutoff)
-    return max(data_driven, scale_min)
+    if len(dists) == 0:
+        return 0.0
+    return float(np.max(dists)) + 1e-9
 
 
 def compute_ph(point_cloud: np.ndarray, max_filt: float):
@@ -289,7 +296,7 @@ def compute_ph(point_cloud: np.ndarray, max_filt: float):
 
 
 def h1_at_cutoff(positions: np.ndarray, cutoff: float, pct: int = 75):
-    """Full pipeline: cluster → adaptive filtration → PH. Returns (h0_dgm, h1_dgm, centroids)."""
+    """Cluster, then Vietoris--Rips persistence out to the centroid diameter."""
     centroids, _ = cutoff_cluster(positions, cutoff)
     max_filt = adaptive_max_filtration(centroids, cutoff, pct=pct)
     h0, h1 = compute_ph(centroids, max_filt)

@@ -274,7 +274,7 @@ def render_figure() -> Path:
     ax.set_xlim(0.0, 40.5)
     ax.set_ylim(0, 23)
     ax.set_xticks([0, 10, 20, 30, 40])
-    ax.set_ylabel(r"Mean cluster count ($H_0$)")
+    ax.set_ylabel(r"Mean group count $\overline{k}$")
     add_panel_letter(ax, "a", loc="northeast")
 
     top = ax.secondary_xaxis("top")

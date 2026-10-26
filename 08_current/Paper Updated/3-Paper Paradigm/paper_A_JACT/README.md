@@ -1,14 +1,18 @@
 # Multi-Scale Persistent Homology for Competitive Collective Systems
 
-Manuscript for an arXiv preprint (`arxiv.sty`), plus a self-contained
-analysis pipeline. Journal refinement targets *Journal of Quantitative
-Analysis in Sports* (JQAS; De Gruyter).
+Journal manuscript for the *Journal of Applied and Computational
+Topology* (JACT), using the Springer Nature class `sn-jnl` (December
+2024) with the author-year mathematics style `sn-mathphys-ay`. The
+arXiv preprint is the separate tree `../arXiv_Paper_A/` and stays on
+`arxiv.sty`.
 
 ## Layout
 
 | Path | Contents |
 |------|----------|
-| `main.tex`, `sections/`, `references.bib`, `figures/` | Manuscript |
+| `main.tex`, `sections/`, `references.bib`, `figures/` | Working manuscript (`sn-jnl.cls`) |
+| `sn-jnl.cls`, `sn-mathphys-ay.bst` | Springer Nature class and JACT reference style |
+| `submission_pack/` | Flat Editorial Manager source |
 | `pipeline/` | Reproducible analysis steps and committed result files |
 | `01_data/loaders/` | Vendored tracking-data loaders |
 | `01_data/opendata/` | SkillCorner data (clone separately; see `01_data/README.md`) |
@@ -26,8 +30,20 @@ arXiv posting. The DOI will be inserted once the deposit exists.
 ```bash
 tectonic main.tex
 # or: pdflatex + bibtex + pdflatex ×2 with local TeX Live
-# Requires arxiv.sty in this directory (do not also load geometry).
 ```
+
+Editorial Manager compiles with TeX Live 2018 and rejects `\input` paths
+and figure subfolders. Build the flat upload with:
+
+```bash
+sh submission_pack/build_jact_source.sh
+```
+
+That writes `submission_pack/PaperA_JACT_sn_source.zip` (one `.tex` file,
+`sn-jnl.cls`, `sn-mathphys-ay.bst`, the bibliography, `Fig1.pdf` to
+`Fig4.pdf`, `FigS1.pdf`, `FigS2.pdf`, and the compiled PDF). On
+acceptance, choose the subscription route. The open-access charge does
+not apply to that route.
 
 ## Reproduce results
 

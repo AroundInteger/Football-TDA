@@ -21,7 +21,7 @@ import sys
 from pathlib import Path
 import numpy as np
 import pandas as pd
-from scipy.stats import mannwhitneyu, spearmanr
+from scipy.stats import wilcoxon
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -168,14 +168,24 @@ def statistical_tests(corr_df: pd.DataFrame) -> dict:
             continue
 
         deltas = edf['persistence_delta'].values
-        stat, p_val = mannwhitneyu(deltas, np.zeros(len(deltas)), alternative='two-sided')
+        # One-sample signed-rank test of Δ against zero. zero_method='wilcox'
+        # discards exact zeros. method='auto' uses the asymptotic approximation
+        # once n exceeds SciPy's exact-computation threshold.
+        n_zero = int(np.sum(deltas == 0))
+        stat, p_val = wilcoxon(
+            deltas, alternative='two-sided', zero_method='wilcox', method='auto',
+        )
 
         results[etype] = {
             'n_events': int(len(edf)),
+            'n_zero_delta': n_zero,
+            'n_ranked': int(len(deltas) - n_zero),
             'mean_delta': float(np.mean(deltas)),
             'std_delta': float(np.std(deltas)),
-            'mannwhitney_stat': float(stat),
+            'wilcoxon_stat': float(stat),
             'p_value': float(p_val),
+            'zero_method': 'wilcox',
+            'method': 'auto',
             'significant_005': bool(p_val < 0.05),
         }
 

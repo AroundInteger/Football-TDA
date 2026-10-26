@@ -4,9 +4,11 @@
 \subsection{Connected components (\texorpdfstring{$H_0$}{})}
 \label{sec:scaleh0}
 
-Addressing question~\ref{q:levels}, the homology sample confirms the
-three organisational levels read from the group-count curve in
-Section~\ref{sec:cutoffselection}. Those levels are individual
+Addressing question~\ref{q:levels}, the uniform subsample reproduces
+the three group-count levels of Section~\ref{sec:cutoffselection}.
+At filtration zero, $H_0$ equals the group count $k$ by construction,
+so the check is that the subsample matches the full-sweep counts.
+Those levels are individual
 ($\delta = 2.75$~m), tactical ($\delta = 11.75$~m), and team
 ($\delta = 23.0$~m). Throughout, $H_0$ is the group count: the number
 of centroids after clustering. Equivalently, it is $\beta_0$ of the
@@ -78,16 +80,18 @@ Team (23.0~m)       & 0   & 0/150 (0\%)      & N/A  & N/A             & N/A \\
 \end{tabular}
 \end{table}
 
-\begin{remark}[Team-level $H_1$ vanishes a priori]
+\begin{remark}[Team-level $H_1$ needs four centroids]
 \label{rem:teamnull}
-At $\delta = 23.0$~m the 22 players reduce to $k\le 2$ centroids in
-93.6\% of complete frames on the ten-match sweep
-(Section~\ref{sec:cutoffselection}). A Vietoris--Rips complex on at
-most two points cannot carry a non-trivial 1-cycle. Frames with $k=3$
-are 6.4\% of that sweep; they are the only team-level configurations
-in which a loop is possible. Our headline $H_1$ analysis therefore
-runs at two levels (individual and tactical) against the three-level
-$H_0$ decomposition above. Team-level loop structure on the typical
+A Vietoris--Rips complex needs at least four vertices to carry a
+non-trivial 1-cycle. Three pairwise-connected vertices span a
+2-simplex as soon as the last edge enters, so $k\le 3$ cannot carry a
+loop. At $\delta = 23.0$~m the 436{,}648 complete frames split as
+$k\le 2$ in 93.6\%, $k=3$ in 6.4\%, and $k=4$ in the remaining 141
+frames (0.032\%). No frame has $k>4$. A loop is therefore impossible
+on all but those 141 frames. On the 141 frames the computed $H_1$
+count is zero, so team-level $H_1$ is absent on the whole sweep.
+The 1{,}500-frame sample contains one of those $k=4$ frames, and that
+frame has no loop either. Team-level loop structure on the typical
 envelope would require a different representation (density fields or
 Delaunay triangulations, for example).
 \end{remark}
@@ -98,7 +102,7 @@ presence is $96.5\%\pm1.5\%$ (95\% CI $95.6$--$97.3\%$), between 94.7\%
 and 98.7\% in every match. Tactical presence is $18.8\%\pm6.5\%$ (95\%
 CI $15.2$--$22.7\%$), ranging from 11.3\% to 31.3\% across matches. The
 primary match (15.3\% tactical) sits within one standard deviation of
-the ten-match mean. That match was chosen for broadcast quality and
+the ten-match mean. The match was chosen for broadcast quality and
 event annotation, not for its tactical $H_1$ rate.
 Conditional mean filtration lifetime on the ten-match sample is
 $1.886$~m at the individual level and $3.411$~m at the tactical level,
@@ -125,25 +129,18 @@ Team       & 0       & $0.0\%\pm0.0\%$  & N/A              & N/A   & N/A \\
 \end{tabular}
 \end{table}
 
-The tactical level sits close to a group-count floor. In the
-ten-match sample, 40.6\% of frames have four or fewer tactical groups.
-None of those frames carries a loop.
-
-Presence alone cannot separate arrangement from group count. The
-matched null of Section~\ref{sec:stats} holds the group count and the
-spatial envelope fixed, and randomises only the arrangement inside
-that envelope.
-
-Table~\ref{tab:null} gives the comparison. Tactical presence is
-18.8\%, against a null rate of 9.1\%, an excess of $+9.7$ percentage
-points. Table~\ref{tab:nullk} splits the same comparison by group
-count. Presence is zero for $k\le 4$. It then rises from 9.3\% at
-$k=5$ to 67.0\% at $k=8$, and remains above the null at every such
-$k$.
-
-At the individual level the null rate is already 91.4\%. Twenty points
-in a bounded region almost always close a cycle, so the observed
-excess is modest ($+5.1$ percentage points).
+Presence alone cannot separate arrangement from group count, because
+more centroids close more cycles. The matched null of
+Section~\ref{sec:stats} holds both the group count and the spatial
+envelope fixed and randomises only the arrangement. Against that null,
+tactical presence is 18.8\% compared with 9.1\%, an excess of $+9.7$
+percentage points (Table~\ref{tab:null}). Table~\ref{tab:nullk} shows
+where the excess arises. No loops appear in the 40.6\% of frames with
+four or fewer tactical groups. Presence then rises from 9.3\% at
+$k=5$ to 67.0\% at $k=8$ and stays above the null at every such $k$.
+At the individual level the null rate is already 91.4\%, since about
+twenty centroids in a bounded region almost always close a cycle, so
+the observed excess is modest ($+5.1$ percentage points).
 
 \begin{table}[h]
 \centering
@@ -180,24 +177,21 @@ $\ge 9$ & 52 & $84.6\%$ & $49.0\%$ & $+35.6$ \\
 \subsection{Closed cycle structures}
 \label{sec:cyclegeometry}
 
-All 403 primary-match $H_1$ features receive a geometric realisation
-via closed-cycle identification. The representative is the graph-cycle
-proxy of Section~\ref{sec:cycles}, not a generator from the reduction
-matrix. Cycles at the individual level form short rings of centroids
-(typically three to six vertices in the examples we inspected). Tactical
-cycles are similarly small (often four or five vertices) but span larger
-gaps and have larger filtration lifetime. Figure~\ref{fig:cycles} shows the same sample
-frame at both levels, with the cutoff and the filtration drawn as
-separate panels (sample frame~95). The left column is the vertex set
-after clustering. The right column is the
-\texorpdfstring{$H_1$}{} cycle of largest $p$ on that set.
-At \texorpdfstring{$\delta=2.75$}{}~m the vertices are four nearby
-players and the cycle edges are $17.8$--$19.2$~m
-(\texorpdfstring{$p=6.540$}{}~m).
-At \texorpdfstring{$\delta=11.75$}{}~m the vertices are four groups,
-one of them a $14$-player single-linkage cluster, and the cycle edges
-are $21.1$--$28.8$~m (\texorpdfstring{$p=9.942$}{}~m).
-The two cycles are not the same bar at two resolutions.
+All 403 primary-match $H_1$ bars have a simple-cycle representative
+from the reduction in Section~\ref{sec:cycles}. The cycle is present
+at birth by construction: its longest edge is the birth value. The cycles have four
+to thirteen vertices, and 352 of the 403 have four, five, or six.
+Figure~\ref{fig:cycles} shows sample frame~95 at both levels. The left
+column is the vertex set after clustering. The right column is the
+representative of largest $p$ on that set.
+At $\delta=2.75$~m the cycle has eight vertices, seven of them
+singleton clusters and one a pair, and the edges run from $6.9$ to
+$15.6$~m (\texorpdfstring{$p=6.540$}{}~m).
+At $\delta=11.75$~m the cycle has six groups, one a $14$-player
+single-linkage cluster, and the edges run from $14.6$ to $22.1$~m
+(\texorpdfstring{$p=9.942$}{}~m).
+The two cycles are not the same bar: they use different vertices and
+are born at $15.6$~m and $22.1$~m.
 Figure~\ref{fig:h1bars} shows those bars on the persistence diagram,
 together with every finite $H_1$ bar on the primary match.
 The bars of largest $p$ in Table~\ref{tab:h1single} are not used for
@@ -216,10 +210,10 @@ vertices only. Right: \texorpdfstring{$H_1$}{} representative of
 largest \texorpdfstring{$p$}{} on those vertices
 (\texorpdfstring{$p=6.540$}{}~m and
 \texorpdfstring{$p=9.942$}{}~m). Cycle edges are filtration
-distances (\texorpdfstring{$17.8$--$19.2$}{}~m in (b);
-\texorpdfstring{$21.1$--$28.8$}{}~m in (d)), not the cutoff.
-Panel (d) draws centroids, not the absorbed players.
-Compact four-cycles at both levels, not the bar of largest
+distances (\texorpdfstring{$6.9$--$15.6$}{}~m in (b);
+\texorpdfstring{$14.6$--$22.1$}{}~m in (d)). The longest edge is the
+birth value. Panel (d) draws centroids, not the absorbed players.
+Eight vertices in (b) and six in (d), not the bar of largest
 \texorpdfstring{$p$}{} on the match.
 A 10~m scale bar is shown on each panel. Uniform sample,
 \texorpdfstring{$n=150$}{} frames, every 290th complete frame (the
@@ -241,8 +235,7 @@ in Figure~\ref{fig:cycles}.
 \textbf{(c)}~Every finite bar on the primary match, one track per
 organisational level (378 individual, 25 tactical).
 The dashed ticks are Table~\ref{tab:h1single}'s $\bar{p}$: the mean of
-these bar lengths (death minus birth, in metres of the Vietoris--Rips
-parameter \texorpdfstring{$\varepsilon$}{}, not seconds).
+these bar lengths.
 The two levels are not superimposed: that would recreate the mixing of
 Section~\ref{sec:scaleconflation}.
 The individual-level bar of largest \texorpdfstring{$p$}{} in
@@ -284,8 +277,8 @@ $\delta$ (m) & Total $H_1$ & Frame presence & Mean $k$ \\
 \subsection{Complementarity of the two \texorpdfstring{$H_1$}{} levels}
 \label{sec:complementarity}
 
-The two $H_1$ levels carry distinct rather than redundant
-information.
+Addressing question~\ref{q:distinct}, the two $H_1$ levels carry
+distinct rather than redundant information.
 Over 1{,}500 uniformly sampled frames, total individual and tactical
 $H_1$ persistence correlate weakly (Spearman $\rho=0.234$, $p<0.001$;
 95\% bootstrap CI $[0.181, 0.276]$). The same holds for loop counts
@@ -293,11 +286,13 @@ $H_1$ persistence correlate weakly (Spearman $\rho=0.234$, $p<0.001$;
 comparison uses total persistence or loop counts.
 
 Co-occurrence exceeds chance (Fisher odds ratio 6.12, $p=0.002$;
-bootstrap CI $[2.32, 16.33]$). Table~\ref{tab:fisher} shows the
-asymmetry: 1{,}167 frames carry individual loops without a tactical
-partner, and only two frames do the reverse. Weak rank correlation
-remains the main evidence for complementarity. Joint presence need not
-mean the two levels measure the same structure.
+bootstrap CI $[2.32, 16.33]$), and the association is one-sided
+(Table~\ref{tab:fisher}). In 1{,}167 frames an individual loop appears
+without a tactical partner. In only two frames the reverse occurs.
+Because individual loops are present in almost every frame, joint
+presence is expected once a tactical loop forms, and it does not imply
+that the two levels record the same structure. The weak rank
+correlation therefore remains the main evidence for complementarity.
 
 \begin{table}[h]
 \centering
@@ -314,10 +309,9 @@ Individual $H_1$ absent  & 2   & 51 \\
 \end{table}
 
 Bottleneck distance between the two levels'
-diagrams has median 1.456~m and 95th-percentile tail 3.556~m. That is
-on the order of typical tactical filtration lifetime on the primary
-match (3.778~m mean bar length where loops appear;
-Table~\ref{tab:h1single}). Landscape $L^2$ distance has median 5.477.
+diagrams has median 1.456~m and 95th percentile 3.556~m. The
+95th percentile is close to the ten-match tactical mean bar length,
+3.411~m (Table~\ref{tab:h1multi}). Landscape $L^2$ distance has median 5.477.
 The levels differ by roughly as much as their features are large, not
 by a small perturbation of one shared pattern.
 
@@ -333,10 +327,13 @@ For each event, $\Delta$ is the change in mean total persistence from
 the five 1~Hz frames before the event to the five after it
 (Section~\ref{sec:stats}). At the individual level, an on-ball
 engagement is followed by a drop. The mean change is
-$\Delta=-0.253$~m ($n=8{,}927$, Mann--Whitney $p<10^{-13}$).
+$\Delta=-0.253$~m ($n=8{,}927$, Wilcoxon signed-rank $p<10^{-13}$).
 Build-up is followed by a rise. The mean change is
-$\Delta=+0.700$~m ($n=618$, $p<10^{-6}$). At the tactical level,
-engagements are again followed by a drop and build-up by a rise.
+$\Delta=+0.700$~m ($n=618$, Wilcoxon signed-rank $p<10^{-7}$). At the tactical level the mean changes are
+$\Delta=-0.056$~m for engagement ($n=8{,}927$, of which $3{,}738$ are
+exact zeros; Wilcoxon signed-rank $p=0.013$ on the remainder) and
+$\Delta=+0.339$~m for build-up ($n=618$, of which $153$ are exact
+zeros; $p<10^{-5}$).
 
 The event classes were specified in advance, and the $p$-values are
 nominal. Multiple-testing control and a football reading of these

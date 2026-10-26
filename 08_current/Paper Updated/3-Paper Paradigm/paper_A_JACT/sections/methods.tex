@@ -28,9 +28,9 @@ on one match, so $|\tilde{T}|=150$. On the primary match
 $N = 43{,}531$, so the stride is 290 frames ($\approx 29$~s). Across
 ten matches the sampled times give 1{,}500 frames.
 
-This subsample limits temporal pseudo-replication. It does not treat
-the competitive-dependence inference problem named in
-Section~\ref{sec:background}, and it cannot resolve formation or
+This subsample limits temporal pseudo-replication. Opposition couples
+successive positions (competitive dependence); that inference problem
+is not treated here. The subsample cannot resolve formation or
 dispersion of loops between samples. Event association is a
 construct-validity check, not a dynamical model, and it does not use
 $\tilde{T}$. Topology for that check is computed on every tenth
@@ -71,7 +71,7 @@ gap \texorpdfstring{$<\delta$}{} (Section~2.2).
 \texorpdfstring{$\tilde{P}(\tilde{t})$}{} (Section~2.4).
 \textbf{(e)}~Finite \texorpdfstring{$H_1$}{} birth--death pairs.
 \textbf{(f)}~The same pairs as a barcode.
-\textbf{(g)}~Graph-cycle proxy for an \texorpdfstring{$H_1$}{} pair
+\textbf{(g)}~The 1-cycle returned by the boundary-matrix reduction for an \texorpdfstring{$H_1$}{} pair
 (Section~2.5). Figure~\ref{fig:cycles} shows the cycle step on real
 tracking data.}
 \label{fig:pipeline}
@@ -122,11 +122,14 @@ $|\overline{k}(\delta)-5|$, among candidates with
 $P(k\ge 4;\delta)\ge 0.5$;
 \item team: smallest $\delta$ with $\overline{k}(\delta)\le 2$.
 \end{itemize}
-Ties take the smaller $\delta$. The three targets are roster
-statements. The individual target $n-3=19$ is a mostly resolved set of
-agents. The tactical target $5$, with $k\ge 4$ still common, is a
-handful of coordinating groups, enough that a loop remains possible.
-The team target $2$ is at most two spatial envelopes.
+Ties take the smaller $\delta$. Each target is a statement about the
+number of groups, not about distance. The individual target
+$n-3=19$ leaves most agents resolved individually. The tactical
+target $5$ is a handful of coordinating groups. The rule also requires
+$k\ge 4$ in at least half of frames, because a Vietoris--Rips loop
+needs at least four vertices: three pairwise-connected vertices span a
+2-simplex as soon as the last edge enters. The team target $2$ is at
+most two spatial envelopes.
 
 On this corpus the inversion returns $2.75$~m, $11.75$~m, and
 $23.0$~m. Pooled mean group count at those cutoffs is $19.31$,
@@ -138,11 +141,11 @@ $[4, 10]$, and $[1, 2.5]$ respectively. All ten matches lie inside
 those bands.
 
 The curve is asymmetric. Nearby agents merge quickly, at about
-$1.6$ groups per metre from $\overline{k}=19$ to $5$. Larger gaps
-then resist merging, at about $0.27$ groups per metre from $5$ to
-$2$. The remaining gaps are the large between-group distances. That
-flattening is why the team cutoff sits far out at $23.0$~m and still
-returns two envelopes, not two teams.
+$1.6$ groups per metre from $\overline{k}=19$ to $5$, whereas the
+remaining large between-group gaps resist merging, at about
+$0.27$ groups per metre from $5$ to $2$. Because the curve flattens,
+the team cutoff sits far out at $23.0$~m and still returns two
+envelopes rather than the two teams.
 
 Clustering-quality diagnostics (Calinski--Harabasz, silhouette, and
 Shannon entropy of cluster sizes) are recorded on a deterministic
@@ -164,10 +167,10 @@ Section~\ref{sec:data}. Grid
 \texorpdfstring{$\delta\in[0.25, 40.0]$}{}~m at $0.25$~m.
 \textbf{(a)}~Pooled mean group-count curve
 \texorpdfstring{$\overline{k}(\delta)$}{} (black) with the ten
-per-match curves (grey). Targets are roster statements:
+per-match curves (grey). Targets are group counts:
 \texorpdfstring{$\overline{k}=n-3=19$}{} (most agents resolved),
-\texorpdfstring{$\overline{k}=5$}{} (a few coordinating groups,
-enough that a loop remains possible), and
+\texorpdfstring{$\overline{k}=5$}{} (a few coordinating groups;
+a loop needs at least four vertices), and
 \texorpdfstring{$\overline{k}=2$}{} (two spatial
 envelopes, not the two teams, since team labels are unused). Circles
 mark the inversion at $2.75$, $11.75$, and $23.0$~m (top axis); the
@@ -202,9 +205,7 @@ $\tilde{P}(\tilde{t})$. Each reduced cloud has at most 22 centroid
 points, so pairwise inter-centroid distances are bounded. The
 filtration therefore runs to the diameter of the cloud: the maximum
 pairwise distance between centroids. At that extent the complex is a
-full simplex and every $H_1$ class on this corpus is finite; no
-additional finite bar appears beyond that diameter on the
-150-frame primary sample or the ten-match aggregate analysed here.
+full simplex, so every $H_1$ class on this corpus is finite.
 
 Persistence diagrams are computed with Ripser via Ripser.py
 \citep{bauer2021ripser}, with coefficients in $\mathbb{F}_2$. We report
@@ -229,21 +230,21 @@ Section~\ref{sec:complementarity}.
 \subsection{Closed cycle identification}
 \label{sec:cycles}
 
-Each $H_1$ feature corresponds to a 1-cycle in the Vietoris--Rips
-complex. A geometric realisation is recovered from the adjacency graph
-of edges whose distances fall within the feature's persistence
-interval $[\text{birth},\text{death}]$. Closed cycles of at least
-three vertices are then enumerated by breadth-first search from each
-vertex. If that graph yields no cycle, the search falls back to edges
-whose distances lie in
-$[\tfrac{1}{2}\text{birth},\,\text{death}]$. Breadth-first
-search is used in preference to depth-first search because it
-prioritises cycles with fewer vertices. Those cycles correspond to
-minimal enclosing arrangements. Among the enumerated cycles, the
-representative is the one whose edge distances lie closest to the
-midpoint of the persistence interval. This representative is a
-geometric proxy for the persistence pair, not a homology generator
-extracted from the matrix reduction.
+Each finite $H_1$ bar is assigned the 1-cycle returned by column
+reduction of the Vietoris--Rips boundary matrix over $\mathbb{F}_2$.
+The complex uses every edge and every triangle on the centroid cloud,
+so the filtration runs to the diameter. The reduction pairs the edge
+that creates the class with the triangle that destroys it. The
+representative is the reduced boundary of that triangle. Every edge of
+the cycle has length at most the birth value, and the longest edge is
+the creating edge, so the cycle is present in the complex at birth.
+A triangle cannot represent a bar: three vertices span a 2-simplex at
+the filtration value of their longest edge, and that pair has no
+positive persistence. On the primary match the representative is a
+simple cycle for all 403 finite bars. The cycles have four to thirteen
+vertices, and 352 of the 403 have four, five, or six. Birth--death
+values from the reduction match the Ripser diagrams to within
+$10^{-5}$~m.
 
 \subsection{Statistical tests}
 \label{sec:stats}
@@ -273,7 +274,12 @@ diagrams are computed using GUDHI, as described in
 Section~\ref{sec:filtrationextent}.
 
 The construct-validity check in Section~\ref{sec:eventcorr} uses a
-Mann--Whitney test of $\Delta$ against zero.
+two-sided Wilcoxon signed-rank test of $\Delta$ against zero.
+Exact zeros are discarded before ranking (SciPy \texttt{zero\_method='wilcox'}).
+For these sample sizes the $p$-value is SciPy's asymptotic approximation
+(\texttt{method='auto'}, SciPy~1.13.1). The individual engagement and build-up classes have no exact zeros.
+The tactical classes do, and those zeros are discarded before ranking.
+The means include them.
 Topology is evaluated on every tenth complete frame (1~Hz), not on
 $\tilde{T}$. For each annotated event, $\Delta$ is the change in mean
 total persistence from the five 1~Hz frames immediately before the
@@ -292,4 +298,4 @@ match the pinned \texttt{requirements.txt} accompanying the manuscript:
 NumPy~2.0.2, SciPy~1.13.1, pandas~2.3.2, scikit-learn~1.6.1. Analysis
 code, pipeline configuration, and pinned dependencies are included with
 the manuscript materials. They will be released in a public repository
-at arXiv posting (see Data Availability Statement).
+at arXiv posting (see the code availability statement).

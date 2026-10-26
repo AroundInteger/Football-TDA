@@ -3,29 +3,53 @@
   "tactical_frame_idx": 95,
   "same_frame": true,
   "layout": "2x2",
-  "selection": "compact four-cycle at both cutoffs among frames with H1 at both levels; not the persistence argmax",
+  "selection": "reduction cycle of the longest finite H1 bar on sample frame 95 at each cutoff; edges are present at birth",
   "sampling_step": 290,
   "n_frames_analysed": 150,
   "individual_max_persistence_m": 6.54,
   "tactical_max_persistence_m": 9.942,
-  "individual_cycle_nodes": 4,
-  "tactical_cycle_nodes": 4,
+  "individual_birth_m": 15.598439024466519,
+  "individual_death_m": 22.138727379865355,
+  "tactical_birth_m": 22.141196446941183,
+  "tactical_death_m": 32.08285403387896,
+  "individual_cycle_nodes": 8,
+  "tactical_cycle_nodes": 6,
+  "individual_is_simple_cycle": true,
+  "tactical_is_simple_cycle": true,
   "individual_edges_m": [
-    19.2,
-    18.3,
-    17.8,
-    18.7
+    14.2,
+    6.9,
+    8.0,
+    10.9,
+    13.1,
+    10.1,
+    9.5,
+    15.6
   ],
   "tactical_edges_m": [
-    22.1,
-    26.0,
+    21.2,
+    14.6,
     21.1,
-    28.7
+    21.9,
+    21.5,
+    22.1
+  ],
+  "individual_cycle_cluster_sizes": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    1,
+    1
   ],
   "tactical_cycle_cluster_sizes": [
     2,
-    14,
+    1,
+    1,
     2,
-    1
+    1,
+    14
   ]
 }

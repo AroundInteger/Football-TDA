@@ -1,44 +1,38 @@
 % =====================================================================
-% Paper A: Multi-Scale Persistent Homology for Competitive Collective
-% Systems. arXiv preprint (arxiv.sty). Journal refinement: Journal of
-% Quantitative Analysis in Sports (JQAS; De Gruyter dgruyter.sty).
+% Paper A for the Journal of Applied and Computational Topology.
+% Springer Nature LaTeX template, December 2024 (sn-jnl.cls).
 %
-% Do not load geometry or fancyhdr here: arxiv.sty already loads both.
+% JACT requires name-and-year citations and an alphabetical reference
+% list, so this copy uses sn-mathphys-ay rather than unsrtnat.
+% The arXiv preprint remains in ../arXiv_Paper_A/ on arxiv.sty.
+%
+% Local compile may use \input. Editorial Manager does not: build the
+% flat source with submission_pack/build_jact_source.sh.
 % =====================================================================
-\documentclass{article}
+\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}
 
-\usepackage{arxiv}
-
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{amsmath,amsfonts,amssymb}
-\usepackage{amsthm}
 \usepackage{graphicx}
-\usepackage{placeins}
-\usepackage{flafter}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage{xurl}
-\usepackage{microtype}
-\usepackage[numbers,sort&compress]{natbib}
-\usepackage{hyperref}
+\usepackage{placeins}
+\usepackage{flafter}
 
-\theoremstyle{plain}
+\theoremstyle{thmstyletwo}
 \newtheorem{remark}{Remark}
 
-\title{Multi-Scale Persistent Homology for Competitive Collective Systems}
-
-\author{
- Rowan Brown \\
-  Swansea University \\
-  \texttt{m.r.brown@swansea.ac.uk}
-}
+\raggedbottom
 
 \begin{document}
-\maketitle
 
-\begin{abstract}
-Competitive collective systems, including sports teams contesting a
+\title[Multi-scale persistent homology]{Multi-Scale Persistent Homology for Competitive Collective Systems}
+
+\author*[1]{\fnm{Rowan} \sur{Brown}}\email{m.r.brown@swansea.ac.uk}
+
+\affil*[1]{\orgdiv{Department of Biomedical Engineering}, \orgname{Swansea University}, \orgaddress{\city{Swansea}, \country{United Kingdom}}}
+
+\abstract{Competitive collective systems, including sports teams contesting a
 pitch, organise at several named levels at once: individuals, small
 groups, and a system-wide envelope. Persistent homology records
 connected components ($H_0$) and loops ($H_1$) as a distance parameter
@@ -46,36 +40,50 @@ grows. On the full point cloud those levels mix in one diagram, so a
 change cannot be assigned to a level. This paper asks whether the
 homology can be made scale-attributable: each diagram belonging to one
 organisational level.
-Positions are recorded in metres on a standard football pitch. The
-levels are named by how many groups they contain, not by an assumed
+The levels are named by how many groups they contain, not by an assumed
 length. A cutoff sweep then recovers those distances from the
 group-count curve. Hierarchical clustering at those recovered lengths
-decomposes the cloud, and persistent homology is computed on the
-resulting centroids.
-On ten professional matches (broadcast tracking at 10~Hz), three
-$H_0$ regimes appear: individual (2.75~m), tactical (11.75~m), and
-team (23.0~m). Loops appear at the first two levels, not the third.
-Individual-level loops appear in $96.5\%\pm 1.5\%$ of frames (mean
-filtration lifetime 1.886~m); tactical-level loops appear in
-$18.8\%\pm 6.5\%$ (mean filtration lifetime 3.411~m). Every examined loop is
-realised in space, and the two levels carry distinct information.
-The same pipeline applies to other bounded competitive systems once
-interaction lengths are re-derived.
-\end{abstract}
+reduces the cloud to centroids, and Vietoris--Rips persistence is
+computed on the centroids.
+On ten professional football matches (broadcast tracking at 10~Hz,
+positions in metres), the named group-count targets are met at
+individual ($2.75$~m), tactical ($11.75$~m), and team ($23.0$~m).
+A Vietoris--Rips loop needs at least four vertices.
+At the team cutoff, four centroids occur in 141 of 436{,}648 frames;
+a loop is impossible in the others, and none of those 141 frames
+carries a loop. Loops appear at the individual level in
+$96.5\%\pm 1.5\%$ of frames (mean bar length 1.886~m) and at the
+tactical level in $18.8\%\pm 6.5\%$ (mean bar length 3.411~m). On the
+primary match, every finite $H_1$ bar has a simple-cycle
+representative, present at birth by construction, and the two levels
+carry distinct information.
+Applying the pipeline to another bounded competitive system requires
+re-deriving the interaction lengths, which is not tested here.}
 
-\keywords{Vietoris--Rips filtration \and topological data analysis \and
-spatial tracking \and hierarchical clustering \and team sports}
+\keywords{Vietoris--Rips filtration, topological data analysis, spatial tracking, hierarchical clustering, team sports}
+
+\maketitle
 
 \input{sections/introduction}
 \input{sections/methods}
 \input{sections/results}
 \input{sections/discussion}
 \input{sections/conclusion}
+
+\backmatter
+
+\bmhead{Supplementary information}
+
+The notes that follow record a temporal-autocorrelation diagnostic, clustering-quality diagnostics, and the SkillCorner match identifiers. They are part of this manuscript. Figures and tables in those notes are numbered separately from the main text.
+
+\bmhead{Acknowledgements}
+
+The author thanks SkillCorner for use of the open broadcast tracking dataset.
+
 \input{sections/declarations}
 \input{sections/supplement}
 
 \FloatBarrier
-\bibliographystyle{unsrtnat}
 \bibliography{references}
 
 \end{document}

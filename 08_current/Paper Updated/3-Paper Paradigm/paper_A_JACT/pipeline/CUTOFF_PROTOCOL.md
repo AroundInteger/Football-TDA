@@ -38,7 +38,7 @@ four clusters.
 
 Ties: take the smaller \(\delta\). That is the whole selector.
 
-These three targets are roster statements, not SkillCorner-fitted metres.
+These three targets are group counts, not SkillCorner-fitted metres.
 “Mostly resolved agents” is \(n-3\). “A handful of coordinating groups,
 loop-feasible” is 5, with \(k \ge 4\). “At most two envelopes” is 2.
 

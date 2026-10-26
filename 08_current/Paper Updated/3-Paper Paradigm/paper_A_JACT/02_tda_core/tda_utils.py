@@ -260,6 +260,178 @@ def persistence_stats(diagram: np.ndarray) -> Dict[str, float]:
 
 
 # ---------------------------------------------------------------------------
+#  H1 representatives from the Vietoris--Rips boundary reduction
+# ---------------------------------------------------------------------------
+
+@dataclass
+class H1Representative:
+    """Homology representative of one finite H1 bar.
+
+    ``edges`` is the support of the reduced boundary of the 2-simplex that
+    destroys the class. Every edge is present at birth, and the longest
+    edge is the edge that creates the class.
+    """
+    birth: float
+    death: float
+    edges: List[Tuple[int, int]]
+    edge_distances: List[float]
+    nodes: Optional[List[int]]
+    is_simple_cycle: bool
+
+    @property
+    def persistence(self) -> float:
+        return self.death - self.birth
+
+    @property
+    def n_vertices(self) -> int:
+        verts = set()
+        for i, j in self.edges:
+            verts.add(i)
+            verts.add(j)
+        return len(verts)
+
+    @property
+    def longest_edge(self) -> float:
+        if not self.edge_distances:
+            return float("nan")
+        return float(max(self.edge_distances))
+
+    def present_at_birth(self, tol: float = 1e-6) -> bool:
+        return bool(self.edge_distances) and self.longest_edge <= self.birth + tol
+
+    def longest_is_birth(self, tol: float = 1e-6) -> bool:
+        return bool(self.edge_distances) and abs(self.longest_edge - self.birth) <= tol
+
+
+def _order_simple_cycle(edges: List[Tuple[int, int]]) -> Optional[List[int]]:
+    """Return vertex order when ``edges`` is a single circuit."""
+    adj: Dict[int, List[int]] = defaultdict(list)
+    for i, j in edges:
+        adj[i].append(j)
+        adj[j].append(i)
+    if not adj or any(len(nbrs) != 2 for nbrs in adj.values()):
+        return None
+    start = min(adj)
+    cycle = [start]
+    prev = None
+    cur = start
+    while True:
+        nbrs = adj[cur]
+        if prev is None:
+            nxt = nbrs[0]
+        elif nbrs[0] == prev:
+            nxt = nbrs[1]
+        else:
+            nxt = nbrs[0]
+        if nxt == start:
+            break
+        cycle.append(nxt)
+        prev, cur = cur, nxt
+        if len(cycle) > len(adj):
+            return None
+    if len(cycle) != len(adj):
+        return None
+    return cycle
+
+
+def rips_h1_representatives(
+    points: np.ndarray,
+    tol: float = 1e-8,
+) -> List[H1Representative]:
+    """Finite H1 bars and their reduction cycles on a Vietoris--Rips complex.
+
+    The complex is filtered by Euclidean length, with no threshold short of
+    the diameter: every edge and every triangle on ``points`` enters.
+    A bar is the pair (creating edge, destroying triangle) from F2 column
+    reduction. The representative is the reduced boundary of that triangle.
+    Pairs with persistence at most ``tol`` are the filled triangles of a
+    flag complex and are omitted.
+
+    The birth--death values agree with Ripser up to Ripser's float32
+    rounding. The cycle itself is not the cocycle array Ripser returns:
+    that cocycle is a cohomology representative and can contain the edge
+    that destroys the class.
+    """
+    pts = np.asarray(points, dtype=float)
+    n = len(pts)
+    if n < 4:
+        return []
+
+    dist = squareform(pdist(pts))
+    simplices: List[Tuple[float, int, Tuple[int, ...]]] = []
+    for i in range(n):
+        for j in range(i + 1, n):
+            simplices.append((float(dist[i, j]), 1, (i, j)))
+    for i in range(n):
+        for j in range(i + 1, n):
+            for k in range(j + 1, n):
+                filt = float(max(dist[i, j], dist[i, k], dist[j, k]))
+                simplices.append((filt, 2, (i, j, k)))
+    simplices.sort(key=lambda s: (s[0], s[1], s[2]))
+
+    edge_index = {
+        simp: idx for idx, (_filt, dim, simp) in enumerate(simplices) if dim == 1
+    }
+    columns: List[set] = []
+    for _filt, dim, simp in simplices:
+        if dim == 1:
+            columns.append(set())
+            continue
+        i, j, k = simp
+        columns.append({
+            edge_index[(i, j)],
+            edge_index[(i, k)],
+            edge_index[(j, k)],
+        })
+
+    pivot_of: Dict[int, int] = {}
+    for col_idx, (_filt, dim, _simp) in enumerate(simplices):
+        if dim != 2:
+            continue
+        column = set(columns[col_idx])
+        while column:
+            pivot = max(column)
+            if pivot not in pivot_of:
+                pivot_of[pivot] = col_idx
+                columns[col_idx] = column
+                break
+            column.symmetric_difference_update(columns[pivot_of[pivot]])
+        else:
+            columns[col_idx] = set()
+
+    reps: List[H1Representative] = []
+    for creator, destroyer in pivot_of.items():
+        if simplices[creator][1] != 1:
+            continue
+        birth = simplices[creator][0]
+        death = simplices[destroyer][0]
+        if death <= birth + tol:
+            continue
+        edges = [simplices[idx][2] for idx in sorted(columns[destroyer])]
+        edge_distances = [float(dist[i, j]) for i, j in edges]
+        nodes = _order_simple_cycle(edges)
+        if nodes is not None:
+            edge_distances = [
+                float(dist[nodes[t], nodes[(t + 1) % len(nodes)]])
+                for t in range(len(nodes))
+            ]
+            edges = [
+                tuple(sorted((nodes[t], nodes[(t + 1) % len(nodes)])))
+                for t in range(len(nodes))
+            ]
+        reps.append(H1Representative(
+            birth=birth,
+            death=death,
+            edges=edges,
+            edge_distances=edge_distances,
+            nodes=nodes,
+            is_simple_cycle=nodes is not None,
+        ))
+    reps.sort(key=lambda r: (r.birth, r.death))
+    return reps
+
+
+# ---------------------------------------------------------------------------
 #  Closed cycle identification
 # ---------------------------------------------------------------------------
 
@@ -271,10 +443,12 @@ def find_closed_cycles(
     max_length: int = 8,
 ) -> List[Cycle]:
     """
-    Find closed cycles representing H1 loops in the Vietoris-Rips complex.
+    Legacy midpoint proxy. Not used for Paper A representatives.
 
     Constructs the adjacency graph of edges with distances in [birth, death]
-    and enumerates simple cycles via BFS.
+    and enumerates simple cycles via BFS. A three-vertex cycle in a
+    Vietoris--Rips complex is the boundary of a triangle, and an edge in
+    this graph can be longer than birth. Use ``rips_h1_representatives``.
 
     Args:
         point_cloud: (n, 2) point positions.

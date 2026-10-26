@@ -22,10 +22,9 @@ from primary_match_skillcorner_analysis import (  # noqa: E402
     VALIDATED_CUTOFFS,
     cutoff_cluster,
     ensure_match_assets,
-    h1_at_cutoff,
     load_tracking_data,
 )
-from tda_utils import find_closed_cycles  # noqa: E402
+from tda_utils import rips_h1_representatives  # noqa: E402
 
 PITCH_COL = (0.22, 0.56, 0.24)
 LINE_COL = (1, 1, 1)
@@ -101,21 +100,25 @@ def draw_merge_disks(
                 )
 
 
+def longest_representative(centroids):
+    """Reduction cycle of the finite H1 bar with largest persistence."""
+    reps = rips_h1_representatives(np.asarray(centroids, dtype=float))
+    if not reps:
+        return None
+    return max(reps, key=lambda rep: rep.persistence)
+
+
 def cycle_vertices(positions, cutoff):
-    """Centroid cloud, labels, and max-persistence cycle node indices."""
+    """Centroid cloud, labels, and vertices of the longest H1 representative."""
     pos = np.asarray(positions)
     cents, labels = cutoff_cluster(pos, cutoff)
-    _, h1_d, cents, _ = h1_at_cutoff(pos, cutoff)
     pts = np.asarray(cents)
-    if len(h1_d) == 0 or pts.size == 0:
+    rep = longest_representative(pts) if pts.size else None
+    if rep is None:
         return pts, labels, []
-    pers = h1_d[:, 1] - h1_d[:, 0]
-    idx = int(np.argmax(pers))
-    cycles = find_closed_cycles(
-        pts, float(h1_d[idx, 0]), float(h1_d[idx, 1]),
-        min_length=3, max_length=6,
-    )
-    nodes = list(cycles[0].nodes) if cycles else []
+    if rep.nodes is not None:
+        return pts, labels, list(rep.nodes)
+    nodes = sorted({v for edge in rep.edges for v in edge})
     return pts, labels, nodes
 
 
@@ -301,61 +304,79 @@ def plot_panel(
     draw_pitch(ax)
     pos = np.asarray(positions)
     centroids, labels = cutoff_cluster(pos, cutoff)
-    h0_d, h1_d, cents, _ = h1_at_cutoff(pos, cutoff)
-    pts = np.asarray(cents)
+    pts = np.asarray(centroids)
+    empty = {
+        "p": 0.0,
+        "birth": None,
+        "death": None,
+        "n_vertices": 0,
+        "edges_m": [],
+        "cluster_sizes": [],
+        "is_simple_cycle": False,
+    }
     if pts.size == 0:
         draw_scale_bar(ax)
         add_panel_letter(ax, letter, loc="southeast")
-        return 0.0, 0
+        return empty
 
     unique = np.unique(labels)
-    max_p = 0.0
-    n_cycle = 0
+    info = {
+        "p": 0.0,
+        "birth": None,
+        "death": None,
+        "n_vertices": 0,
+        "edges_m": [],
+        "cluster_sizes": [],
+        "is_simple_cycle": False,
+    }
     in_cycle = np.zeros(len(pos), dtype=bool)
     cycle_nodes = []
-    if len(h1_d) > 0:
-        pers = h1_d[:, 1] - h1_d[:, 0]
-        idx = int(np.argmax(pers))
-        max_p = float(pers[idx])
-        cycles = find_closed_cycles(
-            pts, float(h1_d[idx, 0]), float(h1_d[idx, 1]),
-            min_length=3, max_length=6,
-        )
-        if cycles:
-            cycle_nodes = list(cycles[0].nodes)
-            n_cycle = len(cycle_nodes)
-            cycle_ids = unique[cycle_nodes]
-            in_cycle = np.isin(labels, cycle_ids)
-            cx = pts[cycle_nodes, 0]
-            cy = pts[cycle_nodes, 1]
-            ax.fill(cx, cy, color=CYCLE_FILL, alpha=0.14, zorder=2)
-            n = len(cx)
-            theta = np.linspace(0, 2 * np.pi, 80)
-            for k in range(n):
-                if draw_delta_disks:
-                    ax.plot(
-                        cx[k] + cutoff * np.cos(theta),
-                        cy[k] + cutoff * np.sin(theta),
-                        color=LINE_COL, ls="--", lw=0.9, alpha=0.85, zorder=3,
-                    )
-                k2 = (k + 1) % n
+    rep = longest_representative(pts)
+    if rep is not None and rep.nodes is not None:
+        cycle_nodes = list(rep.nodes)
+        info["p"] = float(rep.persistence)
+        info["birth"] = float(rep.birth)
+        info["death"] = float(rep.death)
+        info["n_vertices"] = len(cycle_nodes)
+        info["is_simple_cycle"] = True
+        info["cluster_sizes"] = [
+            int(np.sum(labels == unique[node])) for node in cycle_nodes
+        ]
+        cycle_ids = unique[cycle_nodes]
+        in_cycle = np.isin(labels, cycle_ids)
+        cx = pts[cycle_nodes, 0]
+        cy = pts[cycle_nodes, 1]
+        ax.fill(cx, cy, color=CYCLE_FILL, alpha=0.14, zorder=2)
+        n = len(cx)
+        theta = np.linspace(0, 2 * np.pi, 80)
+        edges_drawn = []
+        for k in range(n):
+            if draw_delta_disks:
                 ax.plot(
-                    [cx[k], cx[k2]], [cy[k], cy[k2]],
-                    color=CYCLE_EDGE, lw=2.2, zorder=3,
+                    cx[k] + cutoff * np.cos(theta),
+                    cy[k] + cutoff * np.sin(theta),
+                    color=LINE_COL, ls="--", lw=0.9, alpha=0.85, zorder=3,
                 )
-                edge = float(np.hypot(cx[k2] - cx[k], cy[k2] - cy[k]))
-                mx, my = 0.5 * (cx[k] + cx[k2]), 0.5 * (cy[k] + cy[k2])
-                ax.text(
-                    mx, my, f"{edge:.1f} m",
-                    color="#111111", fontsize=7.5, ha="center", va="center",
-                    bbox={
-                        "boxstyle": "round,pad=0.15",
-                        "facecolor": "white",
-                        "edgecolor": "none",
-                        "alpha": 0.85,
-                    },
-                    zorder=8,
-                )
+            k2 = (k + 1) % n
+            ax.plot(
+                [cx[k], cx[k2]], [cy[k], cy[k2]],
+                color=CYCLE_EDGE, lw=2.2, zorder=3,
+            )
+            edge = float(np.hypot(cx[k2] - cx[k], cy[k2] - cy[k]))
+            edges_drawn.append(round(edge, 1))
+            mx, my = 0.5 * (cx[k] + cx[k2]), 0.5 * (cy[k] + cy[k2])
+            ax.text(
+                mx, my, f"{edge:.1f} m",
+                color="#111111", fontsize=7.5, ha="center", va="center",
+                bbox={
+                    "boxstyle": "round,pad=0.15",
+                    "facecolor": "white",
+                    "edgecolor": "none",
+                    "alpha": 0.85,
+                },
+                zorder=8,
+            )
+        info["edges_m"] = edges_drawn
 
     if draw_cycle_players:
         ax.scatter(
@@ -388,7 +409,7 @@ def plot_panel(
 
     draw_scale_bar(ax)
     add_panel_letter(ax, letter, loc="southeast")
-    return max_p, n_cycle
+    return info
 
 
 def main() -> None:
@@ -420,7 +441,7 @@ def main() -> None:
     )
 
     plot_vertices_panel(axes[0, 0], pos, d_ind, "a", ind_nodes)
-    p_ind, n_ind = plot_panel(
+    ind_info = plot_panel(
         axes[0, 1], pos, d_ind, "b",
         draw_delta_disks=False,
         draw_cycle_players=True,
@@ -428,7 +449,7 @@ def main() -> None:
     plot_vertices_panel(
         axes[1, 0], pos, d_tac, "c", tac_nodes, draw_hulls=True,
     )
-    p_tac, n_tac = plot_panel(
+    tac_info = plot_panel(
         axes[1, 1], pos, d_tac, "d",
         draw_delta_disks=False,
         draw_cycle_players=False,
@@ -444,18 +465,25 @@ def main() -> None:
         "same_frame": same_frame,
         "layout": "2x2",
         "selection": (
-            "compact four-cycle at both cutoffs among frames with H1 "
-            "at both levels; not the persistence argmax"
+            "reduction cycle of the longest finite H1 bar on sample "
+            "frame 95 at each cutoff; edges are present at birth"
         ),
         "sampling_step": step,
         "n_frames_analysed": n_sample,
-        "individual_max_persistence_m": round(p_ind, 3),
-        "tactical_max_persistence_m": round(p_tac, 3),
-        "individual_cycle_nodes": n_ind,
-        "tactical_cycle_nodes": n_tac,
-        "individual_edges_m": [19.2, 18.3, 17.8, 18.7],
-        "tactical_edges_m": [22.1, 26.0, 21.1, 28.7],
-        "tactical_cycle_cluster_sizes": [2, 14, 2, 1],
+        "individual_max_persistence_m": round(ind_info["p"], 3),
+        "tactical_max_persistence_m": round(tac_info["p"], 3),
+        "individual_birth_m": ind_info["birth"],
+        "individual_death_m": ind_info["death"],
+        "tactical_birth_m": tac_info["birth"],
+        "tactical_death_m": tac_info["death"],
+        "individual_cycle_nodes": ind_info["n_vertices"],
+        "tactical_cycle_nodes": tac_info["n_vertices"],
+        "individual_is_simple_cycle": ind_info["is_simple_cycle"],
+        "tactical_is_simple_cycle": tac_info["is_simple_cycle"],
+        "individual_edges_m": ind_info["edges_m"],
+        "tactical_edges_m": tac_info["edges_m"],
+        "individual_cycle_cluster_sizes": ind_info["cluster_sizes"],
+        "tactical_cycle_cluster_sizes": tac_info["cluster_sizes"],
     }
     with open(OUTPUT_DIR / "figure_cycle_geometry.json", "w") as f:
         json.dump(meta, f, indent=2)
@@ -534,10 +562,10 @@ def plot_hudl_loop_panel(ax, positions, cutoff, cycle_edge_rgb):
     """Single-scale loop for industry briefing: no δ disks, no edge labels."""
     draw_pitch(ax)
     pos = np.asarray(positions)
-    _, labels = cutoff_cluster(pos, cutoff)
-    _, h1_d, cents, _ = h1_at_cutoff(pos, cutoff)
+    cents, labels = cutoff_cluster(pos, cutoff)
     pts = np.asarray(cents)
-    if pts.size == 0 or len(h1_d) == 0:
+    rep = longest_representative(pts) if pts.size else None
+    if pts.size == 0 or rep is None or rep.nodes is None:
         ax.scatter(
             pos[:, 0], pos[:, 1], s=22, c=[PLAYER],
             edgecolors="#222222", linewidths=0.4, zorder=4,
@@ -546,13 +574,7 @@ def plot_hudl_loop_panel(ax, positions, cutoff, cycle_edge_rgb):
         return
 
     unique = np.unique(labels)
-    pers = h1_d[:, 1] - h1_d[:, 0]
-    idx = int(np.argmax(pers))
-    cycles = find_closed_cycles(
-        pts, float(h1_d[idx, 0]), float(h1_d[idx, 1]),
-        min_length=3, max_length=6,
-    )
-    cycle_nodes = list(cycles[0].nodes) if cycles else []
+    cycle_nodes = list(rep.nodes)
     in_cycle = (
         np.isin(labels, unique[cycle_nodes]) if cycle_nodes else np.zeros(len(pos), bool)
     )

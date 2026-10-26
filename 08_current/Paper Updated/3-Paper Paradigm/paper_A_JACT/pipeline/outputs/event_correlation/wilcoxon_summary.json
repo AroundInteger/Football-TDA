@@ -1,0 +1,205 @@
+{
+  "scipy_version": "1.13.1",
+  "zero_method": "wilcox",
+  "method": "auto",
+  "alternative": "two-sided",
+  "source": "event_topology_correlation.csv",
+  "scales": {
+    "individual": {
+      "build_up": {
+        "n_events": 618,
+        "n_zero_delta": 0,
+        "n_ranked": 618,
+        "mean_delta": 0.6995333693945678,
+        "wilcoxon_stat": 71645.0,
+        "p_value": 6.560123838926185e-08
+      },
+      "chaotic": {
+        "n_events": 1029,
+        "n_zero_delta": 0,
+        "n_ranked": 1029,
+        "mean_delta": -0.2826585766872929,
+        "wilcoxon_stat": 233799.0,
+        "p_value": 0.0010806581128261082
+      },
+      "create": {
+        "n_events": 1455,
+        "n_zero_delta": 0,
+        "n_ranked": 1455,
+        "mean_delta": -0.0890541082559173,
+        "wilcoxon_stat": 521012.0,
+        "p_value": 0.5912673513646081
+      },
+      "direct": {
+        "n_events": 372,
+        "n_zero_delta": 0,
+        "n_ranked": 372,
+        "mean_delta": -0.24323418806957936,
+        "wilcoxon_stat": 32955.0,
+        "p_value": 0.40343165881321474
+      },
+      "finish": {
+        "n_events": 757,
+        "n_zero_delta": 0,
+        "n_ranked": 757,
+        "mean_delta": -0.3094274003723024,
+        "wilcoxon_stat": 128310.0,
+        "p_value": 0.011874391587671434
+      },
+      "off_ball_run": {
+        "n_events": 5010,
+        "n_zero_delta": 0,
+        "n_ranked": 5010,
+        "mean_delta": 0.014586647989269263,
+        "wilcoxon_stat": 6151741.0,
+        "p_value": 0.2238440236560596
+      },
+      "on_ball_engagement": {
+        "n_events": 8927,
+        "n_zero_delta": 0,
+        "n_ranked": 8927,
+        "mean_delta": -0.2525220303061669,
+        "wilcoxon_stat": 18073283.0,
+        "p_value": 2.854351286811342e-14
+      },
+      "passing_option": {
+        "n_events": 24108,
+        "n_zero_delta": 0,
+        "n_ranked": 24108,
+        "mean_delta": -0.16648426443976272,
+        "wilcoxon_stat": 137070120.5,
+        "p_value": 2.5248502664286577e-14
+      },
+      "player_possession": {
+        "n_events": 9334,
+        "n_zero_delta": 1,
+        "n_ranked": 9333,
+        "mean_delta": -0.042995435455408904,
+        "wilcoxon_stat": 21581841.0,
+        "p_value": 0.4498178380157223
+      },
+      "quick_break": {
+        "n_events": 61,
+        "n_zero_delta": 0,
+        "n_ranked": 61,
+        "mean_delta": -0.8126078652553872,
+        "wilcoxon_stat": 656.0,
+        "p_value": 0.037579355561608505
+      },
+      "set_play": {
+        "n_events": 174,
+        "n_zero_delta": 1,
+        "n_ranked": 173,
+        "mean_delta": -0.08526478745471473,
+        "wilcoxon_stat": 7394.0,
+        "p_value": 0.8420059215436052
+      },
+      "transition": {
+        "n_events": 83,
+        "n_zero_delta": 0,
+        "n_ranked": 83,
+        "mean_delta": 0.083336338939437,
+        "wilcoxon_stat": 1652.0,
+        "p_value": 0.6794950936132833
+      }
+    },
+    "tactical": {
+      "build_up": {
+        "n_events": 618,
+        "n_zero_delta": 153,
+        "n_ranked": 465,
+        "mean_delta": 0.33925757084078,
+        "wilcoxon_stat": 40641.5,
+        "p_value": 3.055743375931035e-06
+      },
+      "chaotic": {
+        "n_events": 1029,
+        "n_zero_delta": 560,
+        "n_ranked": 469,
+        "mean_delta": -0.2547501687289906,
+        "wilcoxon_stat": 36181.5,
+        "p_value": 1.1590062317858637e-10
+      },
+      "create": {
+        "n_events": 1455,
+        "n_zero_delta": 471,
+        "n_ranked": 984,
+        "mean_delta": -0.06461473196232853,
+        "wilcoxon_stat": 237571.5,
+        "p_value": 0.5951531174550515
+      },
+      "direct": {
+        "n_events": 372,
+        "n_zero_delta": 140,
+        "n_ranked": 232,
+        "mean_delta": -0.18511051772743142,
+        "wilcoxon_stat": 12305.5,
+        "p_value": 0.2376524448645435
+      },
+      "finish": {
+        "n_events": 757,
+        "n_zero_delta": 323,
+        "n_ranked": 434,
+        "mean_delta": -0.11975676789781377,
+        "wilcoxon_stat": 43931.5,
+        "p_value": 0.2116019618455286
+      },
+      "off_ball_run": {
+        "n_events": 5010,
+        "n_zero_delta": 1885,
+        "n_ranked": 3125,
+        "mean_delta": 0.02139170774204765,
+        "wilcoxon_stat": 2361445.0,
+        "p_value": 0.1094404101292455
+      },
+      "on_ball_engagement": {
+        "n_events": 8927,
+        "n_zero_delta": 3738,
+        "n_ranked": 5189,
+        "mean_delta": -0.05643634674356007,
+        "wilcoxon_stat": 6463702.5,
+        "p_value": 0.012672472249089867
+      },
+      "passing_option": {
+        "n_events": 24108,
+        "n_zero_delta": 9118,
+        "n_ranked": 14990,
+        "mean_delta": -0.052116956373777716,
+        "wilcoxon_stat": 53998339.0,
+        "p_value": 3.8655234133158684e-05
+      },
+      "player_possession": {
+        "n_events": 9334,
+        "n_zero_delta": 3634,
+        "n_ranked": 5700,
+        "mean_delta": -0.025389738166666856,
+        "wilcoxon_stat": 8005242.5,
+        "p_value": 0.33946147035621255
+      },
+      "quick_break": {
+        "n_events": 61,
+        "n_zero_delta": 21,
+        "n_ranked": 40,
+        "mean_delta": -0.8867558713819159,
+        "wilcoxon_stat": 210.0,
+        "p_value": 0.007182556267971193
+      },
+      "set_play": {
+        "n_events": 174,
+        "n_zero_delta": 155,
+        "n_ranked": 19,
+        "mean_delta": -0.0331966816693887,
+        "wilcoxon_stat": 76.0,
+        "p_value": 0.44450890263539566
+      },
+      "transition": {
+        "n_events": 83,
+        "n_zero_delta": 42,
+        "n_ranked": 41,
+        "mean_delta": -0.36003146803522684,
+        "wilcoxon_stat": 281.0,
+        "p_value": 0.052711780303207265
+      }
+    }
+  }
+}

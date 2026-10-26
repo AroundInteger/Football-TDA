@@ -1,31 +1,25 @@
-# Paper A — arXiv / Zenodo pack
+# Paper A submission pack
 
-- `../arXiv_Paper_A.zip` — TeX sources, figures, `arxiv.sty`, and compiled `main.pdf`
-- Unpacked copy: `../arXiv_Paper_A/`
+## Journal of Applied and Computational Topology
+
+Upload `PaperA_JACT_sn_source.zip`. It is the December 2024 Springer Nature class (`sn-jnl`) with author-year citations (`sn-mathphys-ay`), which is the style this journal asks for. The zip is one directory of files: `sn-article.tex`, the class, the bibliography style, `references.bib`, `Fig1.pdf` to `Fig4.pdf`, `FigS1.pdf`, `FigS2.pdf`, and `sn-article.pdf`.
+
+Rebuild it from the working manuscript with:
+
+```bash
+sh submission_pack/build_jact_source.sh
+```
+
+Paste `cover_letter.md` into the cover-letter field, or upload it as a PDF.
+
+On acceptance, choose the subscription route. The open-access charge does not apply to that route.
+
+## arXiv
+
+The preprint source is `../../arXiv_Paper_A.zip`, unpacked at `../../arXiv_Paper_A/`. It uses `arxiv.sty`, not the Springer class. Do not upload that zip to the journal.
 
 ## Zenodo
 
-Upload `PaperA_JACT_zenodo.zip` to the Swansea University Zenodo community.
-After the DOI is assigned, insert it in `sections/declarations.tex` and
-rebuild the arXiv zip. Do not ship a placeholder DOI in the preprint.
+Upload `PaperA_JACT_zenodo.zip` to the Swansea University Zenodo community. After the DOI is assigned, insert it in `sections/declarations.tex` and rebuild both the journal zip and the arXiv zip. Do not ship a placeholder DOI.
 
-Tracking data are **not** in the zip. Clone SkillCorner open data as
-described in `01_data/README.md`.
-
-## arXiv metadata (suggested)
-
-| Field | Value |
-|-------|--------|
-| Title | Multi-Scale Persistent Homology for Competitive Collective Systems |
-| Author | Rowan Brown |
-| Primary category | math.AT |
-| Cross-list | stat.AP, cs.CG |
-| License | CC-BY 4.0 (match Zenodo) |
-| Comments | Preprint. Journal version in preparation for JQAS. Code and pipeline outputs will be archived on Zenodo. |
-
-Compile the source zip with `tectonic main.tex` or pdflatex + bibtex + pdflatex ×2.
-
-## Companion paper
-
-Paper B is in preparation and should be posted after this identifier exists.
-Until then, `@unpublished{paperB}` in `references.bib` remains an in-preparation stub.
+Tracking data are not in either zip. Clone SkillCorner open data as described in `01_data/README.md`.
