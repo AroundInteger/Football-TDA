@@ -76,16 +76,17 @@ belong to a companion manuscript.
 
 Linkage selection is a substantive methodological choice for the
 composed map (cluster at $\delta$, then Vietoris--Rips on centroids).
-Across a 600-frame, four-match comparison sample, single-linkage
-detects 106 tactical-level $H_1$ loops. Complete-linkage detects 802.
+Across a 600-frame, four-match comparison sample, single linkage
+detects 106 tactical-level $H_1$ loops. Complete linkage detects 802.
 Ward's method detects 822. The difference is almost an order of
 magnitude. Point-cloud stability theorems do not bound this map when
-single-linkage jumps at merge events; characterising diagram stability
-under clustering is an open problem we defer to follow-on work. The gap is large enough to change which scientific picture
-the data support, not merely the precision of one estimate. We retain
-single linkage because its definition is the most direct reading of
-spatial proximity. Its tendency to chain is one source of the gap
-with complete linkage and Ward's method, which we leave open.
+single-linkage merges jump; characterising diagram stability under
+clustering is an open problem we defer to follow-on work. The gap is
+large enough to change which scientific picture the data support, not
+merely the precision of one estimate. We retain single linkage because
+its definition is the most direct reading of spatial proximity. Its
+tendency to chain is a likely source of the gap with complete linkage
+and Ward's method; resolving that gap is left open.
 
 A more principled selection criterion would come from the dynamical
 system itself, rather than from clustering-quality metrics alone. One
@@ -129,7 +130,7 @@ stable tactical signature at population scale. It is also the sample
 on which the linkage criterion above can be evaluated, because a sparse
 governing equation for a persistence functional needs a population of
 match sequences. Separately, persistence landscape dynamics are being
-developed so that each match is a path through landscape space. The
-path is the sample on which the landscape-stability cutoff can be
-evaluated. Its resampling unit is the match-level landscape, not the
-per-frame summary used here.
+developed so that each match is a path through landscape space. That
+representation is the setting in which the landscape-stability cutoff
+can be evaluated, with the match-level landscape, not the per-frame
+summary, as the resampling unit.

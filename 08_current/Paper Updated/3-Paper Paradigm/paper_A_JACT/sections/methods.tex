@@ -28,10 +28,11 @@ on one match, so $|\tilde{T}|=150$. On the primary match
 $N = 43{,}531$, so the stride is 290 frames ($\approx 29$~s). Across
 ten matches the sampled times give 1{,}500 frames.
 
-This subsample limits temporal pseudo-replication. Opposition couples
-successive positions (competitive dependence); that inference problem
-is not treated here. The subsample cannot resolve formation or
-dispersion of loops between samples. Event association is a
+This subsample limits temporal pseudo-replication but does not remove
+a second dependence: opposition couples successive positions
+(competitive dependence), an inference problem not treated here. Nor
+can the subsample resolve formation or dispersion of loops between
+samples. Event association is a
 construct-validity check, not a dynamical model, and it does not use
 $\tilde{T}$. Topology for that check is computed on every tenth
 complete frame (1~Hz). Supplementary Figure~\ref{fig:acf} records the
@@ -72,7 +73,7 @@ gap \texorpdfstring{$<\delta$}{} (Section~2.2).
 \textbf{(e)}~Finite \texorpdfstring{$H_1$}{} birth--death pairs.
 \textbf{(f)}~The same pairs as a barcode.
 \textbf{(g)}~The 1-cycle returned by the boundary-matrix reduction for an \texorpdfstring{$H_1$}{} pair
-(Section~2.5). Figure~\ref{fig:cycles} shows the cycle step on real
+(Section~2.5); grey diagonals enter at death. Figure~\ref{fig:cycles} shows the cycle step on real
 tracking data.}
 \label{fig:pipeline}
 \end{figure}
@@ -128,7 +129,8 @@ $n-3=19$ leaves most agents resolved individually. The tactical
 target $5$ is a handful of coordinating groups. The rule also requires
 $k\ge 4$ in at least half of frames, because a Vietoris--Rips loop
 needs at least four vertices: three pairwise-connected vertices span a
-2-simplex as soon as the last edge enters. The team target $2$ is at
+2-simplex as soon as the last edge enters
+(Remark~\ref{rem:teamnull}). The team target $2$ is at
 most two spatial envelopes.
 
 On this corpus the inversion returns $2.75$~m, $11.75$~m, and
@@ -145,7 +147,8 @@ $1.6$ groups per metre from $\overline{k}=19$ to $5$, whereas the
 remaining large between-group gaps resist merging, at about
 $0.27$ groups per metre from $5$ to $2$. Because the curve flattens,
 the team cutoff sits far out at $23.0$~m and still returns two
-envelopes rather than the two teams.
+spatial envelopes. Team labels are withheld, so the partition is
+spatial; agreement with the two sides was not tested.
 
 Clustering-quality diagnostics (Calinski--Harabasz, silhouette, and
 Shannon entropy of cluster sizes) are recorded on a deterministic
@@ -170,9 +173,9 @@ Section~\ref{sec:data}. Grid
 per-match curves (grey). Targets are group counts:
 \texorpdfstring{$\overline{k}=n-3=19$}{} (most agents resolved),
 \texorpdfstring{$\overline{k}=5$}{} (a few coordinating groups;
-a loop needs at least four vertices), and
+a loop needs four vertices), and
 \texorpdfstring{$\overline{k}=2$}{} (two spatial
-envelopes, not the two teams, since team labels are unused). Circles
+envelopes; team labels withheld, agreement with sides not tested). Circles
 mark the inversion at $2.75$, $11.75$, and $23.0$~m (top axis); the
 inset zooms the individual rule.
 \textbf{(b)}~Per-frame group-count \texorpdfstring{$k$}{} distribution (median,
@@ -201,11 +204,11 @@ Figure~\ref{fig:diagnostics} and are not the selector.}
 \label{sec:filtrationextent}
 
 The Vietoris--Rips complex is computed in the usual way on
-$\tilde{P}(\tilde{t})$. Each reduced cloud has at most 22 centroid
-points, so pairwise inter-centroid distances are bounded. The
-filtration therefore runs to the diameter of the cloud: the maximum
-pairwise distance between centroids. At that extent the complex is a
-full simplex, so every $H_1$ class on this corpus is finite.
+$\tilde{P}(\tilde{t})$. Each reduced cloud has at most 22 centroids,
+so the full filtration is inexpensive and is run to the diameter: the
+maximum pairwise distance between centroids. At that extent the
+complex is a full simplex, so every $H_1$ class on this corpus is
+finite.
 
 Persistence diagrams are computed with Ripser via Ripser.py
 \citep{bauer2021ripser}, with coefficients in $\mathbb{F}_2$. We report
@@ -232,19 +235,19 @@ Section~\ref{sec:complementarity}.
 
 Each finite $H_1$ bar is assigned the 1-cycle returned by column
 reduction of the Vietoris--Rips boundary matrix over $\mathbb{F}_2$.
-The complex uses every edge and every triangle on the centroid cloud,
-so the filtration runs to the diameter. The reduction pairs the edge
-that creates the class with the triangle that destroys it. The
-representative is the reduced boundary of that triangle. Every edge of
-the cycle has length at most the birth value, and the longest edge is
-the creating edge, so the cycle is present in the complex at birth.
-A triangle cannot represent a bar: three vertices span a 2-simplex at
-the filtration value of their longest edge, and that pair has no
-positive persistence. On the primary match the representative is a
-simple cycle for all 403 finite bars. The cycles have four to thirteen
-vertices, and 352 of the 403 have four, five, or six. Birth--death
-values from the reduction match the Ripser diagrams to within
-$10^{-5}$~m.
+Because the filtration runs to the diameter, the complex contains
+every edge and every triangle on the centroid cloud. The reduction
+pairs the edge that creates the class with the triangle that destroys
+it. The representative is the reduced boundary of that triangle. Every
+edge of the cycle has length at most the birth value, and the longest
+edge is the creating edge, so the cycle is present in the complex at
+birth. A triangle cannot represent a bar
+(Section~\ref{sec:cutoffselection}). On the primary match the
+representative is a simple cycle for all 403 finite bars
+(Section~\ref{sec:cyclegeometry}). Birth--death values from the
+reduction match the Ripser diagrams to within $10^{-5}$~m; the looser
+tolerance relative to the GUDHI check ($10^{-6}$~m) is stored
+float32 precision in the Ripser diagrams.
 
 \subsection{Statistical tests}
 \label{sec:stats}
@@ -252,13 +255,13 @@ $10^{-5}$~m.
 $H_1$ detection could reflect the number of centroids rather than
 their arrangement. Each frame is therefore compared against a matched
 null. For a frame whose clustering yields $k$ centroids, the null
-draws $k$ points uniformly from the convex hull of those same
-centroids. Group count and spatial envelope are thus held fixed. Only
-the arrangement is randomised. The same filtration extent (cloud diameter) is used on each null cloud.
-Nothing else differs between the observed cloud and the null. We use
-200 null replicates per frame. The reported statistic is the excess of
-observed over null $H_1$ presence, with 95\% confidence intervals from
-bootstrap resampling over matches.
+holds $k$ fixed and draws $k$ points uniformly from the convex hull of
+those same centroids. The null points therefore lie inside the
+observed hull; the hull vertices are not kept. Only the arrangement is
+randomised. The same filtration extent (cloud diameter) is used on
+each null cloud. We use 200 null replicates per frame. The reported
+statistic is the excess of observed over null $H_1$ presence, with
+95\% confidence intervals from bootstrap resampling over matches.
 
 Complementarity of the two $H_1$ levels
 (Section~\ref{sec:complementarity}) is assessed by two frame-level

@@ -87,10 +87,10 @@ Add to `review-science.md` Part A/B when reviewing either paper.
 | Check | Review focus |
 |---|---|
 | Scale conflation problem | Clearly motivated before methods |
-| Two contributions | Decomposition + adaptive filtration separable and non-redundant |
-| Team-scale H₁ null | Structural Remark (k≤3 centroids), not empirical failure |
-| Robustness | Operative cutoff range [6, 14] m; P50–P95 filtration insensitivity — lead in Discussion, not buried |
-| Complementarity | Spearman + bottleneck/landscape distances support distinct scales |
+| Two contributions | Cutoff-selected levels, then Vietoris–Rips on the centroids. Do not require the phrase "adaptive filtration". Clustering plus the diameter extent is not a new filtration; that disclaimer belongs once, in Contributions |
+| Team-scale H₁ null | Impossible for k≤3, because a loop needs four vertices. Computed zero only on the k≥4 tail. "k≤3, so absent in every frame" is not a sufficient check: count the frames with k≥4 |
+| Cutoff dependence | Primary-match presence falls across [6, 14] m. Do not ask the paper to call that band robust |
+| Complementarity | An inference. It must name Spearman ρ, the co-occurrence table, and the bottleneck in that sentence or the next. Do not treat "distinct rather than redundant" as a statistic, and do not accept an untested coarsening counterfactual |
 | Incremental novelty | Schindler & Barahona and related work differentiated in Related Work |
 | Reproducibility | Software versions, Dockerfile, GitHub URL in Declarations |
 | Event correlation | Brief validity check only; no football interpretation |
@@ -98,6 +98,8 @@ Add to `review-science.md` Part A/B when reviewing either paper.
 **Flag [CRITICAL]** if Paper A headlines Paper B content or cites Paper B outside Outlook.
 
 **Flag [SIGNIFICANT]** if Related Work does not sharpen differentiation from cluster-then-PH precedents.
+
+**Flag [SIGNIFICANT]** if a headline sentence claims a different epistemic status from the one it has. The five tags are: design choice; true by construction; computed statistic; inference, which names its statistics in that sentence or the next; explicitly untested extension. Apply the tags to the abstract, the four questions, the opening sentence of each Results subsection, Discussion 4.1–4.3, and the Conclusion. Verbs that upgrade status include appear, recovered, robust, therefore, "since labels are unused", and "envelope held fixed". A fact that is true by construction (four vertices, H₀ = k at filtration zero, a reduction cycle present at birth) is not evidence. Background sentences in the Introduction are out of scope.
 
 ### 4.2 Paper B (JSS)
 

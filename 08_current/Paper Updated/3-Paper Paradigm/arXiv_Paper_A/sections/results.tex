@@ -10,12 +10,10 @@ At filtration zero, $H_0$ equals the group count $k$ by construction,
 so the check is that the subsample matches the full-sweep counts.
 Those levels are individual
 ($\delta = 2.75$~m), tactical ($\delta = 11.75$~m), and team
-($\delta = 23.0$~m). Throughout, $H_0$ is the group count: the number
-of centroids after clustering. Equivalently, it is $\beta_0$ of the
-Vietoris--Rips complex on those centroids at filtration zero.
-Primary-match figures come from the uniform 150-frame sample of match
-1996435 (Section~\ref{sec:data}). Ten-match aggregates use the same
-sampling scheme (1{,}500 frames in total).
+($\delta = 23.0$~m). Primary-match figures come from the uniform
+150-frame sample of match 1996435 (Section~\ref{sec:data}).
+Ten-match aggregates use the same sampling scheme (1{,}500 frames in
+total).
 
 At the individual level,
 $k = 19.32 \pm 2.34$ (mean $\pm$ s.d.; range 10--22). At the tactical
@@ -40,7 +38,8 @@ of $\delta$ (Figure~\ref{fig:cutoff}a). The spatial realisation on a
 single frame (Figure~\ref{fig:cutoff}d--f) shows the same three
 regimes: a mostly resolved set of agents at $2.75$~m, a handful of
 coordinating groups at $11.75$~m, and two spatial envelopes at
-$23.0$~m, which are topological components rather than the two teams.
+$23.0$~m (topological components; agreement with the two sides was not
+tested).
 
 \subsection{\texorpdfstring{$H_1$}{} loop detection}
 \label{sec:h1detection}
@@ -131,8 +130,9 @@ Team       & 0       & $0.0\%\pm0.0\%$  & N/A              & N/A   & N/A \\
 
 Presence alone cannot separate arrangement from group count, because
 more centroids close more cycles. The matched null of
-Section~\ref{sec:stats} holds both the group count and the spatial
-envelope fixed and randomises only the arrangement. Against that null,
+Section~\ref{sec:stats} holds $k$ fixed and draws points uniformly
+inside the observed convex hull (hull vertices are not kept), so only
+the arrangement is randomised. Against that null,
 tactical presence is 18.8\% compared with 9.1\%, an excess of $+9.7$
 percentage points (Table~\ref{tab:null}). Table~\ref{tab:nullk} shows
 where the excess arises. No loops appear in the 40.6\% of frames with
@@ -144,7 +144,7 @@ the observed excess is modest ($+5.1$ percentage points).
 
 \begin{table}[h]
 \centering
-\caption{\texorpdfstring{$H_1$}{} presence against a group-count- and envelope-matched null (10 matches, 1{,}500 frames, 200 null replicates per frame). Excess is in percentage points, with 95\% bootstrap CIs over matches.}
+\caption{\texorpdfstring{$H_1$}{} presence against a group-count- and hull-matched null (10 matches, 1{,}500 frames, 200 null replicates per frame). Excess is in percentage points, with 95\% bootstrap CIs over matches.}
 \label{tab:null}
 \begin{tabular}{@{}lcccc@{}}
 \toprule
@@ -213,8 +213,8 @@ largest \texorpdfstring{$p$}{} on those vertices
 distances (\texorpdfstring{$6.9$--$15.6$}{}~m in (b);
 \texorpdfstring{$14.6$--$22.1$}{}~m in (d)). The longest edge is the
 birth value. Panel (d) draws centroids, not the absorbed players.
-Eight vertices in (b) and six in (d), not the bar of largest
-\texorpdfstring{$p$}{} on the match.
+These are the longest bars on frame~95, not the longest on the match;
+the cycles have eight vertices in (b) and six in (d).
 A 10~m scale bar is shown on each panel. Uniform sample,
 \texorpdfstring{$n=150$}{} frames, every 290th complete frame (the
 same rule as the ten-match analysis).}
@@ -247,7 +247,7 @@ not the cycle shown in Figure~\ref{fig:cycles}.}
 \subsection{Sensitivity analysis}
 \label{sec:sensitivity}
 
-Detection is not confined to the adopted cutoff alone. Tactical $H_1$ counts fall monotonically
+Detection is not confined to the adopted cutoff. Tactical $H_1$ counts fall monotonically
 as the cutoff widens. On the
 primary match's 150 frames, sweeping $\delta\in[6,16]$~m gives 275
 loops (87.3\% of frames) at $\delta=6$~m and none at $\delta=16$~m.
@@ -286,9 +286,9 @@ $H_1$ persistence correlate weakly (Spearman $\rho=0.234$, $p<0.001$;
 comparison uses total persistence or loop counts.
 
 Co-occurrence exceeds chance (Fisher odds ratio 6.12, $p=0.002$;
-bootstrap CI $[2.32, 16.33]$), and the association is one-sided
+bootstrap CI $[2.32, 16.33]$), but the association is one-sided
 (Table~\ref{tab:fisher}). In 1{,}167 frames an individual loop appears
-without a tactical partner. In only two frames the reverse occurs.
+without a tactical partner. In only two frames does the reverse occur.
 Because individual loops are present in almost every frame, joint
 presence is expected once a tactical loop forms, and it does not imply
 that the two levels record the same structure. The weak rank
