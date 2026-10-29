@@ -76,7 +76,7 @@ The award is feasible in twelve months (RA Months 5–10; Months 11–12 PL-owne
 
 ### 7. Outcomes, Team and Resources
 
-**Publications and software.** The methodology paper [23] is submitted. The dated deliverables in Figure 1 are a season-results paper, a football-analytics paper [29], a Zenodo library DOI and SCAFC practitioner outputs. The analysis plan is pre-registered on OSF at Month 2. The PL presents the methods at Algebraic Topology: Methods, Computation and Science (ATMCS 13), KTH Stockholm, 28 June–2 July 2027 (Months 4–5). These form the Month-12 evidence pack for the Standard Grant (§3).
+**Publications and software.** The methodology paper [23] is submitted. The dated deliverables in Figure 1 are a season-results paper, a football-analytics paper [29], a Zenodo library DOI and SCAFC practitioner outputs. The analysis plan is pre-registered on OSF at Month 2. The PL presents the methods at Algebraic Topology: Methods, Computation and Science (ATMCS 13), KTH Stockholm, 28 June–2 July 2027 (Months 4–5), disseminating the approach to the applied-topology community and gathering specialist feedback before the season-scale results. These form the Month-12 evidence pack for the Standard Grant (§3).
 
 **Team.** The team brings together statistical topology for competitive systems (PL, Biomedical Engineering), applied algebraic geometry and topological methods (PcL Villamizar, Mathematics) and SCAFC as industry co-development partner. This cross-school and industry collaboration fits the scheme's remit. **Resources.** Full-season processing uses the PL's Supercomputing Wales allocation: approximately 1,600 of 5,000 available CPU-hours. Directly Incurred travel funds the ATMCS 13 presentation within the remaining Small Grant headroom.
 

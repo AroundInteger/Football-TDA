@@ -4,7 +4,7 @@
 1. **Submit EPSRC Mathematical Sciences Small Grant on Thursday 10 September.**
 2. **Issue Paper A (JACT) to collaborators for feedback** (parallel track; do not block grant Thursday).
 
-**Locked costing (16 Oct 2026):** PL 0.10 FTE · PcL Villamizar 0.05 FTE · RA Months **5–10** · no LK/GP · staff fEC **£96,918** from `live/Costs/Budget 16 10 26 IPA 799.xlsx` · ATMCS 13 travel **£1,800** PL only (V&A §7 / Resources); unused headroom **£1,282**.
+**Locked costing:** PL 0.10 FTE · PcL Villamizar 0.05 FTE · RA Months **5–10** · no LK/GP · staff fEC **£96,918** from `live/Costs/Budget 16 10 26 IPA 799.xlsx` (16 Oct) · ATMCS 13 travel **£2,150** PL only from `Travel budget planner 21 10 26 IPA 799.xlsx` (21 Oct); unused headroom **£932**.
 
 **Masters:** `live/TIMELINE.md` · `live/02_Vision_and_Approach_REV4.md` · `Paper_A_collaborator.md` / `sections/*.tex`.
 

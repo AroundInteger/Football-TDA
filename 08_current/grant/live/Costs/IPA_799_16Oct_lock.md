@@ -44,12 +44,13 @@
 | Indirect costs | £3,251 | £2,601 |
 | **Subtotal** | **£7,862** | **£6,290** |
 
-## Headroom use (locked in proposal narrative)
+## Headroom use (travel lock **21 Oct 2026**)
 
-~£3,082 remains under the £100k fEC Small Grant cap after staff. **Costed dissemination (PL only):** **ATMCS 13**, KTH Stockholm, **28 June–2 July 2027**.
+After staff, **£3,082** remains under the £100k fEC Small Grant cap. **Costed dissemination (PL only):** **ATMCS 13**, KTH Stockholm, conference **28 June–2 July 2027**, travel window **26 June–3 July 2027** (7 nights).
 
-**Auditable line items:** `ATMCS_13_travel_budget.md` (total **£1,800**): registration £280; flights £250; hotel £710 (5 nights, HMRC Stockholm room rate); subsistence £335 (5 days, HMRC residual); transfers £60; contingency £165. **Unused headroom £1,282** (not reallocated). RA not costed: post starts 1 July mid-meeting. Named in Vision and Approach §7, Resources and Costs, TIMELINE, and Applicant capability. Confirm with Research Office that DI travel does not attract estates/indirects before entering the JeS travel line.
+**Source planner:** `Travel budget planner 21 10 26 IPA 799.xlsx`. **Auditable line items:** `ATMCS_13_travel_budget.md` (total **£2,150**): registration £375; flights £170; train £100; hotel £1,022 (7 nights × £146, HMRC Stockholm room rate at xe.com 21/10/26); subsistence £483 (7 days × £69, HMRC residual). **Project total with travel £99,068**. **Unused headroom £932** (not reallocated). RA not costed: post starts 1 July mid-meeting. Named in Vision and Approach §7, Resources and Costs, TIMELINE, and Applicant capability. Confirm with Research Office that DI travel does not attract estates/indirects before entering the JeS travel line.
 
 **Not on award:** Co-Investigators Kilduff and Powathil.
 
-**Superseded:** `Budget 02 10 26 IPA 799 v2.xlsx` / `IPA_799_v2_final_lock.md`.
+**Superseded (staff):** `Budget 02 10 26 IPA 799 v2.xlsx` / `IPA_799_v2_final_lock.md`.  
+**Superseded (travel):** 16 Oct ATMCS pack at £1,800 / 5 nights / unused headroom £1,282.

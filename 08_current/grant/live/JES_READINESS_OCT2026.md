@@ -21,7 +21,7 @@ UK English. Run before paste/submit. Harness Track C.
 
 ## Staff / costs cross-check (7 Oct 2026)
 
-- [x] `TIMELINE.md` ↔ `06_Resources_and_Costs.md` ↔ `Costs/IPA_799_16Oct_lock.md`: PL 0.10 · PcL 0.05 · RA Months 5–10 · **£96,918** staff fEC · ATMCS 13 travel **£1,800** (PL only); unused headroom **£1,282** · dates 1 Mar 2027–29 Feb 2028 · no LK/GP. Workbook: `Budget 16 10 26 IPA 799.xlsx`.
+- [x] `TIMELINE.md` ↔ `06_Resources_and_Costs.md` ↔ `Costs/IPA_799_16Oct_lock.md`: PL 0.10 · PcL 0.05 · RA Months 5–10 · **£96,918** staff fEC · ATMCS 13 travel **£2,150** (PL only, 21 Oct planner); unused headroom **£932** · dates 1 Mar 2027–29 Feb 2028 · no LK/GP. Workbook: `Budget 16 10 26 IPA 799.xlsx`; travel: `Travel budget planner 21 10 26 IPA 799.xlsx`.
 
 ## Human gates (not in repo)
 

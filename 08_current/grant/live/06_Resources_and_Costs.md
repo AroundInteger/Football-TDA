@@ -2,19 +2,20 @@
 
 <!-- Paste from ## Overview through ## Impact and value (inclusive headings).
      Do not paste this header, the lock table, or the "must not say" list.
-     Figures: Costs/IPA_799_16Oct_lock.md and Budget 16 10 26 IPA 799.xlsx
-     (16 Oct 2026). Project dates 1 Mar 2027–29 Feb 2028. Month map: TIMELINE.md.
+     Staff: Costs/IPA_799_16Oct_lock.md and Budget 16 10 26 IPA 799.xlsx (16 Oct 2026).
+     Travel: Costs/Travel budget planner 21 10 26 IPA 799.xlsx (£2,150; 21 Oct 2026).
+     Project dates 1 Mar 2027–29 Feb 2028. Month map: TIMELINE.md.
      UKRI titles: Project Lead (PL), Project co-lead (PcL).
      Tone: EPSRC cost justification (staff; facilities; travel; consumables; Exceptions). -->
 
-Pound figures follow **Finance lock** `Costs/IPA_799_16Oct_lock.md` and workbook **`Costs/Budget 16 10 26 IPA 799.xlsx`**. **Staff total fEC:** **£96,918** (EPSRC 80% **£77,534**). **Travel:** **£1,800** (PL only, ATMCS 13). **Project total with travel:** **£98,718**. Unused headroom under the £100k fEC cap: **£1,282**.
+Pound figures follow **Finance lock** `Costs/IPA_799_16Oct_lock.md` and workbook **`Costs/Budget 16 10 26 IPA 799.xlsx`** (staff), with travel from **`Costs/Travel budget planner 21 10 26 IPA 799.xlsx`**. **Staff total fEC:** **£96,918** (EPSRC 80% **£77,534**). **Travel:** **£2,150** (PL only, ATMCS 13). **Project total with travel:** **£99,068**. Unused headroom under the £100k fEC cap: **£932**.
 
 | Role | Effort | Project window | JeS dates | 100% fEC |
 |---|---|---|---|---|
 | PL, Dr Rowan Brown | **0.10 FTE** (~4 h/week) | Months 1–12 | 1 Mar 2027–29 Feb 2028 | £17,664 |
 | Research Associate (Grade 7, SP30) | 1.0 FTE | Months **5–10** (6 months) | 1 Jul 2027–31 Dec 2027 | £71,392 |
 | PcL, Dr Nelly Villamizar (Mathematics) | **0.05 FTE** (~2 h/week) | Months 1–12; peak O2 Months 5–10 | 1 Mar 2027–29 Feb 2028 | £7,862 |
-| Travel (Directly Incurred) | ATMCS 13, KTH Stockholm (**PL only**) | Months 4–5 | 28 Jun–2 Jul 2027 | **£1,800** |
+| Travel (Directly Incurred) | ATMCS 13, KTH Stockholm (**PL only**) | Months 4–5 | 26 Jun–3 Jul 2027 | **£2,150** |
 
 Kilduff and Powathil are **not** costed. No equipment line. Open-access publication costs: UKRI block grant.
 
@@ -22,7 +23,7 @@ Kilduff and Powathil are **not** costed. No equipment line. Open-access publicat
 
 ## Overview and resourcing strategy
 
-This application asks for the minimum staff needed to analyse a full Championship football season over 12 months (1 March 2027–29 February 2028), plus one Directly Incurred conference trip for the Project Lead. Staff total £96,918 Full Economic Cost (fEC; EPSRC 80% £77,534). Travel is £1,800, bringing the project total to £98,718, with £1,282 unused under the £100k fEC cap. There is no equipment line, no exceptional consumables, and no costs under Exceptions. Supercomputing Wales, secure storage and meeting space are already available and are not charged to the award. Open-source software removes licence fees. Partnership data from Swansea City Association Football Club (SCAFC) are supplied in kind.
+This application asks for the minimum staff needed to analyse a full Championship football season over 12 months (1 March 2027–29 February 2028), plus one Directly Incurred conference trip for the Project Lead. Staff total £96,918 Full Economic Cost (fEC; EPSRC 80% £77,534). Travel is £2,150, bringing the project total to £99,068, with £932 unused under the £100k fEC cap. There is no equipment line, no exceptional consumables, and no costs under Exceptions. Supercomputing Wales, secure storage and meeting space are already available and are not charged to the award. Open-source software removes licence fees. Partnership data from Swansea City Association Football Club (SCAFC) are supplied in kind.
 
 ## Project staff
 
@@ -40,19 +41,18 @@ No facilities or infrastructure are purchased on this award. Season-scale runs u
 
 ## Other cost categories
 
-**Travel.** One Directly Incurred conference trip is costed at **£1,800** for the **Project Lead only**: Algebraic Topology: Methods, Computation and Science (ATMCS 13), KTH Stockholm, 28 June–2 July 2027 (project Months 4–5). ATMCS is the leading applied-topology meeting for the methods in this award. The RA is not costed to attend: the post starts 1 July mid-meeting, and a delayed start would leave an orphan registration. The line-item audit budget is in `Costs/ATMCS_13_travel_budget.md` (codes REG-PL / FLT-PL / HOT-PL / SUB-PL / TRN / CON). Summary at planning rates (HMRC Stockholm Overseas Scale Rates; SEK 1 = £0.073 on 16 Oct 2026):
+**Travel.** One Directly Incurred conference trip is costed at **£2,150** for the **Project Lead only**: Algebraic Topology: Methods, Computation and Science (ATMCS 13), KTH Stockholm, conference 28 June–2 July 2027, travel window 26 June–3 July 2027 (project Months 4–5). The RA is not costed to attend: the post starts 1 July mid-meeting, and a delayed start would leave an orphan registration. The line-item audit budget is in `Costs/ATMCS_13_travel_budget.md` (codes REG-PL / FLT-PL / TRN / HOT-PL / SUB-PL), locked from `Costs/Travel budget planner 21 10 26 IPA 799.xlsx`. Summary at planning rates (HMRC Stockholm Overseas Scale Rates; xe.com FX on 21 Oct 2026):
 
 | Code | Item | Basis | £ |
 |---|---|---|---:|
-| REG-PL | Conference registration | £280 (ATMCS 11 early USD 300 precedent + uplift) | 280 |
-| FLT-PL | Economy return UK–Arlanda | £250 | 250 |
-| HOT-PL | Hotel, 5 nights | £142/night (HMRC room SEK 1,939.50) | 710 |
-| SUB-PL | Subsistence / food, 5 days | £67/day (HMRC residual SEK 917.50) | 335 |
-| TRN | Ground transfers | UK airport rail + Arlanda link | 60 |
-| CON | Contingency / FX | Fare or fee rises | 165 |
-| | **Trip total** | | **1,800** |
+| REG-PL | Conference registration | Planner lock | 375 |
+| FLT-PL | Economy return UK–Arlanda | Planner lock | 170 |
+| TRN | Train / ground | UK airport rail + Arlanda link | 100 |
+| HOT-PL | Hotel, 7 nights | £146/night (HMRC room SEK 1,939.50) | 1,022 |
+| SUB-PL | Subsistence / food, 7 days | £69/day (HMRC residual SEK 917.50) | 483 |
+| | **Trip total** | | **2,150** |
 
-Claims keep invoices, boarding passes and the HMRC table against those codes (Swansea Travel and Expenses Policy). Unused headroom under the £100k fEC cap is **£1,282**. There is no fieldwork and no other conference travel. Regular local travel between Swansea collaborators is not claimed.
+Claims keep invoices, boarding passes and the HMRC table against those codes (Swansea Travel and Expenses Policy). Unused headroom under the £100k fEC cap is **£932**. There is no fieldwork and no other conference travel. Regular local travel between Swansea collaborators is not claimed.
 
 **Consumables.** None beyond ordinary office and computing use. No exceptional quantities.
 
@@ -83,3 +83,4 @@ The award buys specialist staff time, one dissemination trip, and uses facilitie
 - T1/T2 statements Month 9 and calibration Month 10 as separate gates (both at Month 9).
 - RA ownership of the Month-12 Standard Grant pack.
 - "No conference travel" (superseded: ATMCS headroom line).
+- Travel **£1,800** / 5 nights / unused headroom **£1,282** (superseded 21 Oct 2026: **£2,150** / 7 nights / unused **£932**).

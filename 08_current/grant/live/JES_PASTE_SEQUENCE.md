@@ -10,7 +10,7 @@
 4. **Applicant and team capability** — `03_Applicant_and_Team_Capability.md` body (~913 words).
 5. **References** — numbered list from `04_References.md` (29 entries; do not reorder).
 6. **Project partners** — paste block under **JeS project partner record** in `05_Project_Partners.md`. Upload PDF **`APP98322 Project partner`** when received (text box: *attachment supplied*).
-7. **Resources and costs** — narrative from `06_Resources_and_Costs.md`; JeS figures from `Costs/Budget 16 10 26 IPA 799.xlsx` / `IPA_799_16Oct_lock.md` (£96,918 staff fEC; ATMCS 13 travel **£1,800** PL only; unused headroom £1,282).
+7. **Resources and costs** — narrative from `06_Resources_and_Costs.md`; JeS figures from `Costs/Budget 16 10 26 IPA 799.xlsx` / `IPA_799_16Oct_lock.md` and travel from `Costs/Travel budget planner 21 10 26 IPA 799.xlsx` (£96,918 staff fEC; ATMCS 13 travel **£2,150** PL only; unused headroom £932).
 8. **Ethics / RRI** — `07_Ethics_and_Responsible_Innovation.md`.
 9. **Data management** — `08_Data_Management_Plan.md`.
 

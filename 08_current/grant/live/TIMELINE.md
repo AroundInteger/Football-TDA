@@ -6,7 +6,9 @@ Duration: **12 months**. Do not change month numbers in 01–08 without updating
 
 **17 Sep 2026.** UKRI titles: Project Lead (PL) and Project co-lead (PcL). Effort lock unchanged.
 
-**16 Oct 2026 (Finance IPA 799, current).** Project dates **1 March 2027–29 February 2028**. **£96,918 fEC** (£77,534 at 80%) staff total. ATMCS 13 travel **£1,800** (PL only); project with travel **£98,718**; unused headroom **£1,282**. Detail: `Costs/IPA_799_16Oct_lock.md` / `Budget 16 10 26 IPA 799.xlsx`. Kilduff and Powathil are **not** on the award. (Supersedes 2 Oct IPA 799 v2 at £95,188.)
+**16 Oct 2026 (Finance IPA 799 staff).** Project dates **1 March 2027–29 February 2028**. **£96,918 fEC** (£77,534 at 80%) staff total. Detail: `Costs/IPA_799_16Oct_lock.md` / `Budget 16 10 26 IPA 799.xlsx`. Kilduff and Powathil are **not** on the award. (Supersedes 2 Oct IPA 799 v2 at £95,188.)
+
+**21 Oct 2026 (travel, final before University approval).** ATMCS 13 travel **£2,150** (PL only; 7 nights); project with travel **£99,068**; unused headroom **£932**. Source: `Costs/Travel budget planner 21 10 26 IPA 799.xlsx` / `ATMCS_13_travel_budget.md`.
 
 Section numbers below follow the reconstructed 7-section V&A (Vision §1–§3; Approach §4–§7).
 
@@ -30,7 +32,7 @@ Section numbers below follow the reconstructed 7-section V&A (Vision §1–§3; 
 | PL (Dr Rowan Brown) | **0.10 FTE**, Months 1–12 | 1 Mar 2027–29 Feb 2028 | £17,664 |
 | Research Associate (Grade 7, SP30) | 1.0 FTE, **Months 5–10** | 1 Jul 2027–31 Dec 2027 | £71,392 |
 | PcL (Dr Nelly Villamizar, Mathematics) | **0.05 FTE**, Months 1–12; peak O2 Months 5–10 | 1 Mar 2027–29 Feb 2028 | £7,862 |
-| Travel (Directly Incurred) | PL → ATMCS 13, KTH Stockholm | 28 Jun–2 Jul 2027 | **£1,800** |
+| Travel (Directly Incurred) | PL → ATMCS 13, KTH Stockholm | 26 Jun–3 Jul 2027 (conference 28 Jun–2 Jul) | **£2,150** |
 | Data | Swansea City AFC–StatsBomb (secured) | — | — |
 
 | Objective | Who | Window | Milestones |
@@ -49,7 +51,7 @@ Capability codes D1–D3 (R4RI only; not named in the V&A): D1 Month 7 (barcode 
 | Output | Date |
 |---|---|
 | Methodology paper [23] | Submitted Months 1–2 |
-| **ATMCS 13** (KTH Stockholm; PL presents) | **28 Jun–2 Jul 2027** (Months 4–5) |
+| **ATMCS 13** (KTH Stockholm; PL presents) | **28 Jun–2 Jul 2027** (Months 4–5; travel 26 Jun–3 Jul) |
 | Full-season results paper | Month 11 |
 | Football-analytics paper [29] | Submitted **Month 12** |
 | OSF pre-registration | Month 2 |
